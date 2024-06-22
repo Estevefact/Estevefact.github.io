@@ -17,7 +17,6 @@ Totals_df_labels = Totals_df.drop(Totals_df.columns[:2], axis=1)
 Totals_df_labels = Totals_df_labels.replace('\t', '', regex=True)
 Totals_df_labels = Totals_df_labels.replace('\n', '', regex=True)
 Totals_df_labels = Totals_df_labels.replace('ñ', 'n', regex=True)
-Totals_df_labels = Totals_df_labels.replace('ñ', 'n', regex=True)
 
 
 non_numeric_mapping_death = {
@@ -70,9 +69,9 @@ Totals_df_labels['Death Year'] = Totals_df_labels['Death Year'].fillna(0)
 new_column_names = {
     'story_name': 'Título',
     'reading_time_min': 'Tiempo de Lectura (min)',
-    'Author': 'Primer Nombre Autor',
+    'Author': 'Nombre Completo Autor',
     'LastName': 'Apellido Autor',
-    'Name': 'Nombre Completo Autor',
+    'Name': 'Primer Nombre Autor',
     'country': 'País',
     'genera': 'Género',
     'Wiki_URL': 'URL Wikipedia',
@@ -82,7 +81,6 @@ new_column_names = {
     'Death Year': 'Año de muerte'
 }
 
-# Rename the columns
 Totals_df_labels.rename(columns=new_column_names, inplace=True)
 
 Totals_df_labels=Totals_df_labels[["Título",'Tiempo de Lectura (min)','Primer Nombre Autor','Apellido Autor','Nombre Completo Autor','País','Género','Año de nacimiento','Año de muerte','Autores relacionados','Categorías']].copy()
@@ -100,8 +98,31 @@ Stories_tensors=pd.DataFrame(Totals_df_vals['values'].tolist())
 filname=os.path.join(directory, "stories_tensors.tsv")
 Stories_tensors.to_csv(filname, sep='\t', index=False, header=False)
 
+#English change
+new_column_names_english = {
+    'Título': 'Title',
+    'Tiempo de Lectura (min)': 'Reading time (min)',
+    'Primer Nombre Autor': 'Author',
+    'Apellido Autor':'LastName' ,
+    'Nombre Completo Autor': 'Name',
+    'País': 'Country',
+    'Género': 'Genre',
+    'URL Wikipedia': 'Wiki URL',
+    'Categorías': 'Categories',
+    'Autores relacionados':'linked_authors',
+    'Año de nacimiento':'Birth Year' ,
+    'Año de muerte':'Death Year'
+}
+Totals_df_labels.rename(columns=new_column_names_english, inplace=True)
+filname= os.path.join(directory, "stories_metadata_english.tsv")
+Totals_df_labels.to_csv(filname, sep='\t', index=False, header=True)
+
+
 #50 is the max Categorical
+
+
 # TODO
+# Missing translating Titles to english
 # Missing filling the dataframe more. add Children category and category of how hard is it to
 # understand, also deploy this in github.io for people to explore and docs
 
