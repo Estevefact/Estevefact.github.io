@@ -192,6 +192,7 @@ country_translation_dict = {
 Totals_df_labels.rename(columns=new_column_names_english, inplace=True)
 Totals_df_labels['Genre'] = Totals_df_labels['Genre'].map(translation_dict_genre)
 Totals_df_labels['Country'] = Totals_df_labels['Country'].map(country_translation_dict)
+Totals_df_labels['Country'] = Totals_df_labels['Country'].fillna("Unknown")
 filname= os.path.join(directory, "stories_metadata_english.tsv")
 Totals_df_labels.to_csv(filname, sep='\t', index=False, header=True)
 
