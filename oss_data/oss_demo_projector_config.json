@@ -1,0 +1,14 @@
+{
+  "embeddings": [
+    {
+      "tensorName": "Embeddings de Cuentos cortos",
+      "tensorShape": [
+        3090,
+        768
+      ],
+      "tensorPath": "tensors_generator/stories_tensors.tsv",
+      "metadataPath": "tensors_generator/stories_metadata.tsv"
+    }
+  ],
+  "modelCheckpointPath": "Demo datasets"
+}
