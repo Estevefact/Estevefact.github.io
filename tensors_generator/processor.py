@@ -103,13 +103,13 @@ new_column_names_english = {
     'Título': 'Title',
     'Tiempo de Lectura (min)': 'Reading time (min)',
     'Primer Nombre Autor': 'Author',
-    'Apellido Autor':'LastName' ,
+    'Apellido Autor':'Last Name' ,
     'Nombre Completo Autor': 'Name',
     'País': 'Country',
     'Género': 'Genre',
     'URL Wikipedia': 'Wiki URL',
     'Categorías': 'Categories',
-    'Autores relacionados':'linked_authors',
+    'Autores relacionados':'Linked Authors',
     'Año de nacimiento':'Birth Year' ,
     'Año de muerte':'Death Year'
 }
