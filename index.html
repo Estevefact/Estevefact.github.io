@@ -18283,14 +18283,14 @@ THE SOFTWARE.
           </span>
           <span class="button-container">
             <paper-tooltip position="bottom" animation-delay="0" fit-to-visible-bounds>
-              Descargar los metadatod con las modificaciones aplicadas.
+              Descargar los metadatos con las modificaciones aplicadas.
             </paper-tooltip>
             <paper-button class="ink-button" on-click="downloadMetadataClicked">Descargar</paper-button>
             <a href="#" id="downloadMetadataLink" hidden></a>
           </span>
           <span id="label-button" class="button-container">
             <paper-tooltip position="bottom" animation-delay="0" fit-to-visible-bounds>
-              Metadatos de las etiquetas selecionadas.
+              Metadatos de las etiquetas seleccionadas.
             </paper-tooltip>
             <paper-button class="ink-button" on-click="metadataEditorButtonClicked"
               disabled="[[metadataEditorButtonDisabled]]">Etiqueta</paper-button>
@@ -19829,7 +19829,7 @@ THE SOFTWARE.
               <button class="pause-tsne ink-button" title="Pause t-SNE">Pause</button>
               <button class="perturb-tsne ink-button" title="Perturb t-SNE">Perturb</button>
 
-            <p>Iteration: <span class="run-tsne-iter">0</span>
+            <p>Iteración: <span class="run-tsne-iter">0</span>
             <p id="tsne-sampling" class="notice">
               Para resultados más rápidos los datos serán muestreados hasta [[getTsneSampleSizeText()]] puntos.
             <p>
@@ -19848,7 +19848,7 @@ THE SOFTWARE.
                     slot="dropdown-content">
                     <paper-item disabled class="dropdown-item header">
                       <div>#</div>
-                      <div>Variance (%)</div>
+                      <div>Varianza (%)</div>
                     </paper-item>
                     <template is="dom-repeat" items="[[pcaComponents]]">
                       <paper-item class="dropdown-item" value="[[item.id]]" label="Component #[[item.componentNumber]]">
@@ -20476,13 +20476,13 @@ THE SOFTWARE.
             <a title="Documentation" target="_blank" href="[[documentationLink]]">
               <paper-icon-button icon="help-outline"></paper-icon-button>
               <paper-tooltip position="bottom" animation-delay="0" fit-to-visible-bounds>
-                Open documentation
+                Abrir documentación
               </paper-tooltip>
             </a>
             <a title="Report bug" target="_blank" href="[[bugReportLink]]">
               <paper-icon-button icon="bug-report"></paper-icon-button>
               <paper-tooltip position="bottom" animation-delay="0" fit-to-visible-bounds>
-                Report a bug
+                Reportar un bug
               </paper-tooltip>
             </a>
           </div>
@@ -20503,7 +20503,7 @@ THE SOFTWARE.
 
 
 
-  <title>Embedding projector - visualization of high-dimensional data</title>
+  <title>Proyector de Embeddings Coem - visualizando data de altas dimensiones</title>
   <style include="vz-projector-styles"></style>
   <style>
     html {
