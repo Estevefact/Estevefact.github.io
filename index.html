@@ -2,19 +2,21 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="keywords" content="visualization,embeddings,machine learning,javascript">
+  <meta name="keywords" content="visualización,embeddings,machine learning,javascript">
 
   <meta property="og:type" content="article">
   <meta property="og:title" content="Coem Proyector de embeddings - visualización de historias en altas dimensiones">
-  <meta property="og:description" content="Visualize high dimensional stories.">
+  <meta property="og:description" content="Visualice historias en altas dimensiones.">
   <meta property="og:url" content="http://projector.tensorflow.org">
-  <meta property="og:image" content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
+  <meta property="og:image"
+    content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
 
   <meta name="twitter:card" value="summary_large_image">
   <meta name="twitter:title" content="Coem Proyector de embeddings - visualización de historias en altas dimensiones">
-  <meta name="twitter:description" content="Visualize high dimensional stories.">
+  <meta name="twitter:description" content="Visualice historias en altas dimensiones.">
   <meta name="twitter:url" content="http://projector.tensorflow.org">
-  <meta name="twitter:image" content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
+  <meta name="twitter:image"
+    content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
 
   <meta http-equiv="cache-control" content="max-age=0">
   <meta http-equiv="cache-control" content="no-cache">
@@ -25,6 +27,7 @@
   <meta name="author" content="Daniel Smilkov, Nikhil Thorat, Charles Nicholson, Big Picture, Esteban Velásquez">
 
   <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="import" href="custom-icons.html">
 
   <script>/**
 * @license
@@ -17363,6 +17366,11 @@ THE SOFTWARE.
           margin-top: 6px;
         }
 
+        #author-text {
+          font-size: 12px;
+          color: black;
+        }
+
         .ink-fab {
           border-radius: 50%;
           background: white;
@@ -17393,8 +17401,8 @@ THE SOFTWARE.
             </paper-tooltip>
           </div>
           <div id="icon-container">
-
-            <paper-icon-button id="expand-more" icon="expand-less" on-tap="_expandMore"></paper-icon-button>
+            <paper-icon-button id="expand-more" icon="expand-more" on-tap="_expandMore"></paper-icon-button>
+            <paper-icon-button id="listen_icon" icon="custom-icons:expand-volume" on-tap="_loadDefaultBookmark"></paper-icon-button>
             <paper-icon-button id="expand-less" style="display: none" icon="expand-more"
               on-tap="_expandLess"></paper-icon-button>
           </div>
@@ -17404,7 +17412,7 @@ THE SOFTWARE.
           <div id="state-section">
             <template is="dom-if" if="[[!savedStates.length]]">
               <p id="no-bookmarks">
-                Sin marcadores aún, suba un archivo de marcado ro añada uno nuevo dando click al "+" abajo.
+                Sin marcadores aún, suba un archivo de marcador o añada uno nuevo dando click al "+" abajo.
 
             </template>
 
@@ -17452,13 +17460,23 @@ THE SOFTWARE.
           function d() { var e = null !== c && c.apply(this, arguments) || this; e.hasStates = !1; return e } zc(d, c); d.prototype.ready = function () { this.savedStates = []; this.setupUploadButton(); this.ignoreNextProjectionEvent = !1; this.expandLessButton = this.querySelector("#expand-less"); this.expandMoreButton = this.querySelector("#expand-more") };
           d.prototype.initialize = function (e, g) { var h = this; this.projector = e; g.registerProjectionChangedListener(function () { h.ignoreNextProjectionEvent ? h.ignoreNextProjectionEvent = !1 : h.clearStateSelection() }) }; d.prototype.setSelectedTensor = function (e, g, h) { var k = this; this.addStates(null); g && g.bookmarksPath ? h.getBookmarks(e, g.tensorName, function (l) { k.addStates(l); k._expandMore() }) : this._expandLess() }; d.prototype._expandMore = function () {
             this.$.panel.show(); this.expandMoreButton.style.display = "none"; this.expandLessButton.style.display =
-              ""
+              "";
           }; d.prototype._expandLess = function () { this.$.panel.hide(); this.expandMoreButton.style.display = ""; this.expandLessButton.style.display = "none" }; d.prototype._addBookmark = function () { var e = this.projector.getCurrentState(); e.label = "State " + this.savedStates.length; e.isSelected = !0; this.selectedState = this.savedStates.length; for (var g = 0; g < this.savedStates.length; g++)this.savedStates[g].isSelected = !1, this.notifyPath("savedStates." + g + ".isSelected", !1, !1); this.push("savedStates", e); this.updateHasStates() }; d.prototype._downloadFile =
             function () { var e = this.serializeAllSavedStates(); e = window.URL.createObjectURL(new Blob([e], { type: "text/plain" })); var g = document.createElement("a"); document.body.appendChild(g); g.style.display = "none"; g.href = e; g.download = "state"; g.click(); document.body.removeChild(g); window.URL.revokeObjectURL(e) }; d.prototype._uploadFile = function () { this.querySelector("#state-file").click() }; d.prototype.setupUploadButton = function () {
               var e = this, g = this.querySelector("#state-file"); g.onchange = function () {
                 var h = g.files[0];
                 g.value = ""; var k = new FileReader; k.onload = function () { var l = JSON.parse(k.result); e.savedStatesValid(l) ? (e.addStates(l), e.loadSavedState(0)) : a.logging.setWarningMessage("Unable to load bookmarks: wrong dataset, expected dataset " + ("with shape (" + l[0].dataSetDimensions + ").")) }; k.readAsText(h)
               }
+            }; d.prototype._loadDefaultBookmark = function () {
+              const defaultBookmarkPath = 'oss_data/García_Márquez.txt';
+              fetch(defaultBookmarkPath)
+                .then(response => response.text())
+                .then(text => {
+                  const data = JSON.parse(text); 
+                  this.addStates(data);
+                  this.loadSavedState(0);
+                })
+                .catch(error => console.error('Error loading default bookmark:', error));// TODO add pop up at the right of the audio of the story, the image and data
             }; d.prototype.addStates = function (e) { if (null == e) this.savedStates = []; else for (var g = 0; g < e.length; g++)e[g].isSelected = !1, this.push("savedStates", e[g]); this.updateHasStates() }; d.prototype.clearStateSelection = function () {
               for (var e =
                 0; e < this.savedStates.length; e++)this.setSelectionState(e, !1)
@@ -18268,12 +18286,6 @@ THE SOFTWARE.
           </div>
         </template>
         <div id="demo-data-buttons-container">
-          <span class="button-container">
-            <paper-tooltip position="bottom" animation-delay="0" fit-to-visible-bounds>
-              Cargar datos desde el computador
-            </paper-tooltip>
-            <paper-button id="upload" class="ink-button" onclick="dataDialog.open()">Cargar</paper-button>
-          </span>
           <span id="publish-container" class="button-container">
             <paper-tooltip position="bottom" animation-delay="0" fit-to-visible-bounds>
               Publicar la visualización de los embeddings y los datos.
@@ -20445,9 +20457,11 @@ THE SOFTWARE.
         .english-link {
           display: flex;
           align-items: center;
-          margin-right: 15px; /* Adjust spacing as needed */
+          margin-right: 15px;
+          /* Adjust spacing as needed */
           text-decoration: none;
-          color: black; /* Adjust text color as needed */
+          color: black;
+          /* Adjust text color as needed */
         }
 
         .center-section {
@@ -20472,7 +20486,8 @@ THE SOFTWARE.
             <img src="Coem.png" alt="Logo">
           </div>
           <div class="icons">
-            <a  class="english-link" title="English" target="_blank" href="https://Estevefact.github.io/english">English</a>
+            <a class="english-link" title="English" target="_blank"
+              href="https://Estevefact.github.io/english">English</a>
             <a title="Documentation" target="_blank" href="[[documentationLink]]">
               <paper-icon-button icon="help-outline"></paper-icon-button>
               <paper-tooltip position="bottom" animation-delay="0" fit-to-visible-bounds>

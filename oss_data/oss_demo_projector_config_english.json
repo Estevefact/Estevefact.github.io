@@ -7,7 +7,8 @@
         768
       ],
       "tensorPath": "tensors_generator/stories_tensors.tsv",
-      "metadataPath": "tensors_generator/stories_metadata_english.tsv"
+      "metadataPath": "tensors_generator/stories_metadata_english.tsv",
+      "bookmarksPath": "oss_data/García_Márquez.txt"
     }
   ],
   "modelCheckpointPath": "Demo datasets"
