@@ -17476,7 +17476,7 @@ THE SOFTWARE.
                   this.addStates(data);
                   this.loadSavedState(0);
                 })
-                .catch(error => console.error('Error loading default bookmark:', error));// TODO add pop up at the right of the audio of the story, the image and data
+                .catch(error => console.error('Error loading default bookmark:', error));// TODO Coem add pop up at the right of the audio of the story, the image and data
             }; d.prototype.addStates = function (e) { if (null == e) this.savedStates = []; else for (var g = 0; g < e.length; g++)e[g].isSelected = !1, this.push("savedStates", e[g]); this.updateHasStates() }; d.prototype.clearStateSelection = function () {
               for (var e =
                 0; e < this.savedStates.length; e++)this.setSelectionState(e, !1)
