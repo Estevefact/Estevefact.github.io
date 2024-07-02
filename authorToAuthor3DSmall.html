@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="UTF-8" />
+<!-- Import Webcomponents polyfill for older browsers -->
+<link rel="icon" type="image/png" href="static/favicon.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyector de links de Autores literarios</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Roboto", sans-serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #appbar {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: 60px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      color: white;
+      background: #003153;
+    }
+
+    #appbar .logo {
+      font-size: 18px;
+      font-weight: 300;
+    }
+
+    .icons {
+      display: flex;
+    }
+
+    .icons a {
+      color: white;
+    }
+
+    .center-section img {
+      width: 20%;
+      max-width: 20%;
+    }
+
+    .audios {
+      display: flex;
+    }
+
+    .center-section {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-12%);
+    }
+
+    #container {
+      margin-top: 60px;
+      display: flex;
+      transition: margin-left 0.3s ease;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 60px);
+      width: 100%;
+    }
+
+    #3d-graph {
+      flex-grow: 1;
+      transition: margin-left 0.3s ease;
+    }
+
+    #popup {
+      position: fixed;
+      box-sizing: border-box;
+      /* Use border-box to include padding and border in the element's total width and height */
+      top: 60px;
+      left: 0;
+      width: 25%;
+      height: calc(100% - 60px);
+      background: white;
+      border-left: 1px solid #ccc;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      /* Ensure content starts at the top */
+      padding: 20px;
+      overflow-y: auto;
+      /* Enable vertical scrolling */
+      overflow-x: hidden;
+      /* Hide horizontal scrolling */
+      z-index: 2;
+      transition: margin-left 0.3s ease;
+      max-width: 90%;
+    }
+
+    #popup::-webkit-scrollbar {
+      width: 8px;
+      /* Customize scrollbar width */
+    }
+
+    #popup::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      /* Customize scrollbar thumb color */
+      border-radius: 4px;
+      /* Add border radius to scrollbar thumb */
+    }
+
+    #toggle-popup-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 5px;
+      transform: translateX(+5%);
+      transition: margin-left 0.3s ease;
+    }
+
+    #follow-author-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    #follow-author-btn:hover {
+      background-color: #0056b3;
+    }
+
+    #author-info-container {
+      width: 90%;
+      background: #ffffff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      position: relative;
+      align-items: flex-start;
+      left: 0;
+    }
+
+    #Stories-Authors-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 5px;
+      transform: translateX(-30%);
+      transition: margin-left 0.3s ease;
+    }
+
+    #Stories-Authors-btn:hover {
+      background-color: #0056b3;
+    }
+
+    #Embeddings-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 5px;
+      transform: translateX(-20%);
+      transition: margin-left 0.3s ease;
+    }
+
+    #Embeddings-btn:hover {
+      background-color: #0056b3;
+    }
+
+    #toggle-popup-btn:hover {
+      background-color: #0056b3;
+    }
+
+    #search-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-top: 5px;
+      gap: 10px;
+    }
+
+    .autocomplete-suggestions {
+      border: 1px solid #999;
+      background: #fff;
+      overflow: auto;
+      position: absolute;
+      z-index: 9999;
+      max-height: 200px;
+      width: calc(100% - 60px);
+      /* Adjust for the dropdown and icon width */
+    }
+
+    .autocomplete-suggestion {
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .autocomplete-suggestion:hover {
+      background-color: #ddd;
+    }
+
+    #author-search {
+      width: 100%;
+      padding: 8px;
+      border-radius: 15px;
+      border: 1px solid #ccc;
+      padding-left: 30px;
+      /* To make space for the magnifying glass icon */
+    }
+
+    #search-icon {
+      position: absolute;
+      right: 10px;
+      pointer-events: none;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      margin-right: 0px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content span {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+    }
+
+    .dropdown-content span:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #01626e;
+    }
+
+    .dropbtn {
+      font-family: "Roboto", sans-serif;
+      background-color: #04abd1;
+      color: white;
+      padding: 4px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 15px;
+    }
+
+    #top-authors-container {
+      margin-top: 20px;
+      width: 70%;
+      /* Adjust as needed */
+      max-width: 900px;
+      /* Adjust as needed */
+    }
+
+    #top-authors-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #top-authors-list li {
+      padding: 8px;
+      border-bottom: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="appbar">
+    <div>
+      Relaciones Autores
+      <button id="toggle-popup-btn" onclick="togglePopup();" title="Toggle Popup">
+        Ver Autor
+      </button>
+    </div>
+    <div class="center-section">
+      <img src="static/Coem.png" alt="Logo" />
+    </div>
+    <div>
+      <button onclick="window.location.href='/authorToAuthor3D.html'" id="Stories-Authors-btn" title="Go to embeddings">
+        Ver todos los Autores
+      </button>
+      <button onclick="window.location.href='/'" id="Embeddings-btn" title="Go to embeddings">
+        Ver Embeddings de Cuentos
+      </button>
+    </div>
+  </div>
+
+  <div id="container">
+    <div id="3d-graph"></div>
+  </div>
+
+  <div id="popup">
+    <div id="search-container">
+      <div class="dropdown">
+        <button class="dropbtn" id="filter-button"> Filtrar por Nombre</button>
+        <div class="dropdown-content">
+          <span data-filter="id">Nombre</span>
+          <span data-filter="country">País</span>
+          <span data-filter="birth_year">Año de nacimientos</span>
+          <span data-filter="death_year">Año de muerte</span>
+          <span data-filter="genre">Género</span>
+        </div>
+      </div>
+      <input type="text" id="author-search" placeholder="Search for an author...">
+      <i id="search-icon" class="fas fa-search"></i>
+      <div id="autocomplete-container"></div>
+    </div>
+    <div id="author-info-container">></div>
+    <button id="follow-author-btn">Seguir Autor</button>
+    <div id="top-authors-container">
+      <h3>Top 5 Autores relacionados</h3>
+      <ul id="top-authors-list"></ul>
+    </div>
+  </div>
+
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <script>
+
+    // Global author variable
+    var author = ''
+
+    function togglePopup() {
+      var popup = document.getElementById("popup");
+      var container = document.getElementById("container");
+      var graph = document.getElementById("3d-graph");
+      var toggleLink = document.getElementById("toggle-popup-btn");
+
+      if (popup.style.display === "none" || popup.style.display === "") {
+        popup.style.display = "flex";
+        popup.style.width = "25%;";
+        toggleLink.textContent = "Ocultar Info Autor";
+        container.style.width = "calc(100% - 25%)";
+        container.style.marginLeft = "25%";
+
+        loadAuthorInfo();
+      } else {
+        popup.style.display = "none";
+        toggleLink.textContent = "Mostrar información Autor";
+        container.style.width = "100%";
+        container.style.marginLeft = "0";
+      }
+    }
+
+    function setAuthor(node) {
+      if (!node) { return }
+      author = node;
+      loadAuthorInfo(author);
+      highlightNodeAndLinks(author);
+
+      const popup = document.getElementById('popup');
+      if (popup) {
+        popup.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll the popup back to the top
+      }
+    }
+
+    function loadAuthorInfo(author) {
+      if (!author) { return }
+      fetch("author_info_smaller.html")
+        .then((response) => response.text())
+        .then((data) => {
+          var rendered = data
+            .replace("{{name}}", author.id)
+            .replace("{{country}}", author.country)
+            .replace("{{birthYear}}", author.birth_year)
+            .replace("{{deathYear}}", author.death_year)
+            .replace("{{Genre}}", author.genre)
+            .replace(
+              "{{exampleStory}}",
+              author.story_name
+            );
+          document.getElementById("author-info-container").innerHTML =
+            rendered;
+          document.getElementById("popup-image").src = `/static/${author.image}`;
+          document.getElementById("popup-audio").src = `/static/${author.audio}`;
+          updateTopAuthors(author)
+        })
+        .catch((error) => console.error("Error loading the box:", error));
+    }
+
+    function updateTopAuthors(node) {
+      const topAuthorsList = document.getElementById('top-authors-list');
+      topAuthorsList.innerHTML = '';
+
+      const neighbors = node.neighbors.map(neighbor => ({
+        ...neighbor,
+        linkCount: neighbor.links.length
+      }));
+
+      const topAuthors = neighbors.sort((a, b) => b.linkCount - a.linkCount);
+      // const topAuthors = neighbors; // By sorting we never get to smaller authors
+
+      // Leave uniques
+      const uniqueAuthors = [];
+      topAuthors.forEach(author => {
+        if (!uniqueAuthors.find(a => a.id === author.id)) {
+          uniqueAuthors.push(author);
+        }
+      });
+
+      // Take top 5
+      const topFiveAuthors = uniqueAuthors.slice(0, 5);
+
+      topFiveAuthors.forEach(author => {
+        const listItem = document.createElement('li');
+        const listLink = document.createElement('a'); // Correctly create the 'a' element
+        listLink.textContent = `${author.id}`;
+        listLink.href = "#"; // Add href to make it a link
+        listLink.addEventListener('click', (event) => {
+          event.preventDefault(); // Prevent default link behavior
+          setAuthor(author);
+        });
+        listItem.appendChild(listLink); // Append the link to the list item
+        topAuthorsList.appendChild(listItem); // Append the list item to the list
+      });
+    }
+
+    const highlightNodes = new Set();
+    const highlightLinks = new Set();
+    let graph = null; // Will be set Graph later
+    function highlightNodeAndLinks(node) {
+      highlightNodes.clear();
+      highlightLinks.clear();
+      if (node) {
+        highlightNodes.add(node);
+        node.neighbors.forEach(neighbor => highlightNodes.add(neighbor));
+        node.links.forEach(link => highlightLinks.add(link));
+        updateHighlight();
+      }
+    }
+
+    function updateHighlight() {
+      if (graph) {
+        // trigger update of highlighted objects in scene
+        graph
+          .nodeColor(graph.nodeColor())
+          .linkWidth(graph.linkWidth());
+      }
+    }
+
+    // Ensure the popup is initially hidden
+    document.addEventListener("DOMContentLoaded", function () {
+      var popup = document.getElementById("popup");
+      var container = document.getElementById("container");
+      var toggleLink = document.getElementById("toggle-popup-btn");
+      toggleLink.textContent = "Ocultar Info Autor";
+      popup.style.display = "flex";
+      container.style.marginLeft = "25%";
+      container.style.width = "calc(100% - 25%)";
+    });
+
+    async function fetchJSON() {
+      try {
+        const response = await fetch("authorLinksSmallerShortCleaned.json");
+        const gData = await response.json();
+        return gData;
+      } catch (error) {
+        console.error("Error fetching JSON:", error);
+        throw error; // Optionally rethrow the error or handle it as needed
+      }
+    }
+
+    fetchJSON().then((gData) => {
+      // cross-link node objects
+      gData.links.forEach((link) => {
+        const a = gData.nodes.find(node => node.id === link.source);
+        const b = gData.nodes.find(node => node.id === link.target);
+        !a.neighbors && (a.neighbors = []);
+        !b.neighbors && (b.neighbors = []);
+        a.neighbors.push(b);
+        b.neighbors.push(a);
+
+        !a.links && (a.links = []);
+        !b.links && (b.links = []);
+        a.links.push(link);
+        b.links.push(link);
+      });
+
+      const Graph = ForceGraph3D()(
+        // TODO missing selecting an author and untangle it, also when an author is selected Cahnge the authors fill
+        document.getElementById("3d-graph")
+      )
+        .graphData(gData)
+        .nodeAutoColorBy("group")
+        .nodeLabel((node) => `${node.id}: ${node.country}`)
+        .onNodeClick((node) => {
+          author = node;
+          loadAuthorInfo(author);
+          highlightNodeAndLinks(node);
+        })
+        .linkWidth((link) => {
+          return highlightLinks.has(link) ? 1 : 0.2;
+        })
+        .linkColor((link) => {
+          return highlightLinks.has(link) ? 'rgba(0,255,255,0.2)' : 'rgba(200,200,200,0.2)';
+        })
+        .linkOpacity((link) => {
+          return highlightLinks.has(link) ? 1 : 0.2;
+        });
+
+      graph = Graph;
+
+      setAuthor(gData.nodes.find(node => node.id === 'Gabriel García Márquez'));
+
+      function followAuthor() {
+        const node = author;
+        // Aim at node from outside it
+        const distance = 40;
+        const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+
+        const newPos =
+          node.x || node.y || node.z
+            ? {
+              x: node.x * distRatio,
+              y: node.y * distRatio,
+              z: node.z * distRatio,
+            }
+            : { x: 0, y: 0, z: distance }; // special case if node is in (0,0,0)
+
+        Graph.cameraPosition(
+          newPos, // new position
+          node, // lookAt ({ x, y, z })
+          3000 // ms transition duration
+        );
+
+        highlightNodeAndLinks(node);
+      }
+
+      // Get the button element
+      const changeAuthorBtn = document.getElementById('follow-author-btn');
+
+      // Add click event listener to the button
+      changeAuthorBtn.addEventListener('click', followAuthor);
+      // Implementing the search bar with autosuggest
+      const searchInput = document.getElementById('author-search');
+      const autocompleteContainer = document.getElementById('autocomplete-container');
+      const filterOptions = document.querySelectorAll('.dropdown-content span');
+      const filterButton = document.getElementById('filter-button');
+      let selectedFilter = 'id';
+
+      filterOptions.forEach(option => {
+        option.addEventListener('click', function () {
+          selectedFilter = this.dataset.filter;
+          const filterText = this.textContent;
+          filterButton.textContent = `Filter by ${filterText}`;
+          searchInput.placeholder = `Search by ${selectedFilter.replace('_', ' ')}...`;
+        });
+      });
+
+      searchInput.addEventListener('input', function () {
+        const query = this.value.toLowerCase();
+        autocompleteContainer.innerHTML = '';
+        if (query.length === 0) return;
+
+        const suggestions = gData.nodes.filter(node =>
+          (node[selectedFilter] && node[selectedFilter].toString().toLowerCase().includes(query))
+        );
+
+        suggestions.forEach(node => {
+          const suggestionItem = document.createElement('div');
+          suggestionItem.classList.add('autocomplete-suggestion');
+          const filterValue = node[selectedFilter] || '';
+          if (selectedFilter === 'id') {
+            suggestionText = `${node.id}`;
+          } else {
+            const filterValue = node[selectedFilter] || '';
+            suggestionText = `${node.id} (${filterValue})`;
+          }
+          suggestionItem.textContent = suggestionText;
+          suggestionItem.addEventListener('click', () => {
+            searchInput.value = node.id;
+            autocompleteContainer.innerHTML = '';
+            author = node;
+            loadAuthorInfo(node);
+            highlightNodeAndLinks(node);
+            followAuthor();
+          });
+          autocompleteContainer.appendChild(suggestionItem);
+        });
+      });
+    });
+
+  </script>
+</body>
+
+</html>

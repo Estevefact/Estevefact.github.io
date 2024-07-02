@@ -1,8 +1,10 @@
 # Coem visualizer
-This is part of the Coem project in this part I'm trying to visualize all classical short stories and poems into an embeddings map.
-The english version is coming and the poem embeddings of almost 5000 poems are also comming.
+This is part of the Coem project and in this part I'm trying to visualize all classical short stories and poems into an embeddings map.
+The english version is coming and the poem embeddings of almost 5000 poems are also comming. The links Visualization was done thanks
+to the help of @AgustinVallejo!
 
-Visualize it here [Coem](https://estevefact.github.io)
+Visualize the embeddings here [Coem embeddings](https://estevefact.github.io) and the links here [Coem Links](https://estevefact.github.io/authorToAuthor3D.html)
+
 
 # Limits
 the color are only for 50 categories at maximum
@@ -22,12 +24,14 @@ as a self limitation. I used Pinecone as a VectorDB. Thank you open source peopl
 
 # Coming soon
 I Generated a Carl Sagan Voice with an openvoice model and I'm generating an mp3 file for each story, this will be 
-uploaded to youtube and also have a separate website where one can explore, comment, rate and subscribe to listen to this
-stories in a customized way; like adding their own voice or how they want the story to be like or how hard it is to read.
-All these stories are also being translated and an english speaking version is also on the works. There's also
-a visualization of the newtork of authors that's on the works, one could also analyze with categories too. 
+uploaded to youtube and added as a columns to the embeddings and also have a separate website where one can explore,
+comment, rate and subscribe to listen to this stories in a customized way; like adding their own voice or how they want 
+the story to be like or how hard it is to read. All these stories are also being translated and an english speaking 
+version is also on the works. There's alsoa visualization of the newtork of authors that's on the works, one could also
+analyze with categories too. 
 
 # Contribute
-If anyone want to contribute please Push a PR, or send me an email mostly the excel file of coem_authors_enriched inside
-tensor_generator needs more attention. Need to turn them into csv, json or parquet to be eassily monitored. Finetuning 
+If anyone want to contribute please Push a PR, or send me an email mostly the tsv and [json](authorLinksSmaller.json)
+containing the metadata file of [stories_metadata.tsv](tensor_generator/stories_metadata.tsv) inside tensor_generator 
+needs more attention. Need to turn them into csv, json or parquet to be eassily monitored. Finetuning 
 the translation to make them really available would be really great.

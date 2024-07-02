@@ -17402,7 +17402,8 @@ THE SOFTWARE.
           </div>
           <div id="icon-container">
             <paper-icon-button id="expand-more" icon="expand-more" on-tap="_expandMore"></paper-icon-button>
-            <paper-icon-button id="listen_icon" icon="custom-icons:expand-volume" on-tap="_loadDefaultBookmark"></paper-icon-button>
+            <paper-icon-button id="listen_icon" icon="custom-icons:expand-volume"
+              on-tap="_loadDefaultBookmark"></paper-icon-button>
             <paper-icon-button id="expand-less" style="display: none" icon="expand-more"
               on-tap="_expandLess"></paper-icon-button>
           </div>
@@ -17472,7 +17473,7 @@ THE SOFTWARE.
               fetch(defaultBookmarkPath)
                 .then(response => response.text())
                 .then(text => {
-                  const data = JSON.parse(text); 
+                  const data = JSON.parse(text);
                   this.addStates(data);
                   this.loadSavedState(0);
                 })
@@ -20447,6 +20448,22 @@ THE SOFTWARE.
           color: white;
         }
 
+        #Links-btn {
+          background-color: #007bff;
+          color: white;
+          border: none;
+          padding: 10px 15px;
+          cursor: pointer;
+          font-size: 14px;
+          border-radius: 5px;
+          transform: translateX(-5%);
+          transition: margin-left 0.3s ease;
+        }
+
+        #Links-btn:hover {
+          background-color: #0056b3;
+        }
+
         .center-section img {
           width: 20%;
           /* Adjust as needed */
@@ -20481,11 +20498,16 @@ THE SOFTWARE.
 
       <div id="container">
         <div id="appbar">
-          <div>Proyector de Embeddings Literarios</div>
+          <div>Proyector de Embeddings Literarios
+          </div>
+
           <div class="center-section">
             <img src="Coem.png" alt="Logo">
           </div>
           <div class="icons">
+            <button onclick="window.location.href='/authorToAuthor3D.html'" id="Links-btn" title="Go to Links">
+              Ver Relaciones de autores
+            </button>
             <a class="english-link" title="English" target="_blank"
               href="https://Estevefact.github.io/english">English</a>
             <a title="Documentation" target="_blank" href="[[documentationLink]]">

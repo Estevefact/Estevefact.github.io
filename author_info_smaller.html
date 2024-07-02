@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Información Autor</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+
+
+        .info-box h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            margin: 12px 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .info-item span {
+            font-weight: 700;
+            color: #000;
+        }
+
+        .info-item-author {
+            font-weight: 700;
+            color: #000;
+            text-align: center;
+
+        }
+
+        #popup img {
+            width: 100%;
+            height: auto;
+        }
+
+        #popup audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="info-box">
+        <div class="info-item-author"> <span id="name">{{name}}</span></div>
+        <img id="popup-image" src="static/preview.png" alt="Popup Image">
+        <div class="info-item">País: <span id="country">{{country}}</span></div>
+        <div class="info-item">Nacimiento: <span id="birthYear">{{birthYear}}</span></div>
+        <div class="info-item">Muerte: <span id="deathYear">{{deathYear}}</span></div>
+        <div class="info-item">Género: <span id="country">{{Genre}}</span></div>
+        <div class="info-item">Título cuento: <span id="exampleStory">{{exampleStory}}</span></div>
+        <audio id="popup-audio" controls>
+            <source src="static/algo_grave_va_a_ocurrir.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+</body>
+
+</html>
