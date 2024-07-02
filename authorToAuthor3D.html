@@ -10,14 +10,14 @@
     <meta name="keywords" content="visualización,grafos,machine learning,javascript">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Coem proyector de relaciones - Visualización derelaciones de autores">
-    <meta property="og:description" content="Visualice historias en altas dimensiones.">
+    <meta property="og:title" content="Coem proyector de relaciones - Visualización de relaciones de autores">
+    <meta property="og:description" content="Visualice relaciones de Autores en Grafos.">
     <meta property="og:url" content="https://estevefact.github.io/authorToAuthor3D.html">
     <meta property="og:image"
       content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
 
     <meta name="twitter:card" value="summary_large_image">
-    <meta name="twitter:title" content="Coem proyector de relaciones - Visualización derelaciones de autores">
+    <meta name="twitter:title" content="Coem proyector de relaciones - Visualización de relaciones de autores">
     <meta name="twitter:description" content="Visualice relaciones de Autores en Grafos.">
     <meta name="twitter:url" content="">
     <meta name="twitter:image"
@@ -289,6 +289,20 @@
         padding: 8px;
         border-bottom: 1px solid #ccc;
       }
+      @media only screen and (max-width: 600px) {
+      .appbar {
+        height: 25px;
+      }
+
+      .popup {
+        position: fixed;
+        box-sizing: border-box; /* Use border-box to include padding and border in the element's total width and height */
+        top: 25px;
+        left: 0;
+        width: 32%;
+        height: calc(100% - 25px);
+      }
+    }
     </style>
   </head>
 
