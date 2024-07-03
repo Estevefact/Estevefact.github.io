@@ -10,14 +10,15 @@ Visualize the embeddings here [Coem embeddings](https://estevefact.github.io) an
 the color are only for 50 categories at maximum
 
 ## Explanation
-These are 3092 short stories all under 7 minutes long approximately  an scraped and annotated by me, wikipedia and the 
+These are 3092 short stories all under 8 minutes long approximately  an scraped and annotated by me, wikipedia and the 
 help of some LLMs. I embedded these stories using one of the best open source models for Spanish classification and 
 extraction with high enough input tokens so that the entire story would fit that I could find at that moment.
 All stories are in spanish originally. I used full open source models and computers (including GPUS) that were all free 
 as a self limitation. I used Pinecone as a VectorDB. The Author LInks was created using the Wikipedia API and seeing 
 which other authors were mentioned, some of the authors coulnd't get scraped by a wikipedia page so there is still work 
 to be done.
-Thank you open source people and free trials or amounts per month!! 
+Thank you open source people, literature databases in spanish that are too old like amediavoz.com
+ and free trials or amounts per month for making this possible!! 
 
 # Models used:
 - Translation: NLLB
@@ -28,10 +29,10 @@ Thank you open source people and free trials or amounts per month!!
 # Coming soon
 I Generated a Carl Sagan Voice with an openvoice model and I'm generating an mp3 file for each story, this will be 
 uploaded to youtube and added as a columns to the embeddings and also have a separate website where one can explore,
-comment, rate and subscribe to listen to this stories in a customized way; like adding their own voice or how they want 
-the story to be like or how hard it is to read. All these stories are also being translated and an english speaking 
-version is also on the works. There's alsoa visualization of the newtork of authors that's on the works, one could also
-analyze with categories too. 
+comment, rate and subscribe to listen to this stories in a customized way. I'm also doing an embeddings for all teh poms
+I have and adding them to the website to be read without audio for now. After that, the customization would be like 
+adding their own voice or how they want the story to be like or how hard it is to read. All these stories are also
+being translated on an english speaking version on the works which is not completetly great but is decent.
 
 # Contribute
 If anyone want to contribute please Push a PR, or send me an email mostly the tsv and [json](authorLinksSmaller.json)

@@ -151,6 +151,18 @@
         margin-top: 20px;
       }
 
+      #Stories-Authors-btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 5px;
+        transform: translateX(-30%);
+        transition: margin-left 0.3s ease;
+      }
+
       #follow-author-btn:hover {
         background-color: #0056b3;
       }
@@ -165,18 +177,6 @@
         position: relative;
         align-items: flex-start;
         left: 0;
-      }
-      
-      #Stories-Authors-btn {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        font-size: 14px;
-        border-radius: 5px;
-        transform: translateX(-30%);
-        transition: margin-left 0.3s ease;
       }
 
       #Stories-Authors-btn:hover {
@@ -225,7 +225,7 @@
       .autocomplete-suggestion:hover {
         background-color: #ddd;
       }
-        #author-search {
+      #author-search {
         width: 100%;
         padding: 8px;
         border-radius: 15px;
@@ -289,18 +289,152 @@
         padding: 8px;
         border-bottom: 1px solid #ccc;
       }
-      @media only screen and (max-width: 600px) {
-      .appbar {
+      @media screen and (max-width: 600px) {
+      #appbar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1 24px;
         height: 25px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        color: rgb(1, 0, 68);
+        background: #003153;
       }
-
-      .popup {
+      #popup {
         position: fixed;
         box-sizing: border-box; /* Use border-box to include padding and border in the element's total width and height */
         top: 25px;
         left: 0;
-        width: 32%;
+        width: 35%;
         height: calc(100% - 25px);
+        background: white;
+        border-left: 1px solid #ccc;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; /* Ensure content starts at the top */
+        padding: 20px;
+        overflow-y: auto; /* Enable vertical scrolling */
+        overflow-x: hidden; /* Hide horizontal scrolling */
+        z-index: 2;
+        transition: margin-left 0.3s ease;
+        max-width: 90%;
+      }
+      #container {
+        margin-top: 25px;
+        display: flex;
+        transition: margin-left 0.3s ease;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 25px);
+        width: 100%;
+      }
+      #author-info-container {
+        width: 90%;
+        background: #ffffff;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        position: relative;
+        align-items: flex-start;
+        font-size: 9px;
+        left: 0;
+      }
+      #toggle-popup-btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 3px 5px;
+        cursor: pointer;
+        font-size: 6px;
+        border-radius: 5px;
+        transition: margin-left 0.3s ease;
+      }
+      #Embeddings-btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 3px 5px;
+        cursor: pointer;
+        font-size: 6px;
+        border-radius: 5px;
+        transition: margin-left 0.3s ease;
+        transform: translateX(-80%);
+      }
+
+      #follow-author-btn {
+        background-color: #007bff;
+        height: calc(100% - 25px);
+        color: white;
+        border: none;
+        padding: 3px 5px;
+        cursor: pointer;
+        font-size: 6px;
+        border-radius: 5px;
+      }
+      
+      #Stories-Authors-btn {
+        background-color: #007bff;
+        height: calc(100% - 25px);
+        color: white;
+        padding: 3px 5px;
+        cursor: pointer;
+        font-size: 6px;
+        border-radius: 5px;
+        transform: translateX(-90%);
+      }
+      .dropbtn {
+        font-family: "Roboto", sans-serif;
+        background-color: #04abd1;
+        color: white;
+        padding: 4px;
+        font-size: 9px;
+        border: none;
+        cursor: pointer;
+        border-radius: 6px;
+        width: 100%;
+      }
+      #title-1 {
+        color: white;
+        font-size: 6px;
+        left:0;
+        transform: translateX(-15%);
+      }
+      .center-section {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-35%);
+      }
+      #top-authors-container {
+        font-size: 9px;
+      }
+      #popup-audio {
+        width: 20px;
+      }
+      #info-item {
+        margin: 5px 0;
+        font-size: 9px;
+      }
+      .info-item {
+        font-size: 9px;
+        margin: 5px 0;
+      }
+      .info-box {
+        font-size: 9px;
+        padding: 5px;
+      }
+      #search-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding-top: 2px;
+        gap: 4px;
       }
     }
     </style>
@@ -308,7 +442,7 @@
 
   <body>
     <div id="appbar">
-      <div>
+      <div id="title-1">
        Relaciones Autores
         <button
           id="toggle-popup-btn"
@@ -426,9 +560,51 @@
               rendered;
             document.getElementById("popup-image").src = `/static/${author.image}`;
             document.getElementById("popup-audio").src = `/static/${author.audio}`;
-            updateTopAuthors(author)
+            updateTopAuthors(author);
+                  // Apply additional styles dynamically if it's a cellphone
+            if (isCellphone()) {
+              applyCellphoneStyles();
+            }
           })
           .catch((error) => console.error("Error loading the box:", error));
+      }
+
+      function isCellphone() {
+        return window.innerWidth <= 600;
+      }
+
+      function applyCellphoneStyles() {
+        // Example: Change the background color of the .info-box
+        var infoBox = document.querySelector('.info-box');
+        if (infoBox) {
+          infoBox.style.width = '90%';
+          infoBox.style.padding = '5px';
+          infoBox.style.fontSize = '0.9em';
+        }
+        
+        // Example: Change the font size of .info-item-author and .info-item
+        var infoItemAuthors = document.querySelectorAll('.info-item-author, .info-item');
+        infoItemAuthors.forEach(function(item) {
+          item.style.margin = '5px 0';
+          item.style.fontSize = '0.9em';
+        });
+
+        // Ensure image and audio elements fit within the container
+        var popupImage = document.getElementById('popup-image');
+        if (popupImage) {
+          popupImage.style.width = '100%';
+        }
+
+        var popupAudio = document.getElementById('popup-audio');
+        if (popupAudio) {
+          //
+          popupAudio.style.position="absolute"
+          popupAudio.style.left="0"
+          popupAudio.style.zIndex="0"
+          popupAudio.style.width = '125px';
+          popupAudio.style.height = '20px';
+          //popupAudio.style.translateX = '-100%'
+        }
       }
 
       function updateTopAuthors(node) {
