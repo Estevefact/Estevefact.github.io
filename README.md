@@ -10,6 +10,7 @@ Visualize the embeddings here [Coem embeddings](https://estevefact.github.io) an
 the color are only for 50 categories at maximum
 
 ## Explanation
+I wanted to be able to see the stories that I liked, which authors I had read and hering them from Carls voice to explore eevruything the classical literature that I love has!! so I did this for me and for anyone else who also wants to explore Classical Literature. Also eassily get to know new authors or stories similar to what they already like or know, which in my case, took some time to read the recommendation from the prologue or by reading wikipedia, so hope this helps but jkeep exploring and reaidng wikipedia and the books directly please!
 These are 3092 short stories all under 8 minutes long approximately  an scraped and annotated by me, wikipedia and the 
 help of some LLMs. I embedded these stories using one of the best open source models for Spanish classification and 
 extraction with high enough input tokens so that the entire story would fit that I could find at that moment.
