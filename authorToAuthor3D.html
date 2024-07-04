@@ -377,6 +377,7 @@
         cursor: pointer;
         font-size: 6px;
         border-radius: 5px;
+        max-height: 20px;
       }
       
       #Stories-Authors-btn {
@@ -499,6 +500,11 @@
         <h3>Top 5 Autores relacionados</h3>
         <ul id="top-authors-list"></ul>
       </div>
+      <form id="donate" action="https://www.paypal.com/donate" method="post" target="_top">
+        <input type="hidden" name="hosted_button_id" value="F43U7EFMW5N2A" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_CO/i/scr/pixel.gif" width="1" height="1" />
+      </form>
     </div>
 
     <script src="//unpkg.com/3d-force-graph"></script>
@@ -519,6 +525,9 @@
           toggleLink.textContent = "Ocultar Info Autor";
           container.style.width = "calc(100% - 25%)";
           container.style.marginLeft = "25%";
+          if (isCellphone()) {
+            container.style.height="100%-25px";
+          }
 
           loadAuthorInfo();
         } else {
@@ -526,6 +535,9 @@
           toggleLink.textContent = "Mostrar información Autor";
           container.style.width = "100%";
           container.style.marginLeft = "0";
+          if (isCellphone()) {
+            container.style.height="100%-25px";
+          }
         }
       }
       
