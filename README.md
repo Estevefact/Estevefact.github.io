@@ -40,3 +40,6 @@ If anyone want to contribute please Push a PR, or send me an email mostly the ts
 containing the metadata file of [stories_metadata.tsv](tensor_generator/stories_metadata.tsv) inside tensor_generator 
 needs more attention. Need to turn them into csv, json or parquet to be eassily monitored. Finetuning 
 the translation to make them really available would be really great.
+
+[![Donate with PayPal button](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?hosted_button_id=F43U7EFMW5N2A)
+
