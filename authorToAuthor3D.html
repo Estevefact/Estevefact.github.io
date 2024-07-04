@@ -525,8 +525,10 @@
           container.style.width = "calc(100% - 25%)";
           container.style.marginLeft = "25%";
           if (isCellphone()) {
-            container.style.height="100%-25px";
-            container.style.top="25px"
+            container.style.height="100%";
+            container.style.top="0px"
+            graph.style.height="100%";
+            graph.style.top="0px"
           }
 
           loadAuthorInfo();
@@ -536,8 +538,10 @@
           container.style.width = "100%";
           container.style.marginLeft = "0";
           if (isCellphone()) {
-            container.style.height="100%-25px";
-            container.style.top="25px"
+            container.style.height="100%";
+            container.style.top="0px"
+            graph.style.height="100%";
+            graph.style.top="0px"
           }
         }
       }
@@ -618,6 +622,11 @@
           popupAudio.style.height = '20px';
           //popupAudio.style.translateX = '-100%'
         }
+        var container = document.getElementById("container");
+        container.style.height="100%";
+        container.style.top="0px"
+        graph.style.height="100%";
+        graph.style.top="0px"
       }
 
       function updateTopAuthors(node) {
