@@ -10,13 +10,13 @@ Visualize the embeddings here [Coem embeddings](https://estevefact.github.io) an
 the color are only for 50 categories at maximum
 
 ## Explanation
-I wanted to be able to see the stories that I liked, which authors I had read and hering them from Carls voice to explore eevruything the classical literature that I love has!! so I did this for me and for anyone else who also wants to explore Classical Literature. Also eassily get to know new authors or stories similar to what they already like or know, which in my case, took some time to read the recommendation from the prologue or by reading wikipedia, so hope this helps but jkeep exploring and reaidng wikipedia and the books directly please!
-These are 3092 short stories all under 8 minutes long approximately  an scraped and annotated by me, wikipedia and the 
+I wanted to be able to see the stories that I liked, which authors I had read and hearing them from Carl's voice to explore everything the classical literature that I love has!! so I did this for me and for anyone else who also wants to explore Classical Literature. Also, to eassily get to know new authors or stories similar to what they already like or know, which in my case, took some time to read the recommendation from the prologues or by reading wikipedia, so I hope this helps but keep exploring and reading wikipedia and the books directly nonetheless!
+These are 3092 short stories all under 8 minutes long approximately. They are scraped and annotated by me, wikipedia and the 
 help of some LLMs. I embedded these stories using one of the best open source models for Spanish classification and 
 extraction with high enough input tokens so that the entire story would fit that I could find at that moment.
 All stories are in spanish originally. I used full open source models and computers (including GPUS) that were all free 
-as a self limitation. I used Pinecone as a VectorDB. The Author LInks was created using the Wikipedia API and seeing 
-which other authors were mentioned, some of the authors coulnd't get scraped by a wikipedia page so there is still work 
+as a self limitation (Thank you Colab). I used Pinecone as a VectorDB. The Author Links was created using the Wikipedia API and seeing 
+which other authors were mentioned, some of the authors couldn't get scraped by a wikipedia page so there is still work 
 to be done.
 Thank you open source people, literature databases in spanish that are too old like amediavoz.com
  and free trials or amounts per month for making this possible!! 
