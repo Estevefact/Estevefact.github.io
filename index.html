@@ -20507,23 +20507,39 @@ THE SOFTWARE.
         #container {
           height: 100%;
         }
+
+        .flex-container {
+          display: flex;
+          flex-direction: row;
+          /* This is the default, can be omitted */
+          justify-content: flex-start;
+          /* Aligns items to the start of the container */
+          align-items: center;
+          /* Aligns items vertically in the center */
+          gap: 10px;
+          /* Adds space between the items */
+        }
       </style>
 
       <div id="container">
         <div id="appbar">
-          <div id="title">
-            Proyector de Embeddings Literarios
+          <div class="flex-container">
+            <div id="title" class="flex-item">
+              Proyector de Embeddings Literarios
+            </div>
+            <div class="flex-item donate">
+              <form id="form-cont" action="https://www.paypal.com/donate" method="post" target="_top">
+                <input type="hidden" name="hosted_button_id" value="F43U7EFMW5N2A" />
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0"
+                  name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                <img alt="" border="0" src="https://www.paypal.com/en_CO/i/scr/pixel.gif" width="1" height="1" />
+              </form>
+            </div>
           </div>
 
 
-          <div class="donate">
-            <form id="form-cont" action="https://www.paypal.com/donate" method="post" target="_top">
-              <input type="hidden" name="hosted_button_id" value="F43U7EFMW5N2A" />
-              <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0"
-                name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-              <img alt="" border="0" src="https://www.paypal.com/en_CO/i/scr/pixel.gif" width="1" height="1" />
-            </form>
-          </div>
+
+
 
           <div class="center-section">
             <img src="Coem.png" alt="Logo">
