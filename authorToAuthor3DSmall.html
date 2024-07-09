@@ -428,6 +428,33 @@
         transform: translateX(-97%);
       }
 
+      #author-search {
+        width: 100%;
+        padding: 8px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 6px;
+        padding-left: 10px; /* To make space for the magnifying glass icon */
+      }
+
+      #search-icon {
+        display: none;
+        position: absolute;
+        right: 10px;
+        pointer-events: none;
+    }
+
+    .autocomplete-container {
+        position: absolute;
+        border: 1px solid #ccc;
+        background-color: white;
+        max-height:150px;
+        overflow-y: auto;
+        font-size: 8px;
+        width: calc(100% - 20px); /* Adjust the width as necessary */
+        z-index: 1000;
+      }
+
       .dropbtn {
         font-family: "Roboto", sans-serif;
         background-color: #04abd1;

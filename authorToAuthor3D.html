@@ -213,10 +213,10 @@
       .autocomplete-suggestions {
       border: 1px solid #999;
       background: #fff;
-      overflow: auto;
       position: absolute;
       z-index: 9999;
       max-height: 200px;
+      overflow-y: auto;
       width: calc(100% - 60px); /* Adjust for the dropdown and icon width */
       }
       .autocomplete-suggestion {
@@ -367,6 +367,40 @@
         border-radius: 5px;
         transition: margin-left 0.3s ease;
         transform: translateX(-80%);
+      }
+
+      #author-search {
+        width: 100%;
+        padding: 8px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 6px;
+        padding-left: 10px; /* To make space for the magnifying glass icon */
+      }
+      #search-icon {
+        display: none;
+        position: absolute;
+        right: 10px;
+        pointer-events: none;
+      }
+      .autocomplete-container {
+        position: absolute;
+        border: 1px solid #ccc;
+        background-color: white;
+        max-height:150px;
+        overflow-y: auto;
+        font-size: 8px;
+        width: calc(100% - 20px); /* Adjust the width as necessary */
+        z-index: 1000;
+      }
+
+      .autocomplete-suggestion {
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .autocomplete-suggestion:hover {
+        background-color: #e0e0e0;
       }
 
       #follow-author-btn {
