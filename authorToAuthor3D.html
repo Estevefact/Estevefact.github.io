@@ -775,6 +775,7 @@
         graph = Graph;
 
         setAuthor( gData.nodes.find(node => node.id === 'Gabriel García Márquez' ) );
+        updateTopAuthors(author);
 
         function followAuthor() {
           const node = author;
