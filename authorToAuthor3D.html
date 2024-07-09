@@ -4,6 +4,7 @@
   <!-- Import Webcomponents polyfill for older browsers -->
   <link rel="icon" type="image/png" href="static/favicon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -151,18 +152,6 @@
         margin-top: 20px;
       }
 
-      #Stories-Authors-btn {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        font-size: 14px;
-        border-radius: 5px;
-        transform: translateX(-30%);
-        transition: margin-left 0.3s ease;
-      }
-
       #follow-author-btn:hover {
         background-color: #0056b3;
       }
@@ -177,6 +166,18 @@
         position: relative;
         align-items: flex-start;
         left: 0;
+      }
+      
+      #Stories-Authors-btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 5px;
+        transform: translateX(-30%);
+        transition: margin-left 0.3s ease;
       }
 
       #Stories-Authors-btn:hover {
@@ -443,7 +444,7 @@
 
   <body>
     <div id="appbar">
-      <div id="title-1">
+      <div>
        Relaciones Autores
         <button
           id="toggle-popup-btn"
@@ -503,8 +504,11 @@
       <form id="donate" action="https://www.paypal.com/donate" method="post" target="_top">
         <input type="hidden" name="hosted_button_id" value="F43U7EFMW5N2A" />
         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_CO/i/scr/pixel.gif" width="1" height="1" />
       </form>
     </div>
+    <iframe src="author_info_smaller.html" id="iframeA" style="display:none;"></iframe>
+    <script src="static/particleDraw.js"></script>
 
     <script src="//unpkg.com/3d-force-graph"></script>
     <script>
@@ -545,6 +549,26 @@
           }
         }
       }
+      async function updateAudioSource(audio) {
+          let audioUrl = `/static/${audio}`;
+          try {
+              // Attempt to fetch the audio file
+              const response = await fetch(audioUrl, { method: 'HEAD' });
+              console.log(`Fetching ${audioUrl}: status ${response.status}`);
+              if (response.ok) {
+                  // If the response is ok, the file exists, so update the src attribute
+                  document.getElementById("popup-audio").src = audioUrl;
+              } else {
+                  // If the response is not ok, log a message or handle the error
+                  document.getElementById("popup-audio").src = `/static/tenquita.mp3`;
+                  console.error(`Audio file not found: ${audioUrl} (status: ${response.status})`);
+              }
+          } catch (error) {
+              // Catch any network errors
+              document.getElementById("popup-audio").src = `/static/tenquita.mp3`;
+              console.error(`Error fetching audio file: ${error}`);
+          }
+      }
       
       function setAuthor( node ) {
         if ( !node ) { return }
@@ -573,10 +597,9 @@
                 "{{exampleStory}}",
                 author.story_name
               );
-            document.getElementById("author-info-container").innerHTML =
-              rendered;
-            document.getElementById("popup-image").src = `/static/${author.image}`;
-            document.getElementById("popup-audio").src = `/static/${author.audio}`;
+            document.getElementById("author-info-container").innerHTML = rendered;
+            updateAudioSource(`audios_es/${author.story_id}.mp3`);
+            resetAuthorImage(author.image); // Defined in particleDraw.js
             updateTopAuthors(author);
                   // Apply additional styles dynamically if it's a cellphone
             if (isCellphone()) {
@@ -702,7 +725,7 @@
 
       async function fetchJSON() {
         try {
-          const response = await fetch("authorLinksSmaller.json");
+          const response = await fetch("static/authorLinksSmaller_new.json");
           const gData = await response.json();
           return gData;
         } catch (error) {

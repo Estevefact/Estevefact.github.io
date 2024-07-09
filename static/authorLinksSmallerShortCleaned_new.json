@@ -1,0 +1,6173 @@
+{
+    "nodes": [
+        {
+            "id": "Pío Baroja",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1872",
+            "death_year": "1956",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Las vocales de colores",
+            "story_id": "04d4cd4b-8f57-4910-8cff-cfd34ca6bf46",
+            "linked_authors": 11
+        },
+        {
+            "id": "Isaac Asimov",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1920",
+            "death_year": "1992",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Cuánto se divertían",
+            "story_id": "0674b792-c2c2-44c3-946e-701bc80444d4",
+            "linked_authors": 2
+        },
+        {
+            "id": "Mario Benedetti",
+            "group": 3,
+            "country": "Uruguay",
+            "birth_year": "1920",
+            "death_year": "2009",
+            "genre": "Romanticismo",
+            "image": "benedetti.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Todo lo contrario",
+            "story_id": "008314a5-2c82-40eb-aa56-21320d2a033e",
+            "linked_authors": 4
+        },
+        {
+            "id": "Virgilio Piñera",
+            "group": 4,
+            "country": "Cuba",
+            "birth_year": "1912",
+            "death_year": "1979",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La carne",
+            "story_id": "019338f8-a123-430e-a6ce-5976cc68856f",
+            "linked_authors": 7
+        },
+        {
+            "id": " Esopo",
+            "group": 5,
+            "country": "Grecia",
+            "birth_year": "-600",
+            "death_year": "Unknown",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La rana gritona y el león",
+            "story_id": "082082b4-2280-4b9e-8e08-5c0bcc09e116",
+            "linked_authors": 1
+        },
+        {
+            "id": "Jean de La Fontaine",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1621",
+            "death_year": "1695",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Nada con exceso",
+            "story_id": "015d63e8-c6aa-42d8-b26e-a6a0903e38c3",
+            "linked_authors": 2
+        },
+        {
+            "id": "Adolfo Bioy Casares",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1914",
+            "death_year": "1999",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Margarita o El poder de la farmacopea",
+            "story_id": "019ad897-7345-41f6-832d-2735f1c0a9d7",
+            "linked_authors": 11
+        },
+        {
+            "id": "Enrique Jardiel Poncela",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1901",
+            "death_year": "1952",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Los vecinos del principal derecha",
+            "story_id": "05ddc45a-9c4e-4dec-a99a-f919b35ecc15",
+            "linked_authors": 3
+        },
+        {
+            "id": " Anónimo",
+            "group": 8,
+            "country": "Unknown",
+            "birth_year": "Unknown",
+            "death_year": "Unknown",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Rumpelstikin",
+            "story_id": "025f14d6-e76f-473a-9b76-fee469ca1c31",
+            "linked_authors": 1
+        },
+        {
+            "id": "Giovanni Papini",
+            "group": 9,
+            "country": "Italia",
+            "birth_year": "1881",
+            "death_year": "1956",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Profundidad china",
+            "story_id": "010855ed-d937-4746-b1d0-27c9c5a26994",
+            "linked_authors": 9
+        },
+        {
+            "id": "Ramón Gómez de la Serna",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1888",
+            "death_year": "1963",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Metamorfosis",
+            "story_id": "011f284f-55e2-4f74-9288-6ff83002d0f5",
+            "linked_authors": 16
+        },
+        {
+            "id": "John Updike",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1932",
+            "death_year": "2009",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Pigmalión",
+            "story_id": "07fac2d6-a49d-4bc0-9461-749b8f699bb7",
+            "linked_authors": 10
+        },
+        {
+            "id": "Emilia Pardo Bazán",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1851",
+            "death_year": "1921",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La pasarela",
+            "story_id": "04bb7417-f836-429b-93f7-c2b62ae8d19e",
+            "linked_authors": 13
+        },
+        {
+            "id": "Fredric Brown",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1906",
+            "death_year": "1972",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El poder",
+            "story_id": "01b6ae49-4c7a-4989-960b-4c5448b27faf",
+            "linked_authors": 1
+        },
+        {
+            "id": " Le Prince de Beaumont",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1711",
+            "death_year": "1780",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Cuento de los tres deseos",
+            "story_id": "06aac7bb-f54a-40ab-a3c0-9e558e43af03",
+            "linked_authors": 1
+        },
+        {
+            "id": "Jorge Ibargüengoitia",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1928",
+            "death_year": "1983",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La ley de Herodes",
+            "story_id": "04a6aa10-94b1-4d16-b4bb-570aaaa73ea8",
+            "linked_authors": 6
+        },
+        {
+            "id": "León Tolstói",
+            "group": 12,
+            "country": "Rusia",
+            "birth_year": "1828",
+            "death_year": "1910",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El primer destilador",
+            "story_id": "028c710e-63d7-4e7f-b188-e2de980a14e3",
+            "linked_authors": 2
+        },
+        {
+            "id": "Catherine Crowe",
+            "group": 13,
+            "country": "Inglaterra",
+            "birth_year": "1790",
+            "death_year": "1876",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La casa embrujada",
+            "story_id": "046cbbf9-4d77-4ea1-a8e5-ac91879df4f1",
+            "linked_authors": 2
+        },
+        {
+            "id": "H. P. Lovecraft",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1890",
+            "death_year": "1937",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Los gatos de Ulthar",
+            "story_id": "05f16c68-4145-4c38-9044-424a23db9ed6",
+            "linked_authors": 9
+        },
+        {
+            "id": "Julio Torri",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1889",
+            "death_year": "1970",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "De funerales",
+            "story_id": "02071218-77af-49ae-bf49-3872a28f9e0c",
+            "linked_authors": 1
+        },
+        {
+            "id": "Enrique Anderson Imbert",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1910",
+            "death_year": "2000",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Las estatuas",
+            "story_id": "030c4675-7812-4fba-8190-b5011b64892b",
+            "linked_authors": 1
+        },
+        {
+            "id": "Clarice Lispector",
+            "group": 15,
+            "country": "Brasil",
+            "birth_year": "1920",
+            "death_year": "1977",
+            "genre": "Histórico",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El muerto en el mar de Urca",
+            "story_id": "0039192c-6b8e-4ebf-a90d-5d3983200fb9",
+            "linked_authors": 6
+        },
+        {
+            "id": "Fernando Pessoa",
+            "group": 16,
+            "country": "Portugal",
+            "birth_year": "1888",
+            "death_year": "1935",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Fábula",
+            "story_id": "0182d6fa-3c6f-47bb-afcd-15591596c7d4",
+            "linked_authors": 21
+        },
+        {
+            "id": "Augusto Monterroso",
+            "group": 18,
+            "country": "Guatemala",
+            "birth_year": "1921",
+            "death_year": "2003",
+            "genre": "Unknown",
+            "image": "monterroso.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El grillo maestro",
+            "story_id": "0349ff75-e9f8-4dcc-8e41-56182e1e90ca",
+            "linked_authors": 1
+        },
+        {
+            "id": "Lafcadio Hearn",
+            "group": 5,
+            "country": "Grecia",
+            "birth_year": "1850",
+            "death_year": "1904",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "En una estación de ferrocarril",
+            "story_id": "01da4daa-b6f4-4489-9169-3eefaa5383da",
+            "linked_authors": 2
+        },
+        {
+            "id": "Marco Denevi",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1922",
+            "death_year": "1998",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Los animales en el arca",
+            "story_id": "04f4b732-1520-4212-9149-f5f3aa3f3303",
+            "linked_authors": 1
+        },
+        {
+            "id": "Cesare Pavese",
+            "group": 9,
+            "country": "Italia",
+            "birth_year": "1908",
+            "death_year": "1950",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El grupo",
+            "story_id": "07d06794-3087-437f-b3ed-6aee52641254",
+            "linked_authors": 6
+        },
+        {
+            "id": "Italo Calvino",
+            "group": 9,
+            "country": "Italia",
+            "birth_year": "1923",
+            "death_year": "1985",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La leyenda de Carlomagno",
+            "story_id": "01008e91-a518-433d-9cd9-2381b4b754b5",
+            "linked_authors": 4
+        },
+        {
+            "id": "Alfonso Reyes",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1889",
+            "death_year": "1959",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Ley profunda",
+            "story_id": "01479c17-3a36-479a-8892-c106f5e239c2",
+            "linked_authors": 1
+        },
+        {
+            "id": "Aleksandr Nikoalevich Afanasiev",
+            "group": 12,
+            "country": "Rusia",
+            "birth_year": "1826",
+            "death_year": "1871",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Dios y el párroco",
+            "story_id": "064f393a-497d-4508-9100-72c30e378b1a",
+            "linked_authors": 1
+        },
+        {
+            "id": "Manuel Romero de Terreros",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1880",
+            "death_year": "1968",
+            "genre": "Histórico",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Tristis imago",
+            "story_id": "07977d1a-e72b-4413-87f3-d9f239212b06",
+            "linked_authors": 1
+        },
+        {
+            "id": "Hans Christian Andersen",
+            "group": 19,
+            "country": "Dinamarca",
+            "birth_year": "1805",
+            "death_year": "1875",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La princesa y el frijol",
+            "story_id": "0802ccbf-e9eb-4822-a9af-9adf3eea48ee",
+            "linked_authors": 2
+        },
+        {
+            "id": " Voltaire",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1694",
+            "death_year": "1778",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El enigma",
+            "story_id": "0723d022-3183-45dc-8670-b3ad1babae87",
+            "linked_authors": 1
+        },
+        {
+            "id": "Rabindranath Tagore",
+            "group": 10,
+            "country": "India",
+            "birth_year": "1861",
+            "death_year": "1941",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La higuera",
+            "story_id": "01a2583a-9371-479f-ab5d-03586e8d4b2d",
+            "linked_authors": 16
+        },
+        {
+            "id": "Lord Dunsany",
+            "group": 20,
+            "country": "Irlanda",
+            "birth_year": "1878",
+            "death_year": "1957",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "En Zaccarath",
+            "story_id": "002eca9b-3787-4ca3-8d4b-07cb4d55d332",
+            "linked_authors": 4
+        },
+        {
+            "id": "Álvaro Cepeda Samudio",
+            "group": 21,
+            "country": "Colombia",
+            "birth_year": "1926",
+            "death_year": "1972",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Vamos a matar los Gaticos",
+            "story_id": "020fc30c-cba0-4dd6-b439-f3acd393aba6",
+            "linked_authors": 10
+        },
+        {
+            "id": "Julio Ramón Ribeyro",
+            "group": 22,
+            "country": "Peru",
+            "birth_year": "1929",
+            "death_year": "1994",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Dichos de Luder 37",
+            "story_id": "05efee70-176e-4dab-bb98-23416cd76934",
+            "linked_authors": 3
+        },
+        {
+            "id": "Felipe Trigo",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1864",
+            "death_year": "1916",
+            "genre": "Rural",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La primera conquista",
+            "story_id": "048995ca-8225-44d4-aba3-cd9db40439db",
+            "linked_authors": 1
+        },
+        {
+            "id": "Giovanni Boccaccio",
+            "group": 9,
+            "country": "Italia",
+            "birth_year": "1313",
+            "death_year": "1375",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Los hombres más nobles y antiguos",
+            "story_id": "06ed60a4-5ff6-4329-bed3-7ed42618dba6",
+            "linked_authors": 6
+        },
+        {
+            "id": "Juan Carlos Onetti",
+            "group": 3,
+            "country": "Uruguay",
+            "birth_year": "1909",
+            "death_year": "1994",
+            "genre": "Modernismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Jabón",
+            "story_id": "02b45f03-0f4f-461e-bdd0-3f8ec07b9e30",
+            "linked_authors": 13
+        },
+        {
+            "id": "Hermann Hesse",
+            "group": 23,
+            "country": "Alemania",
+            "birth_year": "1877",
+            "death_year": "1962",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La fábula de los ciegos",
+            "story_id": "0635dcb9-ee50-4a46-83a0-ae9820453432",
+            "linked_authors": 5
+        },
+        {
+            "id": "Hermanos Grimm",
+            "group": 23,
+            "country": "Alemania",
+            "birth_year": "1785",
+            "death_year": "1863",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El ratoncillo, el pajarillo y la salchicha",
+            "story_id": "008b15bb-ebbc-4bd0-8bca-e5e01d509ff2",
+            "linked_authors": 1
+        },
+        {
+            "id": "Franz Kafka",
+            "group": 24,
+            "country": "Checoslovaquia",
+            "birth_year": "1883",
+            "death_year": "1924",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El puente",
+            "story_id": "00fa2b34-74a2-4fc6-a86a-0aefce046746",
+            "linked_authors": 14
+        },
+        {
+            "id": "Antón Chéjov",
+            "group": 12,
+            "country": "Rusia",
+            "birth_year": "1860",
+            "death_year": "1904",
+            "genre": "Dramaturgia",
+            "image": "chejov.png",
+            "audio": "tenquita.mp3",
+            "story_name": "En la barbería",
+            "story_id": "004d95cc-e7cf-4ed3-a809-6881c0c721f7",
+            "linked_authors": 10
+        },
+        {
+            "id": "Gabriel García Márquez",
+            "group": 21,
+            "country": "Colombia",
+            "birth_year": "1927",
+            "death_year": "2014",
+            "genre": "Romanticismo",
+            "image": "preview.png",
+            "audio": "algo_grave_va_a_ocurrir.mp3",
+            "story_name": "Algo muy grave va a suceder en este pueblo",
+            "story_id": "algo_grave_va_a_ocurrir",
+            "linked_authors": 17
+        },
+        {
+            "id": "István Örkény",
+            "group": 25,
+            "country": "Hungria",
+            "birth_year": "1912",
+            "death_year": "1979",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "In memoriam Dr. KHG",
+            "story_id": "05692068-ff0d-4662-b5bf-2f084e5f27e7",
+            "linked_authors": 1
+        },
+        {
+            "id": "Horacio Quiroga",
+            "group": 3,
+            "country": "Uruguay",
+            "birth_year": "1878",
+            "death_year": "1937",
+            "genre": "Unknown",
+            "image": "quiroga.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El gerente",
+            "story_id": "051b2e17-9a67-4615-b6df-2e635cf918cb",
+            "linked_authors": 9
+        },
+        {
+            "id": "Teresa de la Parra",
+            "group": 26,
+            "country": "Venezuela",
+            "birth_year": "1889",
+            "death_year": "1936",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El genio del pesacartas",
+            "story_id": "060da8cf-5ebe-4f66-9cb4-9ed4100ec6bb",
+            "linked_authors": 13
+        },
+        {
+            "id": "Inés Arredondo",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1928",
+            "death_year": "1989",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El hombre en la noche",
+            "story_id": "06ac0e1c-1a80-421c-b4b6-cd88ead07a78",
+            "linked_authors": 8
+        },
+        {
+            "id": "Edmundo Valadés",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1915",
+            "death_year": "1994",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Final",
+            "story_id": "04f51717-edc8-4059-a796-b606adfd16af",
+            "linked_authors": 1
+        },
+        {
+            "id": "Joaquim Ruyra",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1858",
+            "death_year": "1939",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Aniversario",
+            "story_id": "0088eb17-57aa-43fa-a8d1-9f91d38e0331",
+            "linked_authors": 1
+        },
+        {
+            "id": "Gianni Rodari",
+            "group": 9,
+            "country": "Italia",
+            "birth_year": "1920",
+            "death_year": "1980",
+            "genre": "Pedagógico",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El país con el “des” delante",
+            "story_id": "082e8e8a-fa88-4454-9461-ee3d225c0161",
+            "linked_authors": 1
+        },
+        {
+            "id": "Jacques Sternberg",
+            "group": 27,
+            "country": "Belgica",
+            "birth_year": "1923",
+            "death_year": "2006",
+            "genre": "Fantasía",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La sangre",
+            "story_id": "023121f4-b405-49dc-b5b6-10fd101c6bef",
+            "linked_authors": 1
+        },
+        {
+            "id": "Baldomero Lillo",
+            "group": 28,
+            "country": "Chile",
+            "birth_year": "1867",
+            "death_year": "1923",
+            "genre": "Realismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La cruz de Salomón",
+            "story_id": "02f028ff-a835-4d06-9e2b-b9181520b073",
+            "linked_authors": 1
+        },
+        {
+            "id": "Eduardo Gudiño Kieffer",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1935",
+            "death_year": "2002",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Casa di Amore e Psyche",
+            "story_id": "0cf3e05a-8c88-43e7-b401-f417ae5d240d",
+            "linked_authors": 2
+        },
+        {
+            "id": "Ray Bradbury",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1920",
+            "death_year": "2012",
+            "genre": "Fantasía",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La última noche del mundo",
+            "story_id": "0c25fbb5-8699-49b6-8e3b-97cf26ec26cb",
+            "linked_authors": 1
+        },
+        {
+            "id": "Manuel Mujica Lainez",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1910",
+            "death_year": "1984",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La mojiganga (1753)",
+            "story_id": "0f0e5325-e7df-4e4f-85f2-8351758407a7",
+            "linked_authors": 4
+        },
+        {
+            "id": "G. K. Chesterton",
+            "group": 13,
+            "country": "Inglaterra",
+            "birth_year": "1874",
+            "death_year": "1936",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El árbol del orgullo",
+            "story_id": "0a418d63-6776-4841-b5ea-8871d2d563c5",
+            "linked_authors": 14
+        },
+        {
+            "id": "Jorge Luis Borges",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1899",
+            "death_year": "1986",
+            "genre": "Romanticismo",
+            "image": "borges.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La intrusa",
+            "story_id": "0888c63d-330a-499a-9d46-b5b80926189d",
+            "linked_authors": 46
+        },
+        {
+            "id": "Miguel de Unamuno",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1864",
+            "death_year": "1936",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Cruce de caminos",
+            "story_id": "0c61f72c-d162-4672-b8e0-dfada9ae1621",
+            "linked_authors": 14
+        },
+        {
+            "id": "Juan José Arreola",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1918",
+            "death_year": "2001",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Topos",
+            "story_id": "09097e63-4c58-4847-9c62-c096cf8601ba",
+            "linked_authors": 25
+        },
+        {
+            "id": "Yibrán Jalil Yibrán",
+            "group": 29,
+            "country": "Líbano",
+            "birth_year": "1883",
+            "death_year": "1931",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El oro",
+            "story_id": "0a65162c-2fe7-4a91-90d4-f49852f7d659",
+            "linked_authors": 1
+        },
+        {
+            "id": "Lewis Carroll",
+            "group": 13,
+            "country": "Inglaterra",
+            "birth_year": "1832",
+            "death_year": "1898",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Moverse del lado del espejo",
+            "story_id": "0b7c3ab0-db29-4488-b7c6-48353d978c0e",
+            "linked_authors": 4
+        },
+        {
+            "id": "Marqués de Sade",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1740",
+            "death_year": "1814",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Un obispo en el atolladero",
+            "story_id": "0e9dc94d-c7b9-436d-9c69-2ce215cd7bb4",
+            "linked_authors": 16
+        },
+        {
+            "id": "Kjell Askildsen",
+            "group": 30,
+            "country": "Noruega",
+            "birth_year": "1929",
+            "death_year": "2021",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "En la peluquería",
+            "story_id": "0a40c2c3-072d-48f7-b75d-cb8382df6568",
+            "linked_authors": 1
+        },
+        {
+            "id": "Abelardo Díaz Alfaro",
+            "group": 31,
+            "country": "Puerto Rico",
+            "birth_year": "1919",
+            "death_year": "1999",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Santa Clo va a La Cuchilla",
+            "story_id": "0ae1f79a-0a8e-4cfc-90c2-f892de12f88f",
+            "linked_authors": 1
+        },
+        {
+            "id": "Angélica Gorodischer",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1928",
+            "death_year": "2022",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La naturaleza es una madre cruel",
+            "story_id": "0c61f690-57c8-4199-b8e9-f97f5a483aad",
+            "linked_authors": 1
+        },
+        {
+            "id": "Charles Bukowski",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1920",
+            "death_year": "1994",
+            "genre": "Romanticismo",
+            "image": "bukowski.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Esa pena de escoria",
+            "story_id": "09b829b9-5b8a-45c9-9cb5-247d183ed658",
+            "linked_authors": 1
+        },
+        {
+            "id": "Félix Fénéon",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1861",
+            "death_year": "1944",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Estafa",
+            "story_id": "0e5da277-9daf-42e1-9d54-963c4d8d79c0",
+            "linked_authors": 1
+        },
+        {
+            "id": "Julio Cortázar",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1914",
+            "death_year": "1984",
+            "genre": "Romanticismo",
+            "image": "cortazar.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Rayuela: Capítulo 68",
+            "story_id": "0d56cc40-0f01-4e58-8bab-409de18bb358",
+            "linked_authors": 25
+        },
+        {
+            "id": "Rudyard Kipling",
+            "group": 32,
+            "country": "Reino Unido",
+            "birth_year": "1865",
+            "death_year": "1936",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La historia de Muhammad Din",
+            "story_id": "0a8d42d5-3015-434c-a21b-5200138e0e37",
+            "linked_authors": 4
+        },
+        {
+            "id": "Jules Renard",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1864",
+            "death_year": "1910",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El informe",
+            "story_id": "0971b19c-dad5-406a-a36a-120973542a2e",
+            "linked_authors": 1
+        },
+        {
+            "id": "Stephen Crane",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1871",
+            "death_year": "1900",
+            "genre": "Periodismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El fallo del sabio",
+            "story_id": "0b2145a3-f3db-4bc1-9638-73207f084356",
+            "linked_authors": 3
+        },
+        {
+            "id": "Truman Capote",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1924",
+            "death_year": "1984",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La forma de las cosas",
+            "story_id": "08bbde9c-e005-4c58-9ce1-ec42e95037b9",
+            "linked_authors": 5
+        },
+        {
+            "id": " Villiers de L'Isle Adam",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1838",
+            "death_year": "1889",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El secreto de la antigua música",
+            "story_id": "0b26b745-8619-497e-b6e0-cb269ecca4fe",
+            "linked_authors": 1
+        },
+        {
+            "id": "Peter Bichsel",
+            "group": 33,
+            "country": "Suiza",
+            "birth_year": "1935",
+            "death_year": "Unknown",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Una mesa es una mesa",
+            "story_id": "0838e0f0-6ff9-45c7-8c27-72e3651cd2ab",
+            "linked_authors": 1
+        },
+        {
+            "id": "Lino Novás Calvo",
+            "group": 4,
+            "country": "Cuba",
+            "birth_year": "1903",
+            "death_year": "1983",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El bejuco",
+            "story_id": "0a5de26b-adf7-4a84-849a-5a5a4a76d11b",
+            "linked_authors": 3
+        },
+        {
+            "id": "Roberto Arlt",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1900",
+            "death_year": "1942",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Un error judicial",
+            "story_id": "0f3ff1ce-e43e-4abb-bf79-20251d53f58d",
+            "linked_authors": 7
+        },
+        {
+            "id": "José Saramago",
+            "group": 16,
+            "country": "Portugal",
+            "birth_year": "1922",
+            "death_year": "2010",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Narciso",
+            "story_id": "0b0ba725-ad85-4c29-b35c-da5bb1586e57",
+            "linked_authors": 3
+        },
+        {
+            "id": "Ambrose Bierce",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1842",
+            "death_year": "1914",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Diagnóstico de muerte",
+            "story_id": "0a4521e0-3d26-4eb8-9ab3-7878435430ee",
+            "linked_authors": 9
+        },
+        {
+            "id": "Yasunari Kawabata",
+            "group": 34,
+            "country": "Japon",
+            "birth_year": "1899",
+            "death_year": "1972",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Inmortalidad",
+            "story_id": "0c8ab536-10fb-4605-8ac0-a6cbff3f6085",
+            "linked_authors": 6
+        },
+        {
+            "id": "Sławomir Mrożek",
+            "group": 35,
+            "country": "Polonia",
+            "birth_year": "1930",
+            "death_year": "2013",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El río",
+            "story_id": "0be3ee63-de87-415d-9114-41b48bfef9eb",
+            "linked_authors": 1
+        },
+        {
+            "id": "Alfred de Musset",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1810",
+            "death_year": "1857",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La mujer que comía poco",
+            "story_id": "0874d206-3865-421f-bff4-3a4cded64e79",
+            "linked_authors": 3
+        },
+        {
+            "id": "Héctor Tizón",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1929",
+            "death_year": "2012",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Mazariego",
+            "story_id": "0cad75db-f5c4-40b3-8fdd-c3c3bf2f0978",
+            "linked_authors": 4
+        },
+        {
+            "id": "Juan Bosch",
+            "group": 36,
+            "country": "Republica Dominicana",
+            "birth_year": "1909",
+            "death_year": "2001",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Los amos",
+            "story_id": "0d432a0b-fa0a-4226-adca-e515512ca9c1",
+            "linked_authors": 2
+        },
+        {
+            "id": "Ricardo Güiraldes",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1886",
+            "death_year": "1927",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Facundo",
+            "story_id": "0ed08f4a-becd-47e1-bb49-44dd24049875",
+            "linked_authors": 3
+        },
+        {
+            "id": "Victor Hugo",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1802",
+            "death_year": "1885",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La torre de las ratas",
+            "story_id": "0e142258-783a-47e8-9b05-a3d784d9b8a9",
+            "linked_authors": 15
+        },
+        {
+            "id": "Rubén Darío",
+            "group": 38,
+            "country": "Nicaragua",
+            "birth_year": "1867",
+            "death_year": "1916",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La muerte de Salomé",
+            "story_id": "08ccbd1c-87bf-4c36-9c09-c509222e4cf5",
+            "linked_authors": 45
+        },
+        {
+            "id": "Felisberto Hernández",
+            "group": 3,
+            "country": "Uruguay",
+            "birth_year": "1902",
+            "death_year": "1963",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Elsa",
+            "story_id": "13b0dec7-ab98-443b-8fd6-9167796aab2f",
+            "linked_authors": 11
+        },
+        {
+            "id": "Shirley Jackson",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1916",
+            "death_year": "1965",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Recibí carta de Jimmy",
+            "story_id": "14e806d9-2836-463c-9d91-8425ea6e80ec",
+            "linked_authors": 3
+        },
+        {
+            "id": "Francisco Pi y Margall",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1824",
+            "death_year": "1901",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El hurto",
+            "story_id": "156042f0-0c47-42d0-ba29-578a8073975f",
+            "linked_authors": 1
+        },
+        {
+            "id": "Ryūnosuke Akutagawa",
+            "group": 34,
+            "country": "Japon",
+            "birth_year": "1892",
+            "death_year": "1927",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Maestro",
+            "story_id": "13092cc5-c925-4af2-a333-0e31f8c92a22",
+            "linked_authors": 3
+        },
+        {
+            "id": "Marcel Schwob",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1867",
+            "death_year": "1905",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Pocahontas: Princesa",
+            "story_id": "15cba078-538d-448c-afc1-e389ea15be97",
+            "linked_authors": 5
+        },
+        {
+            "id": "Rubem Fonseca",
+            "group": 15,
+            "country": "Brasil",
+            "birth_year": "1925",
+            "death_year": "2020",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Paseo nocturno",
+            "story_id": "1675870e-d0b9-45a6-8b4a-8ac7fd683c3d",
+            "linked_authors": 1
+        },
+        {
+            "id": "Dashiell Hammett",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1894",
+            "death_year": "1961",
+            "genre": "Histórico",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Otro crimen perfecto",
+            "story_id": "1129fc59-a6e4-4ce7-8121-f6b3120665be",
+            "linked_authors": 3
+        },
+        {
+            "id": "Carlos María Gutiérrez",
+            "group": 3,
+            "country": "Uruguay",
+            "birth_year": "1926",
+            "death_year": "1991",
+            "genre": "Periodismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Hermanos argentinos",
+            "story_id": "12aefdce-f853-4050-ae6d-81a5eeeb7724",
+            "linked_authors": 8
+        },
+        {
+            "id": "Ciro Alegría",
+            "group": 22,
+            "country": "Peru",
+            "birth_year": "1909",
+            "death_year": "1967",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "De cómo repartió el diablo los males por el mundo",
+            "story_id": "1532fd21-aaa3-49d6-acfb-571f8b1f15f1",
+            "linked_authors": 9
+        },
+        {
+            "id": "Dino Buzzati",
+            "group": 9,
+            "country": "Italia",
+            "birth_year": "1906",
+            "death_year": "1972",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Los reciarios",
+            "story_id": "169ef2f0-23e1-4142-a1fe-be16d2f89d10",
+            "linked_authors": 3
+        },
+        {
+            "id": " Azorín",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1873",
+            "death_year": "1967",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Una civilización que se acaba",
+            "story_id": "10a8a50e-fc14-4bdc-bdd4-edecc259c98e",
+            "linked_authors": 1
+        },
+        {
+            "id": "Edgar Allan Poe",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1809",
+            "death_year": "1849",
+            "genre": "Unknown",
+            "image": "poe.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Silencio",
+            "story_id": "12a9c6d0-d1fe-4088-a18e-1cce283cf789",
+            "linked_authors": 53
+        },
+        {
+            "id": "Patricia Highsmith",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1921",
+            "death_year": "1995",
+            "genre": "Suspenso",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La artista",
+            "story_id": "101223b2-9bbb-4171-a368-50afed5c0dc2",
+            "linked_authors": 3
+        },
+        {
+            "id": "Katherine Mansfield",
+            "group": 40,
+            "country": "Nueva Zelanda",
+            "birth_year": "1888",
+            "death_year": "1923",
+            "genre": "modernismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El barón",
+            "story_id": "155bfc02-aaa1-42c0-b2a0-3bf55d68afbc",
+            "linked_authors": 1
+        },
+        {
+            "id": "John O'Hara",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1905",
+            "death_year": "1970",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Demasiado joven",
+            "story_id": "0fbedcf9-1a1a-4d75-992e-880f114205af",
+            "linked_authors": 1
+        },
+        {
+            "id": "Ernest Hemingway",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1899",
+            "death_year": "1961",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El viejo en el puente",
+            "story_id": "1326ec82-7bad-4f26-a721-bdd11144bd5e",
+            "linked_authors": 18
+        },
+        {
+            "id": "Georg Christoph Lichtenberg",
+            "group": 23,
+            "country": "Alemania",
+            "birth_year": "1742",
+            "death_year": "1799",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La nota",
+            "story_id": "13866871-7ad7-4378-9547-e01e8214d3b0",
+            "linked_authors": 1
+        },
+        {
+            "id": "Arthur Conan Doyle",
+            "group": 41,
+            "country": "Escocia",
+            "birth_year": "1859",
+            "death_year": "1930",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La cabeza del perro",
+            "story_id": "2073c136-ed9e-4676-afd2-cdb7d7b460c0",
+            "linked_authors": 2
+        },
+        {
+            "id": "Pedro Gómez Valderrama",
+            "group": 21,
+            "country": "Colombia",
+            "birth_year": "1923",
+            "death_year": "1992",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El tapiz del virrey",
+            "story_id": "1c010bac-43ce-438b-97d1-31a671a0eb42",
+            "linked_authors": 1
+        },
+        {
+            "id": "João Guimarães Rosa",
+            "group": 15,
+            "country": "Brasil",
+            "birth_year": "1908",
+            "death_year": "1967",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Cinta verde en el cabello",
+            "story_id": "211577c2-303f-4a9b-8a45-aeb4848edf55",
+            "linked_authors": 1
+        },
+        {
+            "id": "Virgilio Díaz Grullón",
+            "group": 36,
+            "country": "Republica Dominicana",
+            "birth_year": "1924",
+            "death_year": "2001",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Caín",
+            "story_id": "20d094b3-3aff-4e3f-9e4d-c9591a99e6a9",
+            "linked_authors": 1
+        },
+        {
+            "id": "Silvina Ocampo",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1913",
+            "death_year": "1993",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El vendedor de estatuas",
+            "story_id": "19501da8-cf94-4546-a2f6-ddfcacc52f16",
+            "linked_authors": 7
+        },
+        {
+            "id": "Bertolt Brecht",
+            "group": 23,
+            "country": "Alemania",
+            "birth_year": "1898",
+            "death_year": "1956",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Leyenda",
+            "story_id": "1abc31ae-96d5-4d24-b003-3e20349725cc",
+            "linked_authors": 2
+        },
+        {
+            "id": "Juan Ramón Jiménez",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1881",
+            "death_year": "1958",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La violetilla",
+            "story_id": "191757b5-644c-4086-b438-bbc5e9a9cf43",
+            "linked_authors": 12
+        },
+        {
+            "id": "Graham Greene",
+            "group": 13,
+            "country": "Inglaterra",
+            "birth_year": "1904",
+            "death_year": "1991",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Terrible, cuando piensa uno en ello",
+            "story_id": "20ff7956-bcc3-4469-866d-39519af1705b",
+            "linked_authors": 2
+        },
+        {
+            "id": "Pedro Juan Soto",
+            "group": 31,
+            "country": "Puerto Rico",
+            "birth_year": "1928",
+            "death_year": "2002",
+            "genre": "Periodismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Miniatura VI",
+            "story_id": "1c1eab19-d668-46c2-9e0d-b6084cb4e219",
+            "linked_authors": 1
+        },
+        {
+            "id": "Francisco Tario",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1911",
+            "death_year": "1977",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La noche del féretro",
+            "story_id": "1bd6f95b-2ee5-4805-b5b3-2f29df5875c1",
+            "linked_authors": 1
+        },
+        {
+            "id": "Andrés Rivera",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1928",
+            "death_year": "2016",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Un asesino de Cristo",
+            "story_id": "1ddbb1cf-2d1e-4cef-a742-7ae4bb31e5fe",
+            "linked_authors": 1
+        },
+        {
+            "id": " Saki",
+            "group": 41,
+            "country": "Escocia",
+            "birth_year": "1870",
+            "death_year": "1916",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Clovis y las responsabilidades de los padres",
+            "story_id": "1db899c6-0b2d-42b2-a94f-8a90c6ff33b5",
+            "linked_authors": 1
+        },
+        {
+            "id": "James Thurber",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1894",
+            "death_year": "1961",
+            "genre": "Comedia",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La última flor",
+            "story_id": "27c42623-df6d-4e66-a831-4e4ef987ffa6",
+            "linked_authors": 1
+        },
+        {
+            "id": "Ricardo Palma",
+            "group": 22,
+            "country": "Peru",
+            "birth_year": "1833",
+            "death_year": "1919",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "¡A nadar, peces!",
+            "story_id": "22c60533-88bc-41f4-90fd-1ace8be57fc6",
+            "linked_authors": 3
+        },
+        {
+            "id": "Pablo Palacio",
+            "group": 42,
+            "country": "Ecuador",
+            "birth_year": "1906",
+            "death_year": "1947",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Revolución",
+            "story_id": "22ab8a7a-5bfb-47d3-b7c1-bdddaf563881",
+            "linked_authors": 1
+        },
+        {
+            "id": "Leopoldo Alas, Clarín",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1852",
+            "death_year": "1901",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "De burguesa a burguesa",
+            "story_id": "23929f32-088a-46bb-89ec-71d43157c5a3",
+            "linked_authors": 12
+        },
+        {
+            "id": "Arthur C. Clarke",
+            "group": 13,
+            "country": "Inglaterra",
+            "birth_year": "1917",
+            "death_year": "2008",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El otro tigre",
+            "story_id": "263b7a05-df61-48c2-a26c-297909169c1a",
+            "linked_authors": 1
+        },
+        {
+            "id": "Anatole France",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1844",
+            "death_year": "1924",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El Cristo del océano",
+            "story_id": "25d353a9-6576-44ca-b862-c137af013169",
+            "linked_authors": 3
+        },
+        {
+            "id": "Rodolfo Walsh",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1927",
+            "death_year": "1977",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Tres portugueses bajo un paraguas",
+            "story_id": "2559ad29-ca7f-494a-839c-3063e2be9e57",
+            "linked_authors": 3
+        },
+        {
+            "id": "Pedro Emilio Coll",
+            "group": 26,
+            "country": "Venezuela",
+            "birth_year": "1872",
+            "death_year": "1947",
+            "genre": "modernismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El diente roto",
+            "story_id": "2682d239-89a5-4add-8f7c-15d62b455d0d",
+            "linked_authors": 12
+        },
+        {
+            "id": "Federico García Lorca",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1898",
+            "death_year": "1936",
+            "genre": "Dramaturgia",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Amantes asesinados por una perdiz",
+            "story_id": "2713d17e-b8b3-498c-a8b6-eed590542ec1",
+            "linked_authors": 22
+        },
+        {
+            "id": " Stendhal",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1783",
+            "death_year": "1842",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Philibert Lescale",
+            "story_id": "24ca47a5-c721-40e4-b525-74b6744b0c5b",
+            "linked_authors": 1
+        },
+        {
+            "id": "Alexandre (padre) Dumas",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1802",
+            "death_year": "1870",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La bofetada a Charlotte Corday",
+            "story_id": "22bad0d2-ae8f-43c1-a49f-fe9768f3efab",
+            "linked_authors": 1
+        },
+        {
+            "id": "José Echegaray",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1832",
+            "death_year": "1916",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Las dos caretas",
+            "story_id": "21f55145-6cc2-4603-9c87-d0db67a987b1",
+            "linked_authors": 5
+        },
+        {
+            "id": "Vicente Blasco Ibáñez",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1867",
+            "death_year": "1928",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Sancha",
+            "story_id": "2f635ea4-c51d-4b0f-bf5d-74911a5552a1",
+            "linked_authors": 11
+        },
+        {
+            "id": "Tommaso Landolfi",
+            "group": 9,
+            "country": "Italia",
+            "birth_year": "1908",
+            "death_year": "1979",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El ladrón",
+            "story_id": "2c08b191-62b9-46e8-84e4-364373983408",
+            "linked_authors": 6
+        },
+        {
+            "id": "Heinrich Böll",
+            "group": 23,
+            "country": "Alemania",
+            "birth_year": "1917",
+            "death_year": "1985",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El reidor",
+            "story_id": "2ee7ffe5-1f43-4a6d-aad3-b2f77b6f64e0",
+            "linked_authors": 3
+        },
+        {
+            "id": "José Edwards",
+            "group": 28,
+            "country": "Chile",
+            "birth_year": "1910",
+            "death_year": "1970",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El acto libre",
+            "story_id": "2ebc2acf-8097-40bc-b283-b801fc9559de",
+            "linked_authors": 1
+        },
+        {
+            "id": "Juan Emar",
+            "group": 28,
+            "country": "Chile",
+            "birth_year": "1893",
+            "death_year": "1964",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El vicio del alcohol",
+            "story_id": "2f05dbae-ea8b-4330-a13b-caff2176f13e",
+            "linked_authors": 3
+        },
+        {
+            "id": "Onelio Jorge Cardoso",
+            "group": 4,
+            "country": "Cuba",
+            "birth_year": "1914",
+            "death_year": "1986",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El cangrejo volador",
+            "story_id": "2ffcfd5e-d93d-4708-b075-f630efa0ebe3",
+            "linked_authors": 1
+        },
+        {
+            "id": "Joris-Karl Huysmans",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1848",
+            "death_year": "1907",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Satán",
+            "story_id": "29d40575-58cf-4cdb-a434-e5cbb20ae989",
+            "linked_authors": 4
+        },
+        {
+            "id": "Iván Turguénev",
+            "group": 12,
+            "country": "Rusia",
+            "birth_year": "1818",
+            "death_year": "1883",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El monje",
+            "story_id": "2ea2311b-0bf1-4933-8061-7419ba865dac",
+            "linked_authors": 4
+        },
+        {
+            "id": " Salarrué",
+            "group": 43,
+            "country": "El Salvador",
+            "birth_year": "1899",
+            "death_year": "1975",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El cuento del cuento que contaron",
+            "story_id": "2e392281-9959-49f3-9a90-4e5f2e1d904c",
+            "linked_authors": 1
+        },
+        {
+            "id": "Álvaro Mutis",
+            "group": 21,
+            "country": "Colombia",
+            "birth_year": "1923",
+            "death_year": "2013",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Lámparas de hojalata",
+            "story_id": "2d2e426c-c6fa-4c60-b135-a9c6777913fd",
+            "linked_authors": 3
+        },
+        {
+            "id": "Juan Rodolfo Wilcock",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1919",
+            "death_year": "1978",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Agrimensor Bene Nio",
+            "story_id": "30d90241-cbdd-4e36-8e6e-316d8027752f",
+            "linked_authors": 6
+        },
+        {
+            "id": "Maeve Brennan",
+            "group": 20,
+            "country": "Irlanda",
+            "birth_year": "1917",
+            "death_year": "1993",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La más lista",
+            "story_id": "2c577828-f3a5-48d1-9b38-3962ac69096f",
+            "linked_authors": 1
+        },
+        {
+            "id": "Camilo José Cela",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1916",
+            "death_year": "2002",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Olor a cebolla",
+            "story_id": "2bf02c95-447d-45e4-bfdf-8ae94eb06323",
+            "linked_authors": 12
+        },
+        {
+            "id": "Macedonio Fernández",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1874",
+            "death_year": "1952",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Un paciente en disminución",
+            "story_id": "2e70af10-f3ff-401d-8c18-2dbc7b8f3b64",
+            "linked_authors": 5
+        },
+        {
+            "id": "Rubén Bareiro Saguier",
+            "group": 44,
+            "country": "Paraguay",
+            "birth_year": "1930",
+            "death_year": "2014",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Ojo por diente",
+            "story_id": "2bbec64a-9f99-4f08-9d68-02cd14c0adde",
+            "linked_authors": 3
+        },
+        {
+            "id": "Teresa Wilms Montt",
+            "group": 28,
+            "country": "Chile",
+            "birth_year": "1893",
+            "death_year": "1921",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Mahmú",
+            "story_id": "2a8e2e20-f786-4f8e-a8cc-93a254c06af8",
+            "linked_authors": 1
+        },
+        {
+            "id": "Heinrich von Kleist",
+            "group": 45,
+            "country": "Prusia",
+            "birth_year": "1777",
+            "death_year": "1811",
+            "genre": "Dramaturgia",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La mendiga de Locarno",
+            "story_id": "293442de-0c64-4c16-9861-59d9105da49f",
+            "linked_authors": 1
+        },
+        {
+            "id": "Juan Valera",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1824",
+            "death_year": "1905",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El pescadorcito Urashima",
+            "story_id": "29b2a6ae-25e6-4d6d-92ad-8bc0a97f5c65",
+            "linked_authors": 11
+        },
+        {
+            "id": "Arkadi Avérchenko",
+            "group": 12,
+            "country": "Rusia",
+            "birth_year": "1881",
+            "death_year": "1925",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Un asunto vulgar",
+            "story_id": "32360aa3-256f-4c7b-bc4e-0bd358a5a9c3",
+            "linked_authors": 1
+        },
+        {
+            "id": "Luis Taboada",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1848",
+            "death_year": "1906",
+            "genre": "Comedia",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El pavo de Navidad o la falta de costumbre",
+            "story_id": "34e7439a-8d46-4c64-8a25-74ad947415b5",
+            "linked_authors": 1
+        },
+        {
+            "id": "William Goyen",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1915",
+            "death_year": "1983",
+            "genre": "Histórico",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Chicos de campo",
+            "story_id": "340dc35f-9f78-4913-b946-646e05d62c34",
+            "linked_authors": 4
+        },
+        {
+            "id": "Ana María Matute",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1926",
+            "death_year": "2014",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Los relojes",
+            "story_id": "34ccf75f-1f57-4f99-af4a-ab418f89f4c2",
+            "linked_authors": 4
+        },
+        {
+            "id": "Miguel Delibes",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1920",
+            "death_year": "2010",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Navidad sin ambiente",
+            "story_id": "3212b7ff-2de5-4123-8701-d2a860094a9c",
+            "linked_authors": 8
+        },
+        {
+            "id": "José Zorrilla",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1817",
+            "death_year": "1893",
+            "genre": "Dramaturgia",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "¿Y aquel entierro que pasa?",
+            "story_id": "3bf0a0a3-4460-40d4-83ab-4b415d5dc7f5",
+            "linked_authors": 12
+        },
+        {
+            "id": "Alphonse Daudet",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1840",
+            "death_year": "1897",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Nostalgia del cuartel",
+            "story_id": "3d18fc8b-0f33-4630-b0a0-e7a4425118ba",
+            "linked_authors": 1
+        },
+        {
+            "id": "Miguel Mihura",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1905",
+            "death_year": "1977",
+            "genre": "Historieta",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Verdaderamente, con una madre así, tan buena, no se puede ser Lucifer",
+            "story_id": "40df61f0-5984-4074-830b-55e8af3e1a90",
+            "linked_authors": 1
+        },
+        {
+            "id": "Pierre Loti",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1850",
+            "death_year": "1923",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La aflicción de un viejo presidiario",
+            "story_id": "3ae5971a-74c5-4e29-af7b-673da10fe16b",
+            "linked_authors": 1
+        },
+        {
+            "id": "Jean-Paul Sartre",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1905",
+            "death_year": "1980",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Confusión",
+            "story_id": "4102b1c6-0990-4922-8010-5b9123d97058",
+            "linked_authors": 4
+        },
+        {
+            "id": "Costas Axelos",
+            "group": 5,
+            "country": "Grecia",
+            "birth_year": "1924",
+            "death_year": "2010",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El ser",
+            "story_id": "3ead8a55-60a6-4b98-97a2-93d723b3e394",
+            "linked_authors": 1
+        },
+        {
+            "id": "Octavio Paz",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1914",
+            "death_year": "1998",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Maravillas de la voluntad",
+            "story_id": "3d4873fb-befc-4ca8-9dfa-11c200c2d736",
+            "linked_authors": 27
+        },
+        {
+            "id": "Oscar Wilde",
+            "group": 20,
+            "country": "Irlanda",
+            "birth_year": "1854",
+            "death_year": "1900",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La Casa del Juicio",
+            "story_id": "3a1e071c-444e-47ad-a6da-4906ddf1e45f",
+            "linked_authors": 9
+        },
+        {
+            "id": "Isaak Bábel",
+            "group": 12,
+            "country": "Rusia",
+            "birth_year": "1894",
+            "death_year": "1940",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "En la estación ferroviaria",
+            "story_id": "3e7e7324-765a-4f17-83b0-c56fc850237d",
+            "linked_authors": 4
+        },
+        {
+            "id": " Colette",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1873",
+            "death_year": "1954",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Noche blanca",
+            "story_id": "40c74da6-8c0e-43d9-b2b3-429cb82410b9",
+            "linked_authors": 1
+        },
+        {
+            "id": "Sherwood Anderson",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1876",
+            "death_year": "1941",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El libro de lo grotesco",
+            "story_id": "413429c3-d895-4913-8f5f-457a4e673b9d",
+            "linked_authors": 1
+        },
+        {
+            "id": "Vicente Huidobro",
+            "group": 28,
+            "country": "Chile",
+            "birth_year": "1893",
+            "death_year": "1948",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La hija del guardaagujas",
+            "story_id": "442ce9d1-39a5-46de-af88-a73c0cdd6e74",
+            "linked_authors": 20
+        },
+        {
+            "id": "Selma Lagerlöf",
+            "group": 46,
+            "country": "Suecia",
+            "birth_year": "1858",
+            "death_year": "1940",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "En Nazaret",
+            "story_id": "42820200-53dc-4637-8567-1942ed0c6e5a",
+            "linked_authors": 8
+        },
+        {
+            "id": "José Donoso",
+            "group": 28,
+            "country": "Chile",
+            "birth_year": "1924",
+            "death_year": "1997",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La invención de Ramón",
+            "story_id": "4369fbd2-6d84-4596-a4a7-ec9fea0ca8c8",
+            "linked_authors": 3
+        },
+        {
+            "id": "Leopoldo Lugones",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1874",
+            "death_year": "1938",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "¿Una mariposa?",
+            "story_id": "48285317-3ed3-4402-9716-e0bcbb1845cb",
+            "linked_authors": 2
+        },
+        {
+            "id": "F. Scott Fitzgerald",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1896",
+            "death_year": "1940",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La década perdida",
+            "story_id": "43af239d-c8ef-4bae-ae94-401ef2a92aaf",
+            "linked_authors": 14
+        },
+        {
+            "id": "Vladimir Nabokov",
+            "group": 12,
+            "country": "Rusia",
+            "birth_year": "1899",
+            "death_year": "1977",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Solo el azar logra el crimen perfecto",
+            "story_id": "43e1692c-77a0-4593-9dfb-fa5a7ec28b68",
+            "linked_authors": 2
+        },
+        {
+            "id": "Félix Pita Rodríguez",
+            "group": 4,
+            "country": "Cuba",
+            "birth_year": "1909",
+            "death_year": "1990",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La pipa de cerezo",
+            "story_id": "44302e48-cf14-4bf0-813a-94789b8fd6b4",
+            "linked_authors": 4
+        },
+        {
+            "id": "Ramón María del Valle-Inclán",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1866",
+            "death_year": "1936",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El miedo",
+            "story_id": "453711e4-458d-4c3c-8177-31261b105f8f",
+            "linked_authors": 15
+        },
+        {
+            "id": "Clark Ashton Smith",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1893",
+            "death_year": "1961",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Las estatuas de la noche",
+            "story_id": "43884892-7c75-49ba-a79d-3c71403c53e4",
+            "linked_authors": 4
+        },
+        {
+            "id": "Charles Perrault",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1628",
+            "death_year": "1703",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Los deseos ridículos",
+            "story_id": "47b9c391-91a9-4230-9947-4cd4b170f157",
+            "linked_authors": 5
+        },
+        {
+            "id": "Santiago Dabove",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1889",
+            "death_year": "1951",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El tren",
+            "story_id": "46e6ee75-90c6-4371-b7d4-f0dbfe3de86c",
+            "linked_authors": 2
+        },
+        {
+            "id": "Emilio Díaz Valcárcel",
+            "group": 31,
+            "country": "Puerto Rico",
+            "birth_year": "1929",
+            "death_year": "2015",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La muchacha del tiempo",
+            "story_id": "4cec78f4-125b-45fa-b5ed-ac6fda8eda65",
+            "linked_authors": 1
+        },
+        {
+            "id": "Washington Irving",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1783",
+            "death_year": "1859",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El Palacio de la Alhambra",
+            "story_id": "4b6e95a7-4b03-42f1-98e5-0c99b31fe78c",
+            "linked_authors": 5
+        },
+        {
+            "id": "Ignacio Aldecoa",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1925",
+            "death_year": "1969",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Un cuento de reyes",
+            "story_id": "4a9fa87c-82e0-48c6-95db-1e6e9a24001d",
+            "linked_authors": 6
+        },
+        {
+            "id": "María Luisa Bombal",
+            "group": 28,
+            "country": "Chile",
+            "birth_year": "1910",
+            "death_year": "1980",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Lo secreto",
+            "story_id": "4cd7658f-7ad1-49ee-b753-ae8baca40639",
+            "linked_authors": 21
+        },
+        {
+            "id": "Salvador Garmendia",
+            "group": 26,
+            "country": "Venezuela",
+            "birth_year": "1928",
+            "death_year": "2001",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Asunto de familia",
+            "story_id": "50521929-0302-47c4-acf9-c1ca4e420162",
+            "linked_authors": 7
+        },
+        {
+            "id": "José Lezama Lima",
+            "group": 4,
+            "country": "Cuba",
+            "birth_year": "1910",
+            "death_year": "1976",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Invocación para desorejarse",
+            "story_id": "4a8fb8fe-ba17-425c-bcd6-aa50097dffc0",
+            "linked_authors": 22
+        },
+        {
+            "id": "Franco Sacchetti",
+            "group": 9,
+            "country": "Italia",
+            "birth_year": "1335",
+            "death_year": "1400",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El parto",
+            "story_id": "527af22c-8778-4a27-9be7-daf7fc846265",
+            "linked_authors": 2
+        },
+        {
+            "id": "Alejo Carpentier",
+            "group": 4,
+            "country": "Cuba",
+            "birth_year": "1904",
+            "death_year": "1980",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El entierro de Henri Christophe",
+            "story_id": "553056d3-a1db-482e-baaf-f2f783e80f53",
+            "linked_authors": 11
+        },
+        {
+            "id": "Ramón J. Sender",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1901",
+            "death_year": "1982",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El guaje",
+            "story_id": "54545c9b-e6c4-4c9a-80ff-d5a665f97f7d",
+            "linked_authors": 6
+        },
+        {
+            "id": "Tomás Carrasquilla",
+            "group": 21,
+            "country": "Colombia",
+            "birth_year": "1858",
+            "death_year": "1940",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La mata",
+            "story_id": "53786878-c142-4dc0-ab7a-ba7d90b333f7",
+            "linked_authors": 4
+        },
+        {
+            "id": "Arthur Machen",
+            "group": 13,
+            "country": "Inglaterra",
+            "birth_year": "1863",
+            "death_year": "1947",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Un nuevo Cuento de Navidad",
+            "story_id": "59948a95-7d4c-4076-8067-01f5840d5dba",
+            "linked_authors": 15
+        },
+        {
+            "id": "Pär Lagerkvist",
+            "group": 46,
+            "country": "Suecia",
+            "birth_year": "1891",
+            "death_year": "1974",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El amor y la muerte",
+            "story_id": "602539cb-bfe6-4e10-a972-47aac095ef2a",
+            "linked_authors": 1
+        },
+        {
+            "id": "Abelardo Castillo",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1935",
+            "death_year": "2017",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Las panteras y el templo",
+            "story_id": "6a110663-5803-45de-b4e4-7e177ddba2ff",
+            "linked_authors": 12
+        },
+        {
+            "id": "Philip K. Dick",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1928",
+            "death_year": "1982",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Algunas peculiaridades de los ojos",
+            "story_id": "64e79c18-23d9-4538-8696-f8c602ca5485",
+            "linked_authors": 3
+        },
+        {
+            "id": "Hernando Téllez",
+            "group": 21,
+            "country": "Colombia",
+            "birth_year": "1908",
+            "death_year": "1966",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Tiempo de verano",
+            "story_id": "6681cf30-609d-4302-846b-82550868c045",
+            "linked_authors": 1
+        },
+        {
+            "id": "Nathaniel Hawthorne",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1804",
+            "death_year": "1864",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Otro",
+            "story_id": "69c37ff4-81eb-4932-86bf-c76d3b01a061",
+            "linked_authors": 6
+        },
+        {
+            "id": "Leónidas Andréiev",
+            "group": 12,
+            "country": "Rusia",
+            "birth_year": "1871",
+            "death_year": "1919",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El gigante",
+            "story_id": "668c67b8-af59-4c99-beef-b8b7b879f4b9",
+            "linked_authors": 1
+        },
+        {
+            "id": "Thomas Hardy",
+            "group": 13,
+            "country": "Inglaterra",
+            "birth_year": "1840",
+            "death_year": "1928",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La historia de un hombre supersticioso",
+            "story_id": "67370753-d39f-43e8-91e8-627dafb92b15",
+            "linked_authors": 9
+        },
+        {
+            "id": "Miguel Ángel Asturias",
+            "group": 18,
+            "country": "Guatemala",
+            "birth_year": "1899",
+            "death_year": "1974",
+            "genre": "Histórico",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Leyenda del volcán",
+            "story_id": "71fe73aa-d68d-4150-8477-2f592ee8c656",
+            "linked_authors": 17
+        },
+        {
+            "id": "Jacinto Benavente",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1866",
+            "death_year": "1954",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Cuento inmoral",
+            "story_id": "718fd143-e034-44d9-b6d8-1ed297c08e93",
+            "linked_authors": 5
+        },
+        {
+            "id": "Emilio S. Belaval",
+            "group": 31,
+            "country": "Puerto Rico",
+            "birth_year": "1903",
+            "death_year": "1972",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Se enciende la lámpara de Aladino",
+            "story_id": "70b29965-acea-4edb-906a-3d9c390d6060",
+            "linked_authors": 1
+        },
+        {
+            "id": "Juan Rulfo",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1918",
+            "death_year": "1986",
+            "genre": "Romanticismo",
+            "image": "rulfo.png",
+            "audio": "tenquita.mp3",
+            "story_name": "No oyes ladrar a los perros",
+            "story_id": "6cf9801d-e81e-4caf-be8b-df658a3ec3be",
+            "linked_authors": 9
+        },
+        {
+            "id": "Kate Chopin",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1850",
+            "death_year": "1904",
+            "genre": "historias cortas",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Historia de una hora",
+            "story_id": "7630d592-38ea-4b74-ad35-6a421cc4e4dc",
+            "linked_authors": 1
+        },
+        {
+            "id": "E. L. Doctorow",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1931",
+            "death_year": "2015",
+            "genre": "Histórico",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La traída de aguas",
+            "story_id": "799e6f2c-5908-433f-90dd-d23c6bbed976",
+            "linked_authors": 1
+        },
+        {
+            "id": "Robert Louis Stevenson",
+            "group": 41,
+            "country": "Escocia",
+            "birth_year": "1850",
+            "death_year": "1894",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El mono científico",
+            "story_id": "7861c1cb-3bdb-483d-a0b8-6afd3736886a",
+            "linked_authors": 11
+        },
+        {
+            "id": "José Rafael Pocaterra",
+            "group": 26,
+            "country": "Venezuela",
+            "birth_year": "1889",
+            "death_year": "1955",
+            "genre": "Ambiental",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Redención",
+            "story_id": "780d4a76-b4c5-4401-932a-b050bbedd1f7",
+            "linked_authors": 3
+        },
+        {
+            "id": "Leonora Carrington",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1917",
+            "death_year": "2011",
+            "genre": "Surrealismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Los conejos blancos",
+            "story_id": "75f7afb2-5e42-4cd5-86c7-f91ef2556476",
+            "linked_authors": 4
+        },
+        {
+            "id": "J. M. Machado de Assis",
+            "group": 15,
+            "country": "Brasil",
+            "birth_year": "1839",
+            "death_year": "1908",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Un apólogo",
+            "story_id": "766b6b23-07be-48f0-bf41-542e7cff5f95",
+            "linked_authors": 1
+        },
+        {
+            "id": "Prosper Mérimée",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1803",
+            "death_year": "1870",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La Perla de Toledo",
+            "story_id": "7474d459-99b1-4513-b609-f8996a3adad9",
+            "linked_authors": 2
+        },
+        {
+            "id": "Bram Stoker",
+            "group": 20,
+            "country": "Irlanda",
+            "birth_year": "1847",
+            "death_year": "1912",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Cuando dormía",
+            "story_id": "7455a080-af51-4af0-b768-86d998e08f4f",
+            "linked_authors": 2
+        },
+        {
+            "id": "Émile Zola",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1840",
+            "death_year": "1902",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Las fresas",
+            "story_id": "80e7c59a-1177-4fa9-8c93-77910d2ac951",
+            "linked_authors": 7
+        },
+        {
+            "id": "Jack London",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1876",
+            "death_year": "1916",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Una nariz para el rey",
+            "story_id": "825e26e1-6c88-4d3c-8cbe-c41ae1a9e540",
+            "linked_authors": 1
+        },
+        {
+            "id": "Luis Cernuda",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1902",
+            "death_year": "1963",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Pregones",
+            "story_id": "80781a36-de8d-4fe0-81a9-7984815cd02d",
+            "linked_authors": 55
+        },
+        {
+            "id": "John Steinbeck",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1902",
+            "death_year": "1968",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Desayuno",
+            "story_id": "8500d040-4e32-4ce5-a65c-c401c1f071e2",
+            "linked_authors": 4
+        },
+        {
+            "id": "Carlos Fuentes",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1928",
+            "death_year": "2012",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La marcha del caracol",
+            "story_id": "883878e4-b1bd-4173-8bdc-e872944aa761",
+            "linked_authors": 27
+        },
+        {
+            "id": "José Francés",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1883",
+            "death_year": "1964",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Por qué Maruja no cree en los reyes magos",
+            "story_id": "8826b1c9-134c-4afd-8a00-c7d21844ab32",
+            "linked_authors": 6
+        },
+        {
+            "id": "Giovannino Guareschi",
+            "group": 9,
+            "country": "Italia",
+            "birth_year": "1908",
+            "death_year": "1968",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La hectárea",
+            "story_id": "88eee833-772d-48fd-8e13-4e4f6228f510",
+            "linked_authors": 1
+        },
+        {
+            "id": "Máximo Gorki",
+            "group": 12,
+            "country": "Rusia",
+            "birth_year": "1868",
+            "death_year": "1936",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La ciudad",
+            "story_id": "877fcd47-8a6c-47f2-aaeb-f5f4b0b78d47",
+            "linked_authors": 2
+        },
+        {
+            "id": "Daniel Defoe",
+            "group": 13,
+            "country": "Inglaterra",
+            "birth_year": "1659",
+            "death_year": "1731",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El fantasma provechoso",
+            "story_id": "8cf4d3a2-177c-416d-b78e-fca82e275a25",
+            "linked_authors": 1
+        },
+        {
+            "id": "Marguerite Duras",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1914",
+            "death_year": "1996",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El tren a Burdeos",
+            "story_id": "91e26264-35a3-4bd0-bfb9-aec70137e1ce",
+            "linked_authors": 1
+        },
+        {
+            "id": "Boris Vian",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1920",
+            "death_year": "1959",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Un corazón de oro",
+            "story_id": "8faa6a6c-2a44-48bc-8331-ef4a214fcc8e",
+            "linked_authors": 2
+        },
+        {
+            "id": "Carmen Laforet",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1921",
+            "death_year": "2004",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Al colegio",
+            "story_id": "90b68799-8916-42cc-890c-e657b6329db5",
+            "linked_authors": 2
+        },
+        {
+            "id": "Haroldo Conti",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1925",
+            "death_year": "1976",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Los caminos",
+            "story_id": "94e72c13-3786-4239-bfa1-dac861bd0bdd",
+            "linked_authors": 6
+        },
+        {
+            "id": "John Cheever",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1912",
+            "death_year": "1982",
+            "genre": "Chejov",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Reunión",
+            "story_id": "9884ca7f-690e-403f-8306-59d35d917929",
+            "linked_authors": 1
+        },
+        {
+            "id": "Alexandr Puchkin",
+            "group": 12,
+            "country": "Rusia",
+            "birth_year": "1799",
+            "death_year": "1837",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El pescador y el pez dorado",
+            "story_id": "98af5632-4b5b-4832-98e7-ded67b5007f9",
+            "linked_authors": 1
+        },
+        {
+            "id": "William Faulkner",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1897",
+            "death_year": "1962",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Esquileo I",
+            "story_id": "a20be5c9-66f3-4378-abf3-fc5c49a0cec7",
+            "linked_authors": 13
+        },
+        {
+            "id": "Rafael Sánchez Ferlosio",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1927",
+            "death_year": "2019",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El pensil sobre el Yang Tse o la hija del emperador",
+            "story_id": "9c1dec6a-a752-46d7-af0a-819a73036a5b",
+            "linked_authors": 4
+        },
+        {
+            "id": "Virginia Woolf",
+            "group": 13,
+            "country": "Inglaterra",
+            "birth_year": "1882",
+            "death_year": "1941",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La casa encantada",
+            "story_id": "a0657f2b-5625-4b96-a043-af2607dfd8de",
+            "linked_authors": 9
+        },
+        {
+            "id": "Augusto Roa Bastos",
+            "group": 44,
+            "country": "Paraguay",
+            "birth_year": "1917",
+            "death_year": "2005",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El baldío",
+            "story_id": "9c6c2b79-4e83-4870-b4df-24404b08d01f",
+            "linked_authors": 9
+        },
+        {
+            "id": "Marguerite Yourcenar",
+            "group": 27,
+            "country": "Belgica",
+            "birth_year": "1903",
+            "death_year": "1987",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La tristeza de Cornelius Berg",
+            "story_id": "a4e9de70-2a95-474e-9b63-b99725165a0d",
+            "linked_authors": 10
+        },
+        {
+            "id": "José María Arguedas",
+            "group": 22,
+            "country": "Peru",
+            "birth_year": "1911",
+            "death_year": "1969",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El barranco",
+            "story_id": "a6252aca-b0e8-4ca3-be58-98e8f966bae8",
+            "linked_authors": 1
+        },
+        {
+            "id": "Anaïs Nin",
+            "group": 6,
+            "country": "Francia",
+            "birth_year": "1903",
+            "death_year": "1977",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Mallorca",
+            "story_id": "aebf00c9-5bf1-41bc-967e-a0a0c14532c7",
+            "linked_authors": 3
+        },
+        {
+            "id": "Amparo Dávila",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1928",
+            "death_year": "2020",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Alta cocina",
+            "story_id": "bc7d6d92-030d-4d4c-a3a9-d666c682835d",
+            "linked_authors": 1
+        },
+        {
+            "id": "Dorothy Parker",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1893",
+            "death_year": "1967",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Estuviste perfectamente bien",
+            "story_id": "bc8c0893-c046-4cd6-918f-06f2eac451cc",
+            "linked_authors": 2
+        },
+        {
+            "id": "Castelao",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1886",
+            "death_year": "1950",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El retrato",
+            "story_id": "ba73acc8-8ff6-4ad3-bfca-7fd146aae768",
+            "linked_authors": 4
+        },
+        {
+            "id": "Leopoldo Marechal",
+            "group": 7,
+            "country": "Argentina",
+            "birth_year": "1900",
+            "death_year": "1970",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Primer apólogo chino",
+            "story_id": "be424745-18cf-4b22-b593-3674f8e886d7",
+            "linked_authors": 1
+        },
+        {
+            "id": "Dylan Thomas",
+            "group": 47,
+            "country": "Gales",
+            "birth_year": "1914",
+            "death_year": "1953",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El vestido",
+            "story_id": "ca810c6f-5336-409a-ad57-b474618e4074",
+            "linked_authors": 2
+        },
+        {
+            "id": "Wenceslao Fernández Flórez",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1885",
+            "death_year": "1964",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Los viajes",
+            "story_id": "ceb99fae-bd17-4207-8a55-6a8b0ddfb84d",
+            "linked_authors": 3
+        },
+        {
+            "id": "Alberto Moravia",
+            "group": 9,
+            "country": "Italia",
+            "birth_year": "1907",
+            "death_year": "1990",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Amor verdadero",
+            "story_id": "cb6c4daa-67a8-44d0-bdc5-b456179eda0f",
+            "linked_authors": 2
+        },
+        {
+            "id": "Doris Lessing",
+            "group": 13,
+            "country": "Inglaterra",
+            "birth_year": "1919",
+            "death_year": "2013",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Homenaje a Isaac Babel",
+            "story_id": "dd7b688d-a4a2-4fde-ba23-c243a321631e",
+            "linked_authors": 4
+        },
+        {
+            "id": "Juan Vicente Camacho",
+            "group": 26,
+            "country": "Venezuela",
+            "birth_year": "1829",
+            "death_year": "1872",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La estatua de bronce",
+            "story_id": "dca6a4ae-4887-4bbe-b2fc-b46a956db355",
+            "linked_authors": 3
+        },
+        {
+            "id": "Carlos Martínez Moreno",
+            "group": 3,
+            "country": "Uruguay",
+            "birth_year": "1917",
+            "death_year": "1986",
+            "genre": "Periodismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El prisionero",
+            "story_id": "e19c7b99-ea17-4178-aa6d-72a8ca184640",
+            "linked_authors": 2
+        },
+        {
+            "id": "Elena Garro",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1916",
+            "death_year": "1998",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Teología",
+            "story_id": "e33509f3-1faf-4cbd-a388-aaaba428238a",
+            "linked_authors": 6
+        },
+        {
+            "id": "Sergio Pitol",
+            "group": 11,
+            "country": "Mexico",
+            "birth_year": "1933",
+            "death_year": "2018",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La pantera",
+            "story_id": "ec97e9f5-074e-4c1a-a746-78a741f064ba",
+            "linked_authors": 13
+        },
+        {
+            "id": "Jesús Fernández Santos",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1926",
+            "death_year": "1988",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Cabeza rapada",
+            "story_id": "ee928b99-46e0-466d-ad70-7a22900cd610",
+            "linked_authors": 4
+        },
+        {
+            "id": "Katherine Anne Porter",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1890",
+            "death_year": "1980",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Magia",
+            "story_id": "e831aeeb-6fcf-47aa-a1fa-557e398e58aa",
+            "linked_authors": 1
+        },
+        {
+            "id": "Massimo Bontempelli",
+            "group": 9,
+            "country": "Italia",
+            "birth_year": "1878",
+            "death_year": "1960",
+            "genre": "Surrealismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "La calle Bellovesi",
+            "story_id": "ec698bd4-8f8e-4ffa-a2e0-0fb50c2c2c2a",
+            "linked_authors": 2
+        },
+        {
+            "id": "Osamu Dazai",
+            "group": 34,
+            "country": "Japon",
+            "birth_year": "1909",
+            "death_year": "1948",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "Esperando",
+            "story_id": "f30fe41d-b913-41cd-835a-36e643123b93",
+            "linked_authors": 1
+        },
+        {
+            "id": "Herman Melville",
+            "group": 2,
+            "country": "Estados Unidos",
+            "birth_year": "1819",
+            "death_year": "1891",
+            "genre": "Romanticismo",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "En el país de Queequeg",
+            "story_id": "fd32308f-78ca-434b-b943-f95ff1c2bd2d",
+            "linked_authors": 1
+        },
+        {
+            "id": "Eduardo de Palacio",
+            "group": 1,
+            "country": "España",
+            "birth_year": "1835",
+            "death_year": "1930",
+            "genre": "Unknown",
+            "image": "Sagan.png",
+            "audio": "tenquita.mp3",
+            "story_name": "El premio grueso",
+            "story_id": "fffe5619-0f74-4c1d-8168-25c5da6531a2",
+            "linked_authors": 1
+        }
+    ],
+    "links": [
+        {
+            "source": "Pío Baroja",
+            "target": "Camilo José Cela",
+            "value": 1
+        },
+        {
+            "source": "Pío Baroja",
+            "target": "Daniel Defoe",
+            "value": 1
+        },
+        {
+            "source": "Pío Baroja",
+            "target": "Ernest Hemingway",
+            "value": 1
+        },
+        {
+            "source": "Pío Baroja",
+            "target": "Jacinto Benavente",
+            "value": 1
+        },
+        {
+            "source": "Pío Baroja",
+            "target": "Miguel de Unamuno",
+            "value": 1
+        },
+        {
+            "source": "Pío Baroja",
+            "target": "Robert Louis Stevenson",
+            "value": 1
+        },
+        {
+            "source": "Pío Baroja",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "Isaac Asimov",
+            "target": "Arthur C. Clarke",
+            "value": 1
+        },
+        {
+            "source": "Mario Benedetti",
+            "target": "José Saramago",
+            "value": 1
+        },
+        {
+            "source": "Mario Benedetti",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "Virgilio Piñera",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Virgilio Piñera",
+            "target": "José Lezama Lima",
+            "value": 1
+        },
+        {
+            "source": "Jean de La Fontaine",
+            "target": "Charles Perrault",
+            "value": 1
+        },
+        {
+            "source": "Jean de La Fontaine",
+            "target": "Giovanni Boccaccio",
+            "value": 1
+        },
+        {
+            "source": "Adolfo Bioy Casares",
+            "target": "Augusto Roa Bastos",
+            "value": 1
+        },
+        {
+            "source": "Adolfo Bioy Casares",
+            "target": "Franz Kafka",
+            "value": 1
+        },
+        {
+            "source": "Adolfo Bioy Casares",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Adolfo Bioy Casares",
+            "target": "Juan Rodolfo Wilcock",
+            "value": 1
+        },
+        {
+            "source": "Adolfo Bioy Casares",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Adolfo Bioy Casares",
+            "target": "Lewis Carroll",
+            "value": 1
+        },
+        {
+            "source": "Adolfo Bioy Casares",
+            "target": "Silvina Ocampo",
+            "value": 1
+        },
+        {
+            "source": "Enrique Jardiel Poncela",
+            "target": "Miguel Mihura",
+            "value": 1
+        },
+        {
+            "source": "Enrique Jardiel Poncela",
+            "target": "Ramón Gómez de la Serna",
+            "value": 1
+        },
+        {
+            "source": "Giovanni Papini",
+            "target": "Giovanni Boccaccio",
+            "value": 1
+        },
+        {
+            "source": "Giovanni Papini",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Ramón Gómez de la Serna",
+            "target": "Enrique Jardiel Poncela",
+            "value": 1
+        },
+        {
+            "source": "Ramón Gómez de la Serna",
+            "target": "Jules Renard",
+            "value": 1
+        },
+        {
+            "source": "Ramón Gómez de la Serna",
+            "target": "Miguel Mihura",
+            "value": 1
+        },
+        {
+            "source": "Ramón Gómez de la Serna",
+            "target": "Pedro Emilio Coll",
+            "value": 1
+        },
+        {
+            "source": "Ramón Gómez de la Serna",
+            "target": "Pío Baroja",
+            "value": 1
+        },
+        {
+            "source": "John Updike",
+            "target": "Ernest Hemingway",
+            "value": 1
+        },
+        {
+            "source": "John Updike",
+            "target": "Franz Kafka",
+            "value": 1
+        },
+        {
+            "source": "John Updike",
+            "target": "James Thurber",
+            "value": 1
+        },
+        {
+            "source": "John Updike",
+            "target": "Miguel de Unamuno",
+            "value": 1
+        },
+        {
+            "source": "John Updike",
+            "target": "Vladimir Nabokov",
+            "value": 1
+        },
+        {
+            "source": "Emilia Pardo Bazán",
+            "target": "Francisco Pi y Margall",
+            "value": 1
+        },
+        {
+            "source": "Emilia Pardo Bazán",
+            "target": "Juan Valera",
+            "value": 1
+        },
+        {
+            "source": "Emilia Pardo Bazán",
+            "target": "Miguel de Unamuno",
+            "value": 1
+        },
+        {
+            "source": "Emilia Pardo Bazán",
+            "target": "Vicente Blasco Ibáñez",
+            "value": 1
+        },
+        {
+            "source": "Emilia Pardo Bazán",
+            "target": "Victor Hugo",
+            "value": 1
+        },
+        {
+            "source": "Emilia Pardo Bazán",
+            "target": "Wenceslao Fernández Flórez",
+            "value": 1
+        },
+        {
+            "source": "Emilia Pardo Bazán",
+            "target": "Émile Zola",
+            "value": 1
+        },
+        {
+            "source": "Fredric Brown",
+            "target": "Philip K. Dick",
+            "value": 1
+        },
+        {
+            "source": "Jorge Ibargüengoitia",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Jorge Ibargüengoitia",
+            "target": "Italo Calvino",
+            "value": 1
+        },
+        {
+            "source": "Jorge Ibargüengoitia",
+            "target": "Sergio Pitol",
+            "value": 1
+        },
+        {
+            "source": "H. P. Lovecraft",
+            "target": "Arthur Machen",
+            "value": 1
+        },
+        {
+            "source": "H. P. Lovecraft",
+            "target": "Bram Stoker",
+            "value": 1
+        },
+        {
+            "source": "H. P. Lovecraft",
+            "target": "Clark Ashton Smith",
+            "value": 1
+        },
+        {
+            "source": "H. P. Lovecraft",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "H. P. Lovecraft",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "H. P. Lovecraft",
+            "target": "Lord Dunsany",
+            "value": 1
+        },
+        {
+            "source": "H. P. Lovecraft",
+            "target": "Ray Bradbury",
+            "value": 1
+        },
+        {
+            "source": "Clarice Lispector",
+            "target": "Franz Kafka",
+            "value": 1
+        },
+        {
+            "source": "Clarice Lispector",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Clarice Lispector",
+            "target": "Virginia Woolf",
+            "value": 1
+        },
+        {
+            "source": "Fernando Pessoa",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Fernando Pessoa",
+            "target": "José Saramago",
+            "value": 1
+        },
+        {
+            "source": "Fernando Pessoa",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Cesare Pavese",
+            "target": "Daniel Defoe",
+            "value": 1
+        },
+        {
+            "source": "Cesare Pavese",
+            "target": "Herman Melville",
+            "value": 1
+        },
+        {
+            "source": "Cesare Pavese",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "Italo Calvino",
+            "target": "Alberto Moravia",
+            "value": 1
+        },
+        {
+            "source": "Italo Calvino",
+            "target": "Cesare Pavese",
+            "value": 1
+        },
+        {
+            "source": "Italo Calvino",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Rabindranath Tagore",
+            "target": "Federico García Lorca",
+            "value": 1
+        },
+        {
+            "source": "Rabindranath Tagore",
+            "target": "Graham Greene",
+            "value": 1
+        },
+        {
+            "source": "Rabindranath Tagore",
+            "target": "Juan Ramón Jiménez",
+            "value": 1
+        },
+        {
+            "source": "Rabindranath Tagore",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Rabindranath Tagore",
+            "target": "Yasunari Kawabata",
+            "value": 1
+        },
+        {
+            "source": "Lord Dunsany",
+            "target": "Arthur C. Clarke",
+            "value": 1
+        },
+        {
+            "source": "Lord Dunsany",
+            "target": "H. P. Lovecraft",
+            "value": 1
+        },
+        {
+            "source": "Lord Dunsany",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Álvaro Cepeda Samudio",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Álvaro Cepeda Samudio",
+            "target": "Hernando Téllez",
+            "value": 1
+        },
+        {
+            "source": "Álvaro Cepeda Samudio",
+            "target": "John Steinbeck",
+            "value": 1
+        },
+        {
+            "source": "Álvaro Cepeda Samudio",
+            "target": "Juan Rulfo",
+            "value": 1
+        },
+        {
+            "source": "Álvaro Cepeda Samudio",
+            "target": "Pío Baroja",
+            "value": 1
+        },
+        {
+            "source": "Álvaro Cepeda Samudio",
+            "target": "Sherwood Anderson",
+            "value": 1
+        },
+        {
+            "source": "Álvaro Cepeda Samudio",
+            "target": "Virginia Woolf",
+            "value": 1
+        },
+        {
+            "source": "Julio Ramón Ribeyro",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Julio Ramón Ribeyro",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Julio Ramón Ribeyro",
+            "target": "Ricardo Palma",
+            "value": 1
+        },
+        {
+            "source": "Juan Carlos Onetti",
+            "target": "Ernest Hemingway",
+            "value": 1
+        },
+        {
+            "source": "Juan Carlos Onetti",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Juan Carlos Onetti",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Juan Carlos Onetti",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Juan Carlos Onetti",
+            "target": "Pío Baroja",
+            "value": 1
+        },
+        {
+            "source": "Juan Carlos Onetti",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "Hermann Hesse",
+            "target": "Bertolt Brecht",
+            "value": 1
+        },
+        {
+            "source": "Hermanos Grimm",
+            "target": "Charles Perrault",
+            "value": 1
+        },
+        {
+            "source": "Franz Kafka",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Franz Kafka",
+            "target": "Heinrich von Kleist",
+            "value": 1
+        },
+        {
+            "source": "Franz Kafka",
+            "target": "Jean-Paul Sartre",
+            "value": 1
+        },
+        {
+            "source": "Franz Kafka",
+            "target": "John Updike",
+            "value": 1
+        },
+        {
+            "source": "Franz Kafka",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Franz Kafka",
+            "target": "José Saramago",
+            "value": 1
+        },
+        {
+            "source": "Franz Kafka",
+            "target": "Ray Bradbury",
+            "value": 1
+        },
+        {
+            "source": "Franz Kafka",
+            "target": "Vladimir Nabokov",
+            "value": 1
+        },
+        {
+            "source": "Antón Chéjov",
+            "target": "E. L. Doctorow",
+            "value": 1
+        },
+        {
+            "source": "Antón Chéjov",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Antón Chéjov",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Antón Chéjov",
+            "target": "Máximo Gorki",
+            "value": 1
+        },
+        {
+            "source": "Antón Chéjov",
+            "target": "Virginia Woolf",
+            "value": 1
+        },
+        {
+            "source": "Antón Chéjov",
+            "target": "Émile Zola",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "Alejo Carpentier",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "Carlos Fuentes",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "Daniel Defoe",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "Ernest Hemingway",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "Franz Kafka",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "Juan Rulfo",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "Mario Benedetti",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "Miguel Ángel Asturias",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "Virginia Woolf",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "Álvaro Cepeda Samudio",
+            "value": 1
+        },
+        {
+            "source": "Gabriel García Márquez",
+            "target": "Álvaro Mutis",
+            "value": 1
+        },
+        {
+            "source": "Horacio Quiroga",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Horacio Quiroga",
+            "target": "Leopoldo Lugones",
+            "value": 1
+        },
+        {
+            "source": "Horacio Quiroga",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "Horacio Quiroga",
+            "target": "Rudyard Kipling",
+            "value": 1
+        },
+        {
+            "source": "Teresa de la Parra",
+            "target": "Alphonse Daudet",
+            "value": 1
+        },
+        {
+            "source": "Teresa de la Parra",
+            "target": "Anatole France",
+            "value": 1
+        },
+        {
+            "source": "Teresa de la Parra",
+            "target": "José Rafael Pocaterra",
+            "value": 1
+        },
+        {
+            "source": "Teresa de la Parra",
+            "target": "Pierre Loti",
+            "value": 1
+        },
+        {
+            "source": "Teresa de la Parra",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "Inés Arredondo",
+            "target": "Amparo Dávila",
+            "value": 1
+        },
+        {
+            "source": "Inés Arredondo",
+            "target": "Elena Garro",
+            "value": 1
+        },
+        {
+            "source": "Inés Arredondo",
+            "target": "Juan José Arreola",
+            "value": 1
+        },
+        {
+            "source": "Inés Arredondo",
+            "target": "Juan Rulfo",
+            "value": 1
+        },
+        {
+            "source": "Jacques Sternberg",
+            "target": "Fredric Brown",
+            "value": 1
+        },
+        {
+            "source": "Eduardo Gudiño Kieffer",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Manuel Mujica Lainez",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "G. K. Chesterton",
+            "target": "Ernest Hemingway",
+            "value": 1
+        },
+        {
+            "source": "G. K. Chesterton",
+            "target": "Franz Kafka",
+            "value": 1
+        },
+        {
+            "source": "G. K. Chesterton",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "G. K. Chesterton",
+            "target": "Graham Greene",
+            "value": 1
+        },
+        {
+            "source": "G. K. Chesterton",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "G. K. Chesterton",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "G. K. Chesterton",
+            "target": "Robert Louis Stevenson",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Adolfo Bioy Casares",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Carlos Fuentes",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Franz Kafka",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Herman Melville",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Hermann Hesse",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Jack London",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Juan Carlos Onetti",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Julio Ramón Ribeyro",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Leopoldo Lugones",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Macedonio Fernández",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Manuel Mujica Lainez",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Marcel Schwob",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Oscar Wilde",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Ramón Gómez de la Serna",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Ricardo Güiraldes",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Roberto Arlt",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Rudyard Kipling",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Santiago Dabove",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Silvina Ocampo",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Vicente Huidobro",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Virginia Woolf",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "Vladimir Nabokov",
+            "value": 1
+        },
+        {
+            "source": "Jorge Luis Borges",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "Miguel de Unamuno",
+            "target": "Federico García Lorca",
+            "value": 1
+        },
+        {
+            "source": "Miguel de Unamuno",
+            "target": "Fernando Pessoa",
+            "value": 1
+        },
+        {
+            "source": "Miguel de Unamuno",
+            "target": "José Rafael Pocaterra",
+            "value": 1
+        },
+        {
+            "source": "Miguel de Unamuno",
+            "target": "Juan Ramón Jiménez",
+            "value": 1
+        },
+        {
+            "source": "Miguel de Unamuno",
+            "target": "Juan Valera",
+            "value": 1
+        },
+        {
+            "source": "Miguel de Unamuno",
+            "target": "Pedro Emilio Coll",
+            "value": 1
+        },
+        {
+            "source": "Miguel de Unamuno",
+            "target": "Pío Baroja",
+            "value": 1
+        },
+        {
+            "source": "Miguel de Unamuno",
+            "target": "Ramón Gómez de la Serna",
+            "value": 1
+        },
+        {
+            "source": "Miguel de Unamuno",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "Juan José Arreola",
+            "target": "Federico García Lorca",
+            "value": 1
+        },
+        {
+            "source": "Juan José Arreola",
+            "target": "Franz Kafka",
+            "value": 1
+        },
+        {
+            "source": "Juan José Arreola",
+            "target": "Giovanni Papini",
+            "value": 1
+        },
+        {
+            "source": "Juan José Arreola",
+            "target": "Hans Christian Andersen",
+            "value": 1
+        },
+        {
+            "source": "Juan José Arreola",
+            "target": "Jean de La Fontaine",
+            "value": 1
+        },
+        {
+            "source": "Juan José Arreola",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Juan José Arreola",
+            "target": "Juan Rulfo",
+            "value": 1
+        },
+        {
+            "source": "Juan José Arreola",
+            "target": "Jules Renard",
+            "value": 1
+        },
+        {
+            "source": "Juan José Arreola",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Juan José Arreola",
+            "target": "Julio Torri",
+            "value": 1
+        },
+        {
+            "source": "Juan José Arreola",
+            "target": "Marcel Schwob",
+            "value": 1
+        },
+        {
+            "source": "Juan José Arreola",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Lewis Carroll",
+            "target": "Virginia Woolf",
+            "value": 1
+        },
+        {
+            "source": "Marqués de Sade",
+            "target": "Daniel Defoe",
+            "value": 1
+        },
+        {
+            "source": "Marqués de Sade",
+            "target": "Giovanni Boccaccio",
+            "value": 1
+        },
+        {
+            "source": "Marqués de Sade",
+            "target": "Jean de La Fontaine",
+            "value": 1
+        },
+        {
+            "source": "Marqués de Sade",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "Adolfo Bioy Casares",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "Carlos Fuentes",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "Daniel Defoe",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "Jean-Paul Sartre",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "José Lezama Lima",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "Juan Carlos Onetti",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "Luis Cernuda",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "Marguerite Yourcenar",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "Ramón Gómez de la Serna",
+            "value": 1
+        },
+        {
+            "source": "Julio Cortázar",
+            "target": "Victor Hugo",
+            "value": 1
+        },
+        {
+            "source": "Rudyard Kipling",
+            "target": "Arthur Conan Doyle",
+            "value": 1
+        },
+        {
+            "source": "Rudyard Kipling",
+            "target": "Thomas Hardy",
+            "value": 1
+        },
+        {
+            "source": "Jules Renard",
+            "target": "Ramón Gómez de la Serna",
+            "value": 1
+        },
+        {
+            "source": "Stephen Crane",
+            "target": "Émile Zola",
+            "value": 1
+        },
+        {
+            "source": "Truman Capote",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Truman Capote",
+            "target": "F. Scott Fitzgerald",
+            "value": 1
+        },
+        {
+            "source": "Truman Capote",
+            "target": "Herman Melville",
+            "value": 1
+        },
+        {
+            "source": "Truman Capote",
+            "target": "Rodolfo Walsh",
+            "value": 1
+        },
+        {
+            "source": "Lino Novás Calvo",
+            "target": "Ernest Hemingway",
+            "value": 1
+        },
+        {
+            "source": "Lino Novás Calvo",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "Roberto Arlt",
+            "target": "Abelardo Castillo",
+            "value": 1
+        },
+        {
+            "source": "Roberto Arlt",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Roberto Arlt",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Roberto Arlt",
+            "target": "Ricardo Güiraldes",
+            "value": 1
+        },
+        {
+            "source": "Roberto Arlt",
+            "target": "Rodolfo Walsh",
+            "value": 1
+        },
+        {
+            "source": "José Saramago",
+            "target": "Camilo José Cela",
+            "value": 1
+        },
+        {
+            "source": "Ambrose Bierce",
+            "target": "Carlos Fuentes",
+            "value": 1
+        },
+        {
+            "source": "Ambrose Bierce",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Ambrose Bierce",
+            "target": "Herman Melville",
+            "value": 1
+        },
+        {
+            "source": "Ambrose Bierce",
+            "target": "Jack London",
+            "value": 1
+        },
+        {
+            "source": "Ambrose Bierce",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Ambrose Bierce",
+            "target": "Nathaniel Hawthorne",
+            "value": 1
+        },
+        {
+            "source": "Yasunari Kawabata",
+            "target": "Miguel Ángel Asturias",
+            "value": 1
+        },
+        {
+            "source": "Yasunari Kawabata",
+            "target": "Osamu Dazai",
+            "value": 1
+        },
+        {
+            "source": "Yasunari Kawabata",
+            "target": "Rabindranath Tagore",
+            "value": 1
+        },
+        {
+            "source": "Sławomir Mrożek",
+            "target": "Sergio Pitol",
+            "value": 1
+        },
+        {
+            "source": "Alfred de Musset",
+            "target": "Victor Hugo",
+            "value": 1
+        },
+        {
+            "source": "Héctor Tizón",
+            "target": "Augusto Monterroso",
+            "value": 1
+        },
+        {
+            "source": "Héctor Tizón",
+            "target": "Juan Rulfo",
+            "value": 1
+        },
+        {
+            "source": "Juan Bosch",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Ricardo Güiraldes",
+            "target": "Horacio Quiroga",
+            "value": 1
+        },
+        {
+            "source": "Ricardo Güiraldes",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Ricardo Güiraldes",
+            "target": "Leopoldo Lugones",
+            "value": 1
+        },
+        {
+            "source": "Victor Hugo",
+            "target": "Alfred de Musset",
+            "value": 1
+        },
+        {
+            "source": "Victor Hugo",
+            "target": "Émile Zola",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "Emilia Pardo Bazán",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "Federico García Lorca",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "Jacinto Benavente",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "José Zorrilla",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "Juan Ramón Jiménez",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "Juan Valera",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "Leopoldo Lugones",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "Luis Cernuda",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "Miguel de Unamuno",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "Pío Baroja",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "Ricardo Palma",
+            "value": 1
+        },
+        {
+            "source": "Rubén Darío",
+            "target": "Victor Hugo",
+            "value": 1
+        },
+        {
+            "source": "Felisberto Hernández",
+            "target": "Franz Kafka",
+            "value": 1
+        },
+        {
+            "source": "Felisberto Hernández",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Felisberto Hernández",
+            "target": "Horacio Quiroga",
+            "value": 1
+        },
+        {
+            "source": "Felisberto Hernández",
+            "target": "Italo Calvino",
+            "value": 1
+        },
+        {
+            "source": "Felisberto Hernández",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Felisberto Hernández",
+            "target": "Juan Carlos Onetti",
+            "value": 1
+        },
+        {
+            "source": "Felisberto Hernández",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Shirley Jackson",
+            "target": "Dylan Thomas",
+            "value": 1
+        },
+        {
+            "source": "Ryūnosuke Akutagawa",
+            "target": "Anatole France",
+            "value": 1
+        },
+        {
+            "source": "Ryūnosuke Akutagawa",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Marcel Schwob",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Marcel Schwob",
+            "target": "Robert Louis Stevenson",
+            "value": 1
+        },
+        {
+            "source": "Marcel Schwob",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "Dashiell Hammett",
+            "target": "Ernest Hemingway",
+            "value": 1
+        },
+        {
+            "source": "Carlos María Gutiérrez",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Carlos María Gutiérrez",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Carlos María Gutiérrez",
+            "target": "Mario Benedetti",
+            "value": 1
+        },
+        {
+            "source": "Carlos María Gutiérrez",
+            "target": "Rodolfo Walsh",
+            "value": 1
+        },
+        {
+            "source": "Ciro Alegría",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Ciro Alegría",
+            "target": "José María Arguedas",
+            "value": 1
+        },
+        {
+            "source": "Ciro Alegría",
+            "target": "Julio Ramón Ribeyro",
+            "value": 1
+        },
+        {
+            "source": "Ciro Alegría",
+            "target": "Ricardo Palma",
+            "value": 1
+        },
+        {
+            "source": "Dino Buzzati",
+            "target": "Jean-Paul Sartre",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Ambrose Bierce",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Arthur Conan Doyle",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Carlos Fuentes",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Daniel Defoe",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Franz Kafka",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "H. P. Lovecraft",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Herman Melville",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Horacio Quiroga",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Italo Calvino",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Nathaniel Hawthorne",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Philip K. Dick",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Ray Bradbury",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Robert Louis Stevenson",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Rudyard Kipling",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Vladimir Nabokov",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "Washington Irving",
+            "value": 1
+        },
+        {
+            "source": "Edgar Allan Poe",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "Patricia Highsmith",
+            "target": "Graham Greene",
+            "value": 1
+        },
+        {
+            "source": "Katherine Mansfield",
+            "target": "Virginia Woolf",
+            "value": 1
+        },
+        {
+            "source": "John O'Hara",
+            "target": "Ernest Hemingway",
+            "value": 1
+        },
+        {
+            "source": "Ernest Hemingway",
+            "target": "F. Scott Fitzgerald",
+            "value": 1
+        },
+        {
+            "source": "Ernest Hemingway",
+            "target": "Herman Melville",
+            "value": 1
+        },
+        {
+            "source": "Ernest Hemingway",
+            "target": "Oscar Wilde",
+            "value": 1
+        },
+        {
+            "source": "Ernest Hemingway",
+            "target": "Pío Baroja",
+            "value": 1
+        },
+        {
+            "source": "Ernest Hemingway",
+            "target": "Ray Bradbury",
+            "value": 1
+        },
+        {
+            "source": "Ernest Hemingway",
+            "target": "Sherwood Anderson",
+            "value": 1
+        },
+        {
+            "source": "Ernest Hemingway",
+            "target": "Stephen Crane",
+            "value": 1
+        },
+        {
+            "source": "Arthur Conan Doyle",
+            "target": "Robert Louis Stevenson",
+            "value": 1
+        },
+        {
+            "source": "Arthur Conan Doyle",
+            "target": "Rudyard Kipling",
+            "value": 1
+        },
+        {
+            "source": "Virgilio Díaz Grullón",
+            "target": "Juan Bosch",
+            "value": 1
+        },
+        {
+            "source": "Silvina Ocampo",
+            "target": "Adolfo Bioy Casares",
+            "value": 1
+        },
+        {
+            "source": "Silvina Ocampo",
+            "target": "Italo Calvino",
+            "value": 1
+        },
+        {
+            "source": "Silvina Ocampo",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Silvina Ocampo",
+            "target": "Juan Rodolfo Wilcock",
+            "value": 1
+        },
+        {
+            "source": "Silvina Ocampo",
+            "target": "Katherine Mansfield",
+            "value": 1
+        },
+        {
+            "source": "Silvina Ocampo",
+            "target": "Lewis Carroll",
+            "value": 1
+        },
+        {
+            "source": "Juan Ramón Jiménez",
+            "target": "Rabindranath Tagore",
+            "value": 1
+        },
+        {
+            "source": "Juan Ramón Jiménez",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "Graham Greene",
+            "target": "Robert Louis Stevenson",
+            "value": 1
+        },
+        {
+            "source": "Francisco Tario",
+            "target": "Juan Rulfo",
+            "value": 1
+        },
+        {
+            "source": "James Thurber",
+            "target": "John Updike",
+            "value": 1
+        },
+        {
+            "source": "Ricardo Palma",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "Leopoldo Alas, Clarín",
+            "target": "Emilia Pardo Bazán",
+            "value": 1
+        },
+        {
+            "source": "Leopoldo Alas, Clarín",
+            "target": "Francisco Pi y Margall",
+            "value": 1
+        },
+        {
+            "source": "Leopoldo Alas, Clarín",
+            "target": "José Echegaray",
+            "value": 1
+        },
+        {
+            "source": "Leopoldo Alas, Clarín",
+            "target": "Émile Zola",
+            "value": 1
+        },
+        {
+            "source": "Arthur C. Clarke",
+            "target": "Isaac Asimov",
+            "value": 1
+        },
+        {
+            "source": "Anatole France",
+            "target": "Carlos Fuentes",
+            "value": 1
+        },
+        {
+            "source": "Anatole France",
+            "target": "Jacinto Benavente",
+            "value": 1
+        },
+        {
+            "source": "Anatole France",
+            "target": "Émile Zola",
+            "value": 1
+        },
+        {
+            "source": "Rodolfo Walsh",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Rodolfo Walsh",
+            "target": "Truman Capote",
+            "value": 1
+        },
+        {
+            "source": "Pedro Emilio Coll",
+            "target": "Horacio Quiroga",
+            "value": 1
+        },
+        {
+            "source": "Pedro Emilio Coll",
+            "target": "José Rafael Pocaterra",
+            "value": 1
+        },
+        {
+            "source": "Pedro Emilio Coll",
+            "target": "Leopoldo Lugones",
+            "value": 1
+        },
+        {
+            "source": "Pedro Emilio Coll",
+            "target": "Miguel de Unamuno",
+            "value": 1
+        },
+        {
+            "source": "Pedro Emilio Coll",
+            "target": "Ramón Gómez de la Serna",
+            "value": 1
+        },
+        {
+            "source": "Pedro Emilio Coll",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "Pedro Emilio Coll",
+            "target": "Teresa de la Parra",
+            "value": 1
+        },
+        {
+            "source": "Federico García Lorca",
+            "target": "Juan Ramón Jiménez",
+            "value": 1
+        },
+        {
+            "source": "Federico García Lorca",
+            "target": "Luis Cernuda",
+            "value": 1
+        },
+        {
+            "source": "Federico García Lorca",
+            "target": "Pío Baroja",
+            "value": 1
+        },
+        {
+            "source": "Federico García Lorca",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "José Echegaray",
+            "target": "Emilia Pardo Bazán",
+            "value": 1
+        },
+        {
+            "source": "Vicente Blasco Ibáñez",
+            "target": "Anatole France",
+            "value": 1
+        },
+        {
+            "source": "Vicente Blasco Ibáñez",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Vicente Blasco Ibáñez",
+            "target": "Emilia Pardo Bazán",
+            "value": 1
+        },
+        {
+            "source": "Vicente Blasco Ibáñez",
+            "target": "Jack London",
+            "value": 1
+        },
+        {
+            "source": "Vicente Blasco Ibáñez",
+            "target": "Miguel de Unamuno",
+            "value": 1
+        },
+        {
+            "source": "Vicente Blasco Ibáñez",
+            "target": "Victor Hugo",
+            "value": 1
+        },
+        {
+            "source": "Vicente Blasco Ibáñez",
+            "target": "Émile Zola",
+            "value": 1
+        },
+        {
+            "source": "Tommaso Landolfi",
+            "target": "Franz Kafka",
+            "value": 1
+        },
+        {
+            "source": "Tommaso Landolfi",
+            "target": "Italo Calvino",
+            "value": 1
+        },
+        {
+            "source": "Heinrich Böll",
+            "target": "Jean-Paul Sartre",
+            "value": 1
+        },
+        {
+            "source": "Juan Emar",
+            "target": "Vicente Huidobro",
+            "value": 1
+        },
+        {
+            "source": "Joris-Karl Huysmans",
+            "target": "Émile Zola",
+            "value": 1
+        },
+        {
+            "source": "Iván Turguénev",
+            "target": "Nathaniel Hawthorne",
+            "value": 1
+        },
+        {
+            "source": "Álvaro Mutis",
+            "target": "Carlos Fuentes",
+            "value": 1
+        },
+        {
+            "source": "Álvaro Mutis",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Juan Rodolfo Wilcock",
+            "target": "Adolfo Bioy Casares",
+            "value": 1
+        },
+        {
+            "source": "Juan Rodolfo Wilcock",
+            "target": "Alberto Moravia",
+            "value": 1
+        },
+        {
+            "source": "Juan Rodolfo Wilcock",
+            "target": "Dino Buzzati",
+            "value": 1
+        },
+        {
+            "source": "Juan Rodolfo Wilcock",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Juan Rodolfo Wilcock",
+            "target": "Silvina Ocampo",
+            "value": 1
+        },
+        {
+            "source": "Camilo José Cela",
+            "target": "José Saramago",
+            "value": 1
+        },
+        {
+            "source": "Camilo José Cela",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Macedonio Fernández",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Macedonio Fernández",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Macedonio Fernández",
+            "target": "Leopoldo Lugones",
+            "value": 1
+        },
+        {
+            "source": "Macedonio Fernández",
+            "target": "Leopoldo Marechal",
+            "value": 1
+        },
+        {
+            "source": "Rubén Bareiro Saguier",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Rubén Bareiro Saguier",
+            "target": "Jean-Paul Sartre",
+            "value": 1
+        },
+        {
+            "source": "Teresa Wilms Montt",
+            "target": "Vicente Huidobro",
+            "value": 1
+        },
+        {
+            "source": "Juan Valera",
+            "target": "Emilia Pardo Bazán",
+            "value": 1
+        },
+        {
+            "source": "Juan Valera",
+            "target": "José Zorrilla",
+            "value": 1
+        },
+        {
+            "source": "Juan Valera",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "Juan Valera",
+            "target": "Victor Hugo",
+            "value": 1
+        },
+        {
+            "source": "William Goyen",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "Miguel Delibes",
+            "target": "José Zorrilla",
+            "value": 1
+        },
+        {
+            "source": "Miguel Delibes",
+            "target": "Juan Rulfo",
+            "value": 1
+        },
+        {
+            "source": "José Zorrilla",
+            "target": "Alfred de Musset",
+            "value": 1
+        },
+        {
+            "source": "José Zorrilla",
+            "target": "Victor Hugo",
+            "value": 1
+        },
+        {
+            "source": "Miguel Mihura",
+            "target": "Enrique Jardiel Poncela",
+            "value": 1
+        },
+        {
+            "source": "Octavio Paz",
+            "target": "Alejo Carpentier",
+            "value": 1
+        },
+        {
+            "source": "Octavio Paz",
+            "target": "Camilo José Cela",
+            "value": 1
+        },
+        {
+            "source": "Octavio Paz",
+            "target": "Elena Garro",
+            "value": 1
+        },
+        {
+            "source": "Octavio Paz",
+            "target": "Ernest Hemingway",
+            "value": 1
+        },
+        {
+            "source": "Octavio Paz",
+            "target": "Juan Carlos Onetti",
+            "value": 1
+        },
+        {
+            "source": "Octavio Paz",
+            "target": "Vicente Huidobro",
+            "value": 1
+        },
+        {
+            "source": "Oscar Wilde",
+            "target": "Arthur Conan Doyle",
+            "value": 1
+        },
+        {
+            "source": "Oscar Wilde",
+            "target": "Bram Stoker",
+            "value": 1
+        },
+        {
+            "source": "Isaak Bábel",
+            "target": "Máximo Gorki",
+            "value": 1
+        },
+        {
+            "source": "Vicente Huidobro",
+            "target": "Alejo Carpentier",
+            "value": 1
+        },
+        {
+            "source": "Vicente Huidobro",
+            "target": "Federico García Lorca",
+            "value": 1
+        },
+        {
+            "source": "Vicente Huidobro",
+            "target": "Miguel de Unamuno",
+            "value": 1
+        },
+        {
+            "source": "Vicente Huidobro",
+            "target": "Ramón Gómez de la Serna",
+            "value": 1
+        },
+        {
+            "source": "Vicente Huidobro",
+            "target": "Teresa Wilms Montt",
+            "value": 1
+        },
+        {
+            "source": "Selma Lagerlöf",
+            "target": "Hans Christian Andersen",
+            "value": 1
+        },
+        {
+            "source": "Selma Lagerlöf",
+            "target": "Hermanos Grimm",
+            "value": 1
+        },
+        {
+            "source": "Selma Lagerlöf",
+            "target": "Rudyard Kipling",
+            "value": 1
+        },
+        {
+            "source": "José Donoso",
+            "target": "Carlos Fuentes",
+            "value": 1
+        },
+        {
+            "source": "José Donoso",
+            "target": "Vicente Huidobro",
+            "value": 1
+        },
+        {
+            "source": "Leopoldo Lugones",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "F. Scott Fitzgerald",
+            "target": "Anatole France",
+            "value": 1
+        },
+        {
+            "source": "F. Scott Fitzgerald",
+            "target": "Dorothy Parker",
+            "value": 1
+        },
+        {
+            "source": "F. Scott Fitzgerald",
+            "target": "Ernest Hemingway",
+            "value": 1
+        },
+        {
+            "source": "Ramón María del Valle-Inclán",
+            "target": "Alphonse Daudet",
+            "value": 1
+        },
+        {
+            "source": "Ramón María del Valle-Inclán",
+            "target": "Anatole France",
+            "value": 1
+        },
+        {
+            "source": "Ramón María del Valle-Inclán",
+            "target": "Jacinto Benavente",
+            "value": 1
+        },
+        {
+            "source": "Ramón María del Valle-Inclán",
+            "target": "José Zorrilla",
+            "value": 1
+        },
+        {
+            "source": "Ramón María del Valle-Inclán",
+            "target": "Juan Valera",
+            "value": 1
+        },
+        {
+            "source": "Ramón María del Valle-Inclán",
+            "target": "Miguel de Unamuno",
+            "value": 1
+        },
+        {
+            "source": "Ramón María del Valle-Inclán",
+            "target": "Pío Baroja",
+            "value": 1
+        },
+        {
+            "source": "Ramón María del Valle-Inclán",
+            "target": "Ramón Gómez de la Serna",
+            "value": 1
+        },
+        {
+            "source": "Ramón María del Valle-Inclán",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "Clark Ashton Smith",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Clark Ashton Smith",
+            "target": "H. P. Lovecraft",
+            "value": 1
+        },
+        {
+            "source": "Clark Ashton Smith",
+            "target": "Hermanos Grimm",
+            "value": 1
+        },
+        {
+            "source": "Charles Perrault",
+            "target": "Giovanni Boccaccio",
+            "value": 1
+        },
+        {
+            "source": "Charles Perrault",
+            "target": "Hans Christian Andersen",
+            "value": 1
+        },
+        {
+            "source": "Charles Perrault",
+            "target": "Hermanos Grimm",
+            "value": 1
+        },
+        {
+            "source": "Charles Perrault",
+            "target": "Jean de La Fontaine",
+            "value": 1
+        },
+        {
+            "source": "Santiago Dabove",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Santiago Dabove",
+            "target": "Macedonio Fernández",
+            "value": 1
+        },
+        {
+            "source": "Washington Irving",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Washington Irving",
+            "target": "Nathaniel Hawthorne",
+            "value": 1
+        },
+        {
+            "source": "Ignacio Aldecoa",
+            "target": "Ernest Hemingway",
+            "value": 1
+        },
+        {
+            "source": "Ignacio Aldecoa",
+            "target": "Jesús Fernández Santos",
+            "value": 1
+        },
+        {
+            "source": "Ignacio Aldecoa",
+            "target": "Pío Baroja",
+            "value": 1
+        },
+        {
+            "source": "Ignacio Aldecoa",
+            "target": "Rafael Sánchez Ferlosio",
+            "value": 1
+        },
+        {
+            "source": "Ignacio Aldecoa",
+            "target": "Truman Capote",
+            "value": 1
+        },
+        {
+            "source": "María Luisa Bombal",
+            "target": "Ciro Alegría",
+            "value": 1
+        },
+        {
+            "source": "María Luisa Bombal",
+            "target": "Federico García Lorca",
+            "value": 1
+        },
+        {
+            "source": "María Luisa Bombal",
+            "target": "Hans Christian Andersen",
+            "value": 1
+        },
+        {
+            "source": "María Luisa Bombal",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "María Luisa Bombal",
+            "target": "Juan Rulfo",
+            "value": 1
+        },
+        {
+            "source": "María Luisa Bombal",
+            "target": "Oscar Wilde",
+            "value": 1
+        },
+        {
+            "source": "María Luisa Bombal",
+            "target": "Ramón J. Sender",
+            "value": 1
+        },
+        {
+            "source": "María Luisa Bombal",
+            "target": "Selma Lagerlöf",
+            "value": 1
+        },
+        {
+            "source": "José Lezama Lima",
+            "target": "Alejo Carpentier",
+            "value": 1
+        },
+        {
+            "source": "José Lezama Lima",
+            "target": "Juan Ramón Jiménez",
+            "value": 1
+        },
+        {
+            "source": "José Lezama Lima",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "José Lezama Lima",
+            "target": "Leopoldo Lugones",
+            "value": 1
+        },
+        {
+            "source": "José Lezama Lima",
+            "target": "Luis Cernuda",
+            "value": 1
+        },
+        {
+            "source": "José Lezama Lima",
+            "target": "Macedonio Fernández",
+            "value": 1
+        },
+        {
+            "source": "José Lezama Lima",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "José Lezama Lima",
+            "target": "Virgilio Piñera",
+            "value": 1
+        },
+        {
+            "source": "Franco Sacchetti",
+            "target": "Giovanni Boccaccio",
+            "value": 1
+        },
+        {
+            "source": "Alejo Carpentier",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Alejo Carpentier",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Alejo Carpentier",
+            "target": "José Donoso",
+            "value": 1
+        },
+        {
+            "source": "Alejo Carpentier",
+            "target": "Miguel Ángel Asturias",
+            "value": 1
+        },
+        {
+            "source": "Ramón J. Sender",
+            "target": "Carmen Laforet",
+            "value": 1
+        },
+        {
+            "source": "Ramón J. Sender",
+            "target": "Federico García Lorca",
+            "value": 1
+        },
+        {
+            "source": "Ramón J. Sender",
+            "target": "Jacinto Benavente",
+            "value": 1
+        },
+        {
+            "source": "Ramón J. Sender",
+            "target": "Pío Baroja",
+            "value": 1
+        },
+        {
+            "source": "Tomás Carrasquilla",
+            "target": "Miguel de Unamuno",
+            "value": 1
+        },
+        {
+            "source": "Arthur Machen",
+            "target": "Arthur Conan Doyle",
+            "value": 1
+        },
+        {
+            "source": "Arthur Machen",
+            "target": "Bram Stoker",
+            "value": 1
+        },
+        {
+            "source": "Arthur Machen",
+            "target": "Clark Ashton Smith",
+            "value": 1
+        },
+        {
+            "source": "Arthur Machen",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Arthur Machen",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Arthur Machen",
+            "target": "Lord Dunsany",
+            "value": 1
+        },
+        {
+            "source": "Arthur Machen",
+            "target": "Oscar Wilde",
+            "value": 1
+        },
+        {
+            "source": "Arthur Machen",
+            "target": "Robert Louis Stevenson",
+            "value": 1
+        },
+        {
+            "source": "Abelardo Castillo",
+            "target": "Adolfo Bioy Casares",
+            "value": 1
+        },
+        {
+            "source": "Abelardo Castillo",
+            "target": "Augusto Roa Bastos",
+            "value": 1
+        },
+        {
+            "source": "Abelardo Castillo",
+            "target": "Carlos Fuentes",
+            "value": 1
+        },
+        {
+            "source": "Abelardo Castillo",
+            "target": "Jean-Paul Sartre",
+            "value": 1
+        },
+        {
+            "source": "Abelardo Castillo",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Abelardo Castillo",
+            "target": "Juan Rulfo",
+            "value": 1
+        },
+        {
+            "source": "Abelardo Castillo",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Abelardo Castillo",
+            "target": "Miguel Ángel Asturias",
+            "value": 1
+        },
+        {
+            "source": "Philip K. Dick",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Nathaniel Hawthorne",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Nathaniel Hawthorne",
+            "target": "Herman Melville",
+            "value": 1
+        },
+        {
+            "source": "Nathaniel Hawthorne",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Nathaniel Hawthorne",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Nathaniel Hawthorne",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "Thomas Hardy",
+            "target": "Jack London",
+            "value": 1
+        },
+        {
+            "source": "Miguel Ángel Asturias",
+            "target": "Alejo Carpentier",
+            "value": 1
+        },
+        {
+            "source": "Miguel Ángel Asturias",
+            "target": "Augusto Roa Bastos",
+            "value": 1
+        },
+        {
+            "source": "Miguel Ángel Asturias",
+            "target": "Franz Kafka",
+            "value": 1
+        },
+        {
+            "source": "Miguel Ángel Asturias",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Miguel Ángel Asturias",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Miguel Ángel Asturias",
+            "target": "José María Arguedas",
+            "value": 1
+        },
+        {
+            "source": "Miguel Ángel Asturias",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "Miguel Ángel Asturias",
+            "target": "Yasunari Kawabata",
+            "value": 1
+        },
+        {
+            "source": "Jacinto Benavente",
+            "target": "Anatole France",
+            "value": 1
+        },
+        {
+            "source": "Jacinto Benavente",
+            "target": "José Echegaray",
+            "value": 1
+        },
+        {
+            "source": "Jacinto Benavente",
+            "target": "Oscar Wilde",
+            "value": 1
+        },
+        {
+            "source": "Juan Rulfo",
+            "target": "Carlos Fuentes",
+            "value": 1
+        },
+        {
+            "source": "Juan Rulfo",
+            "target": "Franz Kafka",
+            "value": 1
+        },
+        {
+            "source": "Juan Rulfo",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Juan Rulfo",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Juan Rulfo",
+            "target": "Juan José Arreola",
+            "value": 1
+        },
+        {
+            "source": "Juan Rulfo",
+            "target": "Miguel Delibes",
+            "value": 1
+        },
+        {
+            "source": "Juan Rulfo",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "Juan Rulfo",
+            "target": "Álvaro Mutis",
+            "value": 1
+        },
+        {
+            "source": "Robert Louis Stevenson",
+            "target": "Adolfo Bioy Casares",
+            "value": 1
+        },
+        {
+            "source": "Robert Louis Stevenson",
+            "target": "Graham Greene",
+            "value": 1
+        },
+        {
+            "source": "Robert Louis Stevenson",
+            "target": "Herman Melville",
+            "value": 1
+        },
+        {
+            "source": "Robert Louis Stevenson",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Robert Louis Stevenson",
+            "target": "Victor Hugo",
+            "value": 1
+        },
+        {
+            "source": "Robert Louis Stevenson",
+            "target": "Virginia Woolf",
+            "value": 1
+        },
+        {
+            "source": "José Rafael Pocaterra",
+            "target": "Miguel de Unamuno",
+            "value": 1
+        },
+        {
+            "source": "José Rafael Pocaterra",
+            "target": "Teresa de la Parra",
+            "value": 1
+        },
+        {
+            "source": "Leonora Carrington",
+            "target": "Oscar Wilde",
+            "value": 1
+        },
+        {
+            "source": "Bram Stoker",
+            "target": "Arthur Conan Doyle",
+            "value": 1
+        },
+        {
+            "source": "Bram Stoker",
+            "target": "Oscar Wilde",
+            "value": 1
+        },
+        {
+            "source": "Émile Zola",
+            "target": "Alphonse Daudet",
+            "value": 1
+        },
+        {
+            "source": "Émile Zola",
+            "target": "Anatole France",
+            "value": 1
+        },
+        {
+            "source": "Émile Zola",
+            "target": "Joris-Karl Huysmans",
+            "value": 1
+        },
+        {
+            "source": "Luis Cernuda",
+            "target": "Elena Garro",
+            "value": 1
+        },
+        {
+            "source": "Luis Cernuda",
+            "target": "Federico García Lorca",
+            "value": 1
+        },
+        {
+            "source": "Luis Cernuda",
+            "target": "José Lezama Lima",
+            "value": 1
+        },
+        {
+            "source": "Luis Cernuda",
+            "target": "Juan Ramón Jiménez",
+            "value": 1
+        },
+        {
+            "source": "Luis Cernuda",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Luis Cernuda",
+            "target": "Rubén Darío",
+            "value": 1
+        },
+        {
+            "source": "John Steinbeck",
+            "target": "Ernest Hemingway",
+            "value": 1
+        },
+        {
+            "source": "John Steinbeck",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "Dashiell Hammett",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "F. Scott Fitzgerald",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "Graham Greene",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "Herman Melville",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "John Steinbeck",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "Juan Rulfo",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "Katherine Mansfield",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "Nathaniel Hawthorne",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "Robert Louis Stevenson",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "Rudyard Kipling",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "Virginia Woolf",
+            "value": 1
+        },
+        {
+            "source": "Carlos Fuentes",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "José Francés",
+            "target": "Arthur Conan Doyle",
+            "value": 1
+        },
+        {
+            "source": "José Francés",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "José Francés",
+            "target": "Felipe Trigo",
+            "value": 1
+        },
+        {
+            "source": "Máximo Gorki",
+            "target": "Anatole France",
+            "value": 1
+        },
+        {
+            "source": "Carmen Laforet",
+            "target": "Emilia Pardo Bazán",
+            "value": 1
+        },
+        {
+            "source": "Carmen Laforet",
+            "target": "Ramón J. Sender",
+            "value": 1
+        },
+        {
+            "source": "Haroldo Conti",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "Haroldo Conti",
+            "target": "Héctor Tizón",
+            "value": 1
+        },
+        {
+            "source": "Haroldo Conti",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Haroldo Conti",
+            "target": "Rodolfo Walsh",
+            "value": 1
+        },
+        {
+            "source": "William Faulkner",
+            "target": "Franz Kafka",
+            "value": 1
+        },
+        {
+            "source": "William Faulkner",
+            "target": "Gabriel García Márquez",
+            "value": 1
+        },
+        {
+            "source": "William Faulkner",
+            "target": "Hermanos Grimm",
+            "value": 1
+        },
+        {
+            "source": "William Faulkner",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "William Faulkner",
+            "target": "Juan Carlos Onetti",
+            "value": 1
+        },
+        {
+            "source": "William Faulkner",
+            "target": "Juan Rulfo",
+            "value": 1
+        },
+        {
+            "source": "William Faulkner",
+            "target": "Sherwood Anderson",
+            "value": 1
+        },
+        {
+            "source": "William Faulkner",
+            "target": "Virginia Woolf",
+            "value": 1
+        },
+        {
+            "source": "Rafael Sánchez Ferlosio",
+            "target": "Ignacio Aldecoa",
+            "value": 1
+        },
+        {
+            "source": "Rafael Sánchez Ferlosio",
+            "target": "Jesús Fernández Santos",
+            "value": 1
+        },
+        {
+            "source": "Rafael Sánchez Ferlosio",
+            "target": "Sergio Pitol",
+            "value": 1
+        },
+        {
+            "source": "Virginia Woolf",
+            "target": "Jack London",
+            "value": 1
+        },
+        {
+            "source": "Virginia Woolf",
+            "target": "Katherine Mansfield",
+            "value": 1
+        },
+        {
+            "source": "Virginia Woolf",
+            "target": "Rudyard Kipling",
+            "value": 1
+        },
+        {
+            "source": "Virginia Woolf",
+            "target": "Thomas Hardy",
+            "value": 1
+        },
+        {
+            "source": "Augusto Roa Bastos",
+            "target": "Adolfo Bioy Casares",
+            "value": 1
+        },
+        {
+            "source": "Augusto Roa Bastos",
+            "target": "Alejo Carpentier",
+            "value": 1
+        },
+        {
+            "source": "Augusto Roa Bastos",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Augusto Roa Bastos",
+            "target": "Mario Benedetti",
+            "value": 1
+        },
+        {
+            "source": "Augusto Roa Bastos",
+            "target": "Rubén Bareiro Saguier",
+            "value": 1
+        },
+        {
+            "source": "Marguerite Yourcenar",
+            "target": "Federico García Lorca",
+            "value": 1
+        },
+        {
+            "source": "Marguerite Yourcenar",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Marguerite Yourcenar",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Marguerite Yourcenar",
+            "target": "Virginia Woolf",
+            "value": 1
+        },
+        {
+            "source": "José María Arguedas",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Dorothy Parker",
+            "target": "Augusto Monterroso",
+            "value": 1
+        },
+        {
+            "source": "Dorothy Parker",
+            "target": "Dashiell Hammett",
+            "value": 1
+        },
+        {
+            "source": "Leopoldo Marechal",
+            "target": "Julio Cortázar",
+            "value": 1
+        },
+        {
+            "source": "Wenceslao Fernández Flórez",
+            "target": "Anatole France",
+            "value": 1
+        },
+        {
+            "source": "Alberto Moravia",
+            "target": "Massimo Bontempelli",
+            "value": 1
+        },
+        {
+            "source": "Doris Lessing",
+            "target": "John Updike",
+            "value": 1
+        },
+        {
+            "source": "Juan Vicente Camacho",
+            "target": "Edgar Allan Poe",
+            "value": 1
+        },
+        {
+            "source": "Juan Vicente Camacho",
+            "target": "Ricardo Palma",
+            "value": 1
+        },
+        {
+            "source": "Carlos Martínez Moreno",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Elena Garro",
+            "target": "Adolfo Bioy Casares",
+            "value": 1
+        },
+        {
+            "source": "Elena Garro",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Elena Garro",
+            "target": "Juan Rulfo",
+            "value": 1
+        },
+        {
+            "source": "Elena Garro",
+            "target": "Octavio Paz",
+            "value": 1
+        },
+        {
+            "source": "Elena Garro",
+            "target": "Silvina Ocampo",
+            "value": 1
+        },
+        {
+            "source": "Sergio Pitol",
+            "target": "Jorge Luis Borges",
+            "value": 1
+        },
+        {
+            "source": "Sergio Pitol",
+            "target": "Lewis Carroll",
+            "value": 1
+        },
+        {
+            "source": "Sergio Pitol",
+            "target": "Rafael Sánchez Ferlosio",
+            "value": 1
+        },
+        {
+            "source": "Sergio Pitol",
+            "target": "Robert Louis Stevenson",
+            "value": 1
+        },
+        {
+            "source": "Sergio Pitol",
+            "target": "Virginia Woolf",
+            "value": 1
+        },
+        {
+            "source": "Sergio Pitol",
+            "target": "William Faulkner",
+            "value": 1
+        },
+        {
+            "source": "Jesús Fernández Santos",
+            "target": "Ignacio Aldecoa",
+            "value": 1
+        },
+        {
+            "source": "Jesús Fernández Santos",
+            "target": "Rafael Sánchez Ferlosio",
+            "value": 1
+        },
+        {
+            "source": "Herman Melville",
+            "target": "Nathaniel Hawthorne",
+            "value": 1
+        }
+    ]
+}

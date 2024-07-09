@@ -42,14 +42,33 @@
 
         }
 
-        #popup img {
+        #drawing {
+            display: flex;
+            /* Enable flexbox for centering */
+            justify-content: center;
+            /* Center the drawing horizontally */
+            align-items: center;
+            /* Center the drawing vertically */
             width: 100%;
-            height: auto;
+            /* Ensure the drawing area takes full width */
         }
 
         #popup audio {
             width: 100%;
             margin-top: 10px;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+
+            /* This is the default, can be omitted */
+            justify-content: center;
+            /* Aligns items to the start of the container */
+            align-items: center;
+            /* Aligns items vertically in the center */
+            gap: 10px;
+            /* Adds space between the items */
         }
     </style>
 </head>
@@ -57,7 +76,9 @@
 <body>
     <div class="info-box">
         <div class="info-item-author"> <span id="name">{{name}}</span></div>
-        <img id="popup-image" src="static/preview.png" alt="Popup Image">
+        <div id="flex-container">
+            <div id="drawing"></div>
+        </div>
         <div class="info-item">País: <span id="country">{{country}}</span></div>
         <div class="info-item">Nacimiento: <span id="birthYear">{{birthYear}}</span></div>
         <div class="info-item">Muerte: <span id="deathYear">{{deathYear}}</span></div>

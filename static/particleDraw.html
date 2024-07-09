@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Particle Drawing</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="https://unpkg.com/p5.createloop@0.3.1/dist/p5.createloop.js"></script>
+
+  <script>
+    let particles = []; // Array of particles
+    let img; // Image to load
+
+    let drawingArea = {
+      minX: 0,
+      maxX: 500,
+      minY: 0,
+      maxY: 500
+    }
+
+    let scale = 0.5;
+    let autor = '';
+
+    function preload() {
+      // Cargar la imagen
+      autores = [
+        // 'chejov', // TODO These three have a different scale!! 0.3
+        // 'gabo',
+        // 'sagan',
+        'asuncion silva',
+        'benedetti',
+        'bukowski',
+        'cortazar',
+        'monterroso',
+        'poe',
+        'quiroga',
+        'rulfo',
+        'saramago'
+      ]
+
+      // Pick a random author
+      autor = autores[ Math.floor(Math.random() * autores.length) ];
+      // autor = autores[ 0 ]
+
+      img = loadImage(`../data/images/${autor}.png`);
+    }
+
+    function setup() {
+      createCanvas(500, 500);
+      img.loadPixels();
+      // Initialize particles
+      for (let i = 0; i < 100; i++) {
+        particles.push(new Particle(
+          random(drawingArea.minX,drawingArea.maxX),
+          random(drawingArea.minY,drawingArea.maxY)
+          ));
+      }
+
+      background(255);
+
+      // This is to create a gif
+      // It will count 7 seconds and append the downloadable img under the sketch
+      // frameRate(30)
+      // createLoop({duration:7, gif:true})
+      // console.log(autor)
+    }
+
+    function draw() {
+      // Display the real image on the left
+      // image(img, 0, 0, 500, 500);
+
+      // Display the drawing process on the right
+      for (let particle of particles) {
+        particle.update();
+        particle.show();
+      }
+
+      if ( particles.length < 5000 ) {
+        // Add new particles to the simulation
+        for (let i = 0; i < 100; i++) {
+          particles.push(new Particle(
+            random(drawingArea.minX,drawingArea.maxX),
+            random(drawingArea.minY,drawingArea.maxY)
+            ));
+        }
+      } 
+    }
+
+    // Particle class
+    class Particle {
+      constructor(x, y) {
+        this.pos = createVector(x, y);
+        this.vel = p5.Vector.random2D();
+        this.acc = createVector(0, 0);
+        this.maxSpeed = 2;
+      }
+
+      update() {
+        this.pos.add(this.vel);
+
+        const randAngle = -PI/5;
+        this.vel.rotate(random(-randAngle, randAngle));
+
+        if ( this.vel.mag() > this.maxSpeed ) {
+          this.vel.setMag(this.maxSpeed);
+        }
+
+        // Wrap arount the bounds of the drawing area (500-1000,0-500)
+        if (this.pos.x > drawingArea.maxX) {
+          this.pos.x = drawingArea.minX;
+        } else if (this.pos.x < drawingArea.minX) {
+          this.pos.x = drawingArea.maxX;
+        }
+        if (this.pos.y > drawingArea.maxY) {
+          this.pos.y = drawingArea.minY;
+        } else if (this.pos.y < drawingArea.minY) {
+          this.pos.y = drawingArea.maxY;
+        }
+      }
+
+      show() {
+        // Get the color of the pixel at the current position of the particle
+        let col = this.getColor();
+        stroke(col);
+        strokeWeight(1);
+        point(this.pos.x, this.pos.y);
+      }
+
+      getColor(dx=0,dy=0) {
+        return img.get(floor(this.pos.x + dx - drawingArea.minX)/scale, floor(this.pos.y + dy)/scale);
+      }
+
+      getColorMatrix(){
+        let matrix = [];
+        for (let i = 0; i < 3; i++) {
+          matrix[i] = [];
+          for (let j = 0; j < 3; j++) {
+            matrix[i][j] = this.getColor(i-1,j-1)[0];
+          }
+        }
+        return matrix;
+      }
+
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

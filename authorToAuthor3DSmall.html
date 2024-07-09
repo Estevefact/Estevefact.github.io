@@ -4,6 +4,7 @@
 <!-- Import Webcomponents polyfill for older browsers -->
 <link rel="icon" type="image/png" href="static/favicon.png" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 
 <head>
   <meta charset="UTF-8" />
@@ -316,6 +317,7 @@
       padding: 8px;
       border-bottom: 1px solid #ccc;
     }
+
     @media screen and (max-width: 600px) {
       #appbar {
         width: 100%;
@@ -330,9 +332,11 @@
         color: rgb(1, 0, 68);
         background: #003153;
       }
+
       #popup {
         position: fixed;
-        box-sizing: border-box; /* Use border-box to include padding and border in the element's total width and height */
+        box-sizing: border-box;
+        /* Use border-box to include padding and border in the element's total width and height */
         top: 25px;
         left: 0;
         width: 35%;
@@ -343,14 +347,18 @@
         display: none;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start; /* Ensure content starts at the top */
+        justify-content: flex-start;
+        /* Ensure content starts at the top */
         padding: 20px;
-        overflow-y: auto; /* Enable vertical scrolling */
-        overflow-x: hidden; /* Hide horizontal scrolling */
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        overflow-x: hidden;
+        /* Hide horizontal scrolling */
         z-index: 2;
         transition: margin-left 0.3s ease;
         max-width: 90%;
       }
+
       #container {
         margin-top: 25px;
         display: flex;
@@ -360,6 +368,7 @@
         height: calc(100vh - 25px);
         width: 100%;
       }
+
       #author-info-container {
         width: 90%;
         background: #ffffff;
@@ -372,6 +381,7 @@
         font-size: 9px;
         left: 0;
       }
+
       #toggle-popup-btn {
         background-color: #007bff;
         color: white;
@@ -382,6 +392,7 @@
         border-radius: 5px;
         transition: margin-left 0.3s ease;
       }
+
       #Embeddings-btn {
         background-color: #007bff;
         color: white;
@@ -405,7 +416,7 @@
         border-radius: 5px;
         max-height: 20px;
       }
-      
+
       #Stories-Authors-btn {
         background-color: #007bff;
         height: calc(100% - 25px);
@@ -416,6 +427,7 @@
         border-radius: 5px;
         transform: translateX(-97%);
       }
+
       .dropbtn {
         font-family: "Roboto", sans-serif;
         background-color: #04abd1;
@@ -427,35 +439,43 @@
         border-radius: 6px;
         width: 100%;
       }
+
       #title-1 {
         color: white;
         font-size: 6px;
-        left:0;
+        left: 0;
         transform: translateX(-15%);
       }
+
       .center-section {
         position: absolute;
         left: 50%;
         transform: translateX(-35%);
       }
+
       #top-authors-container {
         font-size: 9px;
       }
+
       #popup-audio {
         width: 20px;
       }
+
       #info-item {
         margin: 5px 0;
         font-size: 9px;
       }
+
       .info-item {
         font-size: 9px;
         margin: 5px 0;
       }
+
       .info-box {
         font-size: 9px;
         padding: 5px;
       }
+
       #search-container {
         display: flex;
         align-items: center;
@@ -469,7 +489,7 @@
 
 <body>
   <div id="appbar">
-    <div  id="title-1">
+    <div>
       Relaciones Autores
       <button id="toggle-popup-btn" onclick="togglePopup();" title="Toggle Popup">
         Ver Autor
@@ -504,7 +524,7 @@
           <span data-filter="genre">Género</span>
         </div>
       </div>
-      <input type="text" id="author-search" placeholder="Buscar a un autor...">
+      <input type="text" id="author-search" placeholder="Buscar a un Autor...">
       <i id="search-icon" class="fas fa-search"></i>
       <div id="autocomplete-container"></div>
     </div>
@@ -516,9 +536,13 @@
     </div>
     <form id="donate" action="https://www.paypal.com/donate" method="post" target="_top">
       <input type="hidden" name="hosted_button_id" value="F43U7EFMW5N2A" />
-      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit"
+        title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+      <img alt="" border="0" src="https://www.paypal.com/en_CO/i/scr/pixel.gif" width="1" height="1" />
     </form>
   </div>
+  <iframe src="author_info_smaller.html" id="iframeA" style="display:none;"></iframe>
+  <script src="static/particleDraw.js"></script>
 
   <script src="//unpkg.com/3d-force-graph"></script>
   <script>
@@ -545,6 +569,26 @@
         toggleLink.textContent = "Mostrar información Autor";
         container.style.width = "100%";
         container.style.marginLeft = "0";
+      }
+    }
+    async function updateAudioSource(audio) {
+      let audioUrl = `/static/${audio}`;
+      try {
+        // Attempt to fetch the audio file
+        const response = await fetch(audioUrl, { method: 'HEAD' });
+        console.log(`Fetching ${audioUrl}: status ${response.status}`);
+        if (response.ok) {
+          // If the response is ok, the file exists, so update the src attribute
+          document.getElementById("popup-audio").src = audioUrl;
+        } else {
+          // If the response is not ok, log a message or handle the error and default audio
+          document.getElementById("popup-audio").src = `/static/tenquita.mp3`;
+          console.error(`Audio file not found: ${audioUrl} (status: ${response.status})`);
+        }
+      } catch (error) {
+        // Catch any network errors and default audio
+        document.getElementById("popup-audio").src = `/static/tenquita.mp3`;
+        console.error(`Error fetching audio file: ${error}`);
       }
     }
 
@@ -577,54 +621,55 @@
             );
           document.getElementById("author-info-container").innerHTML =
             rendered;
-          document.getElementById("popup-image").src = `/static/${author.image}`;
-          document.getElementById("popup-audio").src = `/static/${author.audio}`;
+          updateAudioSource(`audios_es/${author.story_id}.mp3`);
+          resetAuthorImage(author.image); // Defined in particleDraw.js
           updateTopAuthors(author);
-                  // Apply additional styles dynamically if it's a cellphone
-            if (isCellphone()) {
-              applyCellphoneStyles();
-            }
-          })
-          .catch((error) => console.error("Error loading the box:", error));
+          // Apply additional styles dynamically if it's a cellphone
+          if (isCellphone()) {
+            applyCellphoneStyles();
+          }
+
+        })
+        .catch((error) => console.error("Error loading the box:", error));
+    }
+
+    function isCellphone() {
+      return window.innerWidth <= 600;
+    }
+
+    function applyCellphoneStyles() {
+      // Example: Change the background color of the .info-box
+      var infoBox = document.querySelector('.info-box');
+      if (infoBox) {
+        infoBox.style.width = '90%';
+        infoBox.style.padding = '5px';
+        infoBox.style.fontSize = '0.9em';
       }
 
-      function isCellphone() {
-        return window.innerWidth <= 600;
+      // Example: Change the font size of .info-item-author and .info-item
+      var infoItemAuthors = document.querySelectorAll('.info-item-author, .info-item');
+      infoItemAuthors.forEach(function (item) {
+        item.style.margin = '5px 0';
+        item.style.fontSize = '0.9em';
+      });
+
+      // Ensure image and audio elements fit within the container
+      var popupImage = document.getElementById('popup-image');
+      if (popupImage) {
+        popupImage.style.width = '100%';
       }
 
-      function applyCellphoneStyles() {
-        // Example: Change the background color of the .info-box
-        var infoBox = document.querySelector('.info-box');
-        if (infoBox) {
-          infoBox.style.width = '90%';
-          infoBox.style.padding = '5px';
-          infoBox.style.fontSize = '0.9em';
-        }
-        
-        // Example: Change the font size of .info-item-author and .info-item
-        var infoItemAuthors = document.querySelectorAll('.info-item-author, .info-item');
-        infoItemAuthors.forEach(function(item) {
-          item.style.margin = '5px 0';
-          item.style.fontSize = '0.9em';
-        });
-
-        // Ensure image and audio elements fit within the container
-        var popupImage = document.getElementById('popup-image');
-        if (popupImage) {
-          popupImage.style.width = '100%';
-        }
-
-        var popupAudio = document.getElementById('popup-audio');
-        if (popupAudio) {
-          //
-          popupAudio.style.position="absolute"
-          popupAudio.style.left="0"
-          popupAudio.style.zIndex="0"
-          popupAudio.style.width = '125px';
-          popupAudio.style.height = '20px';
-          //popupAudio.style.translateX = '-100%'
-        }
+      var popupAudio = document.getElementById('popup-audio');
+      if (popupAudio) {
+        //
+        popupAudio.style.position = "absolute"
+        popupAudio.style.left = "0"
+        popupAudio.style.zIndex = "0"
+        popupAudio.style.width = '125px';
+        popupAudio.style.height = '20px';
+        //popupAudio.style.translateX = '-100%'
       }
+    }
 
 
     function updateTopAuthors(node) {
@@ -700,7 +745,7 @@
 
     async function fetchJSON() {
       try {
-        const response = await fetch("authorLinksSmallerShortCleaned.json");
+        const response = await fetch("static/authorLinksSmallerShortCleaned_new.json");
         const gData = await response.json();
         return gData;
       } catch (error) {
