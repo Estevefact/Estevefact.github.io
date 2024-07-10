@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             poemTitleContainer.textContent = poem.story_name;
             poemTextContainer.textContent = poemTextData.text;//.replace(/\n/g, '<br>')
+            resetAuthorImage(author.image);
         }
     };
 
@@ -117,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             searchInput.value = poem.story_name;
             autocompleteContainer.innerHTML = '';
             loadPoemData(poem.id);
+            resetAuthorImage(author.image);
           });
           autocompleteContainer.appendChild(suggestionItem);
         });
