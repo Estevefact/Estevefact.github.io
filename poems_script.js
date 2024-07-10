@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const autocompleteContainer = document.getElementById('autocomplete-container');
     const contentDiv = document.getElementById('content');
     const poemTextContainer = document.getElementById('poemText');
+    const poemTitleContainer = document.getElementById('poemTitle');
 
     let gData = { poems: [], authors: [] };
 
@@ -55,7 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </audio>
                 </div>
             `;
-            poemTextContainer.textContent = poemTextData.text;
+            poemTitleContainer.textContent= poem.story_name;
+            poemTextContainer.textContent = poemTextData.text.replace(/\n/g, '<br>');
         }
     };
 

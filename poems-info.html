@@ -40,9 +40,27 @@
             align-items: center;
             width: auto;
         }
+
+        .info-text {
+            margin: 5px 0;
+            align-items: center;
+            justify-content: space-between;
+            width: auto;
+            max-width: 40%;
+            font-family: "Roboto", sans-serif;
+        }
+
+        #author-search {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            font-size: 16px;
+        }
         #search-container {
             margin-top: 80px; /* Adjust based on the height of your appbar */
             padding: 20px;
+            display: flex;
             align-items: center;
         }
         .autocomplete-container {
@@ -53,6 +71,7 @@
             overflow-y: auto;
             width: calc(100% - 60px);
             z-index: 1000;
+            border-radius: 15px;
         }
         .autocomplete-suggestion {
             padding: 10px;
@@ -163,8 +182,8 @@
     </div>
     <div id="content"></div>
     <div id="container-poem">
-        <div class="info-item">Título poema: <span id="exampleStory">{{ sample }}</span></div>
-        <div class="info-item"> <span id="poemText"></span></div>
+        <div class="info-item">Título poema: <span id="poemTitle">{{ sample }}</span></div>
+        <div class="info-text" id="poemText" > </div>
     </div>
     <script src="poems_script.js"></script>
 </body>
