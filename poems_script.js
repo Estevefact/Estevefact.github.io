@@ -79,11 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedFilter = 'story_name';
 
     filterOptions.forEach(option => {
-    option.addEventListener('click', function () {
-        selectedFilter = this.dataset.filter;
-        const filterText = this.textContent;
-        filterButton.textContent = `Filtrar por ${filterText}`;
-        searchInput.placeholder = `Buscar por ${filterText}...`;
+        option.addEventListener('click', function () {
+            selectedFilter = this.dataset.filter;
+            const filterText = this.textContent;
+            filterButton.textContent = `Filtrar por ${filterText}`;
+            searchInput.placeholder = `Buscar por ${filterText}...`;
         });
     });
 
@@ -94,33 +94,34 @@ document.addEventListener('DOMContentLoaded', () => {
         if (query.length === 0) return;
 
         const suggestions = gData.poems.filter(poem =>
-          (poem[selectedFilter] && poem[selectedFilter].toString().toLowerCase().includes(query))
+            (poem[selectedFilter] && poem[selectedFilter].toString().toLowerCase().includes(query))
         );
 
         suggestions.forEach(poem => {
-          const suggestionItem = document.createElement('div');
-          suggestionItem.classList.add('autocomplete-suggestion');
-          const filterValue = poem[selectedFilter] || '';
-          if (selectedFilter === 'story_name') {
-            suggestionText = `${poem.story_name} ${poem.author_name}`;
-          } else if (selectedFilter === 'author_name') {
-            suggestionText = `${poem.story_name} (${poem.author_name})`;
-          } else if (selectedFilter === 'country') {
-            suggestionText = `${poem.story_name}, ${poem.author_name} (${poem.country})`;
-          } else if (selectedFilter === 'birth_year') {
-            suggestionText = `${poem.story_name}, ${poem.author_name} (${poem.birth_year})`;
-          } else {
+            const suggestionItem = document.createElement('div');
+            suggestionItem.classList.add('autocomplete-suggestion');
             const filterValue = poem[selectedFilter] || '';
-            suggestionText = `${poem.story_name} (${filterValue})`;
-          }
-          suggestionItem.textContent = suggestionText;
-          suggestionItem.addEventListener('click', () => {
-            searchInput.value = poem.story_name;
-            autocompleteContainer.innerHTML = '';
-            loadPoemData(poem.id);
-            resetAuthorImage(author.image);
-          });
-          autocompleteContainer.appendChild(suggestionItem);
+            if (selectedFilter === 'story_name') {
+                suggestionText = `${poem.story_name} ${poem.author_name}`;
+            } else if (selectedFilter === 'author_name') {
+                suggestionText = `${poem.story_name} (${poem.author_name})`;
+            } else if (selectedFilter === 'country') {
+                suggestionText = `${poem.story_name}, ${poem.author_name} (${poem.country})`;
+            } else if (selectedFilter === 'birth_year') {
+                suggestionText = `${poem.story_name}, ${poem.author_name} (${poem.birth_year})`;
+            } else {
+                const filterValue = poem[selectedFilter] || '';
+                suggestionText = `${poem.story_name} (${filterValue})`;
+            }
+            suggestionItem.textContent = suggestionText;
+            suggestionItem.addEventListener('click', () => {
+                searchInput.value = poem.story_name;
+                autocompleteContainer.innerHTML = '';
+                loadPoemData(poem.id);
+                const author = gData.authors.find(author => author.author_uuid === poem.author_uuid);
+                resetAuthorImage(author.image);
+            });
+            autocompleteContainer.appendChild(suggestionItem);
         });
     });
 
