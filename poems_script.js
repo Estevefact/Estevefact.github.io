@@ -102,6 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
           const filterValue = poem[selectedFilter] || '';
           if (selectedFilter === 'story_name') {
             suggestionText = `${poem.story_name} ${poem.author_name}`;
+          } else if (selectedFilter === 'author_name') {
+            suggestionText = `${poem.story_name} (${poem.author_name})`;
+          } else if (selectedFilter === 'country') {
+            suggestionText = `${poem.story_name}, ${poem.author_name} (${poem.country})`;
+          } else if (selectedFilter === 'birth_year') {
+            suggestionText = `${poem.story_name}, ${poem.author_name} (${poem.birth_year})`;
           } else {
             const filterValue = poem[selectedFilter] || '';
             suggestionText = `${poem.story_name} (${filterValue})`;
