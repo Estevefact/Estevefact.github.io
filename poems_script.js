@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedFilter = this.dataset.filter;
         const filterText = this.textContent;
         filterButton.textContent = `Filtrar por ${filterText}`;
-        searchInput.placeholder = `Buscar por ${selectedFilter.replace('_', ' ')}...`;
+        searchInput.placeholder = `Buscar por ${filterText}...`;
         });
     });
 
@@ -93,19 +93,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (query.length === 0) return;
 
         const suggestions = gData.poems.filter(poem =>
-            poem.story_name.toLowerCase().includes(query)
+          (poem[selectedFilter] && poem[selectedFilter].toString().toLowerCase().includes(query))
         );
 
         suggestions.forEach(poem => {
-            const suggestionItem = document.createElement('div');
-            suggestionItem.classList.add('autocomplete-suggestion');
-            suggestionItem.textContent = poem.story_name;
-            suggestionItem.addEventListener('click', () => {
-                searchInput.value = poem.story_name;
-                autocompleteContainer.innerHTML = '';
-                loadPoemData(poem.id);
-            });
-            autocompleteContainer.appendChild(suggestionItem);
+          const suggestionItem = document.createElement('div');
+          suggestionItem.classList.add('autocomplete-suggestion');
+          const filterValue = poem[selectedFilter] || '';
+          if (selectedFilter === 'story_name') {
+            suggestionText = `${poem.story_name} ${poem.author_name}`;
+          } else {
+            const filterValue = poem[selectedFilter] || '';
+            suggestionText = `${poem.story_name} (${filterValue})`;
+          }
+          suggestionItem.textContent = suggestionText;
+          suggestionItem.addEventListener('click', () => {
+            searchInput.value = poem.story_name;
+            autocompleteContainer.innerHTML = '';
+            loadPoemData(poem.id);
+          });
+          autocompleteContainer.appendChild(suggestionItem);
         });
     });
 
