@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const specificPoemId = '69adf7aa-c396-402a-a05a-def9138af62d'; // Start with this poem ID
+    const specificPoemId = 'd313c7ec-a7c5-48be-878f-d5a89008ed78'; // Start with this poem ID
 
     const searchInput = document.getElementById('author-search');
     const autocompleteContainer = document.getElementById('autocomplete-container');
@@ -11,14 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchJSON() {
         try {
-          const response = await fetch("static/poems.json");
-          const gData = await response.json();
-          return gData;
+            const response = await fetch("static/poems_new.json");
+            const gData = await response.json();
+            return gData;
         } catch (error) {
-          console.error("Error fetching JSON:", error);
-          throw error; // Optionally rethrow the error or handle it as needed
+            console.error("Error fetching JSON:", error);
+            throw error; // Optionally rethrow the error or handle it as needed
         }
-      }
+    }
 
 
     const loadPoemData = async (poemId) => {
@@ -30,17 +30,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 return pData;
             } catch (error) {
                 console.error("Error fetching poem JSON:", error);
-                throw error; 
+                throw error;
             }
-            }
+        }
         const poem = gData.poems.find(poem => poem.id === poemId);
         const poemTextData = await fetchpoemJSON(poemId);
         const author = gData.authors.find(author => author.author_uuid === poem.author_uuid);
+        function convertToMinutesAndSeconds(decimalMinutes) {
+            const totalSeconds = Math.floor(decimalMinutes * 60);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            return `${minutes} min ${seconds} sec`;
+        }
+        const readingTimeFormatted = convertToMinutesAndSeconds(poem.reading_time);
 
         if (poem && poemTextData && author) {
             contentDiv.innerHTML = `
                 <div class="info-box">
-                    <div class="info-item-author"> <span id="name">${author.author_name}</span></div>
+                    <div class="info-item-author">Autor: <span id="name">${author.author_name}</span></div>
                     <div id="flex-container">
                         <div id="drawing"></div>
                     </div>
@@ -48,16 +55,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="info-item">Nacimiento: <span id="birthYear">${author.birth_year}</span></div>
                     <div class="info-item">Muerte: <span id="deathYear">${author.death_year}</span></div>
                     <div class="info-item">Género: <span id="genre">${author.genre}</span></div>
-                    <div class="info-item">Título cuento: <span id="exampleStory">${poem.story_name}</span></div>
-                    <div class="info-item">Tiempo de lectura en minutos ~ <span id="readingtime">${poem.reading_time}</span></div>
+                    <div class="info-item">Título poema: <span id="exampleStory">${poem.story_name}</span></div>
+                    <div class="info-item">Tiempo de lectura ~ <span id="readingtime">${readingTimeFormatted} min</span></div>
                     <audio id="popup-audio" controls>
                         <source src="static/algo_grave_va_a_ocurrir.mp3" type="audio/mp3">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
             `;
-            poemTitleContainer.textContent= poem.story_name;
-            poemTextContainer.textContent = poemTextData.text.replace(/\n/g, '<br>');
+            poemTitleContainer.textContent = poem.story_name;
+            poemTextContainer.textContent = poemTextData.text;//.replace(/\n/g, '<br>')
         }
     };
 
@@ -66,6 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Load initial poem
         loadPoemData(specificPoemId);
     };
+    const filterOptions = document.querySelectorAll('.dropdown-content span');
+    const filterButton = document.getElementById('filter-button');
+    let selectedFilter = 'story_name';
+
+    filterOptions.forEach(option => {
+    option.addEventListener('click', function () {
+        selectedFilter = this.dataset.filter;
+        const filterText = this.textContent;
+        filterButton.textContent = `Filtrar por ${filterText}`;
+        searchInput.placeholder = `Buscar por ${selectedFilter.replace('_', ' ')}...`;
+        });
+    });
+
+
     searchInput.addEventListener('input', function () {
         const query = this.value.toLowerCase();
         autocompleteContainer.innerHTML = '';
@@ -90,3 +111,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadData();
 });
+//En mi jardín avanza un pájaro...
