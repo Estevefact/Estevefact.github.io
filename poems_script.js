@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="info-item">Muerte: <span id="deathYear">${author.death_year}</span></div>
                     <div class="info-item">Género: <span id="genre">${author.genre}</span></div>
                     <div class="info-item">Título poema: <span id="exampleStory">${poem.story_name}</span></div>
-                    <div class="info-item">Tiempo de lectura ~ <span id="readingtime">${readingTimeFormatted} min</span></div>
+                    <div class="info-item">Tiempo de lectura ~ <span id="readingtime">${readingTimeFormatted} </span></div>
                     <audio id="popup-audio" controls>
                         <source src="static/algo_grave_va_a_ocurrir.mp3" type="audio/mp3">
                         Your browser does not support the audio element.
