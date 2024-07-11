@@ -282,13 +282,31 @@
       width: 70%; /* Adjust as needed */
       max-width: 900px; /* Adjust as needed */
       }
-      #top-authors-list {
-        list-style-type: none;
-        padding: 0;
+
+      .top-authors-list {
+        padding: 5px;
+        color:#007bff;
+        position: relative;
+        cursor: pointer;
+        display: inline-block; /* Make it inline-block to ensure the width transition works */
+        text-decoration: none; /* Remove underline from links */
       }
       #top-authors-list li {
         padding: 8px;
-        border-bottom: 1px solid #ccc;
+      }
+      .top-authors-list::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0; /* Start with zero width */
+          height: 1px;
+          background-color: #2b02e4;
+          transition: width 0.3s ease; /* Transition effect for width */
+      }
+
+      .top-authors-list:hover::after {
+          width: 100%; /* Expand to full width on hover */
       }
       @media screen and (max-width: 600px) {
       #appbar {
@@ -718,7 +736,8 @@
             event.preventDefault(); // Prevent default link behavior
             setAuthor(author);
           });
-          listItem.appendChild(listLink); // Append the link to the list item
+          listItem.appendChild(listLink); 
+          listLink.classList.add('top-authors-list');// Append the link to the list item
           topAuthorsList.appendChild(listItem); // Append the list item to the list
         });
       }
