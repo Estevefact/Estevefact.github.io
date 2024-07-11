@@ -220,6 +220,26 @@
           justify-content: center;
           font-weight: bold;
         }
+        .linked-poem{
+          padding: 5px;
+          color:#007bff;
+          position: relative;
+        }
+        .linked-poem::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0; /* Start with zero width */
+            height: 1px;
+            background-color: #2b02e4;
+            transition: width 0.3s ease; /* Transition effect for width */
+        }
+
+        .linked-poem:hover::after {
+            width: 100%; /* Expand to full width on hover */
+        }
+        
     </style>
 </head>
 

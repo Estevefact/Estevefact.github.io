@@ -117,8 +117,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const poemItem = document.createElement('div');
             poemItem.classList.add('linked-poem');
             poemItem.textContent = `${poem.author_name}: ${poem.story_name}`;
+            poemItem.href = "#"; // Add href to make it a link
+            poemItem.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default link behavior
+                // update image author info, poem and poem suggestions
+                updatePoemimagesuggestions(poem)
+            });
             suggestedPoems.appendChild(poemItem);
         });
+    }
+
+    function updatePoemimagesuggestions(poem) {
+        loadPoemData(poem.id);
+        let author = gData.authors.find(author => author.author_uuid === poem.author_uuid);
+        resetAuthorImage(author.image);
+        let linkedAuthors = getLinkedAuthors(author);
+        let linkedPoems = findPoemsByAuthors(linkedAuthors);
+        displayLinkedPoems(linkedPoems);
     }
     
 
