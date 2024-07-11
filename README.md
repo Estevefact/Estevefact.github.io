@@ -1,12 +1,35 @@
 # Coem visualizer
-This is part of the Coem project and in this part I'm trying to visualize all classical short stories and poems into an embeddings map.
-The english version is coming and the poem embeddings of almost 5000 poems are also comming. The links Visualization was done thanks
+This is part of the Coem project and in this part I'm trying to visualize all classical short stories and poems less than 8 minutes long into an embeddings map.
+The english version is coming and the poem embeddings of almost 23000 poems are also comming. The links Visualization was done thanks
 to the help of @AgustinVallejo!
 
-Visualize the embeddings here [Coem embeddings](https://estevefact.github.io) and the links here [Coem Links](https://estevefact.github.io/authorToAuthor3D.html)
+Visualize the embeddings here [Coem embeddings](https://estevefact.github.io). the links here [Coem Links](https://estevefact.github.io/authorToAuthor3D.html) and the poems here [Coem Poems](https://estevefact.github.io/poems-info.html)
 
 
 # Limits
+the color are only for 50 categories at maximum in the embeddings
+
+# Models used:
+- Translation: NLLB
+- Sentence transformer: jina-embeddings-v2-base-es
+- LLM: Phi-3 
+- TTS: Openvoice and Metavoice to generate the audios
+
+# Coming soon
+I Generated a Carl Sagan Voice with an openvoice model and I'm generating an mp3 file for each story, this will be 
+uploaded to youtube and added as a columns to the embeddings and also have a separate website where one can explore,
+comment, rate and subscribe to listen to this stories in a customized way with users and states. I'm also doing an embeddings for all the poems
+I have without the audio for now and suggesting the most similar poems after the ones that you are reading. After that, the customization would be like 
+adding their own voice or how they want the story to be like or how hard it is to read. All these stories are being made in an english speaking version which is not completetly great but is decent.
+
+# Contribute
+If anyone want to contribute please Push a PR, or send me an email mostly the tsv and [json](authorLinksSmaller.json)
+containing the metadata file of [stories_metadata.tsv](tensor_generator/stories_metadata.tsv) inside tensor_generator 
+needs more attention. Need to turn them into csv, json or parquet to be eassily monitored. Finetuning 
+the translation to make them really available would be really great.
+
+[![Donate with PayPal button](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?hosted_button_id=F43U7EFMW5N2A)
+
 the color are only for 50 categories at maximum
 
 ## Explanation
@@ -20,26 +43,3 @@ which other authors were mentioned, some of the authors couldn't get scraped by 
 to be done.
 Thank you open source people, literature databases in spanish that are too old like amediavoz.com
  and free trials or amounts per month for making this possible!! 
-
-# Models used:
-- Translation: NLLB
-- Sentence transformer: jina-embeddings-v2-base-es
-- LLM: Phi-3 
-- TTS: Openvoice and Metavoice to generate the audios
-
-# Coming soon
-I Generated a Carl Sagan Voice with an openvoice model and I'm generating an mp3 file for each story, this will be 
-uploaded to youtube and added as a columns to the embeddings and also have a separate website where one can explore,
-comment, rate and subscribe to listen to this stories in a customized way. I'm also doing an embeddings for all teh poms
-I have and adding them to the website to be read without audio for now. After that, the customization would be like 
-adding their own voice or how they want the story to be like or how hard it is to read. All these stories are also
-being translated on an english speaking version on the works which is not completetly great but is decent.
-
-# Contribute
-If anyone want to contribute please Push a PR, or send me an email mostly the tsv and [json](authorLinksSmaller.json)
-containing the metadata file of [stories_metadata.tsv](tensor_generator/stories_metadata.tsv) inside tensor_generator 
-needs more attention. Need to turn them into csv, json or parquet to be eassily monitored. Finetuning 
-the translation to make them really available would be really great.
-
-[![Donate with PayPal button](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?hosted_button_id=F43U7EFMW5N2A)
-
