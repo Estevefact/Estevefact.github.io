@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchJSON() {
         try {
-            const response = await fetch("static/poems_new.json");
+            const response = await fetch("static/poems.json");
             const gData = await response.json();
             return gData;
         } catch (error) {
@@ -66,6 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
             poemTitleContainer.textContent = poem.story_name;
             poemTextContainer.textContent = poemTextData.text;//.replace(/\n/g, '<br>')
             resetAuthorImage(author.image);
+            let linkedAuthors = getLinkedAuthors(author);
+            let linkedPoems = findPoemsByAuthors(linkedAuthors);
+            displayLinkedPoems(linkedPoems);
         }
     };
 
@@ -86,6 +89,38 @@ document.addEventListener('DOMContentLoaded', () => {
             searchInput.placeholder = `Buscar por ${filterText}...`;
         });
     });
+
+    function getLinkedAuthors(author) {
+        if (author && author.linked_authors) {
+            const authorsArray = author.linked_authors.split(',');
+            const shuffledAuthors = authorsArray.sort(() => 0.5 - Math.random());
+            if (authorsArray.length <= 3) {
+                return authorsArray;
+            }
+            return shuffledAuthors.slice(0, 3);
+        }
+        return [];
+    }
+    
+    function findPoemsByAuthors(authors) {
+        const poemsByAuthors = gData.poems.filter(poem => authors.includes(poem.author_name));
+        if (poemsByAuthors.length <= 3) {
+            return poemsByAuthors;
+        }
+        const shuffledPoems = poemsByAuthors.sort(() => 0.5 - Math.random());
+        return shuffledPoems.slice(0, 3);
+    }
+
+    function displayLinkedPoems(poems) {
+        const suggestedPoems = document.getElementById('suggested-author-poems');
+        poems.forEach(poem => {
+            const poemItem = document.createElement('div');
+            poemItem.classList.add('linked-poem');
+            poemItem.textContent = `${poem.author_name}: ${poem.story_name}`;
+            suggestedPoems.appendChild(poemItem);
+        });
+    }
+    
 
 
     searchInput.addEventListener('input', function () {
@@ -118,8 +153,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 searchInput.value = poem.story_name;
                 autocompleteContainer.innerHTML = '';
                 loadPoemData(poem.id);
-                const author = gData.authors.find(author => author.author_uuid === poem.author_uuid);
+                let author = gData.authors.find(author => author.author_uuid === poem.author_uuid);
                 resetAuthorImage(author.image);
+                let linkedAuthors = getLinkedAuthors(author);
+                let linkedPoems = findPoemsByAuthors(linkedAuthors);
+                displayLinkedPoems(linkedPoems);
             });
             autocompleteContainer.appendChild(suggestionItem);
         });
@@ -128,3 +166,4 @@ document.addEventListener('DOMContentLoaded', () => {
     loadData();
 });
 //En mi jardín avanza un pájaro...
+//See why Semillas de Dickinson is not searchable byh Dickinson
