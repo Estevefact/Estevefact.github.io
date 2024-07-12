@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+<link rel="icon" type="image/png" href="static/favicon.png" />
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -132,7 +133,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1;
+            z-index: 99999;
             color: white;
             background: #003153;
         }
@@ -240,8 +241,21 @@
         .linked-poem:hover::after {
             width: 100%; /* Expand to full width on hover */
         }
+        .info-item-author {
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+        }
         @media screen and (max-width: 600px) {
-          .info-box {
+
+        .info-item-author {
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+        }
+        .info-box {
             border: 1px solid #ccc;
             padding: 10px;
             margin: 10px 0;
@@ -343,7 +357,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1;
+            z-index: 99999;
             color: white;
             background: #003153;
         }
@@ -364,17 +378,17 @@
         .center-section {
             position: absolute;
             left: 40%;
-            transform: translateX(-12%);
+            transform: translateX(-22%);
         }
         #Stories-Authors-btn {
             background-color: #007bff;
             color: white;
             border: none;
-            padding: 5px 7px;
+            padding: 3px 4px;
             cursor: pointer;
-            font-size: 6px;
+            font-size: 7px;
             border-radius: 2px;
-            transform: translateX(-30%);
+            transform: translateX(-25%);
             transition: margin-left 0.3s ease;
         }
 
@@ -386,9 +400,9 @@
             background-color: #007bff;
             color: white;
             border: none;
-            padding: 5px 7px;
+            padding: 3px 4px;
             cursor: pointer;
-            font-size: 6px;
+            font-size: 7px;
             border-radius: 5px;
             transform: translateX(-20%);
             transition: margin-left 0.3s ease;
