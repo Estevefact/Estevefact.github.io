@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             suggestionItem.classList.add('autocomplete-suggestion');
             const filterValue = poem[selectedFilter] || '';
             if (selectedFilter === 'story_name') {
-                suggestionText = `${poem.story_name} ${poem.author_name}`;
+                suggestionText = `${poem.story_name}, ${poem.author_name}`;
             } else if (selectedFilter === 'author_name') {
                 suggestionText = `${poem.story_name} (${poem.author_name})`;
             } else if (selectedFilter === 'country') {
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 suggestionText = `${poem.story_name}, ${poem.author_name} (${poem.birth_year})`;
             } else {
                 const filterValue = poem[selectedFilter] || '';
-                suggestionText = `${poem.story_name} (${filterValue})`;
+                suggestionText = `${poem.story_name}, (${poem.author_name})`;
             }
             suggestionItem.textContent = suggestionText;
             suggestionItem.addEventListener('click', () => {
