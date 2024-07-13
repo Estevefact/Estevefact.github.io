@@ -11,9 +11,9 @@ let drawingArea = {
 let scaleX = 0.5;
 let scaleY = 0.5;
 let autor = "";
-let t = 0;
-let revealT = 50;
-let maxParticleSpeed = 1;
+let t = 1;
+let revealT = 180;
+let maxParticleSpeed = 0.1;
 let authorURL = "preview.png";
 
 function preload() {

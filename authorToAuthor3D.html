@@ -469,7 +469,10 @@
         font-size: 9px;
       }
       #popup-audio {
-        width: 20px;
+        position: absolute;
+        left: 0;
+        width: 40px;
+        height:15px;
       }
       #info-item {
         margin: 5px 0;
@@ -692,10 +695,10 @@
           //
           popupAudio.style.position="absolute"
           popupAudio.style.left="0"
-          popupAudio.style.zIndex="0"
-          popupAudio.style.width = '125px';
-          popupAudio.style.height = '20px';
-          //popupAudio.style.translateX = '-100%'
+          popupAudio.style.zIndex="1"
+          popupAudio.style.width = '200px';
+          //popupAudio.style.height = '20px';
+          popupAudio.style.translateX = '-100%'
         }
         var container = document.getElementById("container");
         container.style.height="100%";

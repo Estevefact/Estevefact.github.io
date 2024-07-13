@@ -1,5 +1,5 @@
 # Coem visualizer
-This is part of the Coem project and in this part I'm trying to visualize all classical short stories and poems less than 8 minutes long into an embeddings map.
+This is part of the Coem project and in this part I'm trying to visualize all classical short stories and poems less than 8 minutes long into an embeddings map of 3092 classical short stories and 23000 poems.
 The english version is coming and the poem embeddings of almost 23000 poems are also comming. The links Visualization was done thanks
 to the help of @AgustinVallejo!
 
@@ -12,7 +12,7 @@ the color are only for 50 categories at maximum in the embeddings
 # Models used:
 - Translation: NLLB
 - Sentence transformer: jina-embeddings-v2-base-es
-- LLM: Phi-3 
+- LLM: Phi-3
 - TTS: Openvoice and Metavoice to generate the audios
 
 # Coming soon
