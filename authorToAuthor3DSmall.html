@@ -340,7 +340,161 @@
           width: 100%; /* Expand to full width on hover */
       }
 
+      #Stories-Authors-btn {
+        width: 10%;
+        display: absolute;
+        align-items: center;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 3px 5px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+        position: fixed;
+        top:12px;
+        left:90%;
+        padding: 10px 15px;
+      }
+      #dropbtn-general {
+        font-family: "Roboto", sans-serif;
+        background-color: #04abd1;
+        color: white;
+        padding: 10px 15px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 6px;
+        display: absolute;
+        width: 14%;
+        position: fixed;
+        left:80%;
+        top:20px;
+      }
+      .dropdown-2 {
+          position: relative;
+          display: inline-block;
+          z-index: 999999;
+      }
+
+      .dropbtn-general:hover, .dropbtn-general:focus {
+          background-color: #2980b9;
+      }
+
+      .dropdown-content-2 {
+          display: none;
+          position: absolute;
+          background-color: #007bff;
+          color: white;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 999999;
+          border-radius: 5px;
+          width: 12%;
+          position: fixed;
+          font-size: 16px;
+          left:86%;
+          top:45px;
+      }
+
+      .dropdown-content-2 span {
+          padding: 6px 7px;
+          text-decoration: none;
+          color: white;
+          display: block;
+          cursor: pointer;
+          border-radius: 5px;
+          z-index: 999999;
+          font-size: 16px;
+      }
+
+      .dropdown-content-2 span:hover {
+          background-color: #1b0076;
+      }
+
+      .dropdown-2:hover .dropdown-content-2 {
+          display: block;
+      }
+
     @media screen and (max-width: 600px) {
+
+      #Stories-Authors-btn {
+        width: 10%;
+        display: absolute;
+        align-items: center;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 3px 5px;
+        cursor: pointer;
+        font-size: 6px;
+        border-radius: 5px;
+        max-height: 13px;
+        position: fixed;
+        top:5px;
+        left:85%;
+      }
+      #dropbtn-general {
+        font-family: "Roboto", sans-serif;
+        background-color: #04abd1;
+        color: white;
+        padding: 4px;
+        font-size: 9px;
+        border: none;
+        cursor: pointer;
+        border-radius: 6px;
+        display: absolute;
+        width: 14%;
+        max-height: 13px;
+        position: fixed;
+        left:80%;
+        top:5px;
+      }
+      .dropdown-2 {
+          position: relative;
+          display: inline-block;
+          z-index: 999999;
+      }
+
+      .dropbtn-general:hover, .dropbtn-general:focus {
+          background-color: #2980b9;
+      }
+
+      .dropdown-content-2 {
+          display: none;
+          position: absolute;
+          background-color: #007bff;
+          color: white;
+          
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 999999;
+          border-radius: 5px;
+          width: 20%;
+          position: fixed;
+          font-size: 9px;
+          left:70%;
+          top:25px;
+      }
+
+      .dropdown-content-2 span {
+          padding: 6px 7px;
+          text-decoration: none;
+          color: white;
+          display: block;
+          cursor: pointer;
+          border-radius: 5px;
+          z-index: 999999;
+          font-size: 9px;
+      }
+
+      .dropdown-content-2 span:hover {
+          background-color: #1b0076;
+      }
+
+      .dropdown-2:hover .dropdown-content-2 {
+          display: block;
+      }
+
+      
       #appbar {
         width: 100%;
         display: flex;
@@ -402,6 +556,7 @@
         align-items: flex-start;
         font-size: 9px;
         left: 0;
+        top: 20px;
       }
 
       #toggle-popup-btn {
@@ -410,7 +565,7 @@
         border: none;
         padding: 3px 5px;
         cursor: pointer;
-        font-size: 6px;
+        font-size: 5px;
         border-radius: 5px;
         transition: margin-left 0.3s ease;
       }
@@ -499,7 +654,7 @@
       .center-section {
         position: absolute;
         left: 50%;
-        transform: translateX(-35%);
+        transform: translateX(-25%);
       }
 
       #top-authors-container {
@@ -551,12 +706,19 @@
     <div class="center-section">
       <img src="static/Coem.png" alt="Logo" />
     </div>
-    <div>
-      <button onclick="window.location.href='/authorToAuthor3D.html'" id="Stories-Authors-btn" title="Go to embeddings">
-        Ver todos los Autores
-      </button>
-      <button onclick="window.location.href='/'" id="Embeddings-btn" title="Go to embeddings">
-        Ver Embeddings de Cuentos
+    <div class="dropdown-2 Stories-Authors-btn" id="dropdown-general">
+      <button class="dropbtn-general" id="Stories-Authors-btn"> Explorar Coem </button>
+      <div class="dropdown-content-2">
+        <span 
+        data-filter="stories-authors" onclick="window.location.href='/authorToAuthor3D.html'">Ver todos los Autores
+        </span>
+        <span 
+        data-filter="stories-embeddings" onclick="window.location.href='/'" > Ver Embeddings de Cuentos
+        </span>
+        <span 
+        data-filter="Poems" onclick="window.location.href='/poems-info.html'" > Explorar Poemas
+        </span>
+      </div>
       </button>
     </div>
   </div>
