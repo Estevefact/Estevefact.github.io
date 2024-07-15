@@ -13,7 +13,7 @@ let scaleY = 0.5;
 let autor = "";
 let t = 1;
 let revealT = 180;
-let maxParticleSpeed = 0.1;
+let maxParticleSpeed = 0.5;
 let authorURL = "preview.png";
 
 function preload() {
@@ -59,7 +59,7 @@ function setup() {
   scaleX = width / img.width;
   scaleY = height / img.height;
   // Initialize particles
-  createNParticles(100);
+  createNParticles(200);
 
   background(255);
 
@@ -78,7 +78,7 @@ function draw() {
 
     if (particles.length < 1000) {
       // Add new particles to the simulation
-      createNParticles(100);
+      createNParticles(200);
     }
   } else {
     tint(255, (t - revealT));
