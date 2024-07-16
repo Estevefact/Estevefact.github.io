@@ -307,14 +307,6 @@
       /* Adjust as needed */
     }
 
-    #stories-container {
-      margin-top: 20px;
-      width: 70%;
-      /* Adjust as needed */
-      max-width: 900px;
-      /* Adjust as needed */
-    }
-
     #top-authors-list {
       list-style-type: none;
       padding: 0;
@@ -332,52 +324,20 @@
         display: inline-block; /* Make it inline-block to ensure the width transition works */
         text-decoration: none; /* Remove underline from links */
       }
-    .top-authors-list::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0; /* Start with zero width */
-        height: 1px;
-        background-color: #2b02e4;
-        transition: width 0.3s ease; /* Transition effect for width */
-    }
+      .top-authors-list::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0; /* Start with zero width */
+          height: 1px;
+          background-color: #2b02e4;
+          transition: width 0.3s ease; /* Transition effect for width */
+      }
 
       .top-authors-list:hover::after {
           width: 100%; /* Expand to full width on hover */
       }
-
-    #stories-list {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    #stories-list li {
-      padding: 8px;
-    }
-
-    .stories-list {
-      padding: 5px;
-      color:#007bff;
-      position: relative;
-      cursor: pointer;
-      display: inline-block; /* Make it inline-block to ensure the width transition works */
-      text-decoration: none; /* Remove underline from links */
-    }
-    .stories-list::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0; /* Start with zero width */
-        height: 1px;
-        background-color: #2b02e4;
-        transition: width 0.3s ease; /* Transition effect for width */
-    }
-
-    .stories-list:hover::after {
-        width: 100%; /* Expand to full width on hover */
-    }
 
       #Stories-Authors-btn {
         width: 10%;
@@ -700,10 +660,6 @@
         font-size: 9px;
       }
 
-      #stories-container {
-        font-size: 9px;
-      }
-
       #popup-audio {
         width: 20px;
         position: absolute;
@@ -788,10 +744,6 @@
     </div>
     <div id="author-info-container">></div>
     <button id="follow-author-btn">Seguir Autor</button>
-    <div id="stories-authors-container">
-      <h3>Cuentos</h3>
-      <ul id="stories-list"></ul>
-    </div>
     <div id="top-authors-container">
       <h3>Top 5 Autores relacionados</h3>
       <ul id="top-authors-list"></ul>
@@ -932,29 +884,6 @@
         //popupAudio.style.translateX = '-100%'
       }
     }
-    function updateStories(node) {
-      const storiesList = document.getElementById('stories-list');
-      storiesList.innerHTML = '';
-
-      Object.keys(node.stories).forEach(storyId => {
-        const storyTitle = node.stories[storyId];
-        const listItem = document.createElement('li');
-        const listLink = document.createElement('a');
-
-        listLink.textContent = storyTitle;
-        listLink.href = "#";
-        listLink.addEventListener('click', (event) => {
-            event.preventDefault();
-            // Add your desired behavior when a story is clicked
-            console.log(`Story ID: ${storyId}`);
-            updateAudioSource(`audios_es/${storyId}.mp3`);
-        });
-
-        listItem.appendChild(listLink);
-        listLink.classList.add('stories-list');
-        storiesList.appendChild(listItem);
-    });
-    };
 
 
     function updateTopAuthors(node) {
@@ -988,7 +917,6 @@
         listLink.addEventListener('click', (event) => {
           event.preventDefault(); // Prevent default link behavior
           setAuthor(author);
-          updateStories(author);
         });
         listItem.appendChild(listLink); // Append the link to the list item
         listLink.classList.add('top-authors-list');// Append the link to the list item
@@ -1032,7 +960,7 @@
 
     async function fetchJSON() {
       try {
-        const response = await fetch("static/authorLinksSmallerAllStories.json");
+        const response = await fetch("static/authorLinksSmallerShortCleaned_new.json");
         const gData = await response.json();
         return gData;
       } catch (error) {
@@ -1083,7 +1011,6 @@
 
       setAuthor(gData.nodes.find(node => node.id === 'Gabriel García Márquez'));
       updateTopAuthors(author);
-      updateStories(author);
 
       function followAuthor() {
         const node = author;
@@ -1157,7 +1084,6 @@
             loadAuthorInfo(node);
             highlightNodeAndLinks(node);
             followAuthor();
-            updateStories(node);
           });
           autocompleteContainer.appendChild(suggestionItem);
         });
