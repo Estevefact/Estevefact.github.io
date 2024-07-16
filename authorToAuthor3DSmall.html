@@ -53,6 +53,7 @@
       z-index: 1;
       color: white;
       background: #003153;
+      box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     #appbar .logo {
@@ -307,7 +308,7 @@
       /* Adjust as needed */
     }
 
-    #stories-container {
+    #stories-authors-container {
       margin-top: 20px;
       width: 70%;
       /* Adjust as needed */
@@ -546,6 +547,7 @@
         z-index: 1;
         color: rgb(1, 0, 68);
         background: #003153;
+        box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
       }
 
       #popup {
@@ -555,7 +557,7 @@
         top: 40px;
         left: 0;
         width: 35%;
-        height: calc(100% - 25px);
+        height: calc(100% - 40px);
         background: white;
         border-left: 1px solid #ccc;
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -575,12 +577,12 @@
       }
 
       #container {
-        margin-top: 40px;
+        margin-top: 38px;
         display: flex;
         transition: margin-left 0.3s ease;
         justify-content: center;
         align-items: center;
-        height: calc(100% - 40px);
+        height: calc(100% - 38px);
         width: 100%;
       }
 
@@ -700,7 +702,7 @@
         font-size: 9px;
       }
 
-      #stories-container {
+      #stories-authors-container {
         font-size: 9px;
       }
 
@@ -741,7 +743,7 @@
 <body>
   <div id="appbar">
     <div id="title-1">
-      Relaciones Autores
+      Cuentos Autores
       <button id="toggle-popup-btn" onclick="togglePopup();" title="Toggle Popup">
         Ver Autor
       </button>
@@ -933,6 +935,7 @@
       }
     }
     function updateStories(node) {
+      const popup = document.getElementById('popup');
       const storiesList = document.getElementById('stories-list');
       storiesList.innerHTML = '';
 
@@ -948,6 +951,8 @@
             // Add your desired behavior when a story is clicked
             console.log(`Story ID: ${storyId}`);
             updateAudioSource(`audios_es/${storyId}.mp3`);
+            popup.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('exampleStory').textContent = storyTitle; 
         });
 
         listItem.appendChild(listLink);

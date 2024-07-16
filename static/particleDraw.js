@@ -12,7 +12,7 @@ let scaleX = 0.5;
 let scaleY = 0.5;
 let autor = "";
 let t = 1;
-let revealT = 180;
+let revealT = 240;
 let maxParticleSpeed = 0.5;
 let authorURL = "preview.png";
 
