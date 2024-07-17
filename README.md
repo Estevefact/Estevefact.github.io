@@ -6,7 +6,7 @@ Visualize the embeddings here [Coem embeddings](https://estevefact.github.io). t
 
 
 # Limits
-The color are only for 50 categories at maximum in the embeddings, so segment it if you want to see grouping of Colors by authors. Github pages supports only 5 GB maximum so I cannot add al the stories audios in english nor the poems.
+The color are only for 50 categories at maximum in the embeddings, so segment it if you want to see grouping of Colors by authors. Github pages supports only 5 GB maximum so I cannot add al the stories audios in english nor the poems. The embeddings can only project files of 100 MB mat max so the poems had to be separated into 4 files.
 
 
 # Models used:
