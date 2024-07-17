@@ -9,7 +9,42 @@
       "tensorPath": "tensors_generator/stories_tensors.tsv",
       "metadataPath": "tensors_generator/stories_metadata.tsv",
       "bookmarksPath": "oss_data/García_Márquez.txt"
+    },
+    {
+      "tensorName": "Embeddings de Poemas cortos 1",
+      "tensorShape": [
+        6000,
+        768
+      ],
+      "tensorPath": "tensors_generator/poems_tensors_1.tsv",
+      "metadataPath": "tensors_generator/poems_metadata_1.tsv"
+    },
+    {
+      "tensorName": "Embeddings de Poemas cortos 2",
+      "tensorShape": [
+        6000,
+        768
+      ],
+      "tensorPath": "tensors_generator/poems_tensors_2.tsv",
+      "metadataPath": "tensors_generator/poems_metadata_2.tsv"
+    },
+    {
+      "tensorName": "Embeddings de Poemas cortos 3",
+      "tensorShape": [
+        6000,
+        768
+      ],
+      "tensorPath": "tensors_generator/poems_tensors_3.tsv",
+      "metadataPath": "tensors_generator/poems_metadata_3.tsv"
+    },
+    {
+      "tensorName": "Embeddings de Poemas cortos 4",
+      "tensorShape": [
+        4540,
+        768
+      ],
+      "tensorPath": "tensors_generator/poems_tensors_4.tsv",
+      "metadataPath": "tensors_generator/poems_metadata_4.tsv"
     }
-  ],
-  "modelCheckpointPath": "Demo datasets"
+  ]
 }
