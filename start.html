@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="visualización,poemas,machine learning,javascript">
+    <meta name="keywords" content="visualización,poemas,cuentos,machine learning,javascript">
 
     <meta property="og:type" content="article">
     <meta property="og:title" content="Coem proyector de poemas - Visualización de poemas">
@@ -28,7 +28,7 @@
     <meta http-equiv="pragma" content="no-cache">
 
     <meta name="author" content="Esteban Velásquez y Agustín Vallejo">
-    <title>Poem Info</title>
+    <title>Coem</title>
     <style>
     #appbar {
         width: 100%;
@@ -49,161 +49,37 @@
         font-size: 18px;
         font-weight: 300;
     }
-    .center-section img {
-    width: 20%;
-    max-width: 20%;
+    .center-section {
+        position: absolute;
+        left: 45%;
+        transform: translateX(-0%);
     }
-  #Stories-Authors-btn {
-    width: 10%;
-    display: absolute;
-    align-items: center;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 3px 5px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    position: fixed;
-    top:12px;
-    left:90%;
-    padding: 10px 15px;
-  }
-  #dropbtn-general {
-    font-family: "Roboto", sans-serif;
-    background-color: #04abd1;
-    color: white;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    display: absolute;
-    width: 14%;
-    position: fixed;
-    left:80%;
-    top:20px;
-  }
-  .dropdown-2 {
-      position: relative;
-      display: inline-block;
-      z-index: 999999;
-  }
+    .center-section img {
+        width: 20%;
+        max-width: 20%;
+    }
+    #flex-container {
+        margin-top: 80px;
+        display: flex;
+        height: calc(100% - 80px); /* Adjusting for the height of the appbar */
+    }
 
-  .dropbtn-general:hover, .dropbtn-general:focus {
-      background-color: #2980b9;
-  }
+    #drawing, #drawing2 {
+        flex: 1;
+        border: 1px solid #000; /* Optional: for visual separation */
+    }
 
-  .dropdown-content-2 {
-      display: none;
-      position: absolute;
-      background-color: #007bff;
-      color: white;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 999999;
-      border-radius: 5px;
-      width: 12%;
-      position: fixed;
-      font-size: 16px;
-      left:86%;
-      top:45px;
-  }
 
-  .dropdown-content-2 span {
-      padding: 6px 7px;
-      text-decoration: none;
-      color: white;
-      display: block;
-      cursor: pointer;
-      border-radius: 5px;
-      z-index: 999999;
-      font-size: 16px;
-  }
+    @media screen and (max-width: 600px) {
+        #flex-container {
+            display: flex;
+            height: calc(100% - 80px); /* Adjusting for the height of the appbar */
+        }
 
-  .dropdown-content-2 span:hover {
-      background-color: #1b0076;
-  }
-
-  .dropdown-2:hover .dropdown-content-2 {
-      display: block;
-  }
-
-  @media screen and (max-width: 600px) {
-
-      #Stories-Authors-btn {
-    width: 14%;
-    display: absolute;
-    align-items: center;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 3px 5px;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 8px;
-    position: fixed;
-    top:20px;
-    left:85%;
-  }
-  #dropbtn-general {
-    font-family: "Roboto", sans-serif;
-    background-color: #04abd1;
-    color: white;
-    padding: 4px;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-    border-radius: 9px;
-    display: absolute;
-    width: 14%;
-    position: fixed;
-    left:80%;
-    top:20px;
-  }
-  .dropdown-2 {
-      position: relative;
-      display: inline-block;
-      z-index: 999999;
-  }
-
-  .dropbtn-general:hover, .dropbtn-general:focus {
-      background-color: #2980b9;
-  }
-
-  .dropdown-content-2 {
-      display: none;
-      position: absolute;
-      background-color: #007bff;
-      color: white;
-      
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 999999;
-      border-radius: 5px;
-      width: 20%;
-      position: fixed;
-      font-size: 9px;
-      left:80%;
-      top:35px;
-  }
-
-  .dropdown-content-2 span {
-      padding: 6px 7px;
-      text-decoration: none;
-      color: white;
-      display: block;
-      cursor: pointer;
-      border-radius: 5px;
-      z-index: 999999;
-      font-size: 9px;
-  }
-
-  .dropdown-content-2 span:hover {
-      background-color: #1b0076;
-  }
-
-  .dropdown-2:hover .dropdown-content-2 {
-      display: block;
-  }
+        #drawing, #drawing2 {
+            flex: 1;
+            border: 1px solid #000; /* Optional: for visual separation */
+        }
         #appbar {
             width: 100%;
             display: flex;
@@ -285,26 +161,16 @@
 
 <body>
     <div id="appbar">
-        <div id="title-1">
-         Poemas
-        </div>
         <div class="center-section">
           <img src="static/Coem.png" alt="Logo" />
         </div>
-        <div class="dropdown-2 Stories-Authors-btn" id="dropdown-general">
-          <button class="dropbtn-general" id="Stories-Authors-btn"> Explorar Coem </button>
-          <div class="dropdown-content-2">
-            <span 
-            data-filter="stories-authors" onclick="window.location.href='/authorToAuthor3DSmall.html'">Ver Autores de Cuentos
-            </span>
-            <span 
-            data-filter="stories-embeddings" onclick="window.location.href='/'" > Ver Embeddings de Cuentos
-            </span>
-          </div>
-          </button>
-        </div>
-      </div>
     </div>
 
-    
+    <div id="flex-container">
+        <div id="drawing"></div>
+        <div id="drawing2"></div>
+    </div>
+    <script src="static/particleDraw.js"></script>
+    <script src="start.js"></script>
 </body>
+</html>

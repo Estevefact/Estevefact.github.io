@@ -180,5 +180,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadData();
 });
-//En mi jardín avanza un pájaro...
 // TODO Parent drawing in incognito takes about 492 tries, it loads the big Json first and takes too long
