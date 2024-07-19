@@ -467,7 +467,7 @@
         cursor: pointer;
         font-size: 6px;
         border-radius: 5px;
-        max-height: 15px;
+        max-height: 16px;
         position: fixed;
         top:13px;
         left:85%;
@@ -483,7 +483,7 @@
         border-radius: 6px;
         display: absolute;
         width: 14%;
-        max-height: 14px;
+        max-height: 16px;
         position: fixed;
         left:80%;
         top:5px;
@@ -556,7 +556,7 @@
         top: 40px;
         left: 0;
         width: 35%;
-        height: calc(100% - 40px);
+        height: calc(100% - 36px);
         background: white;
         border-left: 1px solid #ccc;
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -576,12 +576,12 @@
       }
 
       #container {
-        margin-top: 38px;
+        margin-top: 36px;
         display: flex;
         transition: margin-left 0.3s ease;
         justify-content: center;
         align-items: center;
-        height: calc(100% - 38px);
+        height: calc(100% - 36px);
         width: 100%;
       }
 
@@ -861,7 +861,7 @@
       author = node;
       loadAuthorInfo(author);
       highlightNodeAndLinks(author);
-
+      updateStories(author);
       const popup = document.getElementById('popup');
       if (popup) {
         popup.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll the popup back to the top
@@ -888,6 +888,7 @@
           updateAudioSource(`audios_es/${author.story_id}.mp3`);
           resetAuthorImage(author.image); // Defined in particleDraw.js
           updateTopAuthors(author);
+          updateStories(author);
           // Apply additional styles dynamically if it's a cellphone
           if (isCellphone()) {
             applyCellphoneStyles();
