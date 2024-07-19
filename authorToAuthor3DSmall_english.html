@@ -7,22 +7,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="keywords" content="visualización,grafos,machine learning,javascript">
+  <meta name="keywords" content="visualization,embeddings,machine learning,javascript">
+
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Coem proyector de relaciones - Visualización de relaciones de autores">
-  <meta property="og:description" content="relaciones de Autores en Grafos.">
-  <meta property="og:url" content="https://estevefact.github.io/authorToAuthor3D.html">
-  <meta property="og:image"
-    content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
+  <meta property="og:title" content="Coem Authors proyector - Visualize stories in high dimensions">
+  <meta property="og:description" content="Visualize high dimensional stories.">
+  <meta property="og:url" content="http://projector.tensorflow.org">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
 
   <meta name="twitter:card" value="summary_large_image">
-  <meta name="twitter:title" content="Coem proyector de relaciones - Visualización de relaciones de autores">
-  <meta name="twitter:description" content="Visualice relaciones de Autores en Grafos.">
-  <meta name="twitter:url" content="">
-  <meta name="twitter:image"
-    content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
+  <meta name="twitter:title" content="Coem authors proyector - Visualize stories in high dimensions">
+  <meta name="twitter:description" content="Visualize high dimensional stories.">
+  <meta name="twitter:url" content="http://projector.tensorflow.org">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
 
   <meta http-equiv="cache-control" content="max-age=0">
   <meta http-equiv="cache-control" content="no-cache">
@@ -31,7 +28,7 @@
   <meta http-equiv="pragma" content="no-cache">
 
   <meta name="author" content="Esteban Velásquez y Agustín Vallejo">
-  <title>Proyector de links de Autores literarios</title>
+  <title>Author links and stories</title>
   <style>
     body {
       margin: 0;
@@ -697,25 +694,25 @@
 <body>
   <div id="appbar">
     <div id="title-1">
-      Relaciones Autores
+      Authors relationships
       <button id="toggle-popup-btn" onclick="togglePopup();" title="Toggle Popup">
-        Ver Autor
+        See Author
       </button>
     </div>
     <div class="center-section">
       <img src="static/Coem.png" alt="Logo" />
     </div>
     <div class="dropdown-2 Stories-Authors-btn" id="dropdown-general">
-      <button class="dropbtn-general" id="Stories-Authors-btn"> Explorar Coem </button>
+      <button class="dropbtn-general" id="Stories-Authors-btn"> Explore Coem </button>
       <div class="dropdown-content-2">
         <span 
-        data-filter="stories-authors" onclick="window.location.href='/authorToAuthor3D.html'">Ver todos los Autores
+        data-filter="stories-authors" onclick="window.location.href='/authorToAuthor3D.html'">See all authors (ES)
         </span>
         <span 
-        data-filter="stories-embeddings" onclick="window.location.href='/'" > Ver Embeddings de Cuentos
+        data-filter="stories-embeddings" onclick="window.location.href='/'" > Explore mebeddings (ES)
         </span>
         <span 
-        data-filter="Poems" onclick="window.location.href='/poems-info.html'" > Explorar Poemas
+        data-filter="Poems" onclick="window.location.href='/poems-info.html'" > Explore Poems (ES)
         </span>
       </div>
       </button>
@@ -729,23 +726,23 @@
   <div id="popup">
     <div id="search-container">
       <div class="dropdown">
-        <button class="dropbtn" id="filter-button"> Filtrar por Nombre</button>
+        <button class="dropbtn" id="filter-button"> Filter by name</button>
         <div class="dropdown-content">
-          <span data-filter="id">Nombre</span>
-          <span data-filter="country">País</span>
-          <span data-filter="birth_year">Año de nacimientos</span>
-          <span data-filter="death_year">Año de muerte</span>
-          <span data-filter="genre">Género</span>
+          <span data-filter="id">Name</span>
+          <span data-filter="country">Country</span>
+          <span data-filter="birth_year">Birth Year</span>
+          <span data-filter="death_year">Death Year</span>
+          <span data-filter="genre">Genre</span>
         </div>
       </div>
-      <input type="text" id="author-search" placeholder="Buscar a un Autor...">
+      <input type="text" id="author-search" placeholder="Search for an Author...">
       <i id="search-icon" class="fas fa-search"></i>
       <div id="autocomplete-container"></div>
     </div>
     <div id="author-info-container">></div>
-    <button id="follow-author-btn">Seguir Autor</button>
+    <button id="follow-author-btn">Follow Author</button>
     <div id="top-authors-container">
-      <h3>Top 5 Autores relacionados</h3>
+      <h3>Top 5 related authors</h3>
       <ul id="top-authors-list"></ul>
     </div>
     <form id="donate" action="https://www.paypal.com/donate" method="post" target="_top">
@@ -773,14 +770,14 @@
       if (popup.style.display === "none" || popup.style.display === "") {
         popup.style.display = "flex";
         popup.style.width = "25%;";
-        toggleLink.textContent = "Ocultar Info Autor";
+        toggleLink.textContent = "Hide Author Info";
         container.style.width = "calc(100% - 25%)";
         container.style.marginLeft = "25%";
 
         loadAuthorInfo();
       } else {
         popup.style.display = "none";
-        toggleLink.textContent = "Mostrar información Autor";
+        toggleLink.textContent = "Show Author Info";
         container.style.width = "100%";
         container.style.marginLeft = "0";
       }
@@ -796,12 +793,12 @@
           document.getElementById("popup-audio").src = audioUrl;
         } else {
           // If the response is not ok, log a message or handle the error and default audio
-          document.getElementById("popup-audio").src = `/static/tenquita.mp3`;
+          document.getElementById("popup-audio").src = `/static/audios_en/They_are_made_out_of_meat_terry.mp3`;
           console.error(`Audio file not found: ${audioUrl} (status: ${response.status})`);
         }
       } catch (error) {
         // Catch any network errors and default audio
-        document.getElementById("popup-audio").src = `/static/tenquita.mp3`;
+        document.getElementById("popup-audio").src = `/static/audios_en/They_are_made_out_of_meat_terry.mp3`;
         console.error(`Error fetching audio file: ${error}`);
       }
     }
@@ -835,7 +832,7 @@
             );
           document.getElementById("author-info-container").innerHTML =
             rendered;
-          updateAudioSource(`audios_es/${author.story_id}.mp3`);
+          updateAudioSource(`audios_en/${author.story_id}.mp3`);
           resetAuthorImage(author.image); // Defined in particleDraw.js
           updateTopAuthors(author);
           // Apply additional styles dynamically if it's a cellphone
@@ -952,7 +949,7 @@
       var popup = document.getElementById("popup");
       var container = document.getElementById("container");
       var toggleLink = document.getElementById("toggle-popup-btn");
-      toggleLink.textContent = "Ocultar Info Autor";
+      toggleLink.textContent = "Hide Author Info";
       popup.style.display = "flex";
       container.style.marginLeft = "25%";
       container.style.width = "calc(100% - 25%)";
@@ -1052,8 +1049,8 @@
         option.addEventListener('click', function () {
           selectedFilter = this.dataset.filter;
           const filterText = this.textContent;
-          filterButton.textContent = `Filtrar por ${filterText}`;
-          searchInput.placeholder = `Buscar por ${selectedFilter.replace('_', ' ')}...`;
+          filterButton.textContent = `Filter by ${filterText}`;
+          searchInput.placeholder = `Search by ${selectedFilter.replace('_', ' ')}...`;
         });
       });
 
@@ -1089,7 +1086,7 @@
         });
       });
     });
-
+    // Missing translating the json title, countries and genre
   </script>
 </body>
 
