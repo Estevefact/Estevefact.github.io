@@ -17,7 +17,8 @@ The color are only for 50 categories at maximum in the embeddings, so segment it
 - Midjourney: to generate some of the images. (The principals were done by artist Isabela Hernández)
 
 # Coming soon
-The spanish Audios will be reproceced fixing the weird noises. It will take two weeks to update them. These audios and images will be uploaded to youtube and added as a columns to the embeddings and also have a separate website where one can explore,comment, rate and subscribe to listen to this stories in a customized way with users and states that will create requests for the audios and data instead of having a monolith which Github Cannot support.
+A starting page thats prettier that will redirect to the four pages or donate if anyone wants
+The spanish Audios will be reproceced fixing the weird noises. It will take two weeks to update them. These audios and images will be uploaded to youtube and added as a column to the embeddings and also have a separate website where one can explore, comment, rate and subscribe to listen to this stories in a customized way with users and states that will create requests for the audios and data instead of having a monolith which Github Cannot support.
 I have without the audio for now, the poems and suggestions of the most similar poems after the ones that you are reading. After that, the customization would be like adding their own voice or how they want the story to be like or how hard it is to read. Missing adding the english stories and The voice for poems.
 
 # Contribute

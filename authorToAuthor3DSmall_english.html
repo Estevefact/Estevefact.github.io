@@ -796,12 +796,12 @@
           document.getElementById("popup-audio").src = audioUrl;
         } else {
           // If the response is not ok, log a message or handle the error and default audio
-          document.getElementById("popup-audio").src = `/static/tenquita.mp3`;
+          document.getElementById("popup-audio").src = `/static/audios_en/They_are_made_out_of_meat_terry.mp3`;
           console.error(`Audio file not found: ${audioUrl} (status: ${response.status})`);
         }
       } catch (error) {
         // Catch any network errors and default audio
-        document.getElementById("popup-audio").src = `/static/tenquita.mp3`;
+        document.getElementById("popup-audio").src = `/static/audios_en/They_are_made_out_of_meat_terry.mp3`;
         console.error(`Error fetching audio file: ${error}`);
       }
     }
@@ -835,7 +835,7 @@
             );
           document.getElementById("author-info-container").innerHTML =
             rendered;
-          updateAudioSource(`audios_es/${author.story_id}.mp3`);
+          updateAudioSource(`audios_en/${author.story_id}.mp3`);
           resetAuthorImage(author.image); // Defined in particleDraw.js
           updateTopAuthors(author);
           // Apply additional styles dynamically if it's a cellphone
