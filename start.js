@@ -6,12 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function sketch(p, imageURL, divname) {
     let particles = []; // Array of particles
     let img; // Image to load
-
+    let area = 850;
+    let particlestotal = 850;
     let drawingArea = {
     minX: 0,
-    maxX: 500,
+    maxX: area,
     minY: 0,
-    maxY: 500,
+    maxY: area,
     };
 
     let scaleX = 0.5;
@@ -25,8 +26,10 @@ function sketch(p, imageURL, divname) {
         let parentElement = document.getElementById(divname);
         if (parentElement) {
             // If the parent element exists, create the canvas and attach it
-            let canvas = p.createCanvas(250, 250);
+            let canvas = p.createCanvas(area, area);
             canvas.parent(divname); // Attach the canvas to the parent element
+            drawingArea.maxX = canvas.width;
+            drawingArea.maxY = canvas.height;
         } else {
             // If the parent element does not exist, log a message and retry after 100 ms
             console.info('Parent element #drawing not found. Retrying in 100 ms...');
@@ -56,7 +59,7 @@ function sketch(p, imageURL, divname) {
         t = 0;
         scaleX = p.width / img.width;
         scaleY = p.height / img.height;
-        createNParticles(200);
+        createNParticles(particlestotal);
         p.background(255);
     }
     p.draw = () => { 
