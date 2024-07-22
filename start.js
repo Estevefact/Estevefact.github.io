@@ -9,10 +9,10 @@ function sketch(p, imageURL, divname) {
     let area = 850;
     let particlestotal = 850;
     let drawingArea = {
-    minX: 0,
-    maxX: area,
-    minY: 0,
-    maxY: area,
+      minX: 0,
+      maxX: area,
+      minY: 0,
+      maxY: area,
     };
 
     let scaleX = 0.5;
@@ -26,7 +26,8 @@ function sketch(p, imageURL, divname) {
         let parentElement = document.getElementById(divname);
         if (parentElement) {
             // If the parent element exists, create the canvas and attach it
-            let canvas = p.createCanvas(area, area);
+            let canvas = p.createCanvas(parentElement.clientWidth, parentElement.clientHeight);
+            //let canvas = p.createCanvas(area, area);
             canvas.parent(divname); // Attach the canvas to the parent element
             drawingArea.maxX = canvas.width;
             drawingArea.maxY = canvas.height;
@@ -125,10 +126,11 @@ function sketch(p, imageURL, divname) {
         }
       
         getColor() {
-          return img.get(
-            p.floor(this.pos.x - drawingArea.minX) / scaleX,
-            p.floor(this.pos.y) / scaleY
-          );
+          let x = Math.floor((this.pos.x - drawingArea.minX) / scaleX);
+            let y = Math.floor(this.pos.y / scaleY);
+            x = p.constrain(x, 0, img.width - 1);
+            y = p.constrain(y, 0, img.height - 1);
+            return img.get(x, y);
         }
       }
 };
