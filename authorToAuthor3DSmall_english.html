@@ -709,7 +709,7 @@
         data-filter="stories-authors" onclick="window.location.href='/authorToAuthor3D.html'">See all authors (ES)
         </span>
         <span 
-        data-filter="stories-embeddings" onclick="window.location.href='/'" > Explore mebeddings (ES)
+        data-filter="stories-embeddings" onclick="window.location.href='/embeddings.html'" > Explore mebeddings (ES)
         </span>
         <span 
         data-filter="Poems" onclick="window.location.href='/poems-info.html'" > Explore Poems (ES)
@@ -989,6 +989,7 @@
         .graphData(gData)
         .nodeAutoColorBy("group")
         .nodeLabel((node) => `${node.id}: ${node.country}`)
+        .backgroundColor('#eeeeee')
         .onNodeClick((node) => {
           author = node;
           loadAuthorInfo(author);

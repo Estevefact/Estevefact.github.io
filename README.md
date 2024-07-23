@@ -1,12 +1,12 @@
 # Coem visualizer
-This is part of the Coem project (The union of Poems and Cuentos) and in this part I'm trying to visualize all classical short stories and poems less than 8 minutes long into an embeddings map of 3092 classical short stories and 22540 poems and Also listen to the stories through Carl Sagan Voice in spanish.
-The english version is coming and the Voiced poems. The links Visualization was done thanks to the help of @AgustinVallejo!
+This is part of the Coem project (The union of Poems and Cuentos) and in this part I'm trying to visualize all classical short stories and poems less than 8 minutes long into an embeddings map of 3092 classical short stories and 22540 poems and Also listen to the stories through Carl Sagan Voice in spanish and some of them in english too.
+The english version of all the poems cannot be hosted in GitHub. The links Visualization was done thanks to the help of @AgustinVallejo!
 
 Visualize the embeddings here [Coem embeddings](https://estevefact.github.io). the links here [Coem Links](https://estevefact.github.io/authorToAuthor3D.html) and the poems here [Coem Poems](https://estevefact.github.io/poems-info.html)
 
 
 # Limits
-The color are only for 50 categories at maximum in the embeddings, so segment it if you want to see grouping of Colors by authors. Github pages supports only 5 GB maximum so I cannot add al the stories audios in english nor the poems. The embeddings hosted in Github can only project files of 100 MB mat max so the poems had to be separated into 4 files.
+The color are only for 50 categories at maximum in the embeddings, so segment it if you want to see grouping of Colors by authors. Github pages supports only 5 GB maximum so I cannot add al the stories audios in english nor the poems. The embeddings hosted in Github can only project files of 100 MB mat max so the poems embeddings had to be separated into 4 files.
 
 
 # Models used:

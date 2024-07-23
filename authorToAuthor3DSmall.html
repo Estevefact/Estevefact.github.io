@@ -757,7 +757,7 @@
         data-filter="stories-authors" onclick="window.location.href='/authorToAuthor3D.html'">Ver todos los Autores
         </span>
         <span 
-        data-filter="stories-embeddings" onclick="window.location.href='/'" > Ver Embeddings de Cuentos
+        data-filter="stories-embeddings" onclick="window.location.href='/embeddings.html'" > Ver Embeddings de Cuentos
         </span>
         <span 
         data-filter="Poems" onclick="window.location.href='/poems-info.html'" > Explorar Poemas
@@ -1073,6 +1073,7 @@
         .graphData(gData)
         .nodeAutoColorBy("group")
         .nodeLabel((node) => `${node.id}: ${node.country}`)
+        .backgroundColor('#eeeeee')
         .onNodeClick((node) => {
           author = node;
           loadAuthorInfo(author);
