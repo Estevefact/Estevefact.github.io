@@ -162,6 +162,17 @@
         font-family: 'Dancing Script', cursive;
     }
 
+    #reveal-button-4 {
+        position: absolute;
+        top: 400%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        font-size: 16px;
+        cursor: pointer;
+        font-family: 'Dancing Script', cursive;
+    }
+
     #background-image {
         position: absolute;
         top: 30%;
@@ -192,6 +203,12 @@
         height: auto;
     }
 
+    .container5 {
+        width: 100%;
+        z-index: 0;
+        height: auto;
+    }
+
     #video {
         width: 100%;
         height: auto;
@@ -204,6 +221,11 @@
         z-index: -999;
     }
 
+    #video-3 {
+        width: 100%;
+        height: auto;
+        z-index: -999;
+    }
     .main-container {
         position: relative;
         display: flex;
@@ -215,7 +237,8 @@
     }
 
     #video::-webkit-media-controls-playback-rate-button,
-    #video2::-webkit-media-controls-playback-rate-button {
+    #video-2::-webkit-media-controls-playback-rate-button,
+    #video-3::-webkit-media-controls-playback-rate-button {
         display: none !important;
     }
 
@@ -236,25 +259,34 @@
         </div>
 
         <div class="container">
-            <button id="reveal-button" onclick="window.location.href='/authorToAuthor3DSmall.html'" >Explorar Cuentos </button>
+            <button id="reveal-button" onclick="window.location.href='/authorToAuthor3DSmall.html'" >Explorar Cuentos Narrados </button>
             <img src="static/imgs/quiroga.png" alt="Background Image" id="background-image">
         </div>
 
         <div class="container2">
-            <button id="reveal-button" onclick="window.location.href='/poems-info.html'">Explorar Poemas</button>
+            <button id="reveal-button" onclick="window.location.href='/poems-info.html'">Explorar Poemas Escritos</button>
             <img src="static/imgs/Pizarnik.png" alt="Background Image" id="background-image">
         </div>
     </div>
     <div class=container3>
-        <button id="reveal-button-2" onclick="window.location.href='/authorToAuthor3D.html'">Explorar Links Autores</button>
+        <button id="reveal-button-2" onclick="window.location.href='/authorToAuthor3D.html'">Explorar Relacinoes Autores</button>
         <video id="video" src="Links.mov"></video>
     </div> 
 
     <div class=container4>
         <button id="reveal-button-3" onclick="window.location.href='/embeddings.html'">Embeddings de cuentos y poemas</button>
-        <video id="video-2" src="Embeddings.webm"></video>
+        <video id="video-2" src="Embeddings.mov"></video>
     </div> 
 
+    <div class=container5>
+        <button id="reveal-button-4" onclick="window.location.href='/authorToAuthor3DSmall_english.html'">Explorar cuentos en inglés</button>
+        <video id="video-3" src="LInks_english.mov"></video>
+    </div> 
+
+    <footer>
+        Disclaimer: Este es un pequeño proyecto hecho por una persona usando herramientas de software libre para navegar la literatura clásica.
+        En caso de alguna queja enviar un correo a theprojectcoem@gmail.com
+    </footer>
     <script src="landing.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>

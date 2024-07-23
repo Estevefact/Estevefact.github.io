@@ -1073,6 +1073,7 @@
         .graphData(gData)
         .nodeAutoColorBy("group")
         .nodeLabel((node) => `${node.id}: ${node.country}`)
+        .backgroundColor('#eeeeee')
         .onNodeClick((node) => {
           author = node;
           loadAuthorInfo(author);
