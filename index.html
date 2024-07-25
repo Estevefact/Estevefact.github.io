@@ -144,7 +144,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 3;
-        font-size: 16px;
+        font-size: 20px;
         cursor: pointer;
         font-family: 'Allura', cursive;
     }
@@ -155,7 +155,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 3;
-        font-size: 16px;
+        font-size: 20px;
         cursor: pointer;
         font-family: 'Allura', cursive;
     }
@@ -166,7 +166,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 3;
-        font-size: 16px;
+        font-size: 20px;
         cursor: pointer;
         font-family: 'Allura', cursive;
     }
@@ -177,7 +177,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 3;
-        font-size: 16px;
+        font-size: 20px;
         cursor: pointer;
         font-family: 'Allura', cursive;
     }
@@ -216,6 +216,15 @@
         width: 100%;
         z-index: 0;
         height: auto;
+    }
+
+    .img-coem{
+        width: 100%;
+        height: auto;
+        z-index: -999; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     #video {
@@ -335,17 +344,17 @@
     </div>
     <div class=container3>
         <button id="reveal-button-2" onclick="window.location.href='/authorToAuthor3D.html'">Explorar Relaciones Autores</button>
-        <video id="video" src="Links.mov"></video>
+        <img src="Authors_full.png" alt="img-coem" class="img-coem">
     </div> 
 
     <div class=container4>
         <button id="reveal-button-3" onclick="window.location.href='/embeddings.html'">Embeddings de cuentos y poemas</button>
-        <video id="video-2" src="Embeddings.mov"></video>
+        <img src="borges_embeddings.png" alt="img-coem" class="img-coem">
     </div> 
 
     <div class=container5>
         <button id="reveal-button-4" onclick="window.location.href='/authorToAuthor3DSmall_english.html'">Explorar cuentos en inglés</button>
-        <video id="video-3" src="LInks_english.mov"></video>
+        <img src="authorsenglish.png" alt="img-coem" class="img-coem">
     </div> 
 
     <footer>
