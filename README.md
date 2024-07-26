@@ -2,7 +2,7 @@
 This is part of the Coem project (The union of Poems and Cuentos) and in this part I'm trying to visualize all classical short stories and poems less than 8 minutes long into an embeddings map of 3092 classical short stories and 22540 poems and Also listen to the stories through Carl Sagan Voice in spanish and some of them in english too.
 The english version of all the poems cannot be hosted in GitHub. The links Visualization was done thanks to the help of @AgustinVallejo!
 
-Visualize the embeddings here [Coem embeddings](https://estevefact.github.io). the links here [Coem Links](https://estevefact.github.io/authorToAuthor3D.html) and the poems here [Coem Poems](https://estevefact.github.io/poems-info.html)
+The landing page is here [Coem](https://estevefact.github.io/), Visualize the embeddings here [Coem embeddings](https://estevefact.github.io/embeddings.html). the links here [Coem Links](https://estevefact.github.io/authorToAuthor3D.html) and the poems here [Coem Poems](https://estevefact.github.io/poems-info.html)
 
 
 # Limits
@@ -17,12 +17,11 @@ The color are only for 50 categories at maximum in the embeddings, so segment it
 - Midjourney: to generate some of the images. (The principals were done by artist Isabela Hernández)
 
 # Coming soon
-A starting page thats prettier that will redirect to the four pages or donate if anyone wants
-The spanish Audios will be reproceced fixing the weird noises. It will take two weeks to update them. These audios and images will be uploaded to youtube and added as a column to the embeddings and also have a separate website where one can explore, comment, rate and subscribe to listen to this stories in a customized way with users and states that will create requests for the audios and data instead of having a monolith which Github Cannot support.
+The spanish Audios will be reproceced fixing the weird noises. These audios and images will be uploaded to youtube and added as a column to the embeddings and also have a separate website where one can explore, comment, rate and subscribe to listen to this stories in a customized way with users and states that will create requests for the audios and data instead of having a monolith which Github Cannot support.
 I have without the audio for now, the poems and suggestions of the most similar poems after the ones that you are reading. After that, the customization would be like adding their own voice or how they want the story to be like or how hard it is to read. Missing adding the english stories and The voice for poems.
 
 # Contribute
-If anyone want to contribute please Push a PR, or send me an email mostly the tsv and [json](authorLinksSmaller.json)
+If anyone want to contribute please Push a PR, or send me an email mostly the tsv and [json](static/authorLinksSmaller_new.json)
 containing the metadata file of [stories_metadata.tsv](tensor_generator/stories_metadata.tsv) inside tensor_generator 
 needs more attention. Need to turn them into csv, json or parquet to be eassily monitored. Finetuning 
 the translation to make them really available would be really great. Also putting more effort to the front or the UX would be appretiated, it's my first time coding front!
