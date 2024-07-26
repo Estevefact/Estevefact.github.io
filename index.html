@@ -270,7 +270,7 @@
     }
     #reveal-button-2 {
         position: absolute;
-        top: 135%;
+        top: 111%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 3;
@@ -281,7 +281,7 @@
 
     #reveal-button-3 {
         position: absolute;
-        top: 165%;
+        top: 146%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 3;
@@ -292,7 +292,7 @@
 
     #reveal-button-4 {
         position: absolute;
-        top: 205%;
+        top: 182%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 3;
@@ -308,6 +308,17 @@
         margin: 0;
         padding: 0;
         height: 230%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Allura', cursive;
+        background-color: #f4f4f4;
+    }
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 300%;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -361,6 +372,13 @@
         Disclaimer: Este es un pequeño proyecto hecho por una persona usando herramientas de software libre para navegar la literatura clásica.
         En caso de alguna queja enviar un correo a theprojectcoem@gmail.com
     </footer>
+
+    <form id="donate" action="https://www.paypal.com/donate" method="post" target="_top">
+        <input type="hidden" name="hosted_button_id" value="F43U7EFMW5N2A" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit"
+          title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_CO/i/scr/pixel.gif" width="1" height="1" />
+    </form>
     <script src="landing.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
