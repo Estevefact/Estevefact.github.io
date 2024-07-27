@@ -30,6 +30,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+      
     <title>Coem</title>
     <style>
     body, html {
@@ -151,9 +153,9 @@
 
     #reveal-button-2 {
         position: absolute;
-        top: 140%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Offset by 50% to center */
         z-index: 3;
         font-size: 20px;
         cursor: pointer;
@@ -162,9 +164,9 @@
 
     #reveal-button-3 {
         position: absolute;
-        top: 270%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Offset by 50% to center */
         z-index: 3;
         font-size: 20px;
         cursor: pointer;
@@ -173,9 +175,9 @@
 
     #reveal-button-4 {
         position: absolute;
-        top: 400%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Offset by 50% to center */
         z-index: 3;
         font-size: 20px;
         cursor: pointer;
@@ -201,21 +203,27 @@
     }
 
     .container3 {
+        position: relative;
         width: 100%;
         z-index: 0;
         height: auto;
+        text-align: center; 
     }
 
     .container4 {
+        position: relative;
         width: 100%;
         z-index: 0;
         height: auto;
+        text-align: center;
     }
 
     .container5 {
+        position: relative;
         width: 100%;
         z-index: 0;
         height: auto;
+        text-align: center;
     }
 
     .img-coem{
@@ -260,6 +268,22 @@
         display: none !important;
     }
 
+    .social-icons {
+        text-align: center; /* Center align text inside the container */
+        margin-top: 20px; /* Add some margin to the top if needed */
+    }
+
+    .social-icons a {
+        margin: 0 10px; /* Add space between icons */
+        font-size: 24px; /* Adjust the size of the icons if needed */
+        color: #000; /* Adjust the color of the icons if needed */
+        text-decoration: none; /* Remove underline from links */
+    }
+
+    .social-icons a:hover {
+        color: #555; /* Change color on hover if needed */
+    }
+
     @media screen and (max-width: 600px) {
 
     #reveal-button {
@@ -269,10 +293,9 @@
         font-family: 'Allura', cursive;
     }
     #reveal-button-2 {
-        position: absolute;
-        top: 111%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Offset by 50% to center */
         z-index: 3;
         font-size: 14px;
         cursor: pointer;
@@ -281,9 +304,9 @@
 
     #reveal-button-3 {
         position: absolute;
-        top: 146%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Offset by 50% to center */
         z-index: 3;
         font-size: 14px;
         cursor: pointer;
@@ -292,9 +315,9 @@
 
     #reveal-button-4 {
         position: absolute;
-        top: 182%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Offset by 50% to center */
         z-index: 3;
         font-size: 14px;
         cursor: pointer;
@@ -370,7 +393,22 @@
 
     <footer>
         Disclaimer: Este es un pequeño proyecto hecho por una persona usando herramientas de software libre para navegar la literatura clásica.
-        En caso de alguna queja enviar un correo a theprojectcoem@gmail.com
+        En caso de alguna queja enviar un correo a <a href="mailto:theprojectcoem@gmail.com">theprojectcoem@gmail.com</a>
+        <div class="social-icons">
+            <br>
+            <a href="https://www.instagram.com/theprojectcoem/" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/channel/UCsA5OOXPr1bABWuZ_pWIB6g" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://podcasters.spotify.com/pod/show/coem4" target="_blank">
+                <i class="fab fa-spotify"></i>
+            </a>
+            <a href="https://www.tiktok.com/@theprojectcoem?lang=es" target="_blank">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
     </footer>
 
     <form id="donate" action="https://www.paypal.com/donate" method="post" target="_top">

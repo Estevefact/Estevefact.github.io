@@ -1090,8 +1090,9 @@
         });
 
       graph = Graph;
-
-      setAuthor(gData.nodes.find(node => node.id === 'Gabriel García Márquez'));
+      const authorsTotal = gData.nodes.map(node => node.id);
+      const randomAuthorId = authorsTotal[Math.floor(Math.random() * authorsTotal.length)];
+      setAuthor(gData.nodes.find(node => node.id === randomAuthorId));
       updateTopAuthors(author);
       updateStories(author);
 
