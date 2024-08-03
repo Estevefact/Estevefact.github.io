@@ -347,6 +347,46 @@
           width: 100%; /* Expand to full width on hover */
       }
 
+      #stories-suggested {
+      margin-top: 20px;
+      width: 70%;
+      /* Adjust as needed */
+      max-width: 900px;
+      /* Adjust as needed */
+    }
+
+    #top-stories-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #top-stories-list li {
+      padding: 8px;
+    }
+
+    .top-stories-list {
+        padding: 5px;
+        color:#007bff;
+        position: relative;
+        cursor: pointer;
+        display: inline-block; /* Make it inline-block to ensure the width transition works */
+        text-decoration: none; /* Remove underline from links */
+      }
+    .top-stories-list::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0; /* Start with zero width */
+        height: 1px;
+        background-color: #2b02e4;
+        transition: width 0.3s ease; /* Transition effect for width */
+    }
+
+    .top-stories-list:hover::after {
+        width: 100%; /* Expand to full width on hover */
+    }
+
     #stories-list {
       list-style-type: none;
       padding: 0;
@@ -701,6 +741,10 @@
         font-size: 9px;
       }
 
+      #stories-suggested {
+        font-size: 9px;
+      }
+
       #stories-authors-container {
         font-size: 9px;
       }
@@ -799,6 +843,10 @@
     <div id="top-authors-container">
       <h3>Top 5 Autores relacionados</h3>
       <ul id="top-authors-list"></ul>
+    </div>
+    <div id="stories-suggested">
+      <h3>Top 5 suggested stories</h3>
+      <ul id="top-stories-list"></ul>
     </div>
     <form id="donate" action="https://www.paypal.com/donate" method="post" target="_top">
       <input type="hidden" name="hosted_button_id" value="F43U7EFMW5N2A" />
@@ -1004,6 +1052,69 @@
         topAuthorsList.appendChild(listItem); // Append the list item to the list
       });
     }
+
+    function updateTopStories(node, gData) {
+      const topStoriesList = document.getElementById('top-stories-list');
+      topStoriesList.innerHTML = '';
+
+      const neighbors = node.neighbors.map(neighbor => ({
+        ...neighbor,
+        linkCount: neighbor.links.length
+      }));
+
+      const topAuthors = neighbors.sort((a, b) => b.linkCount - a.linkCount);
+
+      // Leave uniques
+      const uniqueAuthors = [];
+      topAuthors.forEach(author => {
+        if (!uniqueAuthors.find(a => a.id === author.id)) {
+          uniqueAuthors.push(author);
+        }
+      });
+
+      // Select 5 stories from linked authors or any 5 at random if none
+      if (uniqueAuthors.length > 0) {
+        uniqueAuthors.forEach(author => {
+          const storyIds = Object.keys(author.stories);
+          const randomStoryId = storyIds[Math.floor(Math.random() * storyIds.length)];
+          const story = {
+            id: randomStoryId,
+            title: author.stories[randomStoryId],
+            authorId: author.id
+          };
+          stories.push(story);
+        });
+      }
+      else {
+        const authorsTotal = gData.nodes.map(node => node.id);
+        const randomAuthorId = authorsTotal[Math.floor(Math.random() * authorsTotal.length)];
+        const newAuthor = gData.nodes.find(node => node.id === randomAuthorId);
+        const storyIdsU = Object.keys(newAuthor.stories)
+        const storyU = {
+            id: storyIdsU,
+            title: newAuthor.stories[storyIdsU],
+            authorId: newAuthor.id
+          };
+          stories.push(story);
+      }
+
+      stories.forEach(story => {
+        const listItem = document.createElement('li');
+        const listLink = document.createElement('a'); // Correctly create the 'a' element
+        listLink.textContent = `${story.title}`;
+        listLink.href = "#"; // Add href to make it a link
+        listLink.addEventListener('click', (event) => {
+          event.preventDefault(); // Prevent default link behavior
+          setStory(story);
+          //update author info highlight
+        });
+        listItem.appendChild(listLink); // Append the link to the list item
+        listLink.classList.add('top-stories-list');// Append the link to the list item
+        topStoriesList.appendChild(listItem); // Append the list item to the list
+      });
+    }
+
+
 
     const highlightNodes = new Set();
     const highlightLinks = new Set();
