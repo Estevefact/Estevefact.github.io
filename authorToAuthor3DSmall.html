@@ -845,7 +845,7 @@
       <ul id="top-authors-list"></ul>
     </div>
     <div id="stories-suggested">
-      <h3>Top 5 suggested stories</h3>
+      <h3>Top 5 Cuentos relacionados</h3>
       <ul id="top-stories-list"></ul>
     </div>
     <form id="donate" action="https://www.paypal.com/donate" method="post" target="_top">
@@ -919,6 +919,37 @@
       }
     }
 
+    function update_authorrest(author,story){
+      if (!author) { return }
+      fetch("author_info_smaller.html")
+        .then((response) => response.text())
+        .then((data) => {
+          var rendered = data
+            .replace("{{name}}", author.id)
+            .replace("{{country}}", author.country)
+            .replace("{{birthYear}}", author.birth_year)
+            .replace("{{deathYear}}", author.death_year)
+            .replace("{{Genre}}", author.genre)
+            .replace(
+              "{{exampleStory}}",
+              story.title
+            );
+          document.getElementById("author-info-container").innerHTML =
+            rendered;
+          updateAudioSource(`audios_es/${story.id}.mp3`);
+          resetAuthorImage(author.image); // Defined in particleDraw.js
+          updateTopAuthors(author,gData);
+          updateStories(author);
+          highlightNodeAndLinks(author);
+          // Apply additional styles dynamically if it's a cellphone
+          if (isCellphone()) {
+            applyCellphoneStyles();
+          }
+
+        })
+        .catch((error) => console.error("Error loading the box:", error));
+    }
+
     function loadAuthorInfo(author) {
       if (!author) { return }
       fetch("author_info_smaller.html")
@@ -938,7 +969,7 @@
             rendered;
           updateAudioSource(`audios_es/${author.story_id}.mp3`);
           resetAuthorImage(author.image); // Defined in particleDraw.js
-          updateTopAuthors(author);
+          updateTopAuthors(author,gData);
           updateStories(author);
           // Apply additional styles dynamically if it's a cellphone
           if (isCellphone()) {
@@ -1014,14 +1045,22 @@
     };
 
 
-    function updateTopAuthors(node) {
+    function updateTopAuthors(node,gData) {
       const topAuthorsList = document.getElementById('top-authors-list');
       topAuthorsList.innerHTML = '';
 
-      const neighbors = node.neighbors.map(neighbor => ({
-        ...neighbor,
-        linkCount: neighbor.links.length
-      }));
+      let neighbors;
+
+      if (node.neighbors && Array.isArray(node.neighbors) && node.neighbors.length > 0) {
+        neighbors = node.neighbors.map(neighbor => ({
+          ...neighbor,
+          linkCount: neighbor.links.length
+        }));
+      } else {
+        console.error("Node neighbors are not defined or not an array. Adding a random neighbor.");
+        const randomNode = gData.nodes[Math.floor(Math.random() * gData.nodes.length)];
+        neighbors = [randomNode];
+      };
 
       const topAuthors = neighbors.sort((a, b) => b.linkCount - a.linkCount);
       // const topAuthors = neighbors; // By sorting we never get to smaller authors
@@ -1046,6 +1085,7 @@
           event.preventDefault(); // Prevent default link behavior
           setAuthor(author);
           updateStories(author);
+          updateTopStories(author,gData);
         });
         listItem.appendChild(listLink); // Append the link to the list item
         listLink.classList.add('top-authors-list');// Append the link to the list item
@@ -1057,10 +1097,18 @@
       const topStoriesList = document.getElementById('top-stories-list');
       topStoriesList.innerHTML = '';
 
-      const neighbors = node.neighbors.map(neighbor => ({
-        ...neighbor,
-        linkCount: neighbor.links.length
-      }));
+      let neighbors;
+
+      if (node.neighbors && Array.isArray(node.neighbors) && node.neighbors.length > 0) {
+        neighbors = node.neighbors.map(neighbor => ({
+          ...neighbor,
+          linkCount: neighbor.links.length
+        }));
+      } else {
+        console.error("Node neighbors are not defined or not an array. Adding a random neighbor.");
+        const randomNode = gData.nodes[Math.floor(Math.random() * gData.nodes.length)];
+        neighbors = [randomNode];
+      }
 
       const topAuthors = neighbors.sort((a, b) => b.linkCount - a.linkCount);
 
@@ -1072,6 +1120,8 @@
         }
       });
 
+      const stories = [];
+
       // Select 5 stories from linked authors or any 5 at random if none
       if (uniqueAuthors.length > 0) {
         uniqueAuthors.forEach(author => {
@@ -1080,7 +1130,8 @@
           const story = {
             id: randomStoryId,
             title: author.stories[randomStoryId],
-            authorId: author.id
+            authorId: author.id,
+            authornew: author
           };
           stories.push(story);
         });
@@ -1093,9 +1144,24 @@
         const storyU = {
             id: storyIdsU,
             title: newAuthor.stories[storyIdsU],
-            authorId: newAuthor.id
+            authorId: newAuthor.id,
+            authornew: author
           };
-          stories.push(story);
+          stories.push(storyU);
+      }
+
+      if (stories.length==0) {
+        const authorsTotal = gData.nodes.map(node => node.id);
+        const randomAuthorId = authorsTotal[Math.floor(Math.random() * authorsTotal.length)];
+        const newAuthor = gData.nodes.find(node => node.id === randomAuthorId);
+        const storyIdsU = Object.keys(newAuthor.stories)
+        const storyU = {
+            id: storyIdsU,
+            title: newAuthor.stories[storyIdsU],
+            authorId: newAuthor.id,
+            authornew: author
+          };
+        stories.push(storyU);
       }
 
       stories.forEach(story => {
@@ -1105,8 +1171,8 @@
         listLink.href = "#"; // Add href to make it a link
         listLink.addEventListener('click', (event) => {
           event.preventDefault(); // Prevent default link behavior
-          setStory(story);
-          //update author info highlight
+          updateTopStories(story.authornew,gData);
+          update_authorrest(story.authornew,story);
         });
         listItem.appendChild(listLink); // Append the link to the list item
         listLink.classList.add('top-stories-list');// Append the link to the list item
@@ -1124,10 +1190,15 @@
       highlightLinks.clear();
       if (node) {
         highlightNodes.add(node);
-        node.neighbors.forEach(neighbor => highlightNodes.add(neighbor));
-        node.links.forEach(link => highlightLinks.add(link));
-        updateHighlight();
+        if (node.neighbors && Array.isArray(node.neighbors) && node.neighbors.length > 0) {
+          node.neighbors.forEach(neighbor => highlightNodes.add(neighbor));
+          node.links.forEach(link => highlightLinks.add(link));
+          updateHighlight();
+        } else {
+          console.error("Node neighbors not found");
+        }
       }
+      author = node;
     }
 
     function updateHighlight() {
@@ -1160,6 +1231,8 @@
         throw error; // Optionally rethrow the error or handle it as needed
       }
     }
+
+    let gData;
 
     fetchJSON().then((gData) => {
       // cross-link node objects
@@ -1204,8 +1277,9 @@
       const authorsTotal = gData.nodes.map(node => node.id);
       const randomAuthorId = authorsTotal[Math.floor(Math.random() * authorsTotal.length)];
       setAuthor(gData.nodes.find(node => node.id === randomAuthorId));
-      updateTopAuthors(author);
+      updateTopAuthors(author,gData);
       updateStories(author);
+      updateTopStories(author,gData);
 
       function followAuthor() {
         const node = author;
@@ -1280,6 +1354,7 @@
             highlightNodeAndLinks(node);
             followAuthor();
             updateStories(node);
+            updateTopStories(node,gData);
           });
           autocompleteContainer.appendChild(suggestionItem);
         });
