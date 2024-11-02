@@ -21,14 +21,9 @@ function preload() {
 }
 
 function resetAuthorImage(providedURL) {
-  try {
-    authorURL = providedURL;
-    preload();
-    setup();
-  }
-  catch {
-    // no op
-  }
+  authorURL = providedURL;
+  preload();
+  setup();
 }
 
 function createNParticles(n) {
@@ -46,13 +41,13 @@ function tryCreateCanvasWithRetry() {
   // Check for the parent element
   let parentElement = document.getElementById('drawing');
   if (parentElement) {
-      // If the parent element exists, create the canvas and attach it
-      let canvas = createCanvas(250, 250);
-      canvas.parent('drawing'); // Attach the canvas to the parent element
+    // If the parent element exists, create the canvas and attach it
+    let canvas = createCanvas(250, 250);
+    canvas.parent('drawing'); // Attach the canvas to the parent element
   } else {
-      // If the parent element does not exist, log a message and retry after 100 ms
-      console.info('Parent element #drawing not found. Retrying in 100 ms...');
-      setTimeout(tryCreateCanvasWithRetry, 100); // Retry after 100 ms
+    // If the parent element does not exist, log a message and retry after 100 ms
+    console.info('Parent element #drawing not found. Retrying in 100 ms...');
+    setTimeout(tryCreateCanvasWithRetry, 100); // Retry after 100 ms
   }
 }
 

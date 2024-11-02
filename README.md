@@ -39,3 +39,12 @@ which other authors were mentioned, some of the authors couldn't get scraped by 
 to be done.
 Thank you open source people, literature databases in spanish that are too old like amediavoz.com
  and free trials or amounts per month for making this possible!! 
+
+
+# To eassily start the server and test you can run:
+```bash
+python -m http.server 8000
+```
+and enter:
+
+http://localhost:8000/
