@@ -16,7 +16,6 @@ async function fetchcuentoJSON(cuento) {
         const pData = await response.json();
 
         // Do something with the parsed data (pData)
-        console.log("Successfully fetched cuento:", pData);
         return pData;
 
     } catch (error) {
@@ -24,7 +23,7 @@ async function fetchcuentoJSON(cuento) {
     }
 }
 
-function waitForPopupAudio(callback, interval = 100, maxRetries = 50) {
+function waitForPopupAudio(callback, interval = 500, maxRetries = 5000) {
     let retries = 0;
 
     const checkAudioElement = () => {
@@ -354,7 +353,7 @@ const loadData = async () => {
     loadcuentoData(randomAuthorId);
     const filterOptions = document.querySelectorAll('.dropdown-content span');
     const filterButton = document.getElementById('filter-button');
-    let selectedFilter = 'story_name';
+    let selectedFilter = 'id';
 
     filterOptions.forEach(option => {
         option.addEventListener('click', function () {
@@ -371,17 +370,36 @@ const loadData = async () => {
         autocompleteContainer.innerHTML = '';
         if (query.length === 0) return;
 
-        const suggestions = gData.nodes.filter(node =>
-            (node[selectedFilter] && node[selectedFilter].toString().toLowerCase().includes(query))
-        );
+        const suggestions = gData.nodes.filter(node => {
+            if (selectedFilter === 'author_name') {
+                return node.id && node.id.toLowerCase().includes(query);
+            }
+            else if (selectedFilter === 'id') {
+                var matchingStory = Object.values(node.stories).find(storyName =>
+                    storyName.toLowerCase().trim().includes(query.trim())
+                );
+                return node["stories"] && matchingStory;
+            }
+            else {
+                // For all other filters, use the existing logic
+                return node[selectedFilter] && node[selectedFilter].toString().toLowerCase().includes(query);
+            }
+        });
 
         suggestions.forEach(node => {
             const suggestionItem = document.createElement('div');
             suggestionItem.classList.add('autocomplete-suggestion');
-            const filterValue = node[selectedFilter] || '';
             if (selectedFilter === 'id') {
-                suggestionText = `${node.id}`;
-            } else {
+                var matchingStory = Object.values(node.stories).find(storyName =>
+                    storyName.toLowerCase().trim().includes(query.trim())
+                );
+                // Display the matching story name
+                suggestionText = `(${matchingStory}) ${node.id}`;
+            } else if (selectedFilter === 'author_name') {
+                var filterValue = node[selectedFilter] || '';
+                suggestionText = `${node.id} (${node.country})`;
+            }
+            else {
                 const filterValue = node[selectedFilter] || '';
                 suggestionText = `${node.id} (${filterValue})`;
             }
@@ -390,6 +408,18 @@ const loadData = async () => {
                 searchInput.value = node.id;
                 autocompleteContainer.innerHTML = '';
                 author = node;
+                if (selectedFilter === 'id') {
+                    const stories = node.stories
+                    var matchingStory = Object.values(node.stories).find(storyName =>
+                        storyName.toLowerCase().trim().includes(query.trim())
+                    );
+                    const storyId = Object.keys(stories).find(key => stories[key] === matchingStory);
+                    setAuthor(node, matchingStory, storyId, gData);
+                }
+                else {
+                    loadcuentoData(node.id);
+                }
+
                 loadAuthorInfo(node);
                 updateStories(node);
                 updateTopStories(node, gData);
@@ -400,3 +430,5 @@ const loadData = async () => {
 };
 
 loadData();
+
+// Missing the audios to always load after clicking
