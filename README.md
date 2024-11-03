@@ -14,7 +14,7 @@ The color are only for 50 categories at maximum in the embeddings, so segment it
 - Sentence transformer: jina-embeddings-v2-base-es
 - LLM: Phi-3
 - TTS: Openvoice and Metavoice to generate the audios
-- Midjourney: to generate some of the images. (The principals were done by artist Isabela Hernández)
+- Midjourney: to generate the images.
 
 # Coming soon
 The spanish Audios will be reproceced fixing the weird noises. These audios and images will be uploaded to youtube and added as a column to the embeddings and also have a separate website where one can explore, comment, rate and subscribe to listen to this stories in a customized way with users and states that will create requests for the audios and data instead of having a monolith which Github Cannot support.
