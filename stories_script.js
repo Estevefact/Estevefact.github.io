@@ -409,20 +409,16 @@ const loadData = async () => {
                 autocompleteContainer.innerHTML = '';
                 author = node;
                 if (selectedFilter === 'id') {
-                    const stories = node.stories
-                    var matchingStory = Object.values(node.stories).find(storyName =>
+                    var storiesFromSelectedNode = node.stories
+                    var matchingStoryClicked = Object.values(storiesFromSelectedNode).find(storyName =>
                         storyName.toLowerCase().trim().includes(query.trim())
                     );
-                    const storyId = Object.keys(stories).find(key => stories[key] === matchingStory);
-                    setAuthor(node, matchingStory, storyId, gData);
+                    var storyIdclicked = Object.keys(storiesFromSelectedNode).find(key => storiesFromSelectedNode[key] === matchingStory);
+                    setAuthor(node, matchingStoryClicked, storyIdclicked, gData);
                 }
                 else {
                     loadcuentoData(node.id);
                 }
-
-                loadAuthorInfo(node);
-                updateStories(node);
-                updateTopStories(node, gData);
             });
             autocompleteContainer.appendChild(suggestionItem);
         });
@@ -430,5 +426,3 @@ const loadData = async () => {
 };
 
 loadData();
-
-// Missing the audios to always load after clicking
