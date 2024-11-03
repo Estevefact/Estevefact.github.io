@@ -4,12 +4,23 @@ let gData = { nodes: [], links: [] };
 
 async function fetchcuentoJSON(cuento) {
     try {
+        // Await the fetch response
         const response = await fetch(`static/Cuentos/${cuento}.json`);
+
+        // Check if the response is OK (status 200-299)
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        // Await the parsing of the JSON
         const pData = await response.json();
+
+        // Do something with the parsed data (pData)
+        console.log("Successfully fetched cuento:", pData);
         return pData;
+
     } catch (error) {
         console.error("Error fetching cuento JSON:", error);
-        throw error;
     }
 }
 
@@ -56,6 +67,21 @@ async function fetchaudiosource(cuento) {
     }
 
 }
+function loadCuento(storyid) {
+    fetchcuentoJSON(storyid)
+        .then(cuentoTextData => {
+            const cuentoTextContainer = document.getElementById("cuentoText");
+
+            if (cuentoTextData && cuentoTextData.text) {
+                cuentoTextContainer.textContent = cuentoTextData.text; // You can also use .replace(/\n/g, '<br>') if you want line breaks
+            } else {
+                cuentoTextContainer.textContent = "No cuento found.";
+            }
+        })
+        .catch(error => {
+            console.error("Error loading cuento:", error);
+        });
+}
 
 function setAuthor(author, storyname, storyid, gData) {
     if (!author) { return }
@@ -66,9 +92,10 @@ function setAuthor(author, storyname, storyid, gData) {
     const cuentoTextContainer = document.getElementById('cuentoText');
     const cuentoTitleContainer = document.getElementById('cuentoTitle');
     cuentoTitleContainer.textContent = storyname;
-    const cuentoTextData = fetchcuentoJSON(storyid);
-    cuentoTextContainer.textContent = cuentoTextData.text;//.replace(/\n/g, '<br>')
+    loadCuento(storyid);
     fetchaudiosource(storyid);
+    const container = document.getElementById('container-stories');
+    container.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 async function fetchJSON() {
@@ -202,7 +229,7 @@ function updateStories(node) {
 
 function loadAuthorInfo(author, storyname) {
     if (!author) { return }
-    fetch("author_info_smaller.html")
+    fetch("author_info_smaller_stories.html")
         .then((response) => response.text())
         .then((data) => {
             var rendered = data
@@ -301,7 +328,7 @@ const loadcuentoData = async (authorId) => {
     const randomStoryIndex = Math.floor(Math.random() * storyIds.length);
     // TODO get the story name
     var cuento = newAuthor.stories[storyIds[randomStoryIndex]]
-    const cuentoTextData = await fetchcuentoJSON(storyIds[randomStoryIndex]);
+    var cuentoTextData = fetchcuentoJSON(storyIds[randomStoryIndex]);
     setAuthor(newAuthor, cuento, storyIds[randomStoryIndex], gData);
 
 };

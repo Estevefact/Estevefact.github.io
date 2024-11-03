@@ -31,18 +31,94 @@
     <meta name="author" content="Esteban Velásquez y Agustín Vallejo">
     <title>cuento Info</title>
     <style>
+        body,
+        html {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Garamond';
+            background-color: #f4f4f4;
+            overflow: hidden;
+            /* Prevent body scroll */
+            align-items: center;
+        }
+
+        #container-stories {
+            margin-top: 60px;
+            /* Offset for the fixed appbar */
+            height: calc(100vh - 60px);
+            /* Full viewport height minus appbar */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        #author-info-container {
+            width: 100%;
+            background-color: #f4f4f4;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #container-cuento {
+            width: 100%;
+            padding: 20px;
+            background-color: #f4f4f4;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+        }
+
+        #stories-authors-container,
+        #top-authors-container,
+        #stories-suggested {
+            width: 100%;
+            padding: 20px;
+            background-color: #f4f4f4;
+            margin-bottom: 20px;
+            font-family: 'Garamond';
+            text-align: center;
+        }
+
+        /* Headings and lists styling */
+        h3 {
+            margin-top: 0;
+            font-size: 1.6em;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            padding: 8px;
+            margin-bottom: 5px;
+        }
+
         #author-search {
             width: 300px;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 20px;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         #search-container {
             display: flex;
             flex-direction: column;
-            margin-top: 90px;
             /* Adjust based on the height of your appbar */
             padding: 20px;
             display: flex;
@@ -87,7 +163,7 @@
         .dropbtn {
             font-family: "Roboto", sans-serif;
             background-color: #04abd1;
-            color: white;
+            color: #f4f4f4;
             padding: 4px;
             font-size: 16px;
             border: none;
@@ -98,8 +174,7 @@
 
         .autocomplete-container {
             position: absolute;
-            border: 1px solid #ccc;
-            background-color: white;
+            background-color: #f4f4f4;
             max-height: 150px;
             overflow-y: auto;
             width: calc(100% - 60px);
@@ -127,7 +202,7 @@
             top: 0;
             left: 0;
             z-index: 99999;
-            color: white;
+            color: #f4f4f4;
             background: #003153;
         }
 
@@ -153,11 +228,11 @@
 
         #Stories-Authors-btn {
             background-color: #007bff;
-            color: white;
+            color: #f4f4f4;
             border: none;
             padding: 10px 15px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
             border-radius: 5px;
             transform: translateX(-30%);
             transition: margin-left 0.3s ease;
@@ -169,7 +244,7 @@
 
         #Embeddings-btn {
             background-color: #007bff;
-            color: white;
+            color: #f4f4f4;
             border: none;
             padding: 10px 15px;
             cursor: pointer;
@@ -192,69 +267,6 @@
         .info-item {
             margin: 10px 0;
             justify-content: center;
-        }
-
-        #author-info-container {
-            top: 0;
-            width: 100%;
-            height: 60px;
-            overflow-y: auto;
-            background-color: #eeeeee;
-            color: white;
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            justify-content: center;
-            padding: 10px;
-            font-weight: bold;
-            z-index: 10;
-            font-family: 'Garamond';
-        }
-
-        /* Main container for layout */
-        #container-cuento {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 20px;
-            background-color: #eeeeee;
-            font-family: 'Garamond';
-            margin-top: 80px;
-            /* Space for the fixed author-info-container */
-            gap: 20px;
-            /* Adds space between the items */
-            justify-content: center;
-        }
-
-        /* Container for other content (stories, authors, suggestions) */
-        #stories-authors-container,
-        #top-authors-container,
-        #stories-suggested {
-            padding: 20px;
-            background-color: #eeeeee;
-            font-family: 'Garamond';
-            margin: 10px 0;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Headings and lists styling */
-        h3 {
-            margin-top: 0;
-            font-size: 1.2em;
-            font-family: 'Garamond';
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            font-family: 'Garamond';
-        }
-
-        li {
-            margin: 5px 0;
-            padding: 8px;
-            border-radius: 4px;
-            font-family: 'Garamond';
         }
 
         .mini-title {
@@ -299,7 +311,7 @@
             display: absolute;
             align-items: center;
             background-color: #007bff;
-            color: white;
+            color: #f4f4f4;
             border: none;
             padding: 3px 5px;
             cursor: pointer;
@@ -314,7 +326,7 @@
         #dropbtn-general {
             font-family: "Roboto", sans-serif;
             background-color: #04abd1;
-            color: white;
+            color: #f4f4f4;
             padding: 10px 15px;
             font-size: 16px;
             border: none;
@@ -342,7 +354,7 @@
             display: none;
             position: absolute;
             background-color: #007bff;
-            color: white;
+            color: #f4f4f4;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 999999;
             border-radius: 5px;
@@ -356,12 +368,12 @@
         .dropdown-content-2 span {
             padding: 6px 7px;
             text-decoration: none;
-            color: white;
+            color: #f4f4f4;
             display: block;
             cursor: pointer;
             border-radius: 5px;
             z-index: 999999;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         .dropdown-content-2 span:hover {
@@ -389,6 +401,7 @@
             display: inline-block;
             /* Make it inline-block to ensure the width transition works */
             text-decoration: none;
+            font-size: 20px;
             /* Remove underline from links */
         }
 
@@ -410,17 +423,10 @@
             /* Expand to full width on hover */
         }
 
-        #stories-suggested {
-            margin-top: 20px;
-            width: 70%;
-            /* Adjust as needed */
-            max-width: 900px;
-            /* Adjust as needed */
-        }
-
         #top-stories-list {
             list-style-type: none;
             padding: 0;
+            font-size: 20px;
         }
 
         #top-stories-list li {
@@ -458,6 +464,7 @@
 
         #stories-list {
             list-style-type: none;
+            font-size: 20px;
             padding: 0;
         }
 
@@ -494,14 +501,38 @@
             /* Expand to full width on hover */
         }
 
+        .info-text {
+            justify-content: center;
+            align-items: center;
+            width: auto;
+            white-space: pre-wrap;
+            font-family: 'Garamond';
+            font-size: 20px;
+            max-width: 600px;
+        }
+
         @media screen and (max-width: 600px) {
+
+            #container-stories {
+                margin-top: 60px;
+                /* Offset for the fixed appbar */
+                height: calc(100vh - 60px);
+                /* Full viewport height minus appbar */
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                padding: 20px;
+                box-sizing: border-box;
+                font-size: 20px;
+            }
 
             #Stories-Authors-btn {
                 width: 14%;
                 display: absolute;
                 align-items: center;
                 background-color: #007bff;
-                color: white;
+                color: #f4f4f4;
                 border: none;
                 padding: 3px 5px;
                 cursor: pointer;
@@ -515,7 +546,7 @@
             #dropbtn-general {
                 font-family: "Roboto", sans-serif;
                 background-color: #04abd1;
-                color: white;
+                color: #f4f4f4;
                 padding: 4px;
                 font-size: 14px;
                 border: none;
@@ -543,7 +574,7 @@
                 display: none;
                 position: absolute;
                 background-color: #007bff;
-                color: white;
+                color: #f4f4f4;
 
                 box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
                 z-index: 999999;
@@ -558,7 +589,7 @@
             .dropdown-content-2 span {
                 padding: 6px 7px;
                 text-decoration: none;
-                color: white;
+                color: #f4f4f4;
                 display: block;
                 cursor: pointer;
                 border-radius: 5px;
@@ -580,6 +611,7 @@
                 align-items: center;
                 display: flex;
                 flex-direction: column;
+                transform: translateX(-10%);
             }
 
             #author-search {
@@ -636,7 +668,7 @@
             .dropbtn {
                 font-family: "Roboto", sans-serif;
                 background-color: #04abd1;
-                color: white;
+                color: #f4f4f4;
                 padding: 4px;
                 font-size: 16px;
                 border: none;
@@ -647,7 +679,7 @@
 
             .autocomplete-container {
                 position: absolute;
-                background-color: white;
+                background-color: #f4f4f4;
                 max-height: 150px;
                 overflow-y: auto;
                 width: calc(100% - 60px);
@@ -675,7 +707,7 @@
                 top: 0;
                 left: 0;
                 z-index: 99999;
-                color: white;
+                color: #f4f4f4;
                 background: #003153;
             }
 
@@ -701,7 +733,7 @@
 
             #Stories-Authors-btn {
                 background-color: #007bff;
-                color: white;
+                color: #f4f4f4;
                 border: none;
                 padding: 3px 4px;
                 cursor: pointer;
@@ -717,7 +749,7 @@
 
             #Embeddings-btn {
                 background-color: #007bff;
-                color: white;
+                color: #f4f4f4;
                 border: none;
                 padding: 3px 4px;
                 cursor: pointer;
@@ -746,7 +778,7 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                font-size: 14px;
+                font-size: 18px;
                 align-items: center;
             }
 
@@ -761,6 +793,8 @@
                 gap: 20px;
                 /* Adds space between the items */
                 justify-content: center;
+                max-width: 600px;
+                font-size: 20px;
             }
 
             .mini-title {
@@ -820,43 +854,42 @@
             </button>
         </div>
     </div>
-    </div>
-
-    <div id="search-container">
-        <div class="dropdown">
-            <button class="dropbtn" id="filter-button"> Filtrar por Título</button>
-            <div class="dropdown-content">
-                <span data-filter="id">Título</span>
-                <span data-filter="author_name">Autor</span>
-                <span data-filter="country">País</span>
-                <span data-filter="birth_year">Año de nacimiento</span>
+    <div id="container-stories">
+        <div class="flex-item info-item" id="search-container">
+            <div class="dropdown">
+                <button class="dropbtn" id="filter-button"> Filtrar por Título</button>
+                <div class="dropdown-content">
+                    <span data-filter="id">Título</span>
+                    <span data-filter="author_name">Autor</span>
+                    <span data-filter="country">País</span>
+                    <span data-filter="birth_year">Año de nacimiento</span>
+                </div>
+            </div>
+            <input type="text" id="author-search" placeholder="Buscar por título...">
+            <div id="autocomplete-container" class="autocomplete-container"></div>
+        </div>
+        <div class="flex-item info-item" id="author-info-container">></div>
+        <div id="container-cuento">
+            <div class="flex-item info-item">Título cuento: <span id="cuentoTitle">Loading cuentos...</span></div>
+            <div class="flex-item info-text" id="cuentoText"></div>
+            <div id="stories-authors-container">
+                <h3>Cuentos</h3>
+                <ul id="stories-list"></ul>
+            </div>
+            <div id="top-authors-container">
+                <h3>Top 5 Autores relacionados</h3>
+                <ul id="top-authors-list"></ul>
+            </div>
+            <div id="stories-suggested">
+                <h3>Top 5 Cuentos relacionados</h3>
+                <ul id="top-stories-list"></ul>
             </div>
         </div>
-        <input type="text" id="author-search" placeholder="Buscar por título...">
-        <div id="autocomplete-container" class="autocomplete-container"></div>
-    </div>
-    <div id="author-info-container">></div>
-    <div id="container-cuento">
-        <div class="flex-item info-item">Título cuento: <span id="cuentoTitle">Loading cuentos...</span></div>
-        <div class="flex-item info-text" id="cuentoText"> </div>
-        <div id="stories-authors-container">
-            <h3>Cuentos</h3>
-            <ul id="stories-list"></ul>
-        </div>
-        <div id="top-authors-container">
-            <h3>Top 5 Autores relacionados</h3>
-            <ul id="top-authors-list"></ul>
-        </div>
-        <div id="stories-suggested">
-            <h3>Top 5 Cuentos relacionados</h3>
-            <ul id="top-stories-list"></ul>
-        </div>
-
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.0/p5.js"></script>
     <script src="static/particleDrawStories.js"></script>
     <script src="stories_script.js"></script>
-    <iframe src="author_info_smaller.html" id="iframeA" style="display:none;"></iframe>
+    <iframe src="author_info_smaller_stories.html" id="iframeA" style="display:none;"></iframe>
 </body>
 
 </html>
