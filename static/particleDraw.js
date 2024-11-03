@@ -21,9 +21,14 @@ function preload() {
 }
 
 function resetAuthorImage(providedURL) {
-  authorURL = providedURL;
-  preload();
-  setup();
+  try {
+    authorURL = providedURL;
+    preload();
+    setup();
+  }
+  catch {
+    // no op
+  }
 }
 
 function createNParticles(n) {
