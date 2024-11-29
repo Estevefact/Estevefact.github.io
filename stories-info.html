@@ -56,6 +56,7 @@
             box-sizing: border-box;
             max-width: 100%;
             background-color: #f4f4f4;
+            align-items: center;
         }
 
         #author-info-container {
@@ -65,7 +66,10 @@
             font-size: 20px;
             font-weight: bold;
             color: #333;
-            text-align: center;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center child elements horizontally */
+            justify-content: left; /* Center child elements vertically if needed */
+            display: flex;
             margin-bottom: 20px;
         }
 
@@ -84,15 +88,10 @@
         #top-authors-container,
         #stories-suggested {
             width: 100%;
-            padding: 20px;
             background-color: #f4f4f4;
             margin-bottom: 20px;
             font-family: 'Garamond';
-            text-align: center;
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
-            transform: translateX(-6%);
         }
 
         /* Headings and lists styling */
@@ -563,7 +562,7 @@
                 border: none;
                 padding: 3px 5px;
                 cursor: pointer;
-                font-size: 14px;
+                font-size: 16px;
                 border-radius: 8px;
                 position: fixed;
                 top: 20px;
@@ -762,10 +761,10 @@
                 background-color: #007bff;
                 color: #f4f4f4;
                 border: none;
-                padding: 3px 4px;
+                padding: 0px 1px;
                 cursor: pointer;
-                font-size: 7px;
-                border-radius: 2px;
+                font-size: 14px;
+                border-radius: 3px;
                 transform: translateX(-25%);
                 transition: margin-left 0.3s ease;
             }
@@ -897,13 +896,14 @@
         </div>
         <div class="flex-item info-item" id="author-info-container">></div>
         <div id="container-cuento">
+            <div class="flex-item info-item">Tiempo de lectura: <span id="cuentoTime">Loading cuentos...</span></div>
             <div class="flex-item info-item">Título cuento: <span id="cuentoTitle">Loading cuentos...</span></div>
             <div class="flex-item info-text" id="cuentoText"></div>
             <div id="stories-authors-container">
                 <h3>Cuentos</h3>
                 <ul id="stories-list"></ul>
             </div>
-            <div id="top-authors-container">
+            <div class="info-item"id="top-authors-container">
                 <h3>Autores relacionados</h3>
                 <ul id="top-authors-list"></ul>
             </div>

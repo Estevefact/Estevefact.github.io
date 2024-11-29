@@ -70,9 +70,15 @@ function loadCuento(storyid) {
     fetchcuentoJSON(storyid)
         .then(cuentoTextData => {
             const cuentoTextContainer = document.getElementById("cuentoText");
+            const cuentoTime = document.getElementById('cuentoTime');
 
             if (cuentoTextData && cuentoTextData.text) {
                 cuentoTextContainer.textContent = cuentoTextData.text; // You can also use .replace(/\n/g, '<br>') if you want line breaks
+                const readingTimeMinutes = 1.2*cuentoTextData.metadata.reading_time_min;
+                const minutes = Math.floor(readingTimeMinutes);
+                const seconds = Math.round((readingTimeMinutes - minutes) * 60);
+                const formattedSeconds = String(seconds).padStart(2, '0');
+                cuentoTime.textContent = `${minutes}:${formattedSeconds} min`;
             } else {
                 cuentoTextContainer.textContent = "No cuento found.";
             }
@@ -84,7 +90,7 @@ function loadCuento(storyid) {
 
 function setAuthor(author, storyname, storyid, gData) {
     if (!author) { return }
-    loadAuthorInfo(author, storyname);
+    loadAuthorInfo(author, storyname,storyid);
     updateStories(author);
     updateTopAuthors(author, gData);
     updateTopStories(author, gData);
@@ -226,7 +232,7 @@ function updateStories(node) {
     });
 };
 
-function loadAuthorInfo(author, storyname) {
+function loadAuthorInfo(author, storyname, storyid) {
     if (!author) { return }
     fetch("author_info_smaller_stories.html")
         .then((response) => response.text())
@@ -251,7 +257,7 @@ function loadAuthorInfo(author, storyname) {
             resetAuthorImage(author.image); // Defined in particleDraw.js
             updateTopAuthors(author, gData);
             updateStories(author);
-
+            fetchaudiosource(storyid); // This is the last thing run, make sure is the correct story
         })
         .catch((error) => console.error("Error loading the box:", error));
 }
