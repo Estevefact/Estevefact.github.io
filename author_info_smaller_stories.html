@@ -10,8 +10,6 @@
             font-family: 'Garamond', sans-serif;
             background-color: #eef2f7;
             display: flex;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
             margin: 0;
         }
@@ -38,7 +36,8 @@
             font-weight: 700;
             color: #000;
             text-align: center;
-
+            align-items: center; /* Center child elements horizontally */
+            justify-content: left; /* Center child elements vertically if needed */
         }
 
         #drawing {
@@ -84,7 +83,7 @@
         <div class="info-item">Género: <span id="country">{{Genre}}</span></div>
         <div class="info-item">Título cuento: <span id="exampleStory">{{exampleStory}}</span></div>
         <audio id="popup-audio" controls>
-            <source src="static/algo_grave_va_a_ocurrir.mp3" type="audio/mp3">
+            <source src="static/Terry_bisson_Estan_hechos_de_carne.mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
     </div>
