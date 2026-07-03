@@ -1,0 +1,487 @@
+:root {
+  color-scheme: light;
+  --reader-bg: #f5f1e8;
+  --reader-surface: #fffdf8;
+  --reader-surface-2: #eee7da;
+  --reader-text: #24221f;
+  --reader-muted: #6d675f;
+  --reader-accent: #006d77;
+  --reader-accent-2: #83c5be;
+  --reader-action: #003153;
+  --reader-action-hover: #0b4f74;
+  --reader-action-text: #fff;
+  --reader-border: #d9d0c2;
+  --reader-shadow: 0 16px 40px rgba(55, 45, 31, .09);
+  --reader-font-size: 20px;
+  --reader-width: 72ch;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --reader-bg: #111719;
+  --reader-surface: #1a2326;
+  --reader-surface-2: #243034;
+  --reader-text: #edf3f1;
+  --reader-muted: #aebdb9;
+  --reader-accent: #72d6cd;
+  --reader-accent-2: #295d60;
+  --reader-action: #72d6cd;
+  --reader-action-hover: #9ce7df;
+  --reader-action-text: #102124;
+  --reader-border: #35464a;
+  --reader-shadow: 0 18px 45px rgba(0, 0, 0, .28);
+}
+
+html, body {
+  background: var(--reader-bg) !important;
+  color: var(--reader-text) !important;
+  height: auto !important;
+  min-height: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+body {
+  margin: 0 !important;
+  min-height: 100%;
+  font-family: Georgia, "Times New Roman", serif !important;
+  display: block !important;
+}
+
+#container-stories, #container-poems {
+  width: min(1180px, 100%) !important;
+  margin-inline: auto;
+  padding: 84px clamp(16px, 4vw, 48px) 60px !important;
+  box-sizing: border-box;
+  background: transparent !important;
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
+#appbar {
+  box-sizing: border-box;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, .16);
+}
+
+#appbar a {
+  color: inherit;
+  text-decoration: none;
+  font: 700 14px/1.2 var(--coem-font, Georgia, serif);
+}
+
+#appbar .reader-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#search-container {
+  position: relative !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 auto 18px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+#author-search {
+  width: 100%;
+  min-height: 50px;
+  min-width: 220px;
+  flex: 1;
+  box-sizing: border-box;
+  background: var(--reader-surface);
+  color: var(--reader-text);
+  border-color: var(--reader-border) !important;
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-size: 17px;
+}
+
+.autocomplete-container {
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100% !important;
+  background: var(--reader-surface) !important;
+  color: var(--reader-text);
+  border: 1px solid var(--reader-border);
+  box-shadow: var(--reader-shadow);
+  overflow: hidden;
+}
+
+.reader-discovery .autocomplete-container {
+  position: static !important;
+  grid-column: 1 / -1;
+  max-height: 260px;
+}
+
+.autocomplete-suggestion {
+  display: block;
+  width: 100%;
+  padding: 11px 14px;
+  border: 0;
+  border-bottom: 1px solid var(--reader-border);
+  background: var(--reader-surface);
+  color: var(--reader-text);
+  cursor: pointer;
+  font-size: 16px;
+  text-align: left;
+}
+
+.autocomplete-suggestion:hover, .autocomplete-suggestion:focus-visible {
+  background: var(--reader-surface-2);
+  color: var(--reader-accent);
+}
+
+.reader-discovery {
+  width: min(900px, 100%);
+  margin: 0 auto 18px;
+  padding: clamp(18px, 3vw, 28px);
+  box-sizing: border-box;
+  border: 1px solid var(--reader-border);
+  border-top: 5px solid var(--reader-action);
+  border-radius: 20px;
+  background: var(--reader-surface);
+  box-shadow: var(--reader-shadow);
+}
+
+.reader-discovery h2 { margin: 0 0 6px; color: var(--reader-text); }
+.reader-discovery > p { margin: 0 0 18px; color: var(--reader-muted); }
+
+.reader-search-field {
+  display: grid;
+  gap: 6px;
+  color: var(--reader-text);
+  font-weight: 700;
+}
+
+#search-result-count {
+  align-self: end;
+  min-width: 110px;
+  padding: 0 0 14px;
+  color: var(--reader-muted);
+  font-size: 14px;
+  text-align: right;
+}
+
+.reader-toolbar {
+  width: min(900px, 100%);
+  margin: 0 auto 22px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.reader-button, .reader-select {
+  min-height: 42px;
+  border: 1px solid var(--reader-border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: var(--reader-action);
+  color: var(--reader-action-text);
+  border-color: var(--reader-action);
+  font: 700 15px/1.1 var(--coem-font, Georgia, serif);
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,49,83,.12);
+}
+
+.reader-button:hover, .reader-button:focus-visible {
+  border-color: var(--reader-action-hover);
+  background: var(--reader-action-hover);
+  color: var(--reader-action-text);
+  transform: translateY(-1px);
+}
+
+.reader-button[aria-pressed="true"] {
+  color: var(--reader-bg);
+  background: var(--reader-accent);
+  border-color: var(--reader-accent);
+}
+
+.reader-button--secondary {
+  align-self: end;
+  min-height: 46px;
+  background: transparent;
+  color: var(--reader-action);
+  box-shadow: none;
+}
+
+.reader-filter-row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.reader-filter-row > label {
+  display: grid;
+  flex: 1 1 190px;
+  gap: 6px;
+  color: var(--reader-text);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.reader-filter-row .reader-select {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid var(--reader-border);
+  border-radius: 12px;
+  background: var(--reader-bg);
+  color: var(--reader-text);
+  box-shadow: none;
+}
+
+#author-info-container, #content, .reader-panel {
+  width: min(900px, 100%) !important;
+  margin: 0 auto 24px;
+  padding: clamp(18px, 3vw, 30px) !important;
+  box-sizing: border-box;
+  border: 1px solid var(--reader-border);
+  border-radius: 22px;
+  background: var(--reader-surface) !important;
+  color: var(--reader-text) !important;
+  box-shadow: var(--reader-shadow);
+}
+
+.info-box {
+  width: 100%;
+}
+
+.author-summary {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  align-items: center;
+  gap: 26px;
+}
+
+#drawing {
+  width: 250px !important;
+  height: 250px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--reader-surface-2);
+}
+
+#drawing canvas, #drawing img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.author-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 18px;
+}
+
+.author-facts p { margin: 0; }
+.author-facts strong { color: var(--reader-accent); }
+
+#container-cuento, #container-poem {
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+  color: var(--reader-text);
+}
+
+.reader-heading {
+  width: min(var(--reader-width), 100%);
+  margin: 18px auto 8px;
+  font-size: clamp(2rem, 6vw, 3.7rem);
+  line-height: 1.05;
+  text-align: center;
+  letter-spacing: -.025em;
+  scroll-margin-top: 82px;
+}
+
+.reader-heading:focus { outline: none; }
+.reader-heading:focus-visible {
+  outline: 3px solid var(--reader-accent);
+  outline-offset: 7px;
+}
+
+.reader-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.reader-section-note {
+  margin: -6px 0 16px;
+  color: var(--reader-muted);
+  font-size: 14px;
+}
+
+.reader-meta {
+  margin: 0 auto 28px;
+  color: var(--reader-muted);
+  text-align: center;
+  font: 500 14px/1.4 var(--coem-font, Georgia, serif);
+}
+
+#cuentoText, #poemText {
+  width: min(var(--reader-width), 100%) !important;
+  margin: 0 auto 40px !important;
+  padding: clamp(20px, 5vw, 44px) !important;
+  box-sizing: border-box;
+  border: 1px solid var(--reader-border);
+  border-radius: 22px;
+  background: var(--reader-surface);
+  color: var(--reader-text) !important;
+  box-shadow: var(--reader-shadow);
+  font-size: var(--reader-font-size) !important;
+  line-height: 1.75 !important;
+  text-align: left !important;
+  white-space: pre-wrap;
+}
+
+#poemText {
+  white-space: pre-wrap;
+  text-align: center !important;
+}
+
+.reader-section {
+  width: min(980px, 100%);
+  margin: 30px auto;
+  padding: clamp(18px, 3vw, 26px);
+  box-sizing: border-box;
+  border: 1px solid var(--reader-border);
+  border-radius: 20px;
+  background: var(--reader-surface) !important;
+  color: var(--reader-text) !important;
+  box-shadow: 0 10px 30px rgba(40,34,25,.06);
+}
+
+.reader-section h2, .reader-section h3 {
+  margin: 0 0 14px;
+  color: var(--reader-text);
+  text-align: left !important;
+}
+
+.recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.recommendation-card {
+  display: flex;
+  min-height: 168px;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid var(--reader-border);
+  border-radius: 18px;
+  background: var(--reader-surface);
+  color: var(--reader-text);
+  box-shadow: 0 7px 20px rgba(40, 34, 25, .06);
+  cursor: pointer;
+  text-align: left;
+  transition: transform .18s ease, border-color .18s ease;
+}
+
+.recommendation-card:hover, .recommendation-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--reader-accent);
+}
+
+.recommendation-card__title { font-size: 1.18rem; font-weight: 700; }
+.recommendation-card__author { color: var(--reader-accent); font-weight: 700; }
+.recommendation-card__meta { color: var(--reader-muted); font: 13px/1.4 var(--coem-font, Georgia, serif); }
+.recommendation-card__score {
+  width: fit-content;
+  margin-top: auto;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--reader-surface-2);
+  color: var(--reader-accent);
+  font: 700 12px/1.2 var(--coem-font, Georgia, serif);
+}
+
+.compact-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.compact-list button {
+  border: 1px solid var(--reader-border);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: var(--reader-surface);
+  color: var(--reader-accent);
+  cursor: pointer;
+  font: 700 15px/1.2 var(--coem-font, Georgia, serif);
+}
+
+.compact-list button[aria-current="true"] {
+  border-color: var(--reader-accent);
+  background: var(--reader-accent);
+  color: var(--reader-bg);
+}
+
+[aria-busy="true"] .reader-heading,
+[aria-busy="true"] #cuentoText,
+[aria-busy="true"] #poemText {
+  opacity: .62;
+}
+
+.reader-library {
+  width: min(980px, 100%);
+  margin: 28px auto;
+}
+
+.reader-library details {
+  margin-bottom: 10px;
+  padding: 14px 18px;
+  border: 1px solid var(--reader-border);
+  border-radius: 16px;
+  background: var(--reader-surface);
+}
+
+.reader-library summary { cursor: pointer; font-weight: 700; }
+.reader-library-list { margin-top: 12px; }
+
+.reader-empty { color: var(--reader-muted); font-style: italic; }
+.reader-toast {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 100000;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--reader-text);
+  color: var(--reader-bg);
+  font: 600 14px var(--coem-font, Georgia, serif);
+}
+
+@media (max-width: 680px) {
+  #appbar { height: 54px !important; padding-inline: 12px !important; }
+  #appbar .center-section { display: none; }
+  #container-stories, #container-poems { padding-top: 72px !important; }
+  .reader-toolbar { justify-content: stretch; }
+  .reader-button, .reader-select { flex: 1 1 auto; }
+  #search-container { grid-template-columns: 1fr !important; }
+  #search-result-count { padding: 0; text-align: left; }
+  .reader-filter-row { display: grid; grid-template-columns: 1fr; }
+  .reader-filter-row > label, .reader-filter-row .reader-select { width: 100%; }
+  .author-summary { grid-template-columns: 1fr; text-align: center; }
+  #drawing { margin-inline: auto; width: 210px !important; height: 210px; }
+  .author-facts { grid-template-columns: 1fr; }
+  #cuentoText, #poemText { border-radius: 14px; padding: 20px !important; line-height: 1.65 !important; }
+  .recommendation-grid { grid-template-columns: 1fr; }
+}

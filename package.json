@@ -1,0 +1,11 @@
+{
+  "name": "coem-static-site",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "test:browser": "node browser-tests/browser_flows.cjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.53.0"
+  }
+}

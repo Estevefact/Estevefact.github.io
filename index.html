@@ -147,7 +147,8 @@
             height: 60%;
         }
 
-        #reveal-button {
+        #reveal-button,
+        #reveal-button-poems {
             position: absolute;
             top: 70%;
             left: 50%;
@@ -186,7 +187,8 @@
             font-family: 'Allura', cursive;
         }
 
-        #reveal-button-4 {
+        #reveal-button-4,
+        #reveal-button-search {
             position: absolute;
             top: 50%;
             /* Center vertically */
@@ -200,7 +202,8 @@
             font-family: 'Allura', cursive;
         }
 
-        #background-image {
+        #background-image,
+        #background-image-poems {
             position: absolute;
             top: 30%;
             left: 0;
@@ -213,7 +216,8 @@
             transition: opacity 0.5s, filter 0.5s;
         }
 
-        #reveal-button:hover+#background-image {
+        #reveal-button:hover+#background-image,
+        #reveal-button-poems:hover+#background-image-poems {
             opacity: 1;
             filter: blur(0);
         }
@@ -345,7 +349,8 @@
 
         @media screen and (max-width: 600px) {
 
-            #reveal-button {
+            #reveal-button,
+            #reveal-button-poems {
                 z-index: 3;
                 font-size: 16px;
 
@@ -379,7 +384,8 @@
                 font-family: 'Allura', cursive;
             }
 
-            #reveal-button-4 {
+            #reveal-button-4,
+            #reveal-button-search {
                 position: absolute;
                 top: 50%;
                 /* Center vertically */
@@ -391,6 +397,18 @@
                 font-size: 16px;
                 cursor: pointer;
                 font-family: 'Allura', cursive;
+            }
+
+            #reveal-button,
+            #reveal-button-poems,
+            #reveal-button-2,
+            #reveal-button-3,
+            #reveal-button-4,
+            #reveal-button-search {
+                min-width: 150px;
+                min-height: 48px;
+                padding: 9px 14px;
+                line-height: 1.2;
             }
 
             footer {
@@ -444,9 +462,9 @@
         </div>
 
         <div class="container2">
-            <button id="reveal-button" onclick="window.location.href='/poems-info.html'">Explorar Poemas
+            <button id="reveal-button-poems" onclick="window.location.href='/poems-info.html'">Explorar Poemas
                 Escritos</button>
-            <img src="static/imgs/Pizarnik.png" alt="Background Image" id="background-image">
+            <img src="static/imgs/Pizarnik.png" alt="Background Image" id="background-image-poems">
         </div>
     </div>
     <div class=container3>
@@ -468,7 +486,7 @@
     </div>
 
     <div class="container5">
-        <button id="reveal-button-4" onclick="location.href='https://colab.research.google.com/drive/1z9y_NzBtdJrvlEC0siRCjEVZP7VuzMEX?usp=sharing';">Describe el cuento que buscas</button>
+        <button id="reveal-button-search" onclick="location.href='https://colab.research.google.com/drive/1z9y_NzBtdJrvlEC0siRCjEVZP7VuzMEX?usp=sharing';">Describe el cuento que buscas</button>
         <img src="vector_symbols.png" alt="img-coem" class="img-coem">
     </div>
 

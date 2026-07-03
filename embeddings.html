@@ -20677,6 +20677,126 @@ THE SOFTWARE.
       width: 100%;
       height: 100%;
     }
+
+    @media (max-width: 600px) {
+      html,
+      body {
+        height: auto;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      vz-projector-app #container {
+        width: 100% !important;
+        min-height: 100dvh;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      vz-projector-app #appbar {
+        position: sticky;
+        top: 0;
+        z-index: 10000;
+        box-sizing: border-box;
+        width: 100% !important;
+        min-height: 60px;
+        padding: 8px 12px;
+      }
+
+      vz-projector-app #appbar .logo {
+        max-width: 180px;
+        white-space: normal;
+        font-size: 15px;
+        line-height: 1.2;
+      }
+
+      vz-projector-app #appbar .flex-container {
+        box-sizing: border-box;
+        width: 190px !important;
+        min-width: 0;
+        height: 44px !important;
+        overflow: hidden;
+      }
+
+      vz-projector-app #appbar .center-section {
+        display: none !important;
+      }
+
+      vz-projector-app #appbar .icons {
+        margin-left: auto;
+      }
+
+      vz-projector {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      vz-projector > #container {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      vz-projector #left-pane,
+      vz-projector #right-pane {
+        box-sizing: border-box;
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+      }
+
+      vz-projector #left-pane {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      vz-projector #data-panel,
+      vz-projector #main,
+      vz-projector #inspector-panel,
+      vz-projector #bookmark-panel {
+        box-sizing: border-box;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+      }
+
+      vz-projector .stage {
+        position: relative !important;
+        width: 100% !important;
+        height: 420px !important;
+        min-height: 420px;
+      }
+
+      vz-projector #scatter {
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: 420px !important;
+        min-height: 420px;
+      }
+
+      vz-projector #right-pane {
+        display: block !important;
+        min-height: 620px;
+      }
+
+      vz-projector input,
+      vz-projector button,
+      vz-projector paper-button,
+      vz-projector paper-icon-button {
+        min-height: 40px;
+      }
+    }
   </style>
 
 <body>
