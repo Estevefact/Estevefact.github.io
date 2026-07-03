@@ -233,14 +233,14 @@ test("reader startup renders content before loading semantic discovery indexes",
   const poems = fs.readFileSync(path.join(root, "poems_script.js"), "utf8");
   const stories = fs.readFileSync(path.join(root, "stories_script.js"), "utf8");
 
-  const poemFirstRender = poems.indexOf("await loadPoem(DEFAULT_POEM.id");
+  const poemFirstRender = poems.indexOf("await loadPoem(initialId");
   const poemFullCatalog = poems.indexOf('fullDataPromise = fetchJSON("static/poems.json")', poemFirstRender);
   const poemHydration = poems.indexOf("hydrateDiscoveryFeatures(fullDataPromise)", poemFirstRender);
   assert.ok(poemFirstRender >= 0);
   assert.ok(poemFullCatalog > poemFirstRender);
   assert.ok(poemHydration > poemFirstRender);
-  assert.match(poems, /const DEFAULT_POEM = \{/);
-  assert.match(poems, /const DEFAULT_AUTHOR = \{/);
+  assert.match(poems, /fetchJSON\("static\/poemStartupPool\.json"\)/);
+  assert.match(poems, /chooseInitialStoryId\(null, poemCatalog\)/);
   assert.match(poems, /loadCoemPortraitAnimator/);
 
   const storyFirstRender = stories.indexOf("await loadStory(initialId");

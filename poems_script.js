@@ -1,23 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const DEFAULT_POEM = {
-    id: "d313c7ec-a7c5-48be-878f-d5a89008ed78",
-    author_uuid: "3aebced8-2731-45b4-95a5-40b104b4fe00",
-    story_name: "En mi jardín avanza un pájaro...",
-    reading_time: "0.425",
-    author_name: "Emily Dickinson",
-    country: "Estados Unidos",
-    birth_year: "1830"
-  };
-  const DEFAULT_AUTHOR = {
-    author_uuid: DEFAULT_POEM.author_uuid,
-    author_name: "Emily Dickinson",
-    country: "Estados Unidos",
-    birth_year: "1830",
-    death_year: "1886",
-    genre: "Romanticismo",
-    image: "Dickinson.png"
-  };
-  let data = { poems: [DEFAULT_POEM], authors: [DEFAULT_AUTHOR] };
+  const FALLBACK_POEM_ID = "d313c7ec-a7c5-48be-878f-d5a89008ed78";
+  let data = { poems: [], authors: [] };
   let poemCatalog = {};
   let authorCatalog = {};
   let neighborIndex = {};
@@ -343,15 +326,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const requested = ReaderFeatures.getItemFromURL("poem");
       let fullDataPromise;
 
-      if (!requested || requested === DEFAULT_POEM.id) {
-        hydrateCatalog({ poems: [DEFAULT_POEM], authors: [DEFAULT_AUTHOR] });
-        await loadPoem(DEFAULT_POEM.id, { scroll: false });
+      if (!requested) {
+        const startupPool = await fetchJSON("static/poemStartupPool.json");
+        hydrateCatalog(startupPool);
+        const initialId = StoriesCore.chooseInitialStoryId(null, poemCatalog);
+        if (initialId) await loadPoem(initialId, { scroll: false });
         fullDataPromise = fetchJSON("static/poems.json");
       } else {
         fullDataPromise = fetchJSON("static/poems.json");
         const fullData = await fullDataPromise;
         hydrateCatalog(fullData);
-        const initialId = poemCatalog[requested] ? requested : DEFAULT_POEM.id;
+        const initialId = poemCatalog[requested] ? requested : FALLBACK_POEM_ID;
         await loadPoem(initialId, { scroll: false });
       }
       loadCoemPortraitAnimator(() => {

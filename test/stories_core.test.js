@@ -87,6 +87,26 @@ test("the lightweight startup catalog covers the complete story reader", () => {
     ));
 });
 
+test("the poem startup pool is compact, varied and references valid local poems", () => {
+    const root = path.resolve(__dirname, "..");
+    const pool = JSON.parse(fs.readFileSync(path.join(root, "static/poemStartupPool.json")));
+    const fullData = JSON.parse(fs.readFileSync(path.join(root, "static/poems.json")));
+    const poemIds = new Set(fullData.poems.map(poem => poem.id));
+    const authorIds = new Set(fullData.authors.map(author => author.author_uuid));
+    assert.ok(pool.poems.length >= 300);
+    assert.equal(pool.poems.length, pool.authors.length);
+    assert.equal(new Set(pool.poems.map(poem => poem.author_uuid)).size, pool.poems.length);
+    assert.ok(pool.poems.every(poem =>
+        poemIds.has(poem.id)
+        && authorIds.has(poem.author_uuid)
+        && fs.existsSync(path.join(root, "static/Poemas", `${poem.id}.json`))
+    ));
+    assert.ok(pool.authors.every(author =>
+        author.author_name && author.author_name.toLowerCase() !== "unknown"
+    ));
+    assert.ok(fs.statSync(path.join(root, "static/poemStartupPool.json")).size < 200_000);
+});
+
 test("every embedded catalog author gets five deterministic semantic authors", () => {
     const root = path.resolve(__dirname, "..");
     const graph = JSON.parse(fs.readFileSync(path.join(root, "static/authorLinksSmallerAllStories.json")));
