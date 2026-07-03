@@ -162,6 +162,7 @@ test("reader pages expose unified search, visible filters, and the shared main m
     assert.match(html, /id="reader-status"/);
     assert.match(html, /id="related-authors-note"/);
     assert.doesNotMatch(html, /id="filter-button"/);
+    assert.doesNotMatch(html, /<script[^>]+src="https:\/\/cdnjs[^"]*p5/i);
   }
   const map = fs.readFileSync(path.join(root, "authorToAuthor3DSmall.html"), "utf8");
   assert.match(map, /Menú principal/);
@@ -225,4 +226,28 @@ test("poem embedding recommendations cover every poem and reference valid distin
 test("poem reader intentionally contains no audio player", () => {
   const html = fs.readFileSync(path.resolve(__dirname, "../poems-info.html"), "utf8");
   assert.doesNotMatch(html, /<audio\b/i);
+});
+
+test("reader startup renders content before loading semantic discovery indexes", () => {
+  const root = path.resolve(__dirname, "..");
+  const poems = fs.readFileSync(path.join(root, "poems_script.js"), "utf8");
+  const stories = fs.readFileSync(path.join(root, "stories_script.js"), "utf8");
+
+  const poemFirstRender = poems.indexOf("await loadPoem(DEFAULT_POEM.id");
+  const poemFullCatalog = poems.indexOf('fullDataPromise = fetchJSON("static/poems.json")', poemFirstRender);
+  const poemHydration = poems.indexOf("hydrateDiscoveryFeatures(fullDataPromise)", poemFirstRender);
+  assert.ok(poemFirstRender >= 0);
+  assert.ok(poemFullCatalog > poemFirstRender);
+  assert.ok(poemHydration > poemFirstRender);
+  assert.match(poems, /const DEFAULT_POEM = \{/);
+  assert.match(poems, /const DEFAULT_AUTHOR = \{/);
+  assert.match(poems, /loadCoemPortraitAnimator/);
+
+  const storyFirstRender = stories.indexOf("await loadStory(initialId");
+  const storyNeighbors = stories.indexOf('fetchJSON("static/storyEmbeddingNeighbors.json")');
+  assert.match(stories, /fetchJSON\("static\/storyReaderCatalog\.json"\)/);
+  assert.doesNotMatch(stories, /fetchJSON\("static\/authorLinksSmallerAllStories\.json"\)/);
+  assert.ok(storyFirstRender >= 0);
+  assert.ok(storyNeighbors > storyFirstRender);
+  assert.match(stories, /loadCoemPortraitAnimator/);
 });

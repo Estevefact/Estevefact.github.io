@@ -291,21 +291,7 @@ function setupControls() {
 
 async function initializeStories() {
   try {
-    [gData, storyNeighborIndex, storyMetadata, authorNeighborIndex] = await Promise.all([
-      fetchJSON("static/authorLinksSmallerAllStories.json"),
-      fetchJSON("static/storyEmbeddingNeighbors.json"),
-      fetchJSON("static/storyReaderMetadata.json"),
-      fetchJSON("static/authorEmbeddingNeighbors.json")
-    ]);
-    gData.links.forEach(link => {
-      const source = gData.nodes.find(node => node.id === link.source);
-      const target = gData.nodes.find(node => node.id === link.target);
-      if (!source || !target) return;
-      (source.neighbors ||= []).push(target);
-      (target.neighbors ||= []).push(source);
-      (source.links ||= []).push(link);
-      (target.links ||= []).push(link);
-    });
+    gData = await fetchJSON("static/storyReaderCatalog.json");
     storyCatalog = StoriesCore.buildStoryCatalog(gData.nodes);
     populateSelect("country-filter", gData.nodes.map(node => node.country), "País");
     populateSelect("genre-filter", gData.nodes.map(node => node.genre), "Género");
@@ -313,7 +299,28 @@ async function initializeStories() {
     setupControls();
     const requested = ReaderFeatures.getItemFromURL("story");
     const initialId = StoriesCore.chooseInitialStoryId(requested, storyCatalog);
-    if (initialId) loadStory(initialId, { scroll: false });
+    if (initialId) await loadStory(initialId, { scroll: false });
+    loadCoemPortraitAnimator(() => {
+      const story = currentStory && storyCatalog[currentStory.id];
+      if (story) resetAuthorImage(story.author.image);
+    });
+
+    Promise.all([
+      fetchJSON("static/storyEmbeddingNeighbors.json"),
+      fetchJSON("static/storyReaderMetadata.json"),
+      fetchJSON("static/authorEmbeddingNeighbors.json")
+    ]).then(([loadedNeighbors, loadedMetadata, loadedAuthorNeighbors]) => {
+      storyNeighborIndex = loadedNeighbors;
+      storyMetadata = loadedMetadata;
+      authorNeighborIndex = loadedAuthorNeighbors;
+      if (!currentStory) return;
+      const story = storyCatalog[currentStory.id];
+      if (!story) return;
+      renderRelatedAuthors(story.author);
+      renderRecommendations(story.id);
+    }).catch(error => {
+      console.error("No fue posible completar las funciones de descubrimiento:", error);
+    });
   } catch (error) {
     document.getElementById("cuentoText").textContent = "No fue posible iniciar el lector.";
     console.error(error);

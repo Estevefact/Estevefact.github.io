@@ -75,6 +75,18 @@ test("the generated embedding index covers every displayed story with valid reco
     }
 });
 
+test("the lightweight startup catalog covers the complete story reader", () => {
+    const root = path.resolve(__dirname, "..");
+    const fullGraph = JSON.parse(fs.readFileSync(path.join(root, "static/authorLinksSmallerAllStories.json")));
+    const startup = JSON.parse(fs.readFileSync(path.join(root, "static/storyReaderCatalog.json")));
+    const fullCatalog = buildStoryCatalog(fullGraph.nodes);
+    const startupCatalog = buildStoryCatalog(startup.nodes);
+    assert.deepEqual(Object.keys(startupCatalog).sort(), Object.keys(fullCatalog).sort());
+    assert.ok(startup.nodes.every(author =>
+        author.id && author.stories && !Object.hasOwn(author, "linked_authors")
+    ));
+});
+
 test("every embedded catalog author gets five deterministic semantic authors", () => {
     const root = path.resolve(__dirname, "..");
     const graph = JSON.parse(fs.readFileSync(path.join(root, "static/authorLinksSmallerAllStories.json")));
