@@ -1,183 +1,301 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const specificPoemId = 'd313c7ec-a7c5-48be-878f-d5a89008ed78'; // Start with this poem ID
+document.addEventListener("DOMContentLoaded", () => {
+  let data = { poems: [], authors: [] };
+  let poemCatalog = {};
+  let authorCatalog = {};
+  let neighborIndex = {};
+  let authorNeighborIndex = {};
+  let poemMetadata = {};
+  let currentPoem = null;
+  let activePoemLoad = 0;
 
-    const searchInput = document.getElementById('author-search');
-    const autocompleteContainer = document.getElementById('autocomplete-container');
-    const contentDiv = document.getElementById('content');
-    const poemTextContainer = document.getElementById('poemText');
-    const poemTitleContainer = document.getElementById('poemTitle');
+  async function fetchJSON(path) {
+    const response = await fetch(path);
+    if (!response.ok) throw new Error(`No se pudo cargar ${path} (${response.status})`);
+    return response.json();
+  }
 
-    let gData = { poems: [], authors: [] };
+  function createButton(text, onClick) {
+    const item = document.createElement("li");
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = text;
+    button.addEventListener("click", onClick);
+    item.appendChild(button);
+    return item;
+  }
 
-    async function fetchJSON() {
-        try {
-            const response = await fetch("static/poems.json");
-            const gData = await response.json();
-            return gData;
-        } catch (error) {
-            console.error("Error fetching JSON:", error);
-            throw error; // Optionally rethrow the error or handle it as needed
-        }
+  function poemViewModel(poem) {
+    const author = authorCatalog[poem.author_uuid] || {};
+    return {
+      id: poem.id,
+      title: poem.story_name,
+      author: poem.author_name || author.author_name || "Autor desconocido",
+      authorId: poem.author_uuid,
+      country: poem.country || author.country || "País desconocido",
+      genre: author.genre || "Género desconocido",
+      birthYear: poem.birth_year || author.birth_year || "",
+      deathYear: author.death_year || "",
+      readingTime: Number(poem.reading_time || poemMetadata[poem.id]?.readingTime || 0)
+    };
+  }
+
+  function populateSelect(id, values, label) {
+    const select = document.getElementById(id);
+    [...new Set(values.filter(Boolean))].sort((a, b) => String(a).localeCompare(String(b), "es"))
+      .forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
+        select.appendChild(option);
+      });
+  }
+
+  function activeFilters() {
+    return {
+      query: document.getElementById("author-search").value,
+      country: document.getElementById("country-filter").value,
+      genre: document.getElementById("genre-filter").value,
+      maxMinutes: document.getElementById("time-filter").value
+    };
+  }
+
+  function renderAuthor(author, poem) {
+    document.getElementById("content").innerHTML = `
+      <div class="author-summary">
+        <div id="drawing" aria-label="Retrato animado de ${author.author_name}"></div>
+        <div>
+          <h2>${author.author_name}</h2>
+          <div class="author-facts">
+            <p><strong>País</strong><br>${author.country || "—"}</p>
+            <p><strong>Género</strong><br>${author.genre || "—"}</p>
+            <p><strong>Nacimiento</strong><br>${author.birth_year || "—"}</p>
+            <p><strong>Muerte</strong><br>${author.death_year || "—"}</p>
+          </div>
+          <p>Ahora leyendo: <strong>${poem.story_name}</strong></p>
+        </div>
+      </div>`;
+    resetAuthorImage(author.image);
+  }
+
+  function renderMoreByAuthor(poem) {
+    const list = document.getElementById("poems-by-author");
+    list.replaceChildren();
+    data.poems.filter(candidate => candidate.author_uuid === poem.author_uuid && candidate.id !== poem.id)
+      .slice(0, 8)
+      .forEach(candidate => list.appendChild(createButton(candidate.story_name, () => loadPoem(candidate.id))));
+  }
+
+  function renderRelatedAuthors(author) {
+    const list = document.getElementById("related-poem-authors");
+    const note = document.getElementById("related-authors-note");
+    list.replaceChildren();
+    const normalizedAuthors = data.authors.map(candidate => ({ ...candidate, id: candidate.author_name }));
+    const authorsById = new Map(normalizedAuthors.map(candidate => [candidate.author_uuid, candidate]));
+    const suggestions = AuthorSimilarity.neighborsFor(
+      author.author_uuid, authorNeighborIndex, authorsById, 5
+    );
+    note.textContent = suggestions.length
+      ? "Afinidad calculada exclusivamente con los centroides de los embeddings de sus poemas."
+      : "No hay suficientes poemas con embeddings para calcular afinidad.";
+    suggestions.forEach(entry => {
+      const suggested = entry.author;
+      const candidate = data.poems.find(poem => poem.author_uuid === suggested.author_uuid);
+      const item = createButton(
+        AuthorSimilarity.recommendationLabel(entry, suggested),
+        () => candidate && loadPoem(candidate.id)
+      );
+      item.querySelector("button").dataset.source = "embedding";
+      list.appendChild(item);
+    });
+  }
+
+  function nearestPoems(poemId) {
+    const seen = new Set([poemId]);
+    return (neighborIndex[poemId] || [])
+      .map(entry => typeof entry === "string" ? { id: entry, similarity: null } : entry)
+      .filter(entry => poemCatalog[entry.id] && !seen.has(entry.id) && seen.add(entry.id))
+      .slice(0, 5)
+      .map(entry => ({ poem: poemCatalog[entry.id], similarity: entry.similarity }));
+  }
+
+  function renderRecommendations(poemId) {
+    const container = document.getElementById("suggested-author-poems");
+    container.replaceChildren();
+    nearestPoems(poemId).forEach(({ poem, similarity }) => {
+      const model = poemViewModel(poem);
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "recommendation-card";
+      card.innerHTML = `
+        <span class="recommendation-card__title">${model.title}</span>
+        <span class="recommendation-card__author">${model.author}</span>
+        <span class="recommendation-card__meta">${model.country} · ${ReaderFeatures.formatTime(model.readingTime)}</span>
+        <span class="recommendation-card__score">${StoriesCore.similarityLabel(similarity)}</span>`;
+      card.addEventListener("click", () => loadPoem(poem.id));
+      container.appendChild(card);
+    });
+  }
+
+  function renderLibrary() {
+    const library = ReaderFeatures.getLibrary("poem");
+    const render = (id, entries) => {
+      const container = document.getElementById(id);
+      container.replaceChildren();
+      if (!entries.length) {
+        container.innerHTML = '<p class="reader-empty">Todavía no hay poemas aquí.</p>';
+        return;
+      }
+      const list = document.createElement("ul");
+      list.className = "compact-list";
+      entries.forEach(entry => list.appendChild(createButton(
+        `${entry.title} — ${entry.author}`,
+        () => loadPoem(entry.id)
+      )));
+      container.appendChild(list);
+    };
+    render("bookmarks-list", library.bookmarks);
+    render("history-list", library.history);
+  }
+
+  function updateBookmarkButton() {
+    const button = document.getElementById("bookmark-toggle");
+    const saved = currentPoem && ReaderFeatures.isBookmarked("poem", currentPoem.id);
+    button.setAttribute("aria-pressed", String(Boolean(saved)));
+    button.textContent = saved ? "★ Guardado" : "☆ Guardar";
+  }
+
+  async function loadPoem(poemId, options = {}) {
+    const poem = poemCatalog[poemId];
+    if (!poem) return;
+    const requestId = ++activePoemLoad;
+    const text = document.getElementById("poemText");
+    document.getElementById("container-poem").setAttribute("aria-busy", "true");
+    text.textContent = "Cargando…";
+    try {
+      const poemData = await fetchJSON(`static/Poemas/${encodeURIComponent(poemId)}.json`);
+      if (requestId !== activePoemLoad) return;
+      const author = authorCatalog[poem.author_uuid];
+      const model = poemViewModel(poem);
+      currentPoem = model;
+      document.getElementById("poemTitle").textContent = poem.story_name;
+      document.getElementById("poemTime").textContent = ReaderFeatures.formatTime(model.readingTime);
+      text.textContent = poemData.text || "Este poema no tiene texto disponible.";
+      renderAuthor(author, poem);
+      renderMoreByAuthor(poem);
+      renderRelatedAuthors(author);
+      renderRecommendations(poemId);
+      ReaderFeatures.updateURL("poem", poemId, poem.story_name);
+      if (options.record !== false) ReaderFeatures.recordHistory("poem", model);
+      renderLibrary();
+      updateBookmarkButton();
+      document.getElementById("reader-status").textContent =
+        `Cargado ${poem.story_name}, de ${model.author}.`;
+      if (options.scroll !== false) {
+        requestAnimationFrame(() => {
+          ReaderFeatures.navigateToReadingStart(document.getElementById("poemTitle"));
+        });
+      }
+    } catch (error) {
+      if (requestId !== activePoemLoad) return;
+      text.textContent = "No fue posible cargar este poema.";
+      console.error(error);
+    } finally {
+      if (requestId === activePoemLoad) {
+        document.getElementById("container-poem").setAttribute("aria-busy", "false");
+      }
     }
+  }
 
+  function setupSearch() {
+    const input = document.getElementById("author-search");
+    const results = document.getElementById("autocomplete-container");
+    const count = document.getElementById("search-result-count");
+    const filterControls = ["country-filter", "genre-filter", "time-filter"]
+      .map(id => document.getElementById(id));
 
-    const loadPoemData = async (poemId) => {
-
-        async function fetchpoemJSON(poem) {
-            try {
-                const response = await fetch(`static/Poemas/${poem}.json`);
-                const pData = await response.json();
-                return pData;
-            } catch (error) {
-                console.error("Error fetching poem JSON:", error);
-                throw error;
-            }
-        }
-        const poem = gData.poems.find(poem => poem.id === poemId);
-        const poemTextData = await fetchpoemJSON(poemId);
-        const author = gData.authors.find(author => author.author_uuid === poem.author_uuid);
-        function convertToMinutesAndSeconds(decimalMinutes) {
-            const totalSeconds = Math.floor(decimalMinutes * 60);
-            const minutes = Math.floor(totalSeconds / 60);
-            const seconds = totalSeconds % 60;
-            return `${minutes} min ${seconds} sec`;
-        }
-        const readingTimeFormatted = convertToMinutesAndSeconds(poem.reading_time);
-
-        if (poem && poemTextData && author) {
-            contentDiv.innerHTML = `
-                <div class="info-box">
-                    <div class="info-item-author">Autor: <span id="name">${author.author_name}</span></div>
-                    <div id="flex-container">
-                        <div id="drawing"></div>
-                    </div>
-                    <div class="info-item">País: <span id="country">${author.country}</span></div>
-                    <div class="info-item">Nacimiento: <span id="birthYear">${author.birth_year}</span></div>
-                    <div class="info-item">Muerte: <span id="deathYear">${author.death_year}</span></div>
-                    <div class="info-item">Género: <span id="genre">${author.genre}</span></div>
-                    <div class="info-item">Título poema: <span id="exampleStory">${poem.story_name}</span></div>
-                    <div class="info-item">Tiempo de lectura ~ <span id="readingtime">${readingTimeFormatted} </span></div>
-                    <audio id="popup-audio" controls>
-                        <source src="static/audios_es/2089db4f-a8a2-4351-8100-46d58444b43b.mp3" type="audio/mp3">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            `;
-            poemTitleContainer.textContent = poem.story_name;
-            poemTextContainer.textContent = poemTextData.text;//.replace(/\n/g, '<br>')
-            resetAuthorImage(author.image);
-            let linkedAuthors = getLinkedAuthors(author);
-            let linkedPoems = findPoemsByAuthors(linkedAuthors);
-            displayLinkedPoems(linkedPoems);
-        }
+    const renderResults = () => {
+      const filters = activeFilters();
+      const active = filters.query.trim() || filters.country || filters.genre || filters.maxMinutes;
+      results.replaceChildren();
+      count.textContent = "";
+      if (!active) return;
+      const matches = ReaderFeatures.filterItems(data.poems.map(poemViewModel), filters);
+      count.textContent = `${matches.length} coincidencia${matches.length === 1 ? "" : "s"}`;
+      matches.slice(0, 30).forEach(model => {
+          const suggestion = document.createElement("button");
+          suggestion.type = "button";
+          suggestion.className = "autocomplete-suggestion";
+          suggestion.textContent = `${model.title} — ${model.author} · ${model.country}`;
+          suggestion.addEventListener("click", () => {
+            input.value = model.title;
+            results.replaceChildren();
+            count.textContent = "";
+            loadPoem(model.id);
+          });
+          results.appendChild(suggestion);
+        });
     };
 
-    const loadData = async () => {
-        gData = await fetchJSON();
-        // Load initial poem
-        loadPoemData(specificPoemId);
-    };
-    const filterOptions = document.querySelectorAll('.dropdown-content span');
-    const filterButton = document.getElementById('filter-button');
-    let selectedFilter = 'story_name';
-
-    filterOptions.forEach(option => {
-        option.addEventListener('click', function () {
-            selectedFilter = this.dataset.filter;
-            const filterText = this.textContent;
-            filterButton.textContent = `Filtrar por ${filterText}`;
-            searchInput.placeholder = `Buscar por ${filterText}...`;
-        });
+    input.addEventListener("input", renderResults);
+    filterControls.forEach(control => control.addEventListener("change", renderResults));
+    document.getElementById("clear-filters").addEventListener("click", () => {
+      input.value = "";
+      filterControls.forEach(control => { control.value = ""; });
+      renderResults();
+      input.focus();
     });
+  }
 
-    function getLinkedAuthors(author) {
-        if (author && author.linked_authors) {
-            const authorsArray = author.linked_authors.split(',');
-            const shuffledAuthors = authorsArray.sort(() => 0.5 - Math.random());
-            if (authorsArray.length <= 3) {
-                return authorsArray;
-            }
-            return shuffledAuthors.slice(0, 3);
-        }
-        return [];
-    }
-    
-    function findPoemsByAuthors(authors) {
-        const poemsByAuthors = gData.poems.filter(poem => authors.includes(poem.author_name));
-        if (poemsByAuthors.length <= 3) {
-            return poemsByAuthors;
-        }
-        const shuffledPoems = poemsByAuthors.sort(() => 0.5 - Math.random());
-        return shuffledPoems.slice(0, 3);
-    }
-
-    function displayLinkedPoems(poems) {
-        const suggestedPoems = document.getElementById('suggested-author-poems');
-        poems.forEach(poem => {
-            const poemItem = document.createElement('div');
-            poemItem.classList.add('linked-poem');
-            poemItem.textContent = `${poem.author_name}: ${poem.story_name}`;
-            poemItem.href = "#"; // Add href to make it a link
-            poemItem.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevent default link behavior
-                // update image author info, poem and poem suggestions
-                updatePoemimagesuggestions(poem)
-            });
-            suggestedPoems.appendChild(poemItem);
-        });
-    }
-
-    function updatePoemimagesuggestions(poem) {
-        loadPoemData(poem.id);
-        let author = gData.authors.find(author => author.author_uuid === poem.author_uuid);
-        resetAuthorImage(author.image);
-        let linkedAuthors = getLinkedAuthors(author);
-        let linkedPoems = findPoemsByAuthors(linkedAuthors);
-        displayLinkedPoems(linkedPoems);
-    }
-    
-
-
-    searchInput.addEventListener('input', function () {
-        const query = this.value.toLowerCase();
-        autocompleteContainer.innerHTML = '';
-        if (query.length === 0) return;
-
-        const suggestions = gData.poems.filter(poem =>
-            (poem[selectedFilter] && poem[selectedFilter].toString().toLowerCase().includes(query))
-        );
-
-        suggestions.forEach(poem => {
-            const suggestionItem = document.createElement('div');
-            suggestionItem.classList.add('autocomplete-suggestion');
-            const filterValue = poem[selectedFilter] || '';
-            if (selectedFilter === 'story_name') {
-                suggestionText = `${poem.story_name}, ${poem.author_name}`;
-            } else if (selectedFilter === 'author_name') {
-                suggestionText = `${poem.story_name} (${poem.author_name})`;
-            } else if (selectedFilter === 'country') {
-                suggestionText = `${poem.story_name}, ${poem.author_name} (${poem.country})`;
-            } else if (selectedFilter === 'birth_year') {
-                suggestionText = `${poem.story_name}, ${poem.author_name} (${poem.birth_year})`;
-            } else {
-                const filterValue = poem[selectedFilter] || '';
-                suggestionText = `${poem.story_name}, (${poem.author_name})`;
-            }
-            suggestionItem.textContent = suggestionText;
-            suggestionItem.addEventListener('click', () => {
-                searchInput.value = poem.story_name;
-                autocompleteContainer.innerHTML = '';
-                loadPoemData(poem.id);
-                let author = gData.authors.find(author => author.author_uuid === poem.author_uuid);
-                resetAuthorImage(author.image);
-                let linkedAuthors = getLinkedAuthors(author);
-                let linkedPoems = findPoemsByAuthors(linkedAuthors);
-                displayLinkedPoems(linkedPoems);
-            });
-            autocompleteContainer.appendChild(suggestionItem);
-        });
+  function setupControls() {
+    ReaderFeatures.applyPreferences();
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      const current = ReaderFeatures.getPreferences().theme;
+      ReaderFeatures.setTheme(current === "dark" ? "light" : "dark");
     });
+    document.getElementById("font-decrease").addEventListener("click", () => ReaderFeatures.changeFontSize(-2));
+    document.getElementById("font-increase").addEventListener("click", () => ReaderFeatures.changeFontSize(2));
+    document.getElementById("bookmark-toggle").addEventListener("click", () => {
+      if (!currentPoem) return;
+      ReaderFeatures.toggleBookmark("poem", currentPoem);
+      updateBookmarkButton();
+      renderLibrary();
+    });
+    document.getElementById("share-button").addEventListener("click", () => {
+      if (currentPoem) ReaderFeatures.shareCurrent(currentPoem.title).catch(console.error);
+    });
+    document.getElementById("surprise-button").addEventListener("click", () => {
+      const item = ReaderFeatures.randomItem(
+        data.poems.map(poemViewModel),
+        activeFilters(),
+        currentPoem?.id
+      );
+      if (item) loadPoem(item.id);
+      else ReaderFeatures.toast("No hay poemas con esos filtros");
+    });
+  }
 
-    loadData();
+  async function initialize() {
+    try {
+      [data, neighborIndex, poemMetadata, authorNeighborIndex] = await Promise.all([
+        fetchJSON("static/poems.json"),
+        fetchJSON("static/poemEmbeddingNeighbors.json"),
+        fetchJSON("static/poemReaderMetadata.json"),
+        fetchJSON("static/poemAuthorEmbeddingNeighbors.json")
+      ]);
+      poemCatalog = Object.fromEntries(data.poems.map(poem => [poem.id, poem]));
+      authorCatalog = Object.fromEntries(data.authors.map(author => [author.author_uuid, author]));
+      populateSelect("country-filter", data.poems.map(poem => poem.country), "País");
+      populateSelect("genre-filter", data.authors.map(author => author.genre), "Género");
+      setupSearch();
+      setupControls();
+      const requested = ReaderFeatures.getItemFromURL("poem");
+      const initialId = poemCatalog[requested] ? requested : "d313c7ec-a7c5-48be-878f-d5a89008ed78";
+      loadPoem(poemCatalog[initialId] ? initialId : data.poems[0].id, { scroll: false });
+    } catch (error) {
+      document.getElementById("poemText").textContent = "No fue posible iniciar el lector de poemas.";
+      console.error(error);
+    }
+  }
+
+  initialize();
 });
-// TODO Parent drawing in incognito takes about 492 tries, it loads the big Json first and takes too long

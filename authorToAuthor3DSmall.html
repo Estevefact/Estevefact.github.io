@@ -268,7 +268,11 @@
       z-index: 1;
     }
 
-    .dropdown-content span {
+    .dropdown-content button {
+      appearance: none;
+      border: 0;
+      width: 100%;
+      text-align: left;
       color: black;
       padding: 12px 16px;
       text-decoration: none;
@@ -276,11 +280,12 @@
       cursor: pointer;
     }
 
-    .dropdown-content span:hover {
+    .dropdown-content button:hover,
+    .dropdown-content button:focus {
       background-color: #ddd;
     }
 
-    .dropdown:hover .dropdown-content {
+    .dropdown-content:not([hidden]) {
       display: block;
     }
 
@@ -807,9 +812,10 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="site_chrome.css?v=2">
 </head>
 
-<body>
+<body class="author-map-page">
   <div id="appbar">
     <div id="title-1">
       Cuentos Autores
@@ -820,23 +826,16 @@
     <div class="center-section">
       <img src="static/Coem.png" alt="Logo" />
     </div>
-    <div class="dropdown-2 Stories-Authors-btn" id="dropdown-general">
-      <button class="dropbtn-general" id="Stories-Authors-btn"> Explorar Coem </button>
-      <div class="dropdown-content-2">
-        <span data-filter="stories-authors" onclick="window.location.href='/authorToAuthor3D.html'">Ver todos los
-          Autores
-        </span>
-        <span data-filter="stories-embeddings" onclick="window.location.href='/embeddings.html'"> Ver Embeddings de
-          Cuentos
-        </span>
-        <span data-filter="Poems" onclick="window.location.href='/poems-info.html'"> Explorar Poemas
-        </span>
-        <span data-filter="Autores" onclick="window.location.href='/stories-info.html'"> Explorar
-          cuentos
-        </span>
-      </div>
-      </button>
-    </div>
+    <details class="site-menu">
+      <summary>Menú principal</summary>
+      <nav aria-label="Menú principal">
+        <a href="index.html">Inicio</a>
+        <a href="stories-info.html">Cuentos</a>
+        <a href="poems-info.html">Poemas</a>
+        <a href="authorToAuthor3D.html">Todos los autores</a>
+        <a href="embeddings.html">Embeddings</a>
+      </nav>
+    </details>
   </div>
 
   <div id="container">
@@ -846,18 +845,20 @@
   <div id="popup">
     <div id="search-container">
       <div class="dropdown">
-        <button class="dropbtn" id="filter-button"> Filtrar por Nombre</button>
-        <div class="dropdown-content">
-          <span data-filter="id">Nombre</span>
-          <span data-filter="country">País</span>
-          <span data-filter="birth_year">Año de nacimiento</span>
-          <span data-filter="death_year">Año de muerte</span>
-          <span data-filter="genre">Género</span>
+        <button class="dropbtn" id="filter-button" type="button" aria-haspopup="menu"
+          aria-controls="author-filter-menu" aria-expanded="false">Filtrar por Nombre</button>
+        <div class="dropdown-content" id="author-filter-menu" role="menu" hidden>
+          <button type="button" role="menuitemradio" aria-checked="true" data-filter="id">Nombre</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-filter="country">País</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-filter="birth_year">Año de nacimiento</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-filter="death_year">Año de muerte</button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-filter="genre">Género</button>
         </div>
       </div>
-      <input type="text" id="author-search" placeholder="Buscar a un Autor...">
+      <input type="text" id="author-search" placeholder="Buscar a un Autor..." role="combobox"
+        aria-autocomplete="list" aria-controls="autocomplete-container" aria-expanded="false">
       <i id="search-icon" class="fas fa-search"></i>
-      <div id="autocomplete-container"></div>
+      <div id="autocomplete-container" role="listbox" aria-label="Autores encontrados"></div>
     </div>
     <div id="author-info-container">></div>
     <button id="follow-author-btn">Seguir Autor</button>
@@ -881,6 +882,8 @@
     </form>
   </div>
   <iframe src="author_info_smaller.html" id="iframeA" style="display:none;"></iframe>
+  <script src="author_similarity.js"></script>
+  <script src="map_controls.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="static/particleDraw.js"></script>
 
@@ -910,6 +913,7 @@
         container.style.width = "100%";
         container.style.marginLeft = "0";
       }
+      requestAnimationFrame(resizeGraphToContainer);
     }
     async function updateAudioSource(audio) {
       let audioUrl = `/static/${audio}`;
@@ -1075,51 +1079,36 @@
     };
 
 
+    let authorEmbeddingIndex = {};
+    let storyEmbeddingIndex = {};
+
     function updateTopAuthors(node, gData) {
       const topAuthorsList = document.getElementById('top-authors-list');
       topAuthorsList.innerHTML = '';
-
-      let neighbors;
-
-      if (node.neighbors && Array.isArray(node.neighbors) && node.neighbors.length > 0) {
-        neighbors = node.neighbors.map(neighbor => ({
-          ...neighbor,
-          linkCount: neighbor.links.length
-        }));
-      } else {
-        console.error("Node neighbors are not defined or not an array. Adding a random neighbor.");
-        const randomNode = gData.nodes[Math.floor(Math.random() * gData.nodes.length)];
-        neighbors = [randomNode];
-      };
-
-      const topAuthors = neighbors.sort((a, b) => b.linkCount - a.linkCount);
-      // const topAuthors = neighbors; // By sorting we never get to smaller authors
-
-      // Leave uniques
-      const uniqueAuthors = [];
-      topAuthors.forEach(author => {
-        if (!uniqueAuthors.find(a => a.id === author.id)) {
-          uniqueAuthors.push(author);
-        }
-      });
-
-      // Take top 5
-      const topFiveAuthors = uniqueAuthors.slice(0, 5);
-
-      topFiveAuthors.forEach(author => {
+      const authorsById = new Map(gData.nodes.map(author => [author.id, author]));
+      const recommendations = AuthorSimilarity.neighborsFor(
+        node.id, authorEmbeddingIndex, authorsById, 5
+      );
+      if (!recommendations.length) {
+        const item = document.createElement('li');
+        item.textContent = 'No hay suficientes cuentos con embeddings para calcular similitud.';
+        topAuthorsList.appendChild(item);
+      }
+      recommendations.forEach(recommendation => {
+        const relatedAuthor = recommendation.author;
         const listItem = document.createElement('li');
-        const listLink = document.createElement('a'); // Correctly create the 'a' element
-        listLink.textContent = `${author.id}`;
-        listLink.href = "#"; // Add href to make it a link
+        const listLink = document.createElement('a');
+        listLink.textContent = AuthorSimilarity.recommendationLabel(recommendation, relatedAuthor);
+        listLink.href = "#";
         listLink.addEventListener('click', (event) => {
-          event.preventDefault(); // Prevent default link behavior
-          setAuthor(author);
-          updateStories(author);
-          updateTopStories(author, gData);
+          event.preventDefault();
+          setAuthor(relatedAuthor);
+          updateStories(relatedAuthor);
+          updateTopStories(relatedAuthor, gData);
         });
-        listItem.appendChild(listLink); // Append the link to the list item
-        listLink.classList.add('top-authors-list');// Append the link to the list item
-        topAuthorsList.appendChild(listItem); // Append the list item to the list
+        listItem.appendChild(listLink);
+        listLink.classList.add('top-authors-list');
+        topAuthorsList.appendChild(listItem);
       });
     }
 
@@ -1127,86 +1116,40 @@
       const topStoriesList = document.getElementById('top-stories-list');
       topStoriesList.innerHTML = '';
 
-      let neighbors;
-
-      if (node.neighbors && Array.isArray(node.neighbors) && node.neighbors.length > 0) {
-        neighbors = node.neighbors.map(neighbor => ({
-          ...neighbor,
-          linkCount: neighbor.links.length
-        }));
-      } else {
-        console.error("Node neighbors are not defined or not an array. Adding a random neighbor.");
-        const randomNode = gData.nodes[Math.floor(Math.random() * gData.nodes.length)];
-        neighbors = [randomNode];
-      }
-
-      const topAuthors = neighbors.sort((a, b) => b.linkCount - a.linkCount);
-
-      // Leave uniques
-      const uniqueAuthors = [];
-      topAuthors.forEach(author => {
-        if (!uniqueAuthors.find(a => a.id === author.id)) {
-          uniqueAuthors.push(author);
-        }
-      });
-
-      const stories = [];
-
-      // Select 5 stories from linked authors or any 5 at random if none
-      if (uniqueAuthors.length > 0) {
-        uniqueAuthors.forEach(author => {
-          const storyIds = Object.keys(author.stories);
-          const randomStoryId = storyIds[Math.floor(Math.random() * storyIds.length)];
-          const story = {
-            id: randomStoryId,
-            title: author.stories[randomStoryId],
-            authorId: author.id,
-            authornew: author
-          };
-          stories.push(story);
+      const storyCatalog = new Map();
+      gData.nodes.forEach(storyAuthor => {
+        Object.entries(storyAuthor.stories || {}).forEach(([id, title]) => {
+          storyCatalog.set(id, { id, title, authornew: storyAuthor });
         });
-      }
-      else {
-        const authorsTotal = gData.nodes.map(node => node.id);
-        const randomAuthorId = authorsTotal[Math.floor(Math.random() * authorsTotal.length)];
-        const newAuthor = gData.nodes.find(node => node.id === randomAuthorId);
-        const storyIdsU = Object.keys(newAuthor.stories)
-        const storyU = {
-          id: storyIdsU,
-          title: newAuthor.stories[storyIdsU],
-          authorId: newAuthor.id,
-          authornew: author
-        };
-        stories.push(storyU);
-      }
-
-      if (stories.length == 0) {
-        const authorsTotal = gData.nodes.map(node => node.id);
-        const randomAuthorId = authorsTotal[Math.floor(Math.random() * authorsTotal.length)];
-        const newAuthor = gData.nodes.find(node => node.id === randomAuthorId);
-        const storyIdsU = Object.keys(newAuthor.stories)
-        const storyU = {
-          id: storyIdsU,
-          title: newAuthor.stories[storyIdsU],
-          authorId: newAuthor.id,
-          authornew: author
-        };
-        stories.push(storyU);
+      });
+      const seen = new Set(Object.keys(node.stories || {}));
+      const stories = Object.keys(node.stories || {}).flatMap(storyId =>
+        (storyEmbeddingIndex[storyId] || []).map(entry => ({
+          ...storyCatalog.get(entry.id),
+          similarity: entry.similarity
+        }))
+      ).filter(story => story.id && !seen.has(story.id) && seen.add(story.id))
+        .sort((a, b) => Number(b.similarity) - Number(a.similarity))
+        .slice(0, 5);
+      if (!stories.length) {
+        const item = document.createElement('li');
+        item.textContent = 'No hay cuentos similares disponibles.';
+        topStoriesList.appendChild(item);
       }
 
       stories.forEach(story => {
         const listItem = document.createElement('li');
-        const listLink = document.createElement('a'); // Correctly create the 'a' element
-        listLink.textContent = `${story.title}`;
-        listLink.href = "#"; // Add href to make it a link
+        const listLink = document.createElement('a');
+        listLink.textContent = `${story.title} · ${AuthorSimilarity.storyMetricLabel(story)}`;
+        listLink.href = "#";
         listLink.addEventListener('click', (event) => {
-          event.preventDefault(); // Prevent default link behavior
+          event.preventDefault();
           updateTopStories(story.authornew, gData);
           update_authorrest(story.authornew, story);
         });
-        listItem.appendChild(listLink); // Append the link to the list item
-        listLink.classList.add('top-stories-list');// Append the link to the list item
-        topStoriesList.appendChild(listItem); // Append the list item to the list
+        listItem.appendChild(listLink);
+        listLink.classList.add('top-stories-list');
+        topStoriesList.appendChild(listItem);
       });
     }
 
@@ -1215,18 +1158,19 @@
     const highlightNodes = new Set();
     const highlightLinks = new Set();
     let graph = null; // Will be set Graph later
+    function resizeGraphToContainer() {
+      if (!graph) return;
+      const container = document.getElementById("container");
+      graph.width(container.clientWidth).height(container.clientHeight);
+    }
     function highlightNodeAndLinks(node) {
       highlightNodes.clear();
       highlightLinks.clear();
       if (node) {
         highlightNodes.add(node);
-        if (node.neighbors && Array.isArray(node.neighbors) && node.neighbors.length > 0) {
-          node.neighbors.forEach(neighbor => highlightNodes.add(neighbor));
-          node.links.forEach(link => highlightLinks.add(link));
-          updateHighlight();
-        } else {
-          console.error("Node neighbors not found");
-        }
+        (node.neighbors || []).forEach(neighbor => highlightNodes.add(neighbor));
+        (node.links || []).forEach(link => highlightLinks.add(link));
+        updateHighlight();
       }
       author = node;
     }
@@ -1264,7 +1208,14 @@
 
     let gData;
 
-    fetchJSON().then((gData) => {
+    Promise.all([
+      fetchJSON(),
+      fetch("static/authorEmbeddingNeighbors.json").then(response => response.json()),
+      fetch("static/storyEmbeddingNeighbors.json").then(response => response.json())
+    ]).then(([loadedGraph, loadedAuthorIndex, loadedStoryIndex]) => {
+      gData = loadedGraph;
+      authorEmbeddingIndex = loadedAuthorIndex;
+      storyEmbeddingIndex = loadedStoryIndex;
       // cross-link node objects
       gData.links.forEach((link) => {
         const a = gData.nodes.find(node => node.id === link.source);
@@ -1304,9 +1255,10 @@
         });
 
       graph = Graph;
-      const authorsTotal = gData.nodes.map(node => node.id);
-      const randomAuthorId = authorsTotal[Math.floor(Math.random() * authorsTotal.length)];
-      setAuthor(gData.nodes.find(node => node.id === randomAuthorId));
+      resizeGraphToContainer();
+      window.addEventListener("resize", resizeGraphToContainer);
+      const initialAuthor = gData.nodes.find(node => authorEmbeddingIndex[node.id]) || gData.nodes[0];
+      setAuthor(initialAuthor);
       updateTopAuthors(author, gData);
       updateStories(author);
       updateTopStories(author, gData);
@@ -1340,54 +1292,16 @@
 
       // Add click event listener to the button
       changeAuthorBtn.addEventListener('click', followAuthor);
-      // Implementing the search bar with autosuggest
-      const searchInput = document.getElementById('author-search');
-      const autocompleteContainer = document.getElementById('autocomplete-container');
-      const filterOptions = document.querySelectorAll('.dropdown-content span');
-      const filterButton = document.getElementById('filter-button');
-      let selectedFilter = 'id';
-
-      filterOptions.forEach(option => {
-        option.addEventListener('click', function () {
-          selectedFilter = this.dataset.filter;
-          const filterText = this.textContent;
-          filterButton.textContent = `Filtrar por ${filterText}`;
-          searchInput.placeholder = `Buscar por ${selectedFilter.replace('_', ' ')}...`;
-        });
-      });
-
-      searchInput.addEventListener('input', function () {
-        const query = this.value.toLowerCase();
-        autocompleteContainer.innerHTML = '';
-        if (query.length === 0) return;
-
-        const suggestions = gData.nodes.filter(node =>
-          (node[selectedFilter] && node[selectedFilter].toString().toLowerCase().includes(query))
-        );
-
-        suggestions.forEach(node => {
-          const suggestionItem = document.createElement('div');
-          suggestionItem.classList.add('autocomplete-suggestion');
-          const filterValue = node[selectedFilter] || '';
-          if (selectedFilter === 'id') {
-            suggestionText = `${node.id}`;
-          } else {
-            const filterValue = node[selectedFilter] || '';
-            suggestionText = `${node.id} (${filterValue})`;
-          }
-          suggestionItem.textContent = suggestionText;
-          suggestionItem.addEventListener('click', () => {
-            searchInput.value = node.id;
-            autocompleteContainer.innerHTML = '';
-            author = node;
-            loadAuthorInfo(node);
-            highlightNodeAndLinks(node);
-            followAuthor();
-            updateStories(node);
-            updateTopStories(node, gData);
-          });
-          autocompleteContainer.appendChild(suggestionItem);
-        });
+      MapControls.setup({
+        nodes: gData.nodes,
+        onSelect(node) {
+          author = node;
+          loadAuthorInfo(node);
+          highlightNodeAndLinks(node);
+          followAuthor();
+          updateStories(node);
+          updateTopStories(node, gData);
+        }
       });
     });
 

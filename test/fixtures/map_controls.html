@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<body>
+  <div class="dropdown">
+    <button id="filter-button" type="button" aria-haspopup="menu"
+      aria-controls="author-filter-menu" aria-expanded="false">Filtrar por Nombre</button>
+    <div class="dropdown-content" id="author-filter-menu" role="menu" hidden>
+      <button type="button" role="menuitemradio" aria-checked="true" data-filter="id">Nombre</button>
+      <button type="button" role="menuitemradio" aria-checked="false" data-filter="country">País</button>
+      <button type="button" role="menuitemradio" aria-checked="false" data-filter="genre">Género</button>
+    </div>
+  </div>
+  <input id="author-search" role="combobox" aria-controls="autocomplete-container"
+    aria-expanded="false" placeholder="Buscar a un Autor...">
+  <div id="autocomplete-container" role="listbox"></div>
+  <output id="selected-author"></output>
+  <output id="semantic-recommendations"></output>
+  <script src="../../author_similarity.js"></script>
+  <script src="../../map_controls.js"></script>
+  <script>
+    const nodes = [
+      { id: "Jorge Luis Borges", country: "Argentina", genre: "Ficción", birth_year: 1899, neighbors: [] },
+      { id: "Gabriel García Márquez", country: "Colombia", genre: "Realismo mágico", birth_year: 1927, neighbors: [] }
+    ];
+    const semanticIndex = {
+      "Gabriel García Márquez": [
+        { id: "Jorge Luis Borges", similarity: 0.79 }
+      ]
+    };
+    MapControls.setup({
+      nodes,
+      onSelect(node) {
+        document.getElementById("selected-author").value = node.id;
+        const matches = AuthorSimilarity.neighborsFor(
+          node.id, semanticIndex, new Map(nodes.map(author => [author.id, author]))
+        );
+        document.getElementById("semantic-recommendations").value =
+          matches.map(match => AuthorSimilarity.recommendationLabel(match, match.author)).join(", ");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -854,70 +854,86 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="site_chrome.css?v=1">
+    <link rel="stylesheet" href="reader_ui.css?v=13">
 </head>
 
 <body>
-    <div id="appbar">
-        <div id="title-1">
-            Cuentos
-        </div>
+    <header id="appbar">
+        <strong id="title-1">Cuentos</strong>
         <div class="center-section">
-            <img src="static/Coem.png" alt="Logo" />
+            <a href="index.html" aria-label="Inicio de Coem"><img src="static/Coem.png" alt="Logo" /></a>
         </div>
-        <div class="dropdown-2 Stories-Authors-btn" id="dropdown-general">
-            <button class="dropbtn-general" id="Stories-Authors-btn"> Explorar Coem </button>
-            <div class="dropdown-content-2">
-                <span data-filter="stories-authors" onclick="window.location.href='/authorToAuthor3DSmall.html'">Ver
-                    Mapa de Autores
-                </span>
-                <span data-filter="stories-embeddings" onclick="window.location.href='/embeddings.html'"> Ver Embeddings
-                    de Cuentos y Poemas
-                </span>
-                <span data-filter="Autores" onclick="window.location.href='/poems-info.html'">
-                    Explorar Poemas
-                </span>
-            </div>
-            </button>
-        </div>
-    </div>
+        <details class="site-menu">
+            <summary>Menú principal</summary>
+            <nav aria-label="Menú principal">
+                <a href="index.html">Inicio</a>
+                <a href="stories-info.html">Cuentos</a>
+                <a href="poems-info.html">Poemas</a>
+                <a href="authorToAuthor3DSmall.html">Mapa de autores</a>
+                <a href="embeddings.html">Embeddings</a>
+            </nav>
+        </details>
+    </header>
     <div id="container-stories">
-        <div class="flex-item info-item" id="search-container">
-            <div class="dropdown">
-                <button class="dropbtn" id="filter-button"> Filtrar por Título</button>
-                <div class="dropdown-content">
-                    <span data-filter="id">Título</span>
-                    <span data-filter="author_name">Autor</span>
-                    <span data-filter="country">País</span>
-                    <span data-filter="birth_year">Año de nacimiento</span>
-                </div>
+        <div class="reader-sr-only" id="reader-status" role="status" aria-live="polite"></div>
+        <section class="reader-discovery" aria-labelledby="discovery-title">
+            <h2 id="discovery-title">Buscar y descubrir cuentos</h2>
+            <p>Escribe cualquier título, autor, país, género o año. Combina los filtros si quieres afinar los resultados.</p>
+            <div id="search-container">
+                <label class="reader-search-field" for="author-search"><span>Buscar en todo</span>
+                    <input type="search" id="author-search" placeholder="Ej. Borges, Colombia, realismo, 1920…" autocomplete="off">
+                </label>
+                <output id="search-result-count" aria-live="polite"></output>
+                <div id="autocomplete-container" class="autocomplete-container"></div>
             </div>
-            <input type="text" id="author-search" placeholder="Buscar por título...">
-            <div id="autocomplete-container" class="autocomplete-container"></div>
-        </div>
+            <div class="reader-filter-row" aria-label="Filtros combinables para cuentos">
+                <label>País<select class="reader-select" id="country-filter"><option value="">Todos</option></select></label>
+                <label>Género<select class="reader-select" id="genre-filter"><option value="">Todos</option></select></label>
+                <label>Duración máxima<select class="reader-select" id="time-filter">
+                    <option value="">Cualquiera</option><option value="2">2 minutos</option><option value="5">5 minutos</option><option value="8">8 minutos</option>
+                </select></label>
+                <button class="reader-button reader-button--secondary" id="clear-filters" type="button">Limpiar filtros</button>
+            </div>
+        </section>
+        <nav class="reader-toolbar" aria-label="Herramientas de lectura">
+            <button class="reader-button" id="theme-toggle" type="button">Cambiar tema</button>
+            <button class="reader-button" id="font-decrease" type="button" aria-label="Reducir texto">Texto −</button>
+            <button class="reader-button" id="font-increase" type="button" aria-label="Aumentar texto">Texto +</button>
+            <button class="reader-button" id="bookmark-toggle" type="button" aria-pressed="false">☆ Guardar</button>
+            <button class="reader-button" id="share-button" type="button">Compartir</button>
+            <button class="reader-button" id="surprise-button" type="button">Sorpréndeme</button>
+        </nav>
         <div class="flex-item info-item" id="author-info-container">></div>
         <div id="container-cuento">
-            <div class="flex-item info-item">Tiempo de lectura: <span id="cuentoTime">Loading cuentos...</span></div>
-            <div class="flex-item info-item">Título cuento: <span id="cuentoTitle">Loading cuentos...</span></div>
+            <h1 class="reader-heading" id="cuentoTitle">Cargando cuento…</h1>
+            <div class="reader-meta">Tiempo de lectura: <span id="cuentoTime">…</span></div>
             <div class="flex-item info-text" id="cuentoText"></div>
-            <div id="stories-authors-container">
+            <section class="reader-section" id="stories-authors-container">
                 <h3>Cuentos</h3>
-                <ul id="stories-list"></ul>
-            </div>
-            <div class="info-item"id="top-authors-container">
+                <ul class="compact-list" id="stories-list"></ul>
+            </section>
+            <section class="reader-section" id="top-authors-container">
                 <h3>Autores relacionados</h3>
-                <ul id="top-authors-list"></ul>
-            </div>
-            <div id="stories-suggested">
-                <h3>Cuentos relacionados</h3>
-
-                <ul id="top-stories-list"></ul>
-            </div>
+                <p class="reader-section-note" id="related-authors-note"></p>
+                <ul class="compact-list" id="top-authors-list"></ul>
+            </section>
+            <section class="reader-section" id="stories-suggested">
+                <h2>Cuentos cercanos en el mapa semántico</h2>
+                <div class="recommendation-grid" id="top-stories-list"></div>
+            </section>
+            <section class="reader-library" aria-label="Tu biblioteca">
+                <details><summary>Guardados</summary><div class="reader-library-list" id="bookmarks-list"></div></details>
+                <details><summary>Leídos recientemente</summary><div class="reader-library-list" id="history-list"></div></details>
+            </section>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.0/p5.js"></script>
-    <script src="static/particleDrawStories.js"></script>
-    <script src="stories_script.js"></script>
-    <iframe src="author_info_smaller_stories.html" id="iframeA" style="display:none;"></iframe>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.0/p5.min.js"></script>
+    <script src="static/particleDrawStories.js?v=12"></script>
+    <script src="reader_features.js?v=10"></script>
+    <script src="stories_core.js?v=10"></script>
+    <script src="author_similarity.js?v=1"></script>
+    <script src="stories_script.js?v=11"></script>
 </body>
 
 </html>

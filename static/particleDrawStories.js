@@ -1,138 +1,131 @@
-let particles = []; // Array of particles
-let img; // Image to load
+let coemPortraitSketch = null;
+let coemAnimationRun = 0;
+const COEM_PORTRAIT_TIMING = Object.freeze({
+  drawingDuration: 4200,
+  revealDuration: 1400
+});
 
-let drawingArea = {
-  minX: 0,
-  maxX: 500,
-  minY: 0,
-  maxY: 500,
-};
-
-let scaleX = 0.5;
-let scaleY = 0.5;
-let autor = "";
-let t = 1;
-let revealT = 240;
-let maxParticleSpeed = 0.5;
-let authorURL = "preview.png";
-
-function preload() {
-  img = loadImage(`static/imgs/${authorURL}`);
+function renderPortraitFallback(container, providedURL) {
+  container.replaceChildren();
+  container.dataset.animationPhase = "fallback";
+  const image = document.createElement("img");
+  image.src = `static/imgs/${encodeURIComponent(providedURL || "Sagan.png")}`;
+  image.alt = "Retrato del autor";
+  image.addEventListener("error", () => { image.src = "preview.png"; }, { once: true });
+  container.appendChild(image);
 }
 
+/**
+ * Restart the p5 portrait reveal. A fresh instance is created for every selected
+ * story, which makes the transition deterministic and prevents orphan canvases.
+ */
 function resetAuthorImage(providedURL) {
-  authorURL = providedURL;
-  preload();
-  setup();
-}
-
-function createNParticles(n) {
-  for (let i = 0; i < n; i++) {
-    particles.push(
-      new Particle(
-        random(drawingArea.minX, drawingArea.maxX),
-        random(drawingArea.minY, drawingArea.maxY)
-      )
-    );
+  const container = document.getElementById("drawing");
+  if (!container) return;
+  container.dataset.animationRun = String(++coemAnimationRun);
+  if (coemPortraitSketch) {
+    coemPortraitSketch.remove();
+    coemPortraitSketch = null;
   }
-}
+  container.replaceChildren();
 
-function tryCreateCanvasWithRetry() {
-  // Check for the parent element
-  let parentElement = document.getElementById('drawing');
-  if (parentElement) {
-    // If the parent element exists, create the canvas and attach it
-    let canvas = createCanvas(250, 250);
-    canvas.parent('drawing'); // Attach the canvas to the parent element
-  } else {
-    // If the parent element does not exist, log a message and retry after 100 ms
-    console.info('Parent element #drawing not found. Retrying in 100 ms...');
-    setTimeout(tryCreateCanvasWithRetry, 100); // Retry after 100 ms
+  if (typeof window.p5 !== "function") {
+    renderPortraitFallback(container, providedURL);
+    return;
   }
-}
 
-function setup() {
-  tryCreateCanvasWithRetry();
-  img.loadPixels();
-  particles = [];
-  t = 0;
-  scaleX = width / img.width;
-  scaleY = height / img.height;
-  // Initialize particles
-  createNParticles(200);
+  coemPortraitSketch = new window.p5(p => {
+    let portrait;
+    let failed = false;
+    let particles = [];
+    let startedAt = 0;
+    const size = 250;
+    const maxParticles = 1000;
+    const particleSpeed = .5;
+    const { drawingDuration, revealDuration } = COEM_PORTRAIT_TIMING;
 
-  background(255);
-
-  // Display the real image on the left
-  // image(img, 0, 0, width, height);
-}
-
-function draw() {
-  t += 1;
-
-  if (t < revealT) {
-    for (let particle of particles) {
-      particle.update();
-      particle.show();
+    function createParticles(amount) {
+      for (let index = 0; index < amount; index += 1) {
+        const angle = p.random(p.TWO_PI);
+        particles.push({
+          position: p.createVector(p.random(size), p.random(size)),
+          velocity: p.createVector(p.cos(angle), p.sin(angle)).setMag(particleSpeed)
+        });
+      }
     }
 
-    if (particles.length < 1000) {
-      // Add new particles to the simulation
-      createNParticles(200);
-    }
-  } else {
-    tint(255, (t - revealT));
-    image(img, 0, 0, width, height);
-  }
+    p.preload = () => {
+      portrait = p.loadImage(
+        `static/imgs/${encodeURIComponent(providedURL || "Sagan.png")}`,
+        undefined,
+        () => { failed = true; }
+      );
+    };
 
-  scaleX = width / img.width;
-  scaleY = height / img.height;
+    p.setup = () => {
+      const canvas = p.createCanvas(size, size);
+      canvas.parent(container);
+      p.pixelDensity(1);
+      p.frameRate(60);
+      const dark = document.documentElement.dataset.theme === "dark";
+      const background = dark ? [36, 48, 52] : [238, 231, 218];
+      p.background(...background);
+      if (failed || !portrait || !portrait.width) {
+        p.remove();
+        coemPortraitSketch = null;
+        renderPortraitFallback(container, providedURL);
+        return;
+      }
+      portrait.resize(size, size);
+      portrait.loadPixels();
+      createParticles(200);
+      startedAt = p.millis();
+      container.dataset.animationPhase = "drawing";
+    };
+
+    p.draw = () => {
+      if (!portrait || failed || !portrait.pixels.length) return;
+      const elapsed = p.millis() - startedAt;
+      if (elapsed <= drawingDuration) {
+        particles.forEach(particle => {
+          particle.position.add(particle.velocity);
+          particle.velocity.rotate(p.random(-p.PI / 5, p.PI / 5));
+          particle.velocity.setMag(particleSpeed);
+          particle.position.x = (particle.position.x + size) % size;
+          particle.position.y = (particle.position.y + size) % size;
+          const pixel = 4 * (
+            Math.floor(particle.position.y) * size +
+            Math.floor(particle.position.x)
+          );
+          p.stroke(
+            portrait.pixels[pixel],
+            portrait.pixels[pixel + 1],
+            portrait.pixels[pixel + 2],
+            220
+          );
+          p.strokeWeight(1);
+          p.point(particle.position.x, particle.position.y);
+        });
+        if (particles.length < maxParticles) {
+          createParticles(Math.min(200, maxParticles - particles.length));
+        }
+      } else {
+        container.dataset.animationPhase = "revealing";
+        const alpha = Math.min(255, ((elapsed - drawingDuration) / revealDuration) * 255);
+        p.tint(255, alpha);
+        p.image(portrait, 0, 0, size, size);
+      }
+
+      if (elapsed > drawingDuration + revealDuration) {
+        p.tint(255);
+        p.image(portrait, 0, 0, size, size);
+        container.dataset.animationPhase = "complete";
+        p.noLoop();
+      }
+    };
+  });
 }
 
-// Particle class
-class Particle {
-  constructor(x, y) {
-    this.pos = createVector(x, y);
-    this.vel = p5.Vector.random2D();
-    this.maxSpeed = maxParticleSpeed;
-    this.vel.setMag(this.maxSpeed);
-  }
-
-  update() {
-    this.pos.add(this.vel);
-
-    const randAngle = -PI / 5;
-    this.vel.rotate(random(-randAngle, randAngle));
-
-    if (this.vel.mag() > this.maxSpeed) {
-      this.vel.setMag(this.maxSpeed);
-    }
-
-    // Wrap arount the bounds of the drawing area (500-1000,0-500)
-    if (this.pos.x > drawingArea.maxX) {
-      this.pos.x = drawingArea.minX;
-    } else if (this.pos.x < drawingArea.minX) {
-      this.pos.x = drawingArea.maxX;
-    }
-    if (this.pos.y > drawingArea.maxY) {
-      this.pos.y = drawingArea.minY;
-    } else if (this.pos.y < drawingArea.minY) {
-      this.pos.y = drawingArea.maxY;
-    }
-  }
-
-  show() {
-    // Get the color of the pixel at the current position of the particle
-    let col = this.getColor();
-    stroke(col);
-    strokeWeight(1);
-    point(this.pos.x, this.pos.y);
-  }
-
-  getColor() {
-    return img.get(
-      floor(this.pos.x - drawingArea.minX) / scaleX,
-      floor(this.pos.y) / scaleY
-    );
-  }
+if (typeof module === "object" && module.exports) {
+  module.exports = { COEM_PORTRAIT_TIMING };
 }
