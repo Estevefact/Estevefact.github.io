@@ -27,7 +27,10 @@ def main():
     author_vectors = defaultdict(list)
     mapped_rows = 0
     for part in range(1, 5):
-        with (ROOT / f"tensors_generator/poems_metadata_{part}.tsv").open(newline="") as handle:
+        metadata_path = (
+            ROOT / f"tensors_generator/poems_metadata_{part}.tsv"
+        )
+        with metadata_path.open(newline="") as handle:
             metadata = list(csv.DictReader(handle, delimiter="\t"))
         tensors = np.loadtxt(
             ROOT / f"tensors_generator/poems_tensors_{part}.tsv",
@@ -47,7 +50,10 @@ def main():
             metadata_author = normalize(row["Nombre Completo Autor"])
             matching = [
                 poem for poem in candidates
-                if all(piece in metadata_author for piece in normalize(poem["author_name"]).split())
+                if all(
+                    piece in metadata_author
+                    for piece in normalize(poem["author_name"]).split()
+                )
             ]
             poem = (matching or candidates)[0]
             if poem["author_uuid"] not in authors_by_uuid:
@@ -71,16 +77,26 @@ def main():
         neighbors[source_id] = [
             {
                 "id": author_ids[target_position],
-                "similarity": round(float(similarities[source_position, target_position]), 4),
+                "similarity": round(
+                    float(similarities[source_position, target_position]),
+                    4,
+                ),
                 "sourcePoems": len(author_vectors[source_id]),
-                "targetPoems": len(author_vectors[author_ids[target_position]]),
+                "targetPoems": len(
+                    author_vectors[author_ids[target_position]]
+                ),
             }
             for target_position in nearest
             if target_position != source_position
         ][:5]
 
     output = ROOT / "static/poemAuthorEmbeddingNeighbors.json"
-    output.write_text(json.dumps(neighbors, ensure_ascii=False, separators=(",", ":")) + "\n")
+    serialized = json.dumps(
+        neighbors,
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
+    output.write_text(serialized + "\n")
     print(
         f"Wrote poem-only neighbors for {len(neighbors)} authors "
         f"from {mapped_rows} poem vectors"

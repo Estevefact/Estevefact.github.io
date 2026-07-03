@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the small catalog needed before reader discovery indexes hydrate."""
+"""Generate small catalogs used before discovery indexes hydrate."""
 
 import json
 import random
@@ -9,21 +9,34 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    graph = json.loads((ROOT / "static/authorLinksSmallerAllStories.json").read_text())
+    graph_path = ROOT / "static/authorLinksSmallerAllStories.json"
+    graph = json.loads(graph_path.read_text())
     keep = (
         "id", "country", "birth_year", "death_year", "genre",
         "image", "story_name", "story_id", "stories",
     )
     catalog = {
         "nodes": [
-            {key: author.get(key) for key in keep if author.get(key) is not None}
+            {
+                key: author.get(key)
+                for key in keep
+                if author.get(key) is not None
+            }
             for author in graph["nodes"]
             if author.get("stories")
         ]
     }
     output = ROOT / "static/storyReaderCatalog.json"
-    output.write_text(json.dumps(catalog, ensure_ascii=False, separators=(",", ":")) + "\n")
-    print(f"Wrote {len(catalog['nodes'])} story authors to {output.relative_to(ROOT)}")
+    serialized = json.dumps(
+        catalog,
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
+    output.write_text(serialized + "\n")
+    print(
+        f"Wrote {len(catalog['nodes'])} story authors "
+        f"to {output.relative_to(ROOT)}"
+    )
 
     poem_data = json.loads((ROOT / "static/poems.json").read_text())
     poems_by_author = {}
@@ -39,7 +52,9 @@ def main():
     ]
     random.Random(20260703).shuffle(eligible_authors)
     selected_authors = eligible_authors[:384]
-    selected_author_ids = {author["author_uuid"] for author in selected_authors}
+    selected_author_ids = {
+        author["author_uuid"] for author in selected_authors
+    }
     poem_keep = (
         "id", "author_uuid", "story_name", "reading_time",
         "author_name", "country", "birth_year",
@@ -50,7 +65,10 @@ def main():
     )
     poem_pool = {
         "poems": [
-            {key: poems_by_author[author["author_uuid"]][0].get(key) for key in poem_keep}
+            {
+                key: poems_by_author[author["author_uuid"]][0].get(key)
+                for key in poem_keep
+            }
             for author in selected_authors
         ],
         "authors": [
@@ -60,8 +78,16 @@ def main():
         ],
     }
     poem_output = ROOT / "static/poemStartupPool.json"
-    poem_output.write_text(json.dumps(poem_pool, ensure_ascii=False, separators=(",", ":")) + "\n")
-    print(f"Wrote {len(poem_pool['poems'])} startup poems to {poem_output.relative_to(ROOT)}")
+    poem_serialized = json.dumps(
+        poem_pool,
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
+    poem_output.write_text(poem_serialized + "\n")
+    print(
+        f"Wrote {len(poem_pool['poems'])} startup poems "
+        f"to {poem_output.relative_to(ROOT)}"
+    )
 
 
 if __name__ == "__main__":
