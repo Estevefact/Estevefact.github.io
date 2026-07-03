@@ -4,6 +4,29 @@ const COEM_PORTRAIT_TIMING = Object.freeze({
   drawingDuration: 4200,
   revealDuration: 1400
 });
+let coemP5Promise = null;
+
+function loadCoemPortraitAnimator(onReady) {
+  if (typeof window === "undefined") return Promise.resolve(false);
+  if (typeof window.p5 === "function") {
+    onReady?.();
+    return Promise.resolve(true);
+  }
+  if (!coemP5Promise) {
+    coemP5Promise = new Promise(resolve => {
+      const script = document.createElement("script");
+      script.src = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.0/p5.min.js";
+      script.async = true;
+      script.addEventListener("load", () => resolve(typeof window.p5 === "function"), { once: true });
+      script.addEventListener("error", () => resolve(false), { once: true });
+      document.head.appendChild(script);
+    });
+  }
+  return coemP5Promise.then(loaded => {
+    if (loaded) onReady?.();
+    return loaded;
+  });
+}
 
 function renderPortraitFallback(container, providedURL) {
   container.replaceChildren();
@@ -127,5 +150,5 @@ function resetAuthorImage(providedURL) {
 }
 
 if (typeof module === "object" && module.exports) {
-  module.exports = { COEM_PORTRAIT_TIMING };
+  module.exports = { COEM_PORTRAIT_TIMING, loadCoemPortraitAnimator };
 }

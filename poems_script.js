@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const FALLBACK_POEM_ID = "d313c7ec-a7c5-48be-878f-d5a89008ed78";
   let data = { poems: [], authors: [] };
   let poemCatalog = {};
   let authorCatalog = {};
@@ -274,23 +275,80 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function setDiscoveryReady(ready) {
+    [
+      "author-search", "country-filter", "genre-filter", "time-filter",
+      "clear-filters", "surprise-button"
+    ].forEach(id => {
+      const control = document.getElementById(id);
+      if (control) control.disabled = !ready;
+    });
+  }
+
+  function hydrateCatalog(fullData) {
+    data = fullData;
+    poemCatalog = Object.fromEntries(data.poems.map(poem => [poem.id, poem]));
+    authorCatalog = Object.fromEntries(data.authors.map(author => [author.author_uuid, author]));
+  }
+
+  function refreshCurrentPoemFeatures() {
+    if (!currentPoem) return;
+    const poem = poemCatalog[currentPoem.id];
+    const author = poem && authorCatalog[poem.author_uuid];
+    if (!poem || !author) return;
+    renderMoreByAuthor(poem);
+    renderRelatedAuthors(author);
+    renderRecommendations(poem.id);
+  }
+
+  async function hydrateDiscoveryFeatures(fullDataPromise) {
+    const [fullData, loadedNeighbors, loadedMetadata, loadedAuthorNeighbors] = await Promise.all([
+      fullDataPromise,
+      fetchJSON("static/poemEmbeddingNeighbors.json"),
+      fetchJSON("static/poemReaderMetadata.json"),
+      fetchJSON("static/poemAuthorEmbeddingNeighbors.json")
+    ]);
+    hydrateCatalog(fullData);
+    neighborIndex = loadedNeighbors;
+    poemMetadata = loadedMetadata;
+    authorNeighborIndex = loadedAuthorNeighbors;
+    populateSelect("country-filter", data.poems.map(poem => poem.country), "País");
+    populateSelect("genre-filter", data.authors.map(author => author.genre), "Género");
+    setupSearch();
+    setDiscoveryReady(true);
+    refreshCurrentPoemFeatures();
+  }
+
   async function initialize() {
     try {
-      [data, neighborIndex, poemMetadata, authorNeighborIndex] = await Promise.all([
-        fetchJSON("static/poems.json"),
-        fetchJSON("static/poemEmbeddingNeighbors.json"),
-        fetchJSON("static/poemReaderMetadata.json"),
-        fetchJSON("static/poemAuthorEmbeddingNeighbors.json")
-      ]);
-      poemCatalog = Object.fromEntries(data.poems.map(poem => [poem.id, poem]));
-      authorCatalog = Object.fromEntries(data.authors.map(author => [author.author_uuid, author]));
-      populateSelect("country-filter", data.poems.map(poem => poem.country), "País");
-      populateSelect("genre-filter", data.authors.map(author => author.genre), "Género");
-      setupSearch();
       setupControls();
+      setDiscoveryReady(false);
       const requested = ReaderFeatures.getItemFromURL("poem");
-      const initialId = poemCatalog[requested] ? requested : "d313c7ec-a7c5-48be-878f-d5a89008ed78";
-      loadPoem(poemCatalog[initialId] ? initialId : data.poems[0].id, { scroll: false });
+      let fullDataPromise;
+
+      if (!requested) {
+        const startupPool = await fetchJSON("static/poemStartupPool.json");
+        hydrateCatalog(startupPool);
+        const initialId = StoriesCore.chooseInitialStoryId(null, poemCatalog);
+        if (initialId) await loadPoem(initialId, { scroll: false });
+        fullDataPromise = fetchJSON("static/poems.json");
+      } else {
+        fullDataPromise = fetchJSON("static/poems.json");
+        const fullData = await fullDataPromise;
+        hydrateCatalog(fullData);
+        const initialId = poemCatalog[requested] ? requested : FALLBACK_POEM_ID;
+        await loadPoem(initialId, { scroll: false });
+      }
+      loadCoemPortraitAnimator(() => {
+        const poem = currentPoem && poemCatalog[currentPoem.id];
+        const author = poem && authorCatalog[poem.author_uuid];
+        if (author) resetAuthorImage(author.image);
+      });
+
+      hydrateDiscoveryFeatures(fullDataPromise).catch(error => {
+        setDiscoveryReady(true);
+        console.error("No fue posible completar las funciones de descubrimiento:", error);
+      });
     } catch (error) {
       document.getElementById("poemText").textContent = "No fue posible iniciar el lector de poemas.";
       console.error(error);

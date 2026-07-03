@@ -14,10 +14,15 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    graph = json.loads((ROOT / "static/authorLinksSmallerAllStories.json").read_text())
-    graph_authors = {normalize(node["id"]): node["id"] for node in graph["nodes"]}
+    graph_path = ROOT / "static/authorLinksSmallerAllStories.json"
+    graph = json.loads(graph_path.read_text())
+    graph_authors = {
+        normalize(node["id"]): node["id"]
+        for node in graph["nodes"]
+    }
 
-    with (ROOT / "tensors_generator/stories_metadata.tsv").open(newline="") as handle:
+    metadata_path = ROOT / "tensors_generator/stories_metadata.tsv"
+    with metadata_path.open(newline="") as handle:
         metadata = list(csv.DictReader(handle, delimiter="\t"))
     tensors = np.loadtxt(
         ROOT / "tensors_generator/stories_tensors.tsv",
@@ -58,7 +63,9 @@ def main():
             if source_position == target_position:
                 continue
             target_author = authors[target_position]
-            pairwise = (clusters[source_author] @ clusters[target_author].T).reshape(-1)
+            pairwise = (
+                clusters[source_author] @ clusters[target_author].T
+            ).reshape(-1)
             neighbors.append(
                 {
                     "id": target_author,
@@ -73,8 +80,16 @@ def main():
         result[source_author] = neighbors
 
     output = ROOT / "static/authorEmbeddingNeighbors.json"
-    output.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")) + "\n")
-    print(f"Wrote embedding neighbors for {len(result)} authors to {output.relative_to(ROOT)}")
+    serialized = json.dumps(
+        result,
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
+    output.write_text(serialized + "\n")
+    print(
+        f"Wrote embedding neighbors for {len(result)} authors "
+        f"to {output.relative_to(ROOT)}"
+    )
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build exact cosine neighbors for the poem reader from projector embeddings."""
+"""Build exact poem neighbors from projector embeddings."""
 
 import csv
 import json
@@ -37,7 +37,10 @@ def main():
     used = set()
     row_number = 0
     for part in range(1, 5):
-        with (ROOT / f"tensors_generator/poems_metadata_{part}.tsv").open(newline="") as handle:
+        metadata_path = (
+            ROOT / f"tensors_generator/poems_metadata_{part}.tsv"
+        )
+        with metadata_path.open(newline="") as handle:
             metadata = list(csv.DictReader(handle, delimiter="\t"))
         tensor = np.loadtxt(
             ROOT / f"tensors_generator/poems_tensors_{part}.tsv",
@@ -56,7 +59,12 @@ def main():
                 metadata_author = normalize(row["Nombre Completo Autor"])
                 author_matches = [
                     poem for poem in candidates
-                    if all(piece in metadata_author for piece in normalize(poem["author_name"]).split())
+                    if all(
+                        piece in metadata_author
+                        for piece in normalize(
+                            poem["author_name"]
+                        ).split()
+                    )
                 ]
                 poem_id = (author_matches or candidates)[0]["id"]
                 row_to_poem[row_number] = poem_id
@@ -73,16 +81,23 @@ def main():
     neighbors = {}
     candidate_count = min(8, len(mapped_rows))
 
-    # Batched multiplication keeps memory bounded while retaining exact cosine KNN.
+    # Batching keeps memory bounded while retaining exact cosine KNN.
     for start in range(0, len(mapped_rows), 64):
         similarities = mapped_tensor[start:start + 64] @ mapped_tensor.T
-        positions = np.argpartition(similarities, -candidate_count, axis=1)[:, -candidate_count:]
+        positions = np.argpartition(
+            similarities,
+            -candidate_count,
+            axis=1,
+        )[:, -candidate_count:]
         for offset, candidates in enumerate(positions):
             scores = similarities[offset]
             source_id = row_to_poem[int(mapped_rows[start + offset])]
             ordered = candidates[np.argsort(scores[candidates])[::-1]]
             neighbors[source_id] = [
-                {"id": row_to_poem[int(mapped_rows[position])], "similarity": round(float(scores[position]), 4)}
+                {
+                    "id": row_to_poem[int(mapped_rows[position])],
+                    "similarity": round(float(scores[position]), 4),
+                }
                 for position in ordered
                 if row_to_poem[int(mapped_rows[position])] != source_id
             ][:5]
@@ -97,11 +112,15 @@ def main():
         consensus = []
         for sibling_id in poems_by_author[poem["author_uuid"]]:
             for neighbor in neighbors[sibling_id]:
-                if neighbor["id"] != poem["id"] and neighbor["id"] not in [entry["id"] for entry in consensus]:
+                existing_ids = [entry["id"] for entry in consensus]
+                if (
+                    neighbor["id"] != poem["id"]
+                    and neighbor["id"] not in existing_ids
+                ):
                     consensus.append(dict(neighbor))
             if len(consensus) >= 5:
                 break
-        # Extremely rare authors without a tensor row get a deterministic global fallback.
+        # Rare authors without a tensor row get a global fallback.
         if not consensus:
             for candidate_id in sorted(neighbors):
                 if candidate_id != poem["id"]:
@@ -111,12 +130,23 @@ def main():
         neighbors[poem["id"]] = consensus[:5]
 
     (ROOT / "static/poemEmbeddingNeighbors.json").write_text(
-        json.dumps(neighbors, ensure_ascii=False, separators=(",", ":")) + "\n"
+        json.dumps(
+            neighbors,
+            ensure_ascii=False,
+            separators=(",", ":"),
+        )
     )
     (ROOT / "static/poemReaderMetadata.json").write_text(
-        json.dumps(poem_metadata, ensure_ascii=False, separators=(",", ":")) + "\n"
+        json.dumps(
+            poem_metadata,
+            ensure_ascii=False,
+            separators=(",", ":"),
+        )
     )
-    print(f"Wrote neighbors for {len(neighbors)} poems ({len(mapped_rows)} exact embedding rows)")
+    print(
+        f"Wrote neighbors for {len(neighbors)} poems "
+        f"({len(mapped_rows)} exact embedding rows)"
+    )
 
 
 if __name__ == "__main__":

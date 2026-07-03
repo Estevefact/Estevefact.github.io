@@ -36,6 +36,31 @@ Los guardados, el historial y las preferencias se almacenan únicamente en `loca
 Al abrir el lector de cuentos sin un parámetro `?story=`, se elige un cuento
 aleatorio nuevo. Un enlace directo válido conserva siempre el cuento solicitado.
 
+## Inicio rápido de los lectores
+
+El primer texto y la información del autor tienen prioridad sobre las funciones
+secundarias:
+
+- Los poemas arrancan desde `static/poemStartupPool.json`: un conjunto compacto
+  de 384 autores y poemas que pesa unos 160 KB. Cada visita elige uno al azar y
+  solicita inmediatamente su pequeño archivo de texto.
+- El catálogo completo de poemas (8,5 MB), los vecinos de poemas (7,9 MB) y sus
+  índices auxiliares se descargan sólo después de mostrar el poema y el autor.
+- Los cuentos usan `static/storyReaderCatalog.json`, un catálogo de inicio de
+  unos 220 KB en lugar del grafo completo de 416 KB.
+- Los índices semánticos de cuentos, sus metadatos y autores relacionados también
+  se hidratan después de mostrar el cuento.
+- p5 ya no bloquea el lector desde una CDN: primero aparece el retrato normal y,
+  cuando la librería termina de cargar en segundo plano, comienza la animación de
+  dibujo.
+- Búsqueda, filtros y «Sorpréndeme» se habilitan al terminar esa hidratación para
+  evitar resultados parciales. Tema, tipografía, guardados y lectura permanecen
+  disponibles desde el primer render.
+
+Esta separación mantiene todas las funciones, pero reduce el camino crítico del
+poema de unos 18,5 MB a unos 160 KB más el texto elegido. El cuento necesita unos
+220 KB más su texto, por lo que ambos lectores arrancan con cargas comparables.
+
 ## Datos y modelos
 
 El catálogo contiene aproximadamente 3.000 cuentos y 22.800 poemas breves. Las obras fueron recopiladas y anotadas a partir de fuentes literarias en español y metadatos de Wikipedia.
@@ -115,6 +140,7 @@ python3 tools/generate_nearest_stories.py
 python3 tools/generate_nearest_poems.py
 python3 tools/generate_author_embedding_neighbors.py
 python3 tools/generate_poem_author_embedding_neighbors.py
+python3 tools/generate_reader_startup_data.py
 ```
 
 Los archivos fuente viven en `tensors_generator/`. Los cuatro shards de poemas existen porque GitHub limita el tamaño de los archivos publicados.
