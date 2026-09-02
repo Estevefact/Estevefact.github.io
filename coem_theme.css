@@ -1,0 +1,548 @@
+@import url("https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&display=swap");
+
+:root {
+  --coem-ink: #181713;
+  --coem-paper: #f1eee5;
+  --coem-paper-deep: #dfd8c9;
+  --coem-red: #a4382b;
+  --coem-green: #536153;
+  --coem-line: rgba(24, 23, 19, .24);
+  --coem-serif: "Cormorant Garamond", "Iowan Old Style", Baskerville, Georgia, serif;
+  --coem-script: "Allura", "Segoe Script", cursive;
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea,
+summary {
+  font-family: var(--coem-serif) !important;
+  letter-spacing: 0;
+}
+
+body:not(.author-map-page) {
+  background: linear-gradient(rgba(24, 23, 19, .035) 1px, transparent 1px), var(--coem-paper) !important;
+  background-size: 100% 28px !important;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--coem-red) !important;
+  outline-offset: 3px;
+}
+
+#appbar {
+  min-height: 64px !important;
+  height: 64px !important;
+  padding-inline: clamp(16px, 3vw, 42px) !important;
+  color: var(--coem-paper) !important;
+  background: var(--coem-ink) !important;
+  border-bottom: 1px solid rgba(241, 238, 229, .3) !important;
+  box-shadow: none !important;
+}
+
+#appbar strong,
+#appbar #title-1,
+#appbar .logo {
+  color: var(--coem-paper) !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+}
+
+#appbar .center-section img {
+  width: 62px !important;
+  max-width: 62px !important;
+  filter: none;
+}
+
+.site-menu summary {
+  min-height: 42px !important;
+  padding: 0 2px 2px !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(241, 238, 229, .7) !important;
+  border-radius: 0 !important;
+  color: var(--coem-paper) !important;
+  background: transparent !important;
+  font-size: 14px;
+  font-weight: 500 !important;
+}
+
+.site-menu summary::after {
+  color: #e5a18e;
+}
+
+.site-menu nav {
+  padding: 8px 0 !important;
+  border: 1px solid var(--coem-ink) !important;
+  border-radius: 0 !important;
+  color: var(--coem-ink);
+  background: var(--coem-paper) !important;
+  box-shadow: 12px 14px 0 rgba(24, 23, 19, .13) !important;
+}
+
+.site-menu nav a {
+  position: relative;
+  padding: 11px 16px 12px !important;
+  border-radius: 0 !important;
+  color: var(--coem-ink) !important;
+  background: transparent !important;
+  font-family: var(--coem-script) !important;
+  font-size: 1.45rem;
+  font-weight: 400 !important;
+}
+
+.site-menu nav a::after,
+.author-map-page #stories-list a::after,
+.author-map-page #top-authors-list a::after,
+.author-map-page #top-stories-list a::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  bottom: 8px;
+  left: 16px;
+  height: 1px;
+  background: var(--coem-red);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 240ms ease;
+}
+
+.site-menu nav a:hover,
+.site-menu nav a:focus-visible {
+  color: var(--coem-red) !important;
+}
+
+.site-menu nav a:hover::after,
+.site-menu nav a:focus-visible::after,
+.author-map-page #stories-list a:hover::after,
+.author-map-page #top-authors-list a:hover::after,
+.author-map-page #top-stories-list a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Readers */
+:root {
+  --reader-bg: var(--coem-paper) !important;
+  --reader-surface: rgba(248, 245, 237, .9) !important;
+  --reader-surface-2: var(--coem-paper-deep) !important;
+  --reader-text: var(--coem-ink) !important;
+  --reader-muted: #686158 !important;
+  --reader-accent: var(--coem-red) !important;
+  --reader-accent-2: #d9a394 !important;
+  --reader-action: var(--coem-ink) !important;
+  --reader-action-hover: var(--coem-red) !important;
+  --reader-action-text: var(--coem-paper) !important;
+  --reader-border: var(--coem-line) !important;
+  --reader-shadow: none !important;
+}
+
+:root[data-theme="dark"] {
+  --reader-bg: #181713 !important;
+  --reader-surface: #181713 !important;
+  --reader-surface-2: #181713 !important;
+  --reader-text: #f1eee5 !important;
+  --reader-muted: #b9b1a4 !important;
+  --reader-accent: #e5a18e !important;
+  --reader-action: #f1eee5 !important;
+  --reader-action-hover: #e5a18e !important;
+  --reader-action-text: #181713 !important;
+  --reader-border: rgba(241, 238, 229, .25) !important;
+}
+
+:root[data-theme="dark"] body:not(.author-map-page) {
+  color: var(--reader-text) !important;
+  background: linear-gradient(rgba(241, 238, 229, .045) 1px, transparent 1px), var(--reader-bg) !important;
+  background-size: 100% 28px !important;
+}
+
+:root[data-theme="dark"] .site-menu nav {
+  border-color: var(--reader-text) !important;
+  color: var(--reader-text) !important;
+  background: var(--reader-surface) !important;
+  box-shadow: 12px 14px 0 rgba(0, 0, 0, .34) !important;
+}
+
+:root[data-theme="dark"] .site-menu nav a {
+  color: var(--reader-text) !important;
+}
+
+:root[data-theme="dark"] #container-stories,
+:root[data-theme="dark"] #container-poems,
+:root[data-theme="dark"] #container-cuento,
+:root[data-theme="dark"] #container-poem,
+:root[data-theme="dark"] .reader-toolbar,
+:root[data-theme="dark"] .reader-library {
+  color: var(--reader-text) !important;
+  background: transparent !important;
+}
+
+:root[data-theme="dark"] .reader-discovery,
+:root[data-theme="dark"] #author-info-container,
+:root[data-theme="dark"] #content,
+:root[data-theme="dark"] .reader-panel,
+:root[data-theme="dark"] .reader-section,
+:root[data-theme="dark"] .reader-library details,
+:root[data-theme="dark"] .autocomplete-container,
+:root[data-theme="dark"] .autocomplete-suggestion {
+  color: var(--reader-text) !important;
+  background: var(--reader-surface) !important;
+}
+
+:root[data-theme="dark"] .reader-discovery {
+  border-top-color: var(--reader-text) !important;
+}
+
+:root[data-theme="dark"] #author-search,
+:root[data-theme="dark"] .reader-filter-row .reader-select,
+:root[data-theme="dark"] .reader-button,
+:root[data-theme="dark"] .compact-list button,
+:root[data-theme="dark"] .recommendation-card {
+  color: var(--reader-text) !important;
+}
+
+:root[data-theme="dark"] #author-search::placeholder {
+  color: var(--reader-muted) !important;
+  opacity: 1;
+}
+
+:root[data-theme="dark"] .reader-button:hover,
+:root[data-theme="dark"] .reader-button:focus-visible,
+:root[data-theme="dark"] .reader-button[aria-pressed="true"] {
+  color: var(--reader-action-text) !important;
+  background: var(--reader-action) !important;
+}
+
+:root[data-theme="dark"] #surprise-button {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  border-color: var(--reader-accent) !important;
+  color: var(--reader-text) !important;
+  background: var(--reader-bg) !important;
+}
+
+:root[data-theme="dark"] #surprise-button:hover,
+:root[data-theme="dark"] #surprise-button:focus-visible {
+  color: var(--reader-action-text) !important;
+  background: var(--reader-accent) !important;
+}
+
+#container-stories,
+#container-poems {
+  padding-top: 92px !important;
+}
+
+.reader-discovery,
+#author-info-container,
+#content,
+.reader-panel,
+#cuentoText,
+#poemText,
+.reader-section,
+.recommendation-card,
+.reader-library details {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.reader-discovery {
+  border: 1px solid var(--reader-border) !important;
+  border-top: 2px solid var(--coem-ink) !important;
+}
+
+.reader-discovery h2,
+.reader-section h2,
+.reader-section h3 {
+  font-weight: 500;
+}
+
+.reader-discovery h2 {
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 1;
+}
+
+#author-search,
+.reader-filter-row .reader-select,
+.reader-button,
+.reader-select,
+.compact-list button {
+  border-radius: 0 !important;
+}
+
+#author-search,
+.reader-filter-row .reader-select {
+  background: transparent !important;
+  border-width: 0 0 1px !important;
+  border-color: var(--reader-text) !important;
+}
+
+.reader-button {
+  border: 1px solid var(--reader-text) !important;
+  color: var(--reader-text) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-weight: 500 !important;
+}
+
+.reader-button:hover,
+.reader-button:focus-visible,
+.reader-button[aria-pressed="true"] {
+  color: var(--reader-bg) !important;
+  background: var(--reader-text) !important;
+  transform: none !important;
+}
+
+#surprise-button {
+  border-color: var(--coem-red) !important;
+  color: var(--coem-red) !important;
+  font-family: var(--coem-script) !important;
+  font-size: 1.45rem !important;
+}
+
+#surprise-button:hover,
+#surprise-button:focus-visible {
+  color: var(--coem-paper) !important;
+  background: var(--coem-red) !important;
+}
+
+.reader-heading {
+  font-size: clamp(3rem, 7vw, 6rem) !important;
+  font-weight: 400;
+  line-height: .9 !important;
+}
+
+#cuentoText,
+#poemText {
+  border-width: 1px 0 !important;
+  background: rgba(248, 245, 237, .72) !important;
+}
+
+:root[data-theme="dark"] #cuentoText,
+:root[data-theme="dark"] #poemText {
+  background: var(--reader-bg) !important;
+}
+
+.recommendation-card {
+  border-width: 1px 0 0 !important;
+  background: transparent !important;
+}
+
+.recommendation-card__score {
+  border-radius: 0 !important;
+}
+
+.compact-list button {
+  display: inline-flex;
+  min-height: 44px;
+  max-width: 100%;
+  align-items: center;
+  border: 0 !important;
+  border-bottom: 1px solid var(--reader-border) !important;
+  color: var(--reader-text) !important;
+  background: transparent !important;
+  font-family: var(--coem-serif) !important;
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  text-align: left;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  touch-action: manipulation;
+}
+
+.reader-section-note {
+  color: var(--reader-text) !important;
+  font-size: 1rem !important;
+  line-height: 1.5;
+  opacity: .78;
+}
+
+.compact-list button:hover,
+.compact-list button:focus-visible,
+.compact-list button[aria-current="true"] {
+  color: var(--reader-bg) !important;
+  background: var(--reader-text) !important;
+}
+
+/* Author maps */
+.author-map-page {
+  color: var(--coem-ink);
+  background: #0f0f0d;
+}
+
+.author-map-page #container {
+  margin-top: 64px !important;
+  height: calc(100vh - 64px) !important;
+}
+
+.author-map-page #popup {
+  top: 64px !important;
+  height: calc(100% - 64px) !important;
+  padding: 28px !important;
+  border: 0 !important;
+  border-right: 1px solid var(--coem-ink) !important;
+  border-radius: 0 !important;
+  color: var(--coem-ink) !important;
+  background: linear-gradient(rgba(24, 23, 19, .035) 1px, transparent 1px), var(--coem-paper) !important;
+  background-size: 100% 28px !important;
+  box-shadow: none !important;
+}
+
+.author-map-page #toggle-popup-btn,
+.author-map-page #filter-button,
+.author-map-page #follow-author-btn {
+  min-height: 46px;
+  border: 1px solid currentColor !important;
+  border-radius: 0 !important;
+  color: var(--coem-paper) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-weight: 500;
+  transform: none !important;
+}
+
+.author-map-page #filter-button,
+.author-map-page #follow-author-btn {
+  color: var(--coem-ink) !important;
+}
+
+.author-map-page #follow-author-btn {
+  font-family: var(--coem-script) !important;
+  font-size: 1.4rem !important;
+}
+
+.author-map-page #toggle-popup-btn:hover,
+.author-map-page #filter-button:hover,
+.author-map-page #follow-author-btn:hover {
+  color: var(--coem-paper) !important;
+  background: var(--coem-red) !important;
+  border-color: var(--coem-red) !important;
+}
+
+.author-map-page #search-container {
+  display: grid !important;
+  grid-template-columns: 112px minmax(0, 1fr) 20px;
+  align-items: center !important;
+  width: 100%;
+  gap: 10px !important;
+}
+
+.author-map-page #search-container .dropdown {
+  width: 112px;
+}
+
+.author-map-page #filter-button {
+  width: 112px !important;
+  line-height: 1.1;
+}
+
+.author-map-page #author-search {
+  min-height: 44px;
+  border: 0 !important;
+  border-bottom: 1px solid var(--coem-ink) !important;
+  border-radius: 0 !important;
+  color: var(--coem-ink) !important;
+  background: transparent !important;
+}
+
+.author-map-page .dropdown-content,
+.author-map-page #autocomplete-container {
+  border: 1px solid var(--coem-ink) !important;
+  border-radius: 0 !important;
+  color: var(--coem-ink) !important;
+  background: var(--coem-paper) !important;
+  box-shadow: 8px 10px 0 rgba(24, 23, 19, .13) !important;
+}
+
+.author-map-page .dropdown-content button,
+.author-map-page .autocomplete-suggestion {
+  border: 0;
+  border-bottom: 1px solid var(--coem-line);
+  color: var(--coem-ink);
+  background: transparent;
+}
+
+.author-map-page .dropdown-content button:hover,
+.author-map-page .autocomplete-suggestion:hover,
+.author-map-page .autocomplete-suggestion:focus-visible {
+  color: var(--coem-paper);
+  background: var(--coem-ink);
+}
+
+.author-map-page #author-info-container {
+  width: 100% !important;
+  padding: 20px 0 !important;
+  border: 0 !important;
+  border-top: 1px solid var(--coem-line) !important;
+  border-bottom: 1px solid var(--coem-line) !important;
+  border-radius: 0 !important;
+  color: var(--coem-ink) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.author-map-page h3 {
+  margin-bottom: 8px;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+.author-map-page #stories-list a,
+.author-map-page #top-authors-list a,
+.author-map-page #top-stories-list a {
+  position: relative;
+  color: var(--coem-red) !important;
+  font-family: var(--coem-script) !important;
+  font-size: 1.25rem;
+  text-decoration: none !important;
+}
+
+@media (max-width: 680px) {
+  #appbar {
+    min-height: 60px !important;
+    height: 60px !important;
+  }
+
+  #container-stories,
+  #container-poems {
+    padding-top: 76px !important;
+  }
+
+  .author-map-page #container {
+    margin-top: 60px !important;
+    height: calc(100dvh - 60px) !important;
+  }
+
+  .author-map-page #popup {
+    top: 60px !important;
+    height: calc(100dvh - 60px) !important;
+    padding: 18px !important;
+  }
+
+  .author-map-page #search-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .author-map-page #search-container .dropdown,
+  .author-map-page #filter-button {
+    width: 100% !important;
+  }
+
+  .author-map-page #search-icon {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+  }
+}

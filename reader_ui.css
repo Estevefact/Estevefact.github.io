@@ -108,13 +108,15 @@ body {
   color: var(--reader-text);
   border: 1px solid var(--reader-border);
   box-shadow: var(--reader-shadow);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .reader-discovery .autocomplete-container {
   position: static !important;
   grid-column: 1 / -1;
-  max-height: 260px;
+  max-height: min(320px, 42vh);
 }
 
 .autocomplete-suggestion {
@@ -350,6 +352,14 @@ body {
 #poemText {
   white-space: pre-wrap;
   text-align: center !important;
+}
+
+.audio-phrase {
+  scroll-margin-block: 20vh;
+}
+
+.audio-phrase--active {
+  color: var(--reader-accent);
 }
 
 .reader-section {

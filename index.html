@@ -1,528 +1,135 @@
 <!DOCTYPE html>
 <html lang="es">
-<link rel="icon" type="image/png" href="static/favicon.png" />
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="visualización,poemas,cuentos,machine learning,javascript">
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Coem proyector de Cuentos, poemas y autores - Visualización de coemas">
-    <meta property="og:description" content="Visualice cuentos y poemas de autores clásicos.">
-    <meta property="og:url" content="https://estevefact.github.io/authorToAuthor3D.html">
-    <meta property="og:image"
-        content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
-
-    <meta name="twitter:card" value="summary_large_image">
-    <meta name="twitter:title" content="Coem proyector de Cuentos, poemas y autores - Visualización de coemas">
-    <meta name="twitter:description" content="Visualice cuentos y poemas de autores clásicos.">
-    <meta name="twitter:url" content="">
-    <meta name="twitter:image"
-        content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
-
-    <meta http-equiv="cache-control" content="max-age=0">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="expires" content="0">
-    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
-    <meta http-equiv="pragma" content="no-cache">
-
+    <meta name="keywords" content="visualización, poemas, cuentos, autores, literatura, machine learning">
+    <meta name="description" content="COEM: un archivo interactivo para leer cuentos y poemas clásicos y descubrir las relaciones entre sus autores.">
     <meta name="author" content="Esteban Velásquez y Agustín Vallejo">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="COEM — Archivo literario interactivo">
+    <meta property="og:description" content="Cuentos, poemas y relaciones literarias para leer, escuchar y explorar.">
+    <meta property="og:url" content="https://estevefact.github.io/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="COEM — Archivo literario interactivo">
+    <meta name="twitter:description" content="Cuentos, poemas y relaciones literarias para leer, escuchar y explorar.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
+    <link rel="icon" type="image/png" href="static/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <title>Coem</title>
-    <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: 'Allura', cursive;
-            background-color: #f4f4f4;
-        }
-
-        .allura-regular {
-            font-family: "Allura", cursive;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        #flex-container {
-            margin-top: 80px;
-            display: flex;
-            height: calc(100% - 80px);
-            /* Adjusting for the height of the appbar */
-            width: 100%;
-            height: 100%;
-            /* Ensure they take up full height */
-        }
-
-        #drawing,
-        #drawing2 {
-            display: flex;
-            flex: 1;
-        }
-
-        .image-container {
-            overflow: hidden;
-            width: 100%;
-            height: auto;
-            justify-content: center;
-            position: absolute;
-            top: 30%;
-        }
-
-        .animated-image {
-            width: 100%;
-            opacity: 0;
-            box-shadow: 10px 0px 30px rgba(0, 0, 0, 0.5);
-            animation: slideInFadeIn 3s forwards, shadowDisappear 3s forwards;
-        }
-
-        @keyframes slideInFadeIn {
-            0% {
-                opacity: 0;
-                clip-path: inset(0 100% 0 0);
-            }
-
-            100% {
-                opacity: 1;
-                clip-path: inset(0 0 0 0);
-            }
-        }
-
-        @keyframes shadowDisappear {
-            0% {
-                box-shadow: 10px 0px 30px rgba(0, 0, 0, 0.5);
-            }
-
-            100% {
-                box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-            }
-        }
-
-        .image-container-title {
-            position: absolute;
-            left: 45%;
-            top: 15%;
-            overflow: hidden;
-            width: auto;
-            height: auto;
-            justify-content: center;
-        }
-
-        .inverted-image {
-            width: 30%;
-            justify-content: center;
-            height: auto;
-            filter: invert(100%);
-        }
-
-
-        .container {
-            position: absolute;
-            left: 0%;
-            top: 35%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 50%;
-            height: 60%;
-        }
-
-        .container2 {
-            position: absolute;
-            left: 50%;
-            top: 35%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 50%;
-            height: 60%;
-        }
-
-        #reveal-button,
-        #reveal-button-poems {
-            position: absolute;
-            top: 70%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 3;
-            font-size: 21px;
-            cursor: pointer;
-            font-family: 'Allura', cursive;
-        }
-
-        #reveal-button-2 {
-            position: absolute;
-            top: 50%;
-            /* Center vertically */
-            left: 50%;
-            /* Center horizontally */
-            transform: translate(-50%, -50%);
-            /* Offset by 50% to center */
-            z-index: 3;
-            font-size: 21px;
-            cursor: pointer;
-            font-family: 'Allura', cursive;
-        }
-
-        #reveal-button-3 {
-            position: absolute;
-            top: 50%;
-            /* Center vertically */
-            left: 50%;
-            /* Center horizontally */
-            transform: translate(-50%, -50%);
-            /* Offset by 50% to center */
-            z-index: 3;
-            font-size: 21px;
-            cursor: pointer;
-            font-family: 'Allura', cursive;
-        }
-
-        #reveal-button-4,
-        #reveal-button-search {
-            position: absolute;
-            top: 50%;
-            /* Center vertically */
-            left: 50%;
-            /* Center horizontally */
-            transform: translate(-50%, -50%);
-            /* Offset by 50% to center */
-            z-index: 3;
-            font-size: 21px;
-            cursor: pointer;
-            font-family: 'Allura', cursive;
-        }
-
-        #background-image,
-        #background-image-poems {
-            position: absolute;
-            top: 30%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-            opacity: 0.5;
-            filter: blur(10px);
-            transition: opacity 0.5s, filter 0.5s;
-        }
-
-        #reveal-button:hover+#background-image,
-        #reveal-button-poems:hover+#background-image-poems {
-            opacity: 1;
-            filter: blur(0);
-        }
-
-        .container3 {
-            position: relative;
-            width: 100%;
-            z-index: 0;
-            height: auto;
-            text-align: center;
-        }
-
-        .container4 {
-            position: relative;
-            width: 100%;
-            z-index: 0;
-            height: auto;
-            text-align: center;
-        }
-
-        .container5 {
-            position: relative;
-            width: 100%;
-            z-index: 0;
-            height: auto;
-            text-align: center;
-        }
-
-        .img-coem {
-            width: 100%;
-            height: auto;
-            z-index: -999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #video {
-            width: 100%;
-            height: auto;
-            z-index: -999;
-        }
-
-        #video-2 {
-            width: 100%;
-            height: auto;
-            z-index: -999;
-        }
-
-        #video-3 {
-            width: 100%;
-            height: auto;
-            z-index: -999;
-        }
-
-        .main-container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            height: 100vh;
-            /* Full viewport height */
-            margin-bottom: 10%;
-            /* Add space between content and video */
-        }
-
-        #video::-webkit-media-controls-playback-rate-button,
-        #video-2::-webkit-media-controls-playback-rate-button,
-        #video-3::-webkit-media-controls-playback-rate-button {
-            display: none !important;
-        }
-
-        .social-icons {
-            text-align: center;
-            /* Center align text inside the container */
-            margin-top: 20px;
-            /* Add some margin to the top if needed */
-        }
-
-        .social-icons a {
-            margin: 0 10px;
-            /* Add space between icons */
-            font-size: 24px;
-            /* Adjust the size of the icons if needed */
-            color: #000;
-            /* Adjust the color of the icons if needed */
-            text-decoration: none;
-            /* Remove underline from links */
-        }
-
-        .social-icons a:hover {
-            color: #555;
-            /* Change color on hover if needed */
-        }
-
-        .redirect_to_spanish {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 18px;
-        }
-
-        .spanish-button {
-            color: black;
-            font-weight: bold;
-            position: relative;
-            cursor: pointer;
-            display: inline-block;
-            text-decoration: none;
-            background-color: transparent;
-        }
-
-        .spanish-button::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            /* Adjust position if needed */
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: black;
-            transition: width 0.3s ease;
-        }
-
-        .spanish-button:hover::after {
-            width: 100%;
-        }
-
-        @media screen and (max-width: 600px) {
-
-            #reveal-button,
-            #reveal-button-poems {
-                z-index: 3;
-                font-size: 16px;
-
-                font-family: 'Allura', cursive;
-            }
-
-            #reveal-button-2 {
-                top: 50%;
-                /* Center vertically */
-                left: 50%;
-                /* Center horizontally */
-                transform: translate(-50%, -50%);
-                /* Offset by 50% to center */
-                z-index: 3;
-                font-size: 16px;
-                cursor: pointer;
-                font-family: 'Allura', cursive;
-            }
-
-            #reveal-button-3 {
-                position: absolute;
-                top: 50%;
-                /* Center vertically */
-                left: 50%;
-                /* Center horizontally */
-                transform: translate(-50%, -50%);
-                /* Offset by 50% to center */
-                z-index: 3;
-                font-size: 16px;
-                cursor: pointer;
-                font-family: 'Allura', cursive;
-            }
-
-            #reveal-button-4,
-            #reveal-button-search {
-                position: absolute;
-                top: 50%;
-                /* Center vertically */
-                left: 50%;
-                /* Center horizontally */
-                transform: translate(-50%, -50%);
-                /* Offset by 50% to center */
-                z-index: 3;
-                font-size: 16px;
-                cursor: pointer;
-                font-family: 'Allura', cursive;
-            }
-
-            #reveal-button,
-            #reveal-button-poems,
-            #reveal-button-2,
-            #reveal-button-3,
-            #reveal-button-4,
-            #reveal-button-search {
-                min-width: 150px;
-                min-height: 48px;
-                padding: 9px 14px;
-                line-height: 1.2;
-            }
-
-            footer {
-                font-size: 8px;
-            }
-
-            body,
-            html {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                font-family: 'Allura', cursive;
-                background-color: #f4f4f4;
-            }
-
-            body,
-            html {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                font-family: 'Allura', cursive;
-                background-color: #f4f4f4;
-            }
-        }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="static/imgs/quiroga.png">
+    <link rel="stylesheet" href="index.css?v=5">
+    <title>COEM — Archivo literario interactivo</title>
 </head>
-
 <body>
-    <div class="main-container">
-        <div class="redirect_to_spanish">
-            <a href="https://projectcoem.github.io" class="spanish-button">English</a>
-        </div>
-        <div class="image-container-title">
-            <img src="static/Coem.png" alt="Inverted Image" class="inverted-image">
-        </div>
-        <div class="image-container">
-            <img src="coem_description.png" alt="Animated Image" class="animated-image">
-        </div>
+    <a class="skip-link" href="#archivo">Ir al archivo</a>
 
-        <div class="container">
-            <button id="reveal-button" onclick="window.location.href='/stories-info.html'">Explorar Cuentos
-                </button>
-            <img src="static/imgs/quiroga.png" alt="Background Image" id="background-image">
-        </div>
+    <header class="site-header" aria-label="Navegación principal">
+        <a class="wordmark" href="#inicio" aria-label="COEM, inicio">
+            <img src="Coem.png" alt="" width="572" height="288">
+        </a>
+        <nav class="header-nav" aria-label="Accesos">
+            <a href="#archivo">Explorar</a>
+            <a href="https://projectcoem.github.io">English</a>
+        </nav>
+    </header>
 
-        <div class="container2">
-            <button id="reveal-button-poems" onclick="window.location.href='/poems-info.html'">Explorar Poemas
-                Escritos</button>
-            <img src="static/imgs/Pizarnik.png" alt="Background Image" id="background-image-poems">
-        </div>
-    </div>
-    <div class=container3>
-        <button id="reveal-button-2" onclick="window.location.href='/authorToAuthor3DSmall.html'">Explorar Relaciones
-            Autores</button>
-        <img src="Authors_full.png" alt="img-coem" class="img-coem">
-    </div>
+    <main>
+        <section class="hero" id="inicio" aria-labelledby="hero-title">
+            <div class="portrait-field" aria-hidden="true" data-hero-portraits>
+                <figure class="hero-portrait hero-portrait--left" data-hero-portrait>
+                    <img src="static/imgs/Pizarnik.png" alt="" width="1024" height="1024">
+                    <figcaption>Alejandra Pizarnik</figcaption>
+                </figure>
+                <figure class="hero-portrait hero-portrait--center" data-hero-portrait>
+                    <img src="static/imgs/quiroga.png" alt="" width="1024" height="1024">
+                    <figcaption>Horacio Quiroga</figcaption>
+                </figure>
+                <figure class="hero-portrait hero-portrait--right" data-hero-portrait>
+                    <img src="static/imgs/Borges.png" alt="" width="1024" height="1024">
+                    <figcaption>Jorge Luis Borges</figcaption>
+                </figure>
+            </div>
+            <div class="hero-shade" aria-hidden="true"></div>
 
-    <div class=container4>
-        <button id="reveal-button-3" onclick="window.location.href='/embeddings.html'">Embeddings de cuentos y
-            poemas</button>
-        <img src="borges_embeddings.png" alt="img-coem" class="img-coem">
-    </div>
+            <div class="hero-content">
+                <p class="eyebrow">Archivo literario interactivo</p>
+                <h1 id="hero-title" class="hero-title">
+                    <img class="hero-title-logo" src="Coem.png" alt="" width="572" height="288">
+                    <span class="sr-only">Coem</span>
+                </h1>
+                <p class="hero-copy">Cuentos, poemas y autores clásicos reunidos en un mapa para leer y/o escuchar.</p>
+                <a class="ink-link ink-link--light" href="#archivo" data-write-link>Entrar al archivo</a>
+            </div>
 
-    <div class=container5>
-        <button id="reveal-button-4" onclick="window.location.href='/authorToAuthor3D.html'">Explorar
-            todos los autores</button>
-        <img src="authorsenglish.png" alt="img-coem" class="img-coem">
-    </div>
-
-    <div class="container5">
-        <button id="reveal-button-search" onclick="location.href='https://colab.research.google.com/drive/1z9y_NzBtdJrvlEC0siRCjEVZP7VuzMEX?usp=sharing';">Describe el cuento que buscas</button>
-        <img src="vector_symbols.png" alt="img-coem" class="img-coem">
-    </div>
-
-    <footer>
-        Disclaimer: Este es un pequeño proyecto hecho por una persona usando herramientas de software libre para navegar
-        la literatura clásica.
-        En caso de alguna queja o sugerencia enviar un correo a <a
-            href="mailto:theprojectcoem@gmail.com">theprojectcoem@gmail.com</a>
-        <div class="social-icons">
-            <br>
-            <a href="https://www.instagram.com/theprojectcoem/" target="_blank">
-                <i class="fab fa-instagram"></i>
+            <a class="scroll-note" href="#archivo">
+                <span>Seis formas de explorar</span>
+                <span aria-hidden="true">↓</span>
             </a>
-            <a href="https://www.youtube.com/channel/UCsA5OOXPr1bABWuZ_pWIB6g" target="_blank">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://open.spotify.com/show/0JNvCRIMQSHHGlur0kognQ" target="_blank">
-                <i class="fab fa-spotify"></i>
-            </a>
-            <a href="https://www.tiktok.com/@theprojectcoem?lang=es" target="_blank">
-                <i class="fab fa-tiktok"></i>
-            </a>
+        </section>
+
+        <section class="archive" id="archivo" aria-labelledby="archive-title">
+            <div class="archive-heading">
+                <div>
+                    <p class="section-number">01 / El archivo</p>
+                    <h2 id="archive-title">Elige una ruta por COEM</h2>
+                </div>
+                <p>Avanza con las flechas, desliza la imagen o elige directamente una ruta.</p>
+            </div>
+
+            <div class="explorer" data-explorer>
+                <div class="route-tabs" role="tablist" aria-label="Rutas de COEM"></div>
+
+                <article class="route-stage" id="route-panel" aria-labelledby="route-title">
+                    <figure class="route-portrait">
+                        <img id="route-image" src="static/imgs/quiroga.png" alt="Retrato de Horacio Quiroga" width="1024" height="1024">
+                        <figcaption id="route-author">Horacio Quiroga</figcaption>
+                    </figure>
+
+                    <div class="route-copy">
+                        <p class="route-count"><span id="route-current">01</span><span aria-hidden="true"> / </span><span class="sr-only">de</span><span>06</span></p>
+                        <p class="route-kicker" id="route-kicker">Lectura y escucha</p>
+                        <h3 id="route-title">Cuentos</h3>
+                        <p id="route-description">Busca entre miles de cuentos clásicos, filtra por país o género y escucha las narraciones disponibles.</p>
+                        <a class="ink-link" id="route-link" href="stories-info.html" data-write-link>Explorar cuentos</a>
+                    </div>
+
+                    <div class="route-controls" aria-label="Cambiar ruta">
+                        <button type="button" class="arrow-button" data-previous aria-label="Ruta anterior" title="Ruta anterior">←</button>
+                        <button type="button" class="arrow-button" data-next aria-label="Ruta siguiente" title="Ruta siguiente">→</button>
+                    </div>
+                    <p class="sr-only" id="route-announcement" aria-live="polite"></p>
+                </article>
+            </div>
+        </section>
+
+        <section class="colophon" aria-labelledby="colophon-title">
+            <p class="section-number">02 / Sobre COEM</p>
+            <div class="colophon-copy">
+                <h2 id="colophon-title" class="calligraphy-title" data-calligraphy>Esbozando el mapa de la literatura universal.</h2>
+                <p>Un proyecto independiente construido con software libre para navegar la literatura clásica en español y descubrir conexiones entre obras y autores.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="footer-mark" href="#inicio" aria-label="COEM, volver al inicio">
+            <img src="Coem.png" alt="" width="572" height="288">
+        </a>
+        <div class="footer-links" aria-label="Redes sociales">
+            <a href="https://www.instagram.com/theprojectcoem/" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="https://www.youtube.com/channel/UCsA5OOXPr1bABWuZ_pWIB6g" target="_blank" rel="noreferrer">YouTube</a>
+            <a href="https://open.spotify.com/show/0JNvCRIMQSHHGlur0kognQ" target="_blank" rel="noreferrer">Spotify</a>
+            <a href="mailto:theprojectcoem@gmail.com">Contacto</a>
         </div>
+        <form action="https://www.paypal.com/donate" method="post" target="_blank">
+            <input type="hidden" name="hosted_button_id" value="F43U7EFMW5N2A">
+            <button type="submit" class="footer-donate">Apoyar el proyecto</button>
+        </form>
     </footer>
 
-    <form id="donate" action="https://www.paypal.com/donate" method="post" target="_top">
-        <input type="hidden" name="hosted_button_id" value="F43U7EFMW5N2A" />
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit"
-            title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-        <img alt="" border="0" src="https://www.paypal.com/en_CO/i/scr/pixel.gif" width="1" height="1" />
-    </form>
-    <script src="landing.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="https://unpkg.com/p5.createloop@0.3.1/dist/p5.createloop.js"></script>
-
+    <script src="index.js?v=4"></script>
 </body>
-
 </html>

@@ -47,7 +47,9 @@ function tryCreateCanvasWithRetry() {
   let parentElement = document.getElementById('drawing');
   if (parentElement) {
       // If the parent element exists, create the canvas and attach it
+      pixelDensity(Math.min(2, Math.max(1, window.devicePixelRatio || 1)));
       let canvas = createCanvas(250, 250);
+      smooth();
       canvas.parent('drawing'); // Attach the canvas to the parent element
   } else {
       // If the parent element does not exist, log a message and retry after 100 ms

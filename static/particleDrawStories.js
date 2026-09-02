@@ -59,6 +59,7 @@ function resetAuthorImage(providedURL) {
 
   coemPortraitSketch = new window.p5(p => {
     let portrait;
+    let sampledPortrait;
     let failed = false;
     let particles = [];
     let startedAt = 0;
@@ -86,9 +87,10 @@ function resetAuthorImage(providedURL) {
     };
 
     p.setup = () => {
+      p.pixelDensity(Math.min(2, Math.max(1, window.devicePixelRatio || 1)));
       const canvas = p.createCanvas(size, size);
       canvas.parent(container);
-      p.pixelDensity(1);
+      p.smooth();
       p.frameRate(60);
       const dark = document.documentElement.dataset.theme === "dark";
       const background = dark ? [36, 48, 52] : [238, 231, 218];
@@ -99,15 +101,16 @@ function resetAuthorImage(providedURL) {
         renderPortraitFallback(container, providedURL);
         return;
       }
-      portrait.resize(size, size);
-      portrait.loadPixels();
+      sampledPortrait = portrait.get();
+      sampledPortrait.resize(size, size);
+      sampledPortrait.loadPixels();
       createParticles(200);
       startedAt = p.millis();
       container.dataset.animationPhase = "drawing";
     };
 
     p.draw = () => {
-      if (!portrait || failed || !portrait.pixels.length) return;
+      if (!portrait || !sampledPortrait || failed || !sampledPortrait.pixels.length) return;
       const elapsed = p.millis() - startedAt;
       if (elapsed <= drawingDuration) {
         particles.forEach(particle => {
@@ -121,9 +124,9 @@ function resetAuthorImage(providedURL) {
             Math.floor(particle.position.x)
           );
           p.stroke(
-            portrait.pixels[pixel],
-            portrait.pixels[pixel + 1],
-            portrait.pixels[pixel + 2],
+            sampledPortrait.pixels[pixel],
+            sampledPortrait.pixels[pixel + 1],
+            sampledPortrait.pixels[pixel + 2],
             220
           );
           p.strokeWeight(1);
