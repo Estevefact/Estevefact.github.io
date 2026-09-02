@@ -65,6 +65,13 @@ async function assertReadableCompactList(page, selector, label) {
   const page = await browser.newPage();
   try {
     await page.goto(`${base}/`);
+    const canonicalMarks = page.locator('img[src="Coem.png"]');
+    assert.equal(await canonicalMarks.count(), 3);
+    for (let index = 0; index < 3; index += 1) {
+      const mark = canonicalMarks.nth(index);
+      assert.equal(await mark.evaluate(image => image.naturalWidth), 572);
+      assert.ok(await mark.evaluate(image => image.getBoundingClientRect().width > 0));
+    }
     await page.evaluate(() => sessionStorage.setItem("coem:hero-portrait-offset", "17"));
     await page.reload();
     const firstPortraitNames = await page.locator("[data-hero-portrait] figcaption").allTextContents();
@@ -85,7 +92,27 @@ async function assertReadableCompactList(page, selector, label) {
     assert.equal(await page.locator("#route-title").innerText(), "Relaciones");
     assert.equal(await page.getByRole("tab", { name: /03 Relaciones/ }).getAttribute("aria-selected"), "true");
 
-    await page.goto(`${base}/stories-info.html`);
+    const calligraphyTitle = page.locator("#colophon-title");
+    await calligraphyTitle.scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => document.querySelector("#colophon-title")?.classList.contains("is-writing"));
+    assert.equal((await calligraphyTitle.innerText()).replace(/\s+/g, " ").trim(), "Esbozando el mapa de la literatura universal.");
+    assert.equal(await calligraphyTitle.locator(".calligraphy-word").count(), 7);
+    const calligraphyAnimation = await calligraphyTitle.locator(".calligraphy-word").first().evaluate(element => ({
+      fontFamily: getComputedStyle(element.parentElement).fontFamily,
+      ink: getComputedStyle(element.querySelector(".calligraphy-ink")).animationName,
+      nib: getComputedStyle(element, "::after").animationName
+    }));
+    assert.match(calligraphyAnimation.fontFamily, /Allura/);
+    assert.equal(calligraphyAnimation.ink, "calligraphy-write");
+    assert.equal(calligraphyAnimation.nib, "calligraphy-nib");
+
+    await page.goto(`${base}/stories-info.html?story=002321f5-8b50-4571-aeee-021c0b8da730`);
+    assert.deepEqual(
+      await page.getByRole("combobox", { name: "Duración máxima" }).locator("option").evaluateAll(options =>
+        options.map(option => option.value)
+      ),
+      ["", "2", "4", "6", "8", "10", "15", "20"]
+    );
     await page.getByRole("button", { name: "Cambiar tema" }).click();
     await page.waitForFunction(() => document.documentElement.dataset.theme === "dark");
     const darkTheme = await page.evaluate(() => ({
@@ -122,6 +149,64 @@ async function assertReadableCompactList(page, selector, label) {
     await page.waitForFunction(() => document.documentElement.dataset.theme === "light");
     await assertReadableCompactList(page, "#stories-list", "Story list");
     await assertReadableCompactList(page, "#top-authors-list", "Related story authors");
+    await page.waitForFunction(() => {
+      const audio = document.querySelector("#popup-audio");
+      return document.querySelectorAll(".audio-phrase").length > 2
+        && audio
+        && Number.isFinite(audio.duration)
+        && audio.duration > 0;
+    });
+    const karaokeSeek = await page.evaluate(async () => {
+      const audio = document.querySelector("#popup-audio");
+      Object.defineProperty(audio, "currentTime", {
+        configurable: true,
+        value: 0,
+        writable: true
+      });
+      const seekTo = async fraction => {
+        audio.currentTime = audio.duration * fraction;
+        audio.dispatchEvent(new Event("seeking"));
+        audio.dispatchEvent(new Event("timeupdate"));
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        return {
+          currentTime: audio.currentTime,
+          index: Number(document.querySelector(".audio-phrase--active")?.dataset.phraseIndex)
+        };
+      };
+      const first = await seekTo(.2);
+      const later = await seekTo(.8);
+      return {
+        phraseCount: document.querySelectorAll(".audio-phrase").length,
+        duration: audio.duration,
+        first,
+        later,
+        activeStyle: (() => {
+          const style = getComputedStyle(document.querySelector(".audio-phrase--active"));
+          return {
+            background: style.backgroundColor,
+            borderBottomWidth: style.borderBottomWidth,
+            color: style.color
+          };
+        })()
+      };
+    });
+    assert.ok(karaokeSeek.phraseCount > 10);
+    assert.ok(karaokeSeek.first.index >= 0, JSON.stringify(karaokeSeek));
+    assert.ok(karaokeSeek.later.index > karaokeSeek.first.index);
+    assert.deepEqual(karaokeSeek.activeStyle, {
+      background: "rgba(0, 0, 0, 0)",
+      borderBottomWidth: "0px",
+      color: "rgb(164, 56, 43)"
+    });
+    await page.getByRole("button", { name: "Cambiar tema" }).click();
+    assert.deepEqual(
+      await page.locator(".audio-phrase--active").evaluate(element => {
+        const style = getComputedStyle(element);
+        return { background: style.backgroundColor, color: style.color };
+      }),
+      { background: "rgba(0, 0, 0, 0)", color: "rgb(229, 161, 142)" }
+    );
+    await page.getByRole("button", { name: "Cambiar tema" }).click();
 
     await page.getByRole("searchbox", { name: "Buscar en todo" }).fill("a");
     await assertAutocompleteScrolls(page, "Stories");
@@ -138,7 +223,7 @@ async function assertReadableCompactList(page, selector, label) {
 
     await page.getByRole("combobox", { name: "País" }).selectOption({ label: "Colombia" });
     await page.getByRole("combobox", { name: "Género" }).selectOption({ label: "Unknown" });
-    await page.getByRole("combobox", { name: "Duración máxima" }).selectOption("5");
+    await page.getByRole("combobox", { name: "Duración máxima" }).selectOption("6");
     const prefilteredStory = await page.locator("h1").innerText();
     await page.getByRole("button", { name: "Sorpréndeme" }).click();
     await page.waitForFunction(title => document.querySelector("h1")?.textContent !== title, prefilteredStory);
@@ -147,6 +232,12 @@ async function assertReadableCompactList(page, selector, label) {
     assert.match(selectedFacts, /Unknown/);
 
     await page.goto(`${base}/poems-info.html`);
+    assert.deepEqual(
+      await page.getByRole("combobox", { name: "Duración máxima" }).locator("option").evaluateAll(options =>
+        options.map(option => option.value)
+      ),
+      ["", "2", "4", "6", "8", "10", "15", "20"]
+    );
     await page.getByRole("searchbox", { name: "Buscar en todo" }).fill("a");
     await assertAutocompleteScrolls(page, "Poems");
     await page.getByRole("searchbox", { name: "Buscar en todo" }).fill("Borges");
@@ -195,6 +286,10 @@ async function assertReadableCompactList(page, selector, label) {
     ]) {
       await page.goto(`${base}${route}`, { waitUntil: "domcontentloaded" });
       await page.waitForTimeout(500);
+      if (route === "/") {
+        await page.locator("#colophon-title").scrollIntoViewIfNeeded();
+        await page.waitForFunction(() => document.querySelector("#colophon-title")?.classList.contains("is-writing"));
+      }
       assert.equal(
         await page.evaluate(() =>
           document.documentElement.scrollWidth <= document.documentElement.clientWidth

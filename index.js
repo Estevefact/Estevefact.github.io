@@ -114,6 +114,51 @@
         element.classList.add('is-writing');
     }
 
+    function setupCalligraphyTitle() {
+        const element = document.querySelector('[data-calligraphy]');
+        if (!element) return;
+        const text = element.textContent.trim();
+        element.setAttribute('aria-label', text);
+
+        if (reduceMotion) {
+            element.classList.add('is-written');
+            return;
+        }
+
+        const fragment = document.createDocumentFragment();
+        let elapsed = 0;
+        text.split(/\s+/).forEach((word, index, words) => {
+            const wrapper = document.createElement('span');
+            const ink = document.createElement('span');
+            const duration = Math.max(300, word.length * 82);
+            wrapper.className = 'calligraphy-word';
+            wrapper.setAttribute('aria-hidden', 'true');
+            wrapper.style.setProperty('--word-delay', `${elapsed}ms`);
+            wrapper.style.setProperty('--word-duration', `${duration}ms`);
+            ink.className = 'calligraphy-ink';
+            ink.textContent = word;
+            wrapper.appendChild(ink);
+            fragment.appendChild(wrapper);
+            if (index < words.length - 1) fragment.appendChild(document.createTextNode(' '));
+            elapsed += duration + 90;
+        });
+        element.replaceChildren(fragment);
+
+        const beginWriting = () => {
+            element.classList.add('is-writing');
+        };
+        if (!('IntersectionObserver' in window)) {
+            beginWriting();
+            return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+            if (!entries.some(entry => entry.isIntersecting)) return;
+            beginWriting();
+            observer.disconnect();
+        }, { threshold: .45, rootMargin: '0px 0px -8% 0px' });
+        observer.observe(element);
+    }
+
     function createTabs() {
         const fragment = document.createDocumentFragment();
         routes.forEach((route, index) => {
@@ -182,6 +227,8 @@
         const preload = new Image();
         preload.src = route.image;
     });
+
+    setupCalligraphyTitle();
 
     document.querySelectorAll('[data-write]').forEach((element) => writeText(element, element.textContent.trim(), 180));
     document.querySelectorAll('[data-write-link]').forEach((element) => writeText(element, element.textContent.trim(), 520));

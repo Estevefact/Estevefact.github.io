@@ -354,6 +354,14 @@ body {
   text-align: center !important;
 }
 
+.audio-phrase {
+  scroll-margin-block: 20vh;
+}
+
+.audio-phrase--active {
+  color: var(--reader-accent);
+}
+
 .reader-section {
   width: min(980px, 100%);
   margin: 30px auto;

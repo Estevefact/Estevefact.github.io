@@ -7,6 +7,7 @@ let currentStory = null;
 let activeStoryLoad = 0;
 let storySearchItems = [];
 let storySearchIndex = [];
+let activeNarrationHighlighter = null;
 const SEARCH_SUGGESTION_LIMIT = 30;
 
 async function fetchJSON(path) {
@@ -85,12 +86,20 @@ function renderAuthor(author, storyTitle) {
   resetAuthorImage(author.image);
 }
 
-async function setAudio(storyId, audio = document.getElementById("popup-audio")) {
+async function setAudio(storyId, text, requestId, audio = document.getElementById("popup-audio")) {
   if (!audio) return;
   const storyAudio = `static/audios_es/${encodeURIComponent(storyId)}.mp3`;
   try {
     const response = await fetch(storyAudio, { method: "HEAD" });
-    if (audio.isConnected) audio.src = response.ok ? storyAudio : "static/tenquita.mp3";
+    if (!audio.isConnected || requestId !== activeStoryLoad) return;
+    audio.src = response.ok ? storyAudio : "static/tenquita.mp3";
+    if (response.ok) {
+      activeNarrationHighlighter = AudioHighlighter.attach({
+        audio,
+        container: document.getElementById("cuentoText"),
+        text
+      });
+    }
   } catch {
     if (audio.isConnected) audio.src = "static/tenquita.mp3";
   }
@@ -186,6 +195,8 @@ function updateBookmarkButton() {
 async function loadStory(storyId, options = {}) {
   const story = storyCatalog[storyId];
   if (!story) return;
+  activeNarrationHighlighter?.destroy();
+  activeNarrationHighlighter = null;
   const requestId = ++activeStoryLoad;
   const textContainer = document.getElementById("cuentoText");
   document.getElementById("container-cuento").setAttribute("aria-busy", "true");
@@ -206,7 +217,7 @@ async function loadStory(storyId, options = {}) {
     renderAuthorStories(story.author, storyId);
     renderRelatedAuthors(story.author);
     renderRecommendations(storyId);
-    setAudio(storyId, document.getElementById("popup-audio"));
+    setAudio(storyId, data.text || "", requestId, document.getElementById("popup-audio"));
     ReaderFeatures.updateURL("story", storyId, story.title);
     if (options.record !== false) ReaderFeatures.recordHistory("story", model);
     renderLibrary();

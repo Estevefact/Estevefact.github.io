@@ -279,6 +279,9 @@ test("the homepage uses the canonical Coem image mark", () => {
   const logo = fs.readFileSync(path.join(root, "Coem.png"));
 
   assert.match(html, /class="hero-title-logo"\s+src="Coem\.png"/);
+  assert.equal((html.match(/<img\b[^>]*\bsrc="Coem\.png"/g) || []).length, 3);
+  assert.match(html, /class="wordmark"[\s\S]*?<img\s+src="Coem\.png"/);
+  assert.match(html, /class="footer-mark"[\s\S]*?<img\s+src="Coem\.png"/);
   assert.equal(logo.readUInt32BE(16), 572);
   assert.equal(logo.readUInt32BE(20), 288);
 });

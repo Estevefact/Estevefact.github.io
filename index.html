@@ -20,14 +20,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="static/imgs/quiroga.png">
-    <link rel="stylesheet" href="index.css?v=3">
+    <link rel="stylesheet" href="index.css?v=5">
     <title>COEM — Archivo literario interactivo</title>
 </head>
 <body>
     <a class="skip-link" href="#archivo">Ir al archivo</a>
 
     <header class="site-header" aria-label="Navegación principal">
-        <a class="wordmark" href="#inicio" aria-label="COEM, inicio">COEM</a>
+        <a class="wordmark" href="#inicio" aria-label="COEM, inicio">
+            <img src="Coem.png" alt="" width="572" height="288">
+        </a>
         <nav class="header-nav" aria-label="Accesos">
             <a href="#archivo">Explorar</a>
             <a href="https://theprojectcoem.github.io">English</a>
@@ -106,14 +108,16 @@
         <section class="colophon" aria-labelledby="colophon-title">
             <p class="section-number">02 / Sobre COEM</p>
             <div class="colophon-copy">
-                <h2 id="colophon-title">Esbozando el mapa de la literatura universal.</h2>
+                <h2 id="colophon-title" class="calligraphy-title" data-calligraphy>Esbozando el mapa de la literatura universal.</h2>
                 <p>Un proyecto independiente construido con software libre para navegar la literatura clásica en español y descubrir conexiones entre obras y autores.</p>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
-        <a class="footer-mark" href="#inicio">COEM</a>
+        <a class="footer-mark" href="#inicio" aria-label="COEM, volver al inicio">
+            <img src="Coem.png" alt="" width="572" height="288">
+        </a>
         <div class="footer-links" aria-label="Redes sociales">
             <a href="https://www.instagram.com/theprojectcoem/" target="_blank" rel="noreferrer">Instagram</a>
             <a href="https://www.youtube.com/channel/UCsA5OOXPr1bABWuZ_pWIB6g" target="_blank" rel="noreferrer">YouTube</a>
@@ -126,6 +130,6 @@
         </form>
     </footer>
 
-    <script src="index.js?v=3"></script>
+    <script src="index.js?v=4"></script>
 </body>
 </html>

@@ -87,10 +87,27 @@ a:focus-visible {
 
 .wordmark,
 .footer-mark {
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
     text-decoration: none;
+}
+
+.wordmark img,
+.footer-mark img {
+    display: block;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    image-rendering: auto;
+}
+
+.wordmark img {
+    width: 76px;
+}
+
+.footer-mark img {
+    width: 96px;
 }
 
 .header-nav {
@@ -522,6 +539,50 @@ a:focus-visible {
     align-items: end;
 }
 
+.colophon h2.calligraphy-title {
+    font-family: var(--script);
+    font-size: clamp(3.4rem, 7vw, 6.7rem);
+    line-height: 1.02;
+}
+
+.calligraphy-word {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.calligraphy-ink {
+    display: inline-block;
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+}
+
+.calligraphy-title.is-writing .calligraphy-ink {
+    animation: calligraphy-write var(--word-duration) cubic-bezier(.2, .66, .25, 1) var(--word-delay) forwards;
+}
+
+.calligraphy-word::after {
+    content: "";
+    position: absolute;
+    bottom: .14em;
+    left: 0;
+    width: .11em;
+    height: .24em;
+    opacity: 0;
+    background: var(--ink);
+    clip-path: polygon(50% 0, 100% 58%, 50% 100%, 0 58%);
+    transform: translate(-20%, 18%) rotate(24deg);
+}
+
+.calligraphy-title.is-writing .calligraphy-word::after {
+    animation: calligraphy-nib var(--word-duration) linear var(--word-delay) forwards;
+}
+
+.calligraphy-title.is-written .calligraphy-ink {
+    opacity: 1;
+    clip-path: inset(0);
+}
+
 .site-footer {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -576,6 +637,16 @@ a:focus-visible {
 @keyframes copy-reveal {
     from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: none; }
+}
+@keyframes calligraphy-write {
+    0% { opacity: 0; clip-path: inset(0 100% 0 0); }
+    8% { opacity: 1; }
+    100% { opacity: 1; clip-path: inset(0); }
+}
+@keyframes calligraphy-nib {
+    0% { left: 0; opacity: 0; }
+    5%, 88% { opacity: .82; }
+    100% { left: calc(100% - .11em); opacity: 0; }
 }
 
 @media (max-width: 900px) {
@@ -654,6 +725,11 @@ a:focus-visible {
 
     .archive-heading h2,
     .colophon h2 { font-size: clamp(2.6rem, 14vw, 4.4rem); }
+
+    .colophon h2.calligraphy-title {
+        font-size: clamp(3rem, 15vw, 4.8rem);
+        line-height: 1.08;
+    }
 
     .route-tab {
         flex-basis: 136px;
