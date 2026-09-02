@@ -11985,6 +11985,7 @@ THE SOFTWARE.
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700">
+  <link rel="stylesheet" href="coem_theme.css?v=3">
 
 
 
@@ -11994,7 +11995,7 @@ THE SOFTWARE.
 
         /* Shared Styles */
         --paper-font-common-base: {
-          font-family: 'Roboto', 'Noto', sans-serif;
+          font-family: 'Cormorant Garamond', 'Iowan Old Style', Baskerville, Georgia, serif;
           -webkit-font-smoothing: antialiased;
         }
 
@@ -20429,10 +20430,13 @@ THE SOFTWARE.
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0 24px;
-          height: 60px;
-          color: white;
-          background: #003153;
+          box-sizing: border-box;
+          padding: 0 28px;
+          height: 64px;
+          color: #f1eee5;
+          background: #181713;
+          border-bottom: 1px solid rgba(241, 238, 229, .3);
+          font-family: 'Cormorant Garamond', 'Iowan Old Style', Baskerville, Georgia, serif;
         }
 
         #appbar .logo {
@@ -20442,6 +20446,8 @@ THE SOFTWARE.
 
         .icons {
           display: flex;
+          align-items: center;
+          gap: 12px;
         }
 
         .icons a {
@@ -20465,10 +20471,9 @@ THE SOFTWARE.
         }
 
         .center-section img {
-          width: 20%;
-          /* Adjust as needed */
-          max-width: 20%;
-          /* Ensure the image doesn't exceed the bar width */
+          width: 62px;
+          max-width: 62px;
+          filter: none;
         }
 
         .english-link {
@@ -20486,7 +20491,7 @@ THE SOFTWARE.
         .center-section {
           position: absolute;
           left: 50%;
-          transform: translateX(+0%);
+          transform: translateX(-50%);
         }
 
         .title {
@@ -20498,6 +20503,23 @@ THE SOFTWARE.
         .donate {
           display: flex;
           align-items: center;
+        }
+
+        #title {
+          font-size: 15px;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+
+        .projector-donate {
+          min-height: 36px;
+          padding: 0 2px;
+          border: 0;
+          border-bottom: 1px solid rgba(241, 238, 229, .65);
+          color: #f1eee5;
+          background: transparent;
+          cursor: pointer;
+          font: 500 14px 'Cormorant Garamond', Georgia, serif;
         }
 
         vz-projector {
@@ -20520,21 +20542,16 @@ THE SOFTWARE.
           /* Adds space between the items */
         }
         #Stories-Authors-btn {
-          display: absolute;
+          display: inline-flex;
+          min-height: 40px;
           align-items: center;
-          background-color: #007bff;
-          color: white;
-          border: none;
-          padding: 2px 4px;
+          padding: 0 2px 2px;
+          border: 0;
+          border-bottom: 1px solid #e5a18e;
+          color: #f1eee5;
+          background: transparent;
           cursor: pointer;
-          font-size: 14px;
-          border-radius: 4px;
-          position: fixed;
-          top:8px;
-          left:65%;
-          max-height:40px;
-          max-width:15%;
-          padding: 8px 12px;
+          font: 400 1.35rem/1 'Allura', 'Segoe Script', cursive;
         }
         #dropbtn-general {
           font-family: "Roboto", sans-serif;
@@ -20559,37 +20576,39 @@ THE SOFTWARE.
         }
 
         .dropbtn-general:hover, .dropbtn-general:focus {
-            background-color: #2980b9;
+            color: #e5a18e;
+            background: transparent;
         }
 
         .dropdown-content-2 {
             display: none;
             position: absolute;
-            background-color: #007bff;
-            color: white;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            right: 0;
+            top: calc(100% + 10px);
+            width: 230px;
+            color: #181713;
+            background: #f1eee5;
+            border: 1px solid #181713;
+            box-shadow: 10px 12px 0 rgba(24, 23, 19, .15);
             z-index: 999999;
-            border-radius: 5px;
-            width: 12%;
-            position: fixed;
             font-size: 16px;
-            left:65%;
-            top:40px;
         }
 
-        .dropdown-content-2 span {
-            padding: 6px 7px;
-            text-decoration: none;
-            color: white;
+        .dropdown-content-2 a {
+            position: relative;
             display: block;
+            padding: 10px 14px;
+            text-decoration: none;
+            color: #181713;
             cursor: pointer;
-            border-radius: 5px;
             z-index: 999999;
-            font-size: 16px;
+            font: 400 1.35rem/1.1 'Allura', 'Segoe Script', cursive;
         }
 
-        .dropdown-content-2 span:hover {
-            background-color: #1b0076;
+        .dropdown-content-2 a:hover,
+        .dropdown-content-2 a:focus-visible {
+            color: #f1eee5;
+            background: #181713;
         }
 
         .dropdown-2:hover .dropdown-content-2 {
@@ -20606,9 +20625,7 @@ THE SOFTWARE.
             <div class="flex-item donate">
               <form id="form-cont" action="https://www.paypal.com/donate" method="post" target="_top">
                 <input type="hidden" name="hosted_button_id" value="F43U7EFMW5N2A" />
-                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0"
-                  name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-                <img alt="" border="0" src="https://www.paypal.com/en_CO/i/scr/pixel.gif" width="1" height="1" />
+                <button class="projector-donate" type="submit">Apoyar</button>
               </form>
             </div>
           </div>
@@ -20619,19 +20636,14 @@ THE SOFTWARE.
           <div class="icons">
             
             <div class="dropdown-2 Stories-Authors-btn" id="dropdown-general">
-            <button class="dropbtn-general" id="Stories-Authors-btn"> Explorar Cuentos o Poemas </button>
-            <div class="dropdown-content-2">
-              <span 
-              data-filter="stories-authors" onclick="window.location.href='/authorToAuthor3D.html'">Ver todos los Autores
-              </span>
-              <span 
-              data-filter="stories-authors2" onclick="window.location.href='/authorToAuthor3DSmall.html'" > Ver Autores de Cuentos
-              </span>
-              <span 
-              data-filter="Poems" onclick="window.location.href='/poems-info.html'" > Explorar Poemas
-              </span>
-            </div>
-            </button>
+              <button class="dropbtn-general" id="Stories-Authors-btn">Explorar COEM</button>
+              <nav class="dropdown-content-2" aria-label="Explorar COEM">
+                <a href="index.html">Inicio</a>
+                <a href="stories-info.html">Cuentos</a>
+                <a href="poems-info.html">Poemas</a>
+                <a href="authorToAuthor3DSmall.html">Relaciones</a>
+                <a href="authorToAuthor3D.html">Todos los autores</a>
+              </nav>
             </div>
             <a title="Documentation" target="_blank" href="[[documentationLink]]">
               <paper-icon-button icon="help-outline"></paper-icon-button>
@@ -20676,6 +20688,12 @@ THE SOFTWARE.
       margin: 0;
       width: 100%;
       height: 100%;
+    }
+
+    vz-projector .ink-button,
+    vz-projector paper-button {
+      border-radius: 0 !important;
+      font-family: "Cormorant Garamond", "Iowan Old Style", Baskerville, Georgia, serif !important;
     }
 
     @media (max-width: 600px) {

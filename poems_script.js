@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let poemMetadata = {};
   let currentPoem = null;
   let activePoemLoad = 0;
+  let poemSearchItems = [];
+  let poemSearchIndex = [];
+  const SEARCH_SUGGESTION_LIMIT = 30;
 
   async function fetchJSON(path) {
     const response = await fetch(path);
@@ -58,6 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
       genre: document.getElementById("genre-filter").value,
       maxMinutes: document.getElementById("time-filter").value
     };
+  }
+
+  function rebuildPoemSearchIndex() {
+    poemSearchItems = data.poems.map(poemViewModel);
+    poemSearchIndex = ReaderFeatures.buildFilterIndex(poemSearchItems);
   }
 
   function renderAuthor(author, poem) {
@@ -220,21 +228,23 @@ document.addEventListener("DOMContentLoaded", () => {
       results.replaceChildren();
       count.textContent = "";
       if (!active) return;
-      const matches = ReaderFeatures.filterItems(data.poems.map(poemViewModel), filters);
+      const matches = ReaderFeatures.filterIndexedItems(poemSearchIndex, filters);
       count.textContent = `${matches.length} coincidencia${matches.length === 1 ? "" : "s"}`;
-      matches.slice(0, 30).forEach(model => {
-          const suggestion = document.createElement("button");
-          suggestion.type = "button";
-          suggestion.className = "autocomplete-suggestion";
-          suggestion.textContent = `${model.title} — ${model.author} · ${model.country}`;
-          suggestion.addEventListener("click", () => {
-            input.value = model.title;
-            results.replaceChildren();
-            count.textContent = "";
-            loadPoem(model.id);
-          });
-          results.appendChild(suggestion);
+      const fragment = document.createDocumentFragment();
+      matches.slice(0, SEARCH_SUGGESTION_LIMIT).forEach(model => {
+        const suggestion = document.createElement("button");
+        suggestion.type = "button";
+        suggestion.className = "autocomplete-suggestion";
+        suggestion.textContent = `${model.title} — ${model.author} · ${model.country}`;
+        suggestion.addEventListener("click", () => {
+          input.value = model.title;
+          results.replaceChildren();
+          count.textContent = "";
+          loadPoem(model.id);
         });
+        fragment.appendChild(suggestion);
+      });
+      results.appendChild(fragment);
     };
 
     input.addEventListener("input", renderResults);
@@ -266,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     document.getElementById("surprise-button").addEventListener("click", () => {
       const item = ReaderFeatures.randomItem(
-        data.poems.map(poemViewModel),
+        poemSearchItems,
         activeFilters(),
         currentPoem?.id
       );
@@ -312,6 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
     neighborIndex = loadedNeighbors;
     poemMetadata = loadedMetadata;
     authorNeighborIndex = loadedAuthorNeighbors;
+    rebuildPoemSearchIndex();
     populateSelect("country-filter", data.poems.map(poem => poem.country), "País");
     populateSelect("genre-filter", data.authors.map(author => author.genre), "Género");
     setupSearch();

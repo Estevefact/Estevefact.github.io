@@ -5,6 +5,9 @@ let authorNeighborIndex = {};
 let storyMetadata = {};
 let currentStory = null;
 let activeStoryLoad = 0;
+let storySearchItems = [];
+let storySearchIndex = [];
+const SEARCH_SUGGESTION_LIMIT = 30;
 
 async function fetchJSON(path) {
   const response = await fetch(path);
@@ -55,6 +58,11 @@ function activeFilters() {
     genre: document.getElementById("genre-filter").value,
     maxMinutes: document.getElementById("time-filter").value
   };
+}
+
+function rebuildStorySearchIndex() {
+  storySearchItems = Object.values(storyCatalog).map(storyViewModel);
+  storySearchIndex = ReaderFeatures.buildFilterIndex(storySearchItems);
 }
 
 function renderAuthor(author, storyTitle) {
@@ -234,9 +242,10 @@ function setupSearch() {
     results.replaceChildren();
     count.textContent = "";
     if (!active) return;
-    const matches = ReaderFeatures.filterItems(Object.values(storyCatalog).map(storyViewModel), filters);
+    const matches = ReaderFeatures.filterIndexedItems(storySearchIndex, filters);
     count.textContent = `${matches.length} coincidencia${matches.length === 1 ? "" : "s"}`;
-    matches.slice(0, 30).forEach(model => {
+    const fragment = document.createDocumentFragment();
+    matches.slice(0, SEARCH_SUGGESTION_LIMIT).forEach(model => {
       const suggestion = document.createElement("button");
       suggestion.type = "button";
       suggestion.className = "autocomplete-suggestion";
@@ -247,8 +256,9 @@ function setupSearch() {
         input.value = model.title;
         loadStory(model.id);
       });
-      results.appendChild(suggestion);
+      fragment.appendChild(suggestion);
     });
+    results.appendChild(fragment);
   };
 
   input.addEventListener("input", renderResults);
@@ -280,7 +290,7 @@ function setupControls() {
   });
   document.getElementById("surprise-button").addEventListener("click", () => {
     const item = ReaderFeatures.randomItem(
-      Object.values(storyCatalog).map(storyViewModel),
+      storySearchItems,
       activeFilters(),
       currentStory?.id
     );
@@ -293,6 +303,7 @@ async function initializeStories() {
   try {
     gData = await fetchJSON("static/storyReaderCatalog.json");
     storyCatalog = StoriesCore.buildStoryCatalog(gData.nodes);
+    rebuildStorySearchIndex();
     populateSelect("country-filter", gData.nodes.map(node => node.country), "País");
     populateSelect("genre-filter", gData.nodes.map(node => node.genre), "Género");
     setupSearch();
@@ -313,6 +324,7 @@ async function initializeStories() {
       storyNeighborIndex = loadedNeighbors;
       storyMetadata = loadedMetadata;
       authorNeighborIndex = loadedAuthorNeighbors;
+      rebuildStorySearchIndex();
       if (!currentStory) return;
       const story = storyCatalog[currentStory.id];
       if (!story) return;

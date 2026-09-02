@@ -135,6 +135,32 @@
     });
   }
 
+  function buildFilterIndex(items) {
+    return items.map(item => ({
+      item,
+      country: normalizeText(item.country),
+      genre: normalizeText(item.genre),
+      readingTime: Number(item.readingTime || 0),
+      searchable: normalizeText([
+        item.title, item.author, item.country, item.genre,
+        item.birthYear, item.deathYear
+      ].join(" "))
+    }));
+  }
+
+  function filterIndexedItems(index, filters = {}) {
+    const terms = normalizeText(filters.query).split(/\s+/).filter(Boolean);
+    const country = normalizeText(filters.country);
+    const genre = normalizeText(filters.genre);
+    const maxMinutes = filters.maxMinutes ? Number(filters.maxMinutes) : 0;
+    return index.filter(entry => {
+      if (country && entry.country !== country) return false;
+      if (genre && entry.genre !== genre) return false;
+      if (maxMinutes && entry.readingTime > maxMinutes) return false;
+      return terms.every(term => entry.searchable.includes(term));
+    }).map(entry => entry.item);
+  }
+
   function randomItem(items, filters = {}, excludeId, random = Math.random) {
     const eligible = filterItems(items, filters).filter(item => item.id !== excludeId);
     return eligible.length ? eligible[Math.floor(random() * eligible.length)] : null;
@@ -152,6 +178,7 @@
     storageGet, storageSet, recordHistory, toggleBookmark, isBookmarked, getLibrary,
     getItemFromURL, updateURL, getPreferences, applyPreferences, setTheme,
     changeFontSize, shareCurrent, formatTime, normalizeText, matchesFilters,
-    filterItems, randomItem, navigateToReadingStart, toast
+    filterItems, buildFilterIndex, filterIndexedItems, randomItem,
+    navigateToReadingStart, toast
   };
 });

@@ -98,6 +98,40 @@ test("a query and structured filters are applied together", () => {
   );
 });
 
+test("indexed search matches regular discovery filters", () => {
+  const items = [
+    {
+      id: "a",
+      title: "La casa",
+      author: "María",
+      country: "Colombia",
+      genre: "Realismo",
+      birthYear: "1910",
+      readingTime: 3
+    },
+    {
+      id: "b",
+      title: "La luna",
+      author: "José",
+      country: "México",
+      genre: "Modernismo",
+      birthYear: "1901",
+      readingTime: 7
+    }
+  ];
+  const filters = {
+    query: "maria casa 1910",
+    country: "colombia",
+    genre: "realismo",
+    maxMinutes: 5
+  };
+  const index = ReaderFeatures.buildFilterIndex(items);
+  assert.deepEqual(
+    ReaderFeatures.filterIndexedItems(index, filters).map(item => item.id),
+    ReaderFeatures.filterItems(items, filters).map(item => item.id)
+  );
+});
+
 test("Surprise uses every active filter and keeps Unknown authors eligible", () => {
   const items = [
     {
@@ -191,6 +225,62 @@ test("p5 portrait timing leaves a clearly visible drawing phase before reveal", 
   const { COEM_PORTRAIT_TIMING } = require("../static/particleDrawStories.js");
   assert.ok(COEM_PORTRAIT_TIMING.drawingDuration >= 4000);
   assert.ok(COEM_PORTRAIT_TIMING.revealDuration >= 1000);
+});
+
+test("portrait animations preserve crisp final images on high-DPI screens", () => {
+  const root = path.resolve(__dirname, "..");
+  const readerPortraits = fs.readFileSync(path.join(root, "static/particleDrawStories.js"), "utf8");
+  const mapPortraits = fs.readFileSync(path.join(root, "static/particleDraw.js"), "utf8");
+
+  assert.match(readerPortraits, /window\.devicePixelRatio/);
+  assert.doesNotMatch(readerPortraits, /pixelDensity\(1\)/);
+  assert.match(readerPortraits, /sampledPortrait\s*=\s*portrait\.get\(\)/);
+  assert.doesNotMatch(readerPortraits, /portrait\.resize\(size,\s*size\)/);
+  assert.match(mapPortraits, /window\.devicePixelRatio/);
+  assert.doesNotMatch(mapPortraits, /pixelDensity\(1\)/);
+});
+
+test("every COEM destination uses the shared paper-and-ink theme", () => {
+  const root = path.resolve(__dirname, "..");
+  const pages = [
+    "stories-info.html",
+    "poems-info.html",
+    "authorToAuthor3DSmall.html",
+    "authorToAuthor3D.html",
+    "embeddings.html"
+  ];
+  pages.forEach(page => {
+    const html = fs.readFileSync(path.join(root, page), "utf8");
+    assert.match(html, /coem_theme\.css/);
+  });
+
+  const theme = fs.readFileSync(path.join(root, "coem_theme.css"), "utf8");
+  assert.match(theme, /Cormorant Garamond/);
+  assert.match(theme, /--coem-script:\s*"Allura"/);
+  assert.match(theme, /--coem-paper:\s*#f1eee5/);
+  assert.match(theme, /--coem-ink:\s*#181713/);
+  assert.match(theme, /:root\[data-theme="dark"\]\s+body:not\(\.author-map-page\)/);
+});
+
+test("the homepage rotates labeled portraits and uses the new Carl Sagan artwork", () => {
+  const root = path.resolve(__dirname, "..");
+  const homepage = fs.readFileSync(path.join(root, "index.js"), "utf8");
+  const sagan = fs.readFileSync(path.join(root, "static/imgs/Sagan.png"));
+
+  assert.match(homepage, /name:\s*'Carl Sagan',\s*image:\s*'static\/imgs\/Sagan\.png'/);
+  assert.match(homepage, /coem:hero-portrait-offset/);
+  assert.equal(sagan.readUInt32BE(16), 1024);
+  assert.equal(sagan.readUInt32BE(20), 1024);
+});
+
+test("the homepage uses the canonical Coem image mark", () => {
+  const root = path.resolve(__dirname, "..");
+  const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
+  const logo = fs.readFileSync(path.join(root, "Coem.png"));
+
+  assert.match(html, /class="hero-title-logo"\s+src="Coem\.png"/);
+  assert.equal(logo.readUInt32BE(16), 572);
+  assert.equal(logo.readUInt32BE(20), 288);
 });
 
 test("navigation focuses and scrolls the new reading heading", () => {
