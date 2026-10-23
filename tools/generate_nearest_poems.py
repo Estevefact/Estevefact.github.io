@@ -23,14 +23,22 @@ def normalize(value):
 def main():
     data = json.loads((ROOT / "static/poems.json").read_text())
     by_title = defaultdict(list)
-    poem_metadata = {}
+    existing_metadata_path = ROOT / "static/poemReaderMetadata.json"
+    existing_metadata = (
+        json.loads(existing_metadata_path.read_text())
+        if existing_metadata_path.exists()
+        else {}
+    )
+    poem_metadata = dict(existing_metadata)
     for poem in data["poems"]:
         by_title[normalize(poem["story_name"])].append(poem)
         reading_time = float(poem.get("reading_time") or 0)
-        poem_metadata[poem["id"]] = {
-            "readingTime": reading_time if math.isfinite(reading_time) else 0,
-            "country": poem.get("country") or "",
-        }
+        entry = dict(poem_metadata.get(poem["id"], {}))
+        if "readingTime" not in entry:
+            entry["readingTime"] = reading_time if math.isfinite(reading_time) else 0
+        if "country" not in entry:
+            entry["country"] = poem.get("country") or ""
+        poem_metadata[poem["id"]] = entry
 
     vectors = []
     row_to_poem = {}
@@ -137,11 +145,8 @@ def main():
         )
     )
     (ROOT / "static/poemReaderMetadata.json").write_text(
-        json.dumps(
-            poem_metadata,
-            ensure_ascii=False,
-            separators=(",", ":"),
-        )
+        json.dumps(poem_metadata, ensure_ascii=False, separators=(",", ":"))
+        + "\n"
     )
     print(
         f"Wrote neighbors for {len(neighbors)} poems "

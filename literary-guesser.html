@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Oráculo literario: elige cuentos, poemas o Coemas y adivina su procedencia.">
+    <link rel="icon" type="image/png" href="static/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css?v=6">
+    <link rel="stylesheet" href="literary_guesser.css?v=3">
+    <title>Oráculo literario — COEM</title>
+</head>
+<body class="guesser-page">
+    <a class="skip-link" href="#game-main" data-i18n="skip">Ir al juego</a>
+    <header class="site-header guesser-header" aria-label="Navegación principal">
+        <a class="wordmark" href="index.html" aria-label="COEM, inicio"><img src="Coem.png" alt="" width="572" height="288"></a>
+        <nav class="header-nav" aria-label="Accesos">
+            <a href="index.html#archivo" data-i18n="backArchive">Volver al archivo</a>
+            <button type="button" class="language-toggle" id="language-toggle" aria-label="Switch to English">EN</button>
+        </nav>
+    </header>
+
+    <main id="game-main" class="guesser-main">
+        <section class="guesser-hero" aria-labelledby="game-title">
+            <p class="eyebrow" id="game-mode" data-i18n="eyebrow">Juego de lectura · Coemas</p>
+            <h1 id="game-title" data-i18n="gameTitle">Oráculo literario</h1>
+            <p class="guesser-intro" data-i18n="intro">Lee un cuento breve y adivina su procedencia</p>
+            <button type="button" class="ink-link guesser-start" id="start-game" disabled><span data-i18n="start">Comenzar partida</span><span class="action-arrow" aria-hidden="true">→</span></button>
+            <p class="guesser-note" data-i18n="note">Cuatro textos muy breves. Empieza por los más cortos y descubre el reto final.</p>
+        </section>
+
+        <section class="guesser-panel filters-panel" aria-labelledby="filters-title">
+            <div class="panel-heading">
+                <p class="section-number">01 / <span data-i18n="setup">Preparar la partida</span></p>
+                <h2 id="filters-title" data-i18n="filtersTitle">Elige tus pistas</h2>
+                <p data-i18n="filtersCopy">Personaliza tu próxima partida.</p>
+            </div>
+            <div class="filter-grid">
+                <label class="filter-field kind-filter-field"><span data-i18n="kind">Forma literaria</span><select id="kind-filter"><option value="both" data-i18n="bothKinds">Coemas · cuentos y poemas</option><option value="story" data-i18n="storiesOnly">Solo cuentos</option><option value="poem" data-i18n="poemsOnly">Solo poemas</option></select></label>
+                <label class="filter-field"><span data-i18n="level">Nivel</span><select id="level-filter"><option value="easy" data-i18n="easy">Fácil</option><option value="medium" data-i18n="medium">Media</option><option value="hard" data-i18n="hard">Difícil</option></select></label>
+                <label class="filter-field"><span data-i18n="nationality">Nacionalidad</span><select id="nationality-filter"><option value="all" data-i18n="allCountries">Todas las nacionalidades</option></select></label>
+                <label class="filter-field"><span data-i18n="genre">Género</span><select id="genre-filter"><option value="all" data-i18n="allGenres">Todos los géneros</option></select></label>
+                <label class="check-field"><input id="classic-filter" type="checkbox"><span data-i18n="classics">Solo clásicos</span></label>
+            </div>
+            <p class="nationality-note" data-i18n="nationalityNote">Nacionalidades registradas en el catálogo; se aceptan las múltiples documentadas.</p>
+            <div class="filter-status" aria-live="polite"><span id="matching-count">—</span> <span data-i18n="matching">cuentos compatibles</span><span class="filter-dot" aria-hidden="true">·</span><span data-i18n="rounds">4 rondas</span></div>
+            <p class="empty-state" id="empty-state" hidden></p>
+            <p class="scoring-note" data-i18n="scoreLine">Autor +4 / −2 · Nacionalidad +2 / −1 · Sexo +1 / −0,5 · Década +2 / −1 · Respuesta perfecta +1</p>
+            <p class="rating-note" data-i18n="rating">Tu promedio se lee así: 0–2 aprendiz, 3–5 atento, 6–8 literato/a, más de 8 oráculo.</p>
+        </section>
+
+        <section class="guesser-panel game-panel" id="game-panel" hidden aria-labelledby="round-title">
+            <div class="game-topline"><p class="section-number"><span data-i18n="round">Ronda</span> <span id="round-number">1</span> / 4</p><p class="game-score"><span data-i18n="currentScore">Puntuación total</span> <strong id="current-score">0</strong> / 40</p></div>
+            <div class="progress-track" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-label="Progreso de la partida"><span id="progress-bar"></span></div>
+            <div class="round-heading"><p class="route-kicker" id="round-kind">Cuento</p><h2 id="round-title" tabindex="-1" data-i18n="roundPrompt">¿Quién escribió este texto?</h2><p id="round-level" class="round-level"></p></div>
+            <article class="story-fragment" aria-labelledby="round-title"><div id="story-text" class="story-text" aria-live="polite"></div><p class="story-reading-note" data-i18n="originalNote">El texto original está en español.</p></article>
+            <form id="guess-form" class="guess-form" novalidate>
+                <div class="guess-fields">
+                    <label class="guess-field"><span data-i18n="author">Autor</span><select id="answer-author" required><option value="" data-i18n="choose">Elige una opción</option></select><small class="field-feedback" id="feedback-author"></small></label>
+                    <label class="guess-field"><span data-i18n="nationalityAnswer">Nacionalidad</span><select id="answer-nationality" required><option value="" data-i18n="choose">Elige una opción</option></select><small class="field-feedback" id="feedback-nationality"></small></label>
+                    <label class="guess-field"><span data-i18n="sex">Sexo del autor</span><select id="answer-sex" required><option value="" data-i18n="choose">Elige una opción</option><option value="male" data-i18n="male">Hombre</option><option value="female" data-i18n="female">Mujer</option></select><small class="field-feedback" id="feedback-sex"></small></label>
+                    <label class="guess-field"><span data-i18n="decade">Década de nacimiento</span><select id="answer-birthDecade" required><option value="" data-i18n="choose">Elige una opción</option></select><small class="field-feedback" id="feedback-birthDecade"></small></label>
+                </div>
+                <p class="required-note" data-i18n="required">Completa las cuatro respuestas para revelar la firma.</p>
+                <button type="submit" class="ink-link guesser-submit" id="submit-guess"><span data-i18n="submit">Revelar mi respuesta</span><span class="action-arrow" aria-hidden="true">→</span></button>
+            </form>
+            <div class="round-result" id="round-result" hidden aria-live="polite"></div>
+        </section>
+
+        <section class="guesser-panel final-panel" id="final-panel" hidden aria-labelledby="final-title">
+            <p class="section-number">03 / <span data-i18n="result">Resultado</span></p>
+            <h2 id="final-title" tabindex="-1" data-i18n="finalTitle">Tu brújula literaria</h2>
+            <div class="final-score"><strong id="final-average">0</strong><span>/ 10</span></div>
+            <p id="final-copy"></p>
+            <div class="companion-card" id="companion-card"><div class="companion-portrait" id="drawing"></div><div><p class="route-kicker" data-i18n="companion">Tu compañero de lectura</p><h3 id="companion-name"></h3><blockquote class="quote-text" id="companion-phrase"></blockquote><p class="quote-source" id="companion-source"></p></div></div>
+            <div id="score-breakdown" class="score-breakdown"></div>
+            <figure class="closing-quote" id="final-closing-quote"></figure>
+            <button type="button" class="ink-link replay-button" id="replay-game"><span data-i18n="replay">Jugar otra partida</span><span class="action-arrow" aria-hidden="true">↻</span></button>
+        </section>
+
+        <p class="sr-only" id="game-announcement" aria-live="assertive"></p>
+    </main>
+    <footer class="site-footer"><a class="footer-mark" href="index.html#inicio" aria-label="COEM, volver al inicio"><img src="Coem.png" alt="" width="572" height="288"></a><div class="footer-links"><a href="index.html#archivo" data-i18n="archive">Archivo</a><a href="mailto:theprojectcoem@gmail.com" data-i18n="contact">Contacto</a></div></footer>
+    <script src="static/particleDrawStories.js?v=14"></script>
+    <script src="literary_guesser_core.js?v=4"></script>
+    <script src="literary_guesser.js?v=5"></script>
+</body>
+</html>

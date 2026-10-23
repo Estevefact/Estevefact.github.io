@@ -9,6 +9,7 @@ La aplicación está publicada con GitHub Pages en **[estevefact.github.io](http
 - [Inicio](https://estevefact.github.io/)
 - [Lector de cuentos](https://estevefact.github.io/stories-info.html)
 - [Lector de poemas](https://estevefact.github.io/poems-info.html)
+- [Literary Guesser / Oráculo literario](https://estevefact.github.io/literary-guesser.html)
 - [Proyector de embeddings](https://estevefact.github.io/embeddings.html)
 - [Mapa de autores](https://estevefact.github.io/authorToAuthor3DSmall.html)
 
@@ -80,6 +81,61 @@ Las recomendaciones se precalculan con similitud coseno sobre los tensores del p
 
 Una obra que todavía no aparezca en la exportación de tensores recibe temporalmente recomendaciones deterministas basadas en otras obras del mismo autor hasta regenerar los embeddings.
 
+### Metadatos de Literary Guesser
+
+`static/literaryGuesserCatalog.json` es el catálogo reproducible de la ruta
+Literary Guesser (Oráculo literario): reúne 725 autores, 2.758 cuentos y
+22.813 poemas. Cada obra incluye `kind` (`story` o `poem`), `familiarity` y
+`readingComplexity` en una escala editorial de 0 a 10, además de `isClassic`
+como 0 o 1. Las puntuaciones equilibran las rondas y documentan la estimación
+editorial usada por el juego.
+
+`static/storyReaderMetadata.json` conserva `readingTime`, `wordCount` y las
+clasificaciones de los 7.877 cuentos locales. `static/poemReaderMetadata.json`
+hace lo mismo para 31.279 registros de poemas: 31.253 archivos locales y 26
+referencias de fuente cuyo texto no está disponible localmente. Los registros
+sin atribución verificable llevan `classificationStatus: "unmapped"`,
+`unreviewed: true` y `quizEligible: false`.
+
+Al revelar una ronda, el juego muestra las categorías biográficas conservadas
+en `rawCategory` con su enlace a la página del autor. El generador acepta el
+país, sexo y año de nacimiento de una fila de poema completa y coherente;
+marca las biografías contradictorias para excluirlas de las respuestas. La
+corrección curada de Antonio Machado conserva España y 1875, respaldada por la
+[Biblioteca Nacional de España](https://www.bne.es/es/autores/machado-antonio).
+
+Las obras con `quizEligible: false` siguen disponibles para lectura y quedan
+fuera de las respuestas. Las dos atribuciones discutidas son
+`Aviso` y `Vendo zapatos`, dos textos de seis palabras asociados a Hemingway
+cuya atribución popular no está respaldada por evidencia suficiente; el registro
+incluye la fuente de la investigación de Quote Investigator.
+
+La modalidad inicial es «Coemas», que mezcla cuentos y poemas; los filtros
+permiten elegir cada forma por separado junto con clásicos, género y
+nacionalidad. Cada partida ofrece cuatro textos. Las primeras tres rondas
+priorizan lecturas breves y la cuarta añade desafío. Se puntúan autor,
+nacionalidad, sexo y década de nacimiento, con crédito parcial y penalización
+proporcional por error. El resultado muestra una frase y un retrato asociado
+(Borges celebra una puntuación superior a 8) y permite empezar otra partida
+con filtros distintos. La interfaz cambia al inglés con `?lang=en`.
+
+Por ronda: autor +4/−2, nacionalidad +2/−1, sexo +1/−0,5 y década +2/−1,
+con un punto adicional si las cuatro respuestas son correctas. El resultado
+se limita a 0–10 y la nota final es el promedio de las cuatro rondas. Las
+categorías biográficas se muestran después de responder y no afectan la nota.
+
+Para regenerar ambos artefactos:
+
+```bash
+python3 tools/generate_literary_guesser_data.py
+```
+
+El generador calcula la complejidad de forma determinista a partir de longitud,
+frases, diversidad léxica y puntuación, aplica pocas excepciones editoriales
+para microcuentos célebres y marca como clásicos el canon curado o autores
+históricos (nacidos hasta 1900 inclusive). `isClassic: 0` significa que la obra no está
+designada como clásica, no que exista una evaluación negativa.
+
 ### Cómo se calcula la similitud entre autores
 
 1. Se normaliza cada vector de cuento.
@@ -132,6 +188,12 @@ Estos recorridos comprueban filtros de cuentos y poemas, «Sorpréndeme», selec
 de resultados, apertura y cierre accesible del menú del mapa, navegación por
 flechas, autocompletado con botones y un autor sin vecinos del grafo que recibe
 afinidad semántica.
+
+El recorrido específico del juego se puede ejecutar con:
+
+```bash
+node browser-tests/literary_guesser.cjs
+```
 
 Para regenerar los vecinos semánticos se requiere Python con NumPy:
 

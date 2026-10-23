@@ -34,7 +34,26 @@ def main():
         metadata = list(csv.DictReader(handle, delimiter="\t"))
 
     row_to_story = {}
-    story_metadata = {}
+    # Literary Guesser fields are maintained by the dedicated generator. A
+    # nearest-neighbor rebuild must update readingTime without dropping those
+    # fields (or metadata for local texts not present in the tensor export).
+    existing_metadata_path = ROOT / "static/storyReaderMetadata.json"
+    existing_metadata = (
+        json.loads(existing_metadata_path.read_text())
+        if existing_metadata_path.exists()
+        else {}
+    )
+    story_metadata = dict(existing_metadata)
+
+    def set_reading_time(story_id, value):
+        entry = dict(story_metadata.get(story_id, {}))
+        # Existing reader metadata is authoritative. This keeps the original
+        # readingTime and all Literary Guesser classifications intact when
+        # only the tensor neighbors are regenerated.
+        if "readingTime" not in entry:
+            entry["readingTime"] = float(value)
+        story_metadata[story_id] = entry
+
     used = set()
     for row_number, row in enumerate(metadata):
         candidates = [
@@ -55,9 +74,7 @@ def main():
         ]
         story_id = (matching or candidates)[0][0]
         row_to_story[row_number] = story_id
-        story_metadata[story_id] = {
-            "readingTime": float(row["Tiempo de Lectura (min)"] or 0),
-        }
+        set_reading_time(story_id, float(row["Tiempo de Lectura (min)"] or 0))
         used.add(story_id)
 
     tensors = np.loadtxt(
@@ -119,14 +136,15 @@ def main():
             story_file = ROOT / "static/Cuentos" / f"{story_id}.json"
             if story_file.exists():
                 story_data = json.loads(story_file.read_text())
-                story_metadata[story_id] = {
-                    "readingTime": float(
+                set_reading_time(
+                    story_id,
+                    float(
                         story_data.get("metadata", {}).get(
                             "reading_time_min",
                             0,
                         )
-                    )
-                }
+                    ),
+                )
 
     output = ROOT / "static/storyEmbeddingNeighbors.json"
     serialized = json.dumps(
@@ -136,11 +154,8 @@ def main():
     )
     output.write_text(serialized + "\n")
     (ROOT / "static/storyReaderMetadata.json").write_text(
-        json.dumps(
-            story_metadata,
-            ensure_ascii=False,
-            separators=(",", ":"),
-        )
+        json.dumps(story_metadata, ensure_ascii=False, separators=(",", ":"))
+        + "\n"
     )
     print(
         f"Wrote {len(neighbors)} mapped stories "

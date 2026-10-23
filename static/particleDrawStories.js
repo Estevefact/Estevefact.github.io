@@ -152,6 +152,19 @@ function resetAuthorImage(providedURL) {
   });
 }
 
+function clearAuthorImage() {
+  coemAnimationRun += 1;
+  if (coemPortraitSketch) {
+    coemPortraitSketch.remove();
+    coemPortraitSketch = null;
+  }
+  const container = document.getElementById("drawing");
+  if (container) {
+    container.replaceChildren();
+    delete container.dataset.animationPhase;
+  }
+}
+
 if (typeof module === "object" && module.exports) {
-  module.exports = { COEM_PORTRAIT_TIMING, loadCoemPortraitAnimator };
+  module.exports = { COEM_PORTRAIT_TIMING, loadCoemPortraitAnimator, clearAuthorImage };
 }

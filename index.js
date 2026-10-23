@@ -75,6 +75,12 @@
             description: 'Escribe la historia que imaginas y busca cuentos del archivo que se parezcan a esa descripción en google Colab.',
             action: 'Describir un cuento', href: 'https://colab.research.google.com/drive/1z9y_NzBtdJrvlEC0siRCjEVZP7VuzMEX?usp=sharing',
             image: 'static/imgs/Kafka.png', author: 'Franz Kafka', external: true
+        },
+        {
+            label: 'Oráculo', kicker: 'Juego de lectura', title: 'Oráculo literario',
+            description: 'Elige cuentos, poemas o ambos como Coemas. Lee textos breves y adivina autor, nacionalidad, sexo y década de nacimiento.',
+            action: 'Jugar al oráculo', href: 'literary-guesser.html',
+            image: 'static/imgs/Borges.png', author: 'Jorge Luis Borges'
         }
     ];
 
