@@ -84,7 +84,7 @@ async function assertReadableCompactList(page, selector, label) {
     assert.notDeepEqual(secondPortraitNames, firstPortraitNames);
     assert.equal(new Set(secondPortraitNames).size, 3);
 
-    assert.equal(await page.getByRole("tab").count(), 6);
+    assert.equal(await page.getByRole("tab").count(), 7);
     await page.getByRole("tab", { name: /02 Poemas/ }).click();
     assert.equal(await page.locator("#route-title").innerText(), "Poemas");
     assert.match(await page.locator("#route-image").getAttribute("src"), /Pizarnik\.png$/);
@@ -105,6 +105,21 @@ async function assertReadableCompactList(page, selector, label) {
     assert.match(calligraphyAnimation.fontFamily, /Allura/);
     assert.equal(calligraphyAnimation.ink, "calligraphy-write");
     assert.equal(calligraphyAnimation.nib, "calligraphy-nib");
+
+    const routeActions = [
+      ["Cuentos", "stories-info.html"], ["Poemas", "poems-info.html"], ["Relaciones", "authorToAuthor3DSmall.html"],
+      ["Embeddings", "embeddings.html"], ["Autores", "authorToAuthor3D.html"], ["Describir", "https://colab.research.google.com/drive/1z9y_NzBtdJrvlEC0siRCjEVZP7VuzMEX?usp=sharing"],
+      ["Oráculo", "literary-guesser.html"]
+    ];
+    for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 }, { width: 320, height: 640 }]) {
+      await page.setViewportSize(viewport);
+      await page.goto(`${base}/`);
+      assert.equal(await page.getByRole("tab").count(), 7);
+      for (const [route, href] of routeActions) {
+        await page.getByRole("tab", { name: new RegExp(`${route}$`) }).click();
+        assert.equal(await page.locator("#route-link").getAttribute("href"), href);
+      }
+    }
 
     await page.goto(`${base}/stories-info.html?story=002321f5-8b50-4571-aeee-021c0b8da730`);
     assert.deepEqual(

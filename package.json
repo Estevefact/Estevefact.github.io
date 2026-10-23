@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "test": "node --test",
-    "test:browser": "node browser-tests/browser_flows.cjs"
+    "test:browser": "node browser-tests/browser_flows.cjs",
+    "test:browser:guesser": "node browser-tests/literary_guesser.cjs"
   },
   "devDependencies": {
     "playwright": "^1.53.0"
