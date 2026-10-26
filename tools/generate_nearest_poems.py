@@ -35,7 +35,9 @@ def main():
         reading_time = float(poem.get("reading_time") or 0)
         entry = dict(poem_metadata.get(poem["id"], {}))
         if "readingTime" not in entry:
-            entry["readingTime"] = reading_time if math.isfinite(reading_time) else 0
+            entry["readingTime"] = (
+                reading_time if math.isfinite(reading_time) else 0
+            )
         if "country" not in entry:
             entry["country"] = poem.get("country") or ""
         poem_metadata[poem["id"]] = entry
