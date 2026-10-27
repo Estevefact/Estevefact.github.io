@@ -130,6 +130,8 @@ async function assertReadableCompactList(page, selector, label) {
     assert.equal(await page.locator('.site-menu a[href="literary-guesser.html"]').textContent(), "Oráculo literario");
     await page.waitForFunction(() => document.querySelector("#cuentoTitle")?.textContent !== "Cargando cuento…");
     assert.equal(await page.locator("#discovery-panel").isHidden(), true);
+    assert.equal(await page.locator("#reader-resume").isHidden(), true);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
     assert.equal(await page.locator("#discovery-toggle").getAttribute("aria-expanded"), "false");
     await page.locator("#discovery-toggle").click();
     assert.equal(await page.locator("#discovery-panel").isHidden(), false);
@@ -150,6 +152,8 @@ async function assertReadableCompactList(page, selector, label) {
     await page.waitForFunction(() => document.querySelector("#cuentoTitle")?.textContent !== "Cargando cuento…");
     await page.waitForSelector("#reader-resume:not([hidden])");
     assert.match(await page.locator("#reader-resume-label").innerText(), /Último cuento:/);
+    assert.ok((await page.locator("#reader-resume-label").innerText()).trim().length > "Último cuento:".length);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
     await page.getByRole("button", { name: "Continuar leyendo" }).click();
     await page.waitForFunction(() => document.querySelector("#discovery-panel")?.hidden === true);
     assert.ok(await page.evaluate(() => window.scrollY > 100));

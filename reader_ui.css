@@ -39,6 +39,9 @@ html, body {
   min-height: 100% !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
 }
 
 body {
@@ -61,6 +64,8 @@ body {
 
 #appbar {
   box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100vw;
   box-shadow: 0 3px 14px rgba(0, 0, 0, .16);
 }
 
@@ -172,6 +177,8 @@ body {
 
 .reader-resume {
   width: min(900px, 100%);
+  max-width: 100%;
+  box-sizing: border-box;
   margin: 0 auto 12px;
   padding: 10px 14px;
   display: flex;
@@ -183,6 +190,7 @@ body {
   color: var(--reader-text);
 }
 
+.reader-resume[hidden] { display: none !important; }
 .reader-resume span { min-width: 0; overflow-wrap: anywhere; }
 .reader-resume .reader-button { flex: 0 0 auto; }
 
@@ -531,4 +539,6 @@ body {
   .author-facts { grid-template-columns: 1fr; }
   #cuentoText, #poemText { border-radius: 14px; padding: 20px !important; line-height: 1.65 !important; }
   .recommendation-grid { grid-template-columns: 1fr; }
+  .reader-resume { flex-direction: column; align-items: stretch; }
+  .reader-resume .reader-button { width: 100%; }
 }
