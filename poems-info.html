@@ -23,20 +23,23 @@
 </head>
 <body>
   <header id="appbar">
+    <a class="coem-home-link" href="index.html#archivo" aria-label="COEM, menú principal"><img src="static/Coem.png" alt="Coem"></a>
     <strong>Poemas</strong>
-    <a href="index.html" aria-label="Inicio de Coem"><img src="static/Coem.png" alt="Coem"></a>
     <details class="site-menu">
       <summary>Menú principal</summary>
       <nav aria-label="Menú principal">
         <a href="index.html">Inicio</a><a href="stories-info.html">Cuentos</a><a href="poems-info.html">Poemas</a>
-        <a href="authorToAuthor3DSmall.html">Mapa de autores</a><a href="embeddings.html">Embeddings</a>
+        <a href="authorToAuthor3DSmall.html">Mapa de autores</a><a href="embeddings.html">Mapa literario</a>
+        <a href="literary-guesser.html">Oráculo literario</a>
       </nav>
     </details>
   </header>
 
   <main id="container-poems">
     <div class="reader-sr-only" id="reader-status" role="status" aria-live="polite"></div>
-    <section class="reader-discovery" aria-labelledby="discovery-title">
+    <button class="reader-discovery-toggle" id="discovery-toggle" type="button" aria-controls="discovery-panel" aria-expanded="true">Buscar y filtrar</button>
+    <div class="reader-resume" id="reader-resume" hidden><span id="reader-resume-label"></span><button class="reader-button" id="reader-resume-button" type="button">Continuar leyendo</button></div>
+    <section class="reader-discovery" id="discovery-panel" aria-labelledby="discovery-title">
       <h2 id="discovery-title">Buscar y descubrir poemas</h2>
       <p>Escribe cualquier título, autor, país, género o año. Los filtros se pueden combinar.</p>
       <div id="search-container">

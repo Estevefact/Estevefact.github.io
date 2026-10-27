@@ -36,6 +36,14 @@ select:focus { outline: 2px solid var(--guesser-red); outline-offset: 2px; }
 .filter-dot { padding: 0 9px; color: var(--guesser-red); }
 .scoring-note, .rating-note { margin: 0 0 9px; color: rgba(24,23,19,.67); font-size: .92rem; line-height: 1.25; }
 .rating-note { margin-bottom: 22px; font-style: italic; }
+.resume-choice { margin-top: 18px; padding: 18px; border-left: 3px solid var(--guesser-red); background: rgba(164,56,43,.08); }
+.resume-choice h3 { margin: 0 0 6px; font-size: 1.45rem; font-weight: 500; }
+.resume-choice p { margin: 0 0 14px; }
+.resume-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.resume-actions button { min-height: 44px; padding: 10px 15px; border: 1px solid var(--guesser-red); color: #fffaf0; background: var(--guesser-red); font: 600 1rem var(--serif); cursor: pointer; }
+.resume-actions button:hover, .resume-actions button:focus-visible { color: #fffaf0; background: var(--ink); }
+.resume-actions .reader-button--secondary { color: var(--ink); background: transparent; }
+.resume-actions .reader-button--secondary:hover, .resume-actions .reader-button--secondary:focus-visible { color: #fffaf0; }
 .text-button { padding: 0; border: 0; color: var(--guesser-red); background: transparent; font: 600 1rem var(--serif); text-decoration: underline; cursor: pointer; }
 .empty-state { margin: 0 0 18px; padding: 12px; border-left: 3px solid var(--guesser-red); background: rgba(164,56,43,.08); }
 .guesser-start { color: #fffaf0; margin: 17px 0 8px; }

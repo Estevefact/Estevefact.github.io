@@ -39,6 +39,9 @@ html, body {
   min-height: 100% !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
 }
 
 body {
@@ -61,6 +64,8 @@ body {
 
 #appbar {
   box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100vw;
   box-shadow: 0 3px 14px rgba(0, 0, 0, .16);
 }
 
@@ -148,6 +153,46 @@ body {
   background: var(--reader-surface);
   box-shadow: var(--reader-shadow);
 }
+
+.reader-discovery-toggle {
+  display: block;
+  width: min(900px, 100%);
+  min-height: 46px;
+  margin: 0 auto 12px;
+  padding: 10px 16px;
+  border: 1px solid var(--reader-action);
+  border-radius: 12px;
+  background: var(--reader-surface);
+  color: var(--reader-action);
+  font: 700 16px/1.2 Georgia, "Times New Roman", serif;
+  text-align: left;
+  cursor: pointer;
+}
+
+.reader-discovery-toggle:hover,
+.reader-discovery-toggle:focus-visible {
+  background: var(--reader-surface-2);
+  color: var(--reader-action-hover);
+}
+
+.reader-resume {
+  width: min(900px, 100%);
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto 12px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-left: 4px solid var(--reader-accent);
+  background: var(--reader-surface-2);
+  color: var(--reader-text);
+}
+
+.reader-resume[hidden] { display: none !important; }
+.reader-resume span { min-width: 0; overflow-wrap: anywhere; }
+.reader-resume .reader-button { flex: 0 0 auto; }
 
 .reader-discovery h2 { margin: 0 0 6px; color: var(--reader-text); }
 .reader-discovery > p { margin: 0 0 18px; color: var(--reader-muted); }
@@ -494,4 +539,6 @@ body {
   .author-facts { grid-template-columns: 1fr; }
   #cuentoText, #poemText { border-radius: 14px; padding: 20px !important; line-height: 1.65 !important; }
   .recommendation-grid { grid-template-columns: 1fr; }
+  .reader-resume { flex-direction: column; align-items: stretch; }
+  .reader-resume .reader-button { width: 100%; }
 }

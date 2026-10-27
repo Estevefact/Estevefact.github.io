@@ -65,6 +65,10 @@ async function assertReadableCompactList(page, selector, label) {
   const page = await browser.newPage();
   try {
     await page.goto(`${base}/`);
+    assert.equal(await page.locator(".wordmark").getAttribute("href"), "index.html#archivo");
+    assert.equal(await page.locator("#oracle-title").innerText(), "Oráculo literario");
+    assert.equal(await page.locator(".oracle-cta").getAttribute("href"), "literary-guesser.html?play=1");
+    assert.ok(await page.locator(".oracle-cta").evaluate(element => getComputedStyle(element).minHeight !== "0px"));
     const canonicalMarks = page.locator('img[src="Coem.png"]');
     assert.equal(await canonicalMarks.count(), 3);
     for (let index = 0; index < 3; index += 1) {
@@ -108,7 +112,7 @@ async function assertReadableCompactList(page, selector, label) {
 
     const routeActions = [
       ["Cuentos", "stories-info.html"], ["Poemas", "poems-info.html"], ["Relaciones", "authorToAuthor3DSmall.html"],
-      ["Embeddings", "embeddings.html"], ["Autores", "authorToAuthor3D.html"], ["Describir", "https://colab.research.google.com/drive/1z9y_NzBtdJrvlEC0siRCjEVZP7VuzMEX?usp=sharing"],
+      ["Mapa literario", "embeddings.html"], ["Autores", "authorToAuthor3D.html"], ["Describir", "https://colab.research.google.com/drive/1z9y_NzBtdJrvlEC0siRCjEVZP7VuzMEX?usp=sharing"],
       ["Oráculo", "literary-guesser.html"]
     ];
     for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 }, { width: 320, height: 640 }]) {
@@ -122,8 +126,56 @@ async function assertReadableCompactList(page, selector, label) {
     }
 
     await page.goto(`${base}/stories-info.html?story=002321f5-8b50-4571-aeee-021c0b8da730`);
+    assert.equal(await page.locator(".coem-home-link").getAttribute("href"), "index.html#archivo");
+    assert.equal(await page.locator('.site-menu a[href="literary-guesser.html"]').textContent(), "Oráculo literario");
+    await page.waitForFunction(() => document.querySelector("#cuentoTitle")?.textContent !== "Cargando cuento…");
+    assert.equal(await page.locator("#discovery-panel").isHidden(), true);
+    assert.equal(await page.locator("#reader-resume").isHidden(), true);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+    assert.equal(await page.locator("#discovery-toggle").getAttribute("aria-expanded"), "false");
+    await page.locator("#discovery-toggle").click();
+    assert.equal(await page.locator("#discovery-panel").isHidden(), false);
+    assert.equal(await page.locator("#discovery-toggle").getAttribute("aria-expanded"), "true");
+    await page.locator("#author-search").fill("Borges");
+    assert.equal(await page.locator("#discovery-panel").isHidden(), false);
+    await page.locator("#clear-filters").click();
+    await page.locator("#discovery-toggle").click();
+    await page.evaluate(() => { history.scrollRestoration = "manual"; window.scrollTo(0, 640); });
+    await page.waitForTimeout(260);
+    const savedScroll = await page.evaluate(() => window.scrollY);
+    await page.reload();
+    await page.waitForFunction(() => document.querySelector("#cuentoTitle")?.textContent !== "Cargando cuento…");
+    const restoredScroll = await page.evaluate(() => window.scrollY);
+    assert.ok(savedScroll > 100 && restoredScroll > 100, `reading position should restore (${savedScroll} → ${restoredScroll})`);
+    assert.equal(await page.locator("#discovery-panel").isHidden(), true);
+    await page.goto(`${base}/stories-info.html`);
+    await page.waitForFunction(() => document.querySelector("#cuentoTitle")?.textContent !== "Cargando cuento…");
+    await page.waitForSelector("#reader-resume:not([hidden])");
+    assert.match(await page.locator("#reader-resume-label").innerText(), /Último cuento:/);
+    assert.ok((await page.locator("#reader-resume-label").innerText()).trim().length > "Último cuento:".length);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+    await page.getByRole("button", { name: "Continuar leyendo" }).click();
+    await page.waitForFunction(() => document.querySelector("#discovery-panel")?.hidden === true);
+    assert.ok(await page.evaluate(() => window.scrollY > 100));
+    await page.goto(`${base}/authorToAuthor3DSmall.html`);
+    assert.equal(await page.locator('.site-menu a[href="literary-guesser.html"]').textContent(), "Oráculo literario");
+    assert.match(fs.readFileSync(path.join(root, "embeddings.html"), "utf8"), /<a href="literary-guesser\.html">Oráculo literario<\/a>/);
+    await page.goto(`${base}/poems-info.html?poem=d313c7ec-a7c5-48be-878f-d5a89008ed78`);
+    await page.waitForFunction(() => document.querySelector("#poemTitle")?.textContent !== "Cargando poema…");
+    assert.equal(await page.locator("#discovery-panel").isHidden(), true);
+    await page.locator("#discovery-toggle").click();
+    assert.equal(await page.locator("#discovery-panel").isHidden(), false);
+    await page.locator("#discovery-toggle").click();
+    await page.evaluate(() => { history.scrollRestoration = "manual"; window.scrollTo(0, 480); });
+    await page.waitForTimeout(260);
+    const poemScroll = await page.evaluate(() => window.scrollY);
+    await page.reload();
+    await page.waitForFunction(() => document.querySelector("#poemTitle")?.textContent !== "Cargando poema…");
+    assert.ok(poemScroll > 100 && await page.evaluate(() => window.scrollY > 100));
+    await page.goto(`${base}/stories-info.html?story=002321f5-8b50-4571-aeee-021c0b8da730`);
+    await page.waitForFunction(() => document.querySelector("#time-filter option[value='20']"));
     assert.deepEqual(
-      await page.getByRole("combobox", { name: "Duración máxima" }).locator("option").evaluateAll(options =>
+      await page.locator("#time-filter").locator("option").evaluateAll(options =>
         options.map(option => option.value)
       ),
       ["", "2", "4", "6", "8", "10", "15", "20"]
@@ -223,6 +275,7 @@ async function assertReadableCompactList(page, selector, label) {
     );
     await page.getByRole("button", { name: "Cambiar tema" }).click();
 
+    await page.locator("#discovery-toggle").click();
     await page.getByRole("searchbox", { name: "Buscar en todo" }).fill("a");
     await assertAutocompleteScrolls(page, "Stories");
     await page.getByRole("searchbox", { name: "Buscar en todo" }).fill("Borges");
@@ -236,6 +289,7 @@ async function assertReadableCompactList(page, selector, label) {
     await page.waitForFunction(title => document.querySelector("h1")?.textContent !== title, originalStory);
     assert.notEqual(await page.locator("h1").innerText(), originalStory);
 
+    await page.locator("#discovery-toggle").click();
     await page.getByRole("combobox", { name: "País" }).selectOption({ label: "Colombia" });
     await page.getByRole("combobox", { name: "Género" }).selectOption({ label: "Unknown" });
     await page.getByRole("combobox", { name: "Duración máxima" }).selectOption("6");
@@ -262,6 +316,7 @@ async function assertReadableCompactList(page, selector, label) {
     await page.waitForFunction(() =>
       document.querySelector("#poemTitle")?.textContent === document.querySelector("#author-search")?.value
     );
+    await page.locator("#discovery-toggle").click();
     assert.equal(await page.locator("#poemTitle").innerText(), await page.getByRole("searchbox").inputValue());
     await assertReadableCompactList(page, "#poems-by-author", "Poem list");
     await assertReadableCompactList(page, "#related-poem-authors", "Related poem authors");
