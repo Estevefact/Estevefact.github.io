@@ -20,6 +20,15 @@ test("reading history keeps the newest visit first and deduplicates revisits", (
   assert.deepEqual(ReaderFeatures.getLibrary(type).history.map(item => item.id), ["a", "b"]);
 });
 
+test("reading positions are versioned, relative-ready, and safe to overwrite", () => {
+  const type = `position-${Date.now()}`;
+  assert.equal(ReaderFeatures.saveReadingPosition(type, "work", 420), true);
+  assert.equal(ReaderFeatures.getReadingPosition(type, "work"), 420);
+  assert.equal(ReaderFeatures.saveReadingPosition(type, "work", 88), true);
+  assert.equal(ReaderFeatures.getReadingPosition(type, "work"), 88);
+  assert.equal(ReaderFeatures.saveReadingPosition(type, "", 20), false);
+});
+
 test("discovery filters enforce country, genre, duration, and current-item exclusion", () => {
   const items = [
     { id: "a", country: "Colombia", genre: "Romanticismo", readingTime: 1 },
@@ -328,7 +337,7 @@ test("reader startup renders content before loading semantic discovery indexes",
 
   const poemFirstRender = poems.indexOf("await loadPoem(initialId");
   const poemFullCatalog = poems.indexOf('fullDataPromise = fetchJSON("static/poems.json")', poemFirstRender);
-  const poemHydration = poems.indexOf("hydrateDiscoveryFeatures(fullDataPromise)", poemFirstRender);
+  const poemHydration = poems.indexOf("hydrateDiscoveryFeatures(fullDataPromise", poemFirstRender);
   assert.ok(poemFirstRender >= 0);
   assert.ok(poemFullCatalog > poemFirstRender);
   assert.ok(poemHydration > poemFirstRender);

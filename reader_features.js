@@ -19,6 +19,60 @@
     try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* private mode */ }
   }
 
+  function storageRemove(key) {
+    delete memory[key];
+    try { localStorage.removeItem(key); } catch { /* private mode */ }
+  }
+
+  function positionKey(type, id) {
+    return `coem:reader-position:v1:${type}:${id}`;
+  }
+
+  const POSITION_INDEX_KEY = "coem:reader-position:v1:index";
+
+  function getReadingPosition(type, id) {
+    if (!type || !id) return null;
+    const value = storageGet(positionKey(type, id), null);
+    const position = Number(value?.scrollTop);
+    return Number.isFinite(position) && position >= 0 ? position : null;
+  }
+
+  function saveReadingPosition(type, id, scrollTop, anchor) {
+    const position = Number(scrollTop);
+    if (!type || !id || !Number.isFinite(position) || position < 0) return false;
+    const entry = { version: 1, type: String(type), id: String(id), scrollTop: Math.round(position), updatedAt: Date.now() };
+    if (anchor) {
+      const bounds = anchor.getBoundingClientRect();
+      const top = bounds.top + window.scrollY;
+      const range = Math.max(1, anchor.scrollHeight - window.innerHeight);
+      entry.progress = Math.max(0, Math.min(1, (position - top) / range));
+    }
+    storageSet(positionKey(type, id), entry);
+    const rawIndex = storageGet(POSITION_INDEX_KEY, []);
+    const previous = (Array.isArray(rawIndex) ? rawIndex : []).filter(item => item && item.type && item.id);
+    const index = previous.filter(item => String(item.type) !== String(type) || String(item.id) !== String(id));
+    index.unshift({ type: String(type), id: String(id), updatedAt: entry.updatedAt });
+    const next = index.slice(0, 100);
+    const retained = new Set(next.map(item => `${item.type}:${item.id}`));
+    previous.forEach(item => { if (!retained.has(`${item.type}:${item.id}`)) storageRemove(positionKey(item.type, item.id)); });
+    storageSet(POSITION_INDEX_KEY, next);
+    return true;
+  }
+
+  function restoreReadingPosition(type, id, anchor) {
+    const position = getReadingPosition(type, id);
+    if (position === null) return false;
+    if (anchor) {
+      const bounds = anchor.getBoundingClientRect();
+      const top = bounds.top + window.scrollY;
+      const range = Math.max(1, anchor.scrollHeight - window.innerHeight);
+      const saved = storageGet(positionKey(type, id), {});
+      const progress = Number(saved?.progress);
+      window.scrollTo({ top: top + (Number.isFinite(progress) ? progress : 0) * range, behavior: "auto" });
+    } else window.scrollTo({ top: position, behavior: "auto" });
+    return true;
+  }
+
   function recordHistory(type, item, max = 30) {
     const key = `coem:${type}:history`;
     const history = storageGet(key, []).filter(entry => entry.id !== item.id);
@@ -176,6 +230,7 @@
 
   return {
     storageGet, storageSet, recordHistory, toggleBookmark, isBookmarked, getLibrary,
+    getReadingPosition, saveReadingPosition, restoreReadingPosition,
     getItemFromURL, updateURL, getPreferences, applyPreferences, setTheme,
     changeFontSize, shareCurrent, formatTime, normalizeText, matchesFilters,
     filterItems, buildFilterIndex, filterIndexedItems, randomItem,

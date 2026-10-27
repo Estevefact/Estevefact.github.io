@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let poemMetadata = {};
   let currentPoem = null;
   let activePoemLoad = 0;
+  let readingPositionTimer = null;
+  let discoveryCollapsed = false;
   let poemSearchItems = [];
   let poemSearchIndex = [];
   const SEARCH_SUGGESTION_LIMIT = 30;
@@ -166,6 +168,53 @@ document.addEventListener("DOMContentLoaded", () => {
     render("history-list", library.history);
   }
 
+  function setDiscoveryCollapsed(collapsed, focus = false) {
+    const panel = document.getElementById("discovery-panel");
+    const toggle = document.getElementById("discovery-toggle");
+    if (!panel || !toggle) return;
+    discoveryCollapsed = Boolean(collapsed);
+    panel.hidden = discoveryCollapsed;
+    toggle.hidden = false;
+    toggle.setAttribute("aria-expanded", String(!discoveryCollapsed));
+    toggle.textContent = discoveryCollapsed ? "Buscar y filtrar" : "Ocultar búsqueda";
+    if (focus) toggle.focus();
+  }
+
+  function setupDiscoveryToggle() {
+    const toggle = document.getElementById("discovery-toggle");
+    if (!toggle) return;
+    toggle.addEventListener("click", () => setDiscoveryCollapsed(!discoveryCollapsed, true));
+    setDiscoveryCollapsed(false);
+  }
+
+  function setupReadingPosition() {
+    window.addEventListener("scroll", () => {
+      if (!currentPoem) return;
+      const poemId = currentPoem.id;
+      const anchor = document.getElementById("container-poem");
+      const position = window.scrollY;
+      window.clearTimeout(readingPositionTimer);
+      readingPositionTimer = window.setTimeout(() => {
+        ReaderFeatures.saveReadingPosition("poem", poemId, position, anchor);
+      }, 180);
+    }, { passive: true });
+    window.addEventListener("pagehide", () => {
+      window.clearTimeout(readingPositionTimer);
+      if (currentPoem) ReaderFeatures.saveReadingPosition("poem", currentPoem.id, window.scrollY, document.getElementById("container-poem"));
+    });
+  }
+
+  function setupContinueReading(offer = true) {
+    if (!offer) return;
+    const entry = ReaderFeatures.getLibrary("poem").history.find(item => ReaderFeatures.getReadingPosition("poem", item.id) !== null && poemCatalog[item.id]);
+    const strip = document.getElementById("reader-resume");
+    const button = document.getElementById("reader-resume-button");
+    if (!entry || !strip || !button) return;
+    document.getElementById("reader-resume-label").textContent = `Último poema: ${entry.title}`;
+    strip.hidden = false;
+    button.addEventListener("click", () => loadPoem(entry.id, { collapse: true, restorePosition: true }));
+  }
+
   function updateBookmarkButton() {
     const button = document.getElementById("bookmark-toggle");
     const saved = currentPoem && ReaderFeatures.isBookmarked("poem", currentPoem.id);
@@ -176,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadPoem(poemId, options = {}) {
     const poem = poemCatalog[poemId];
     if (!poem) return;
+    if (currentPoem) ReaderFeatures.saveReadingPosition("poem", currentPoem.id, window.scrollY, document.getElementById("container-poem"));
     const requestId = ++activePoemLoad;
     const text = document.getElementById("poemText");
     document.getElementById("container-poem").setAttribute("aria-busy", "true");
@@ -197,9 +247,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (options.record !== false) ReaderFeatures.recordHistory("poem", model);
       renderLibrary();
       updateBookmarkButton();
+      if (options.collapse !== false) setDiscoveryCollapsed(true);
       document.getElementById("reader-status").textContent =
         `Cargado ${poem.story_name}, de ${model.author}.`;
-      if (options.scroll !== false) {
+      const restoredPosition = options.restorePosition !== false && ReaderFeatures.restoreReadingPosition("poem", poem.id, document.getElementById("container-poem"));
+      if (options.scroll !== false && !restoredPosition) {
         requestAnimationFrame(() => {
           ReaderFeatures.navigateToReadingStart(document.getElementById("poemTitle"));
         });
@@ -311,7 +363,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderRecommendations(poem.id);
   }
 
-  async function hydrateDiscoveryFeatures(fullDataPromise) {
+  async function hydrateDiscoveryFeatures(fullDataPromise, offerContinue = true) {
     const [fullData, loadedNeighbors, loadedMetadata, loadedAuthorNeighbors] = await Promise.all([
       fullDataPromise,
       fetchJSON("static/poemEmbeddingNeighbors.json"),
@@ -328,12 +380,15 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSearch();
     setDiscoveryReady(true);
     refreshCurrentPoemFeatures();
+    setupContinueReading(offerContinue);
   }
 
   async function initialize() {
     try {
       setupControls();
       setDiscoveryReady(false);
+      setupDiscoveryToggle();
+      setupReadingPosition();
       const requested = ReaderFeatures.getItemFromURL("poem");
       let fullDataPromise;
 
@@ -341,14 +396,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const startupPool = await fetchJSON("static/poemStartupPool.json");
         hydrateCatalog(startupPool);
         const initialId = StoriesCore.chooseInitialStoryId(null, poemCatalog);
-        if (initialId) await loadPoem(initialId, { scroll: false });
+        if (initialId) await loadPoem(initialId, { scroll: false, collapse: false, restorePosition: false });
         fullDataPromise = fetchJSON("static/poems.json");
       } else {
         fullDataPromise = fetchJSON("static/poems.json");
         const fullData = await fullDataPromise;
         hydrateCatalog(fullData);
         const initialId = poemCatalog[requested] ? requested : FALLBACK_POEM_ID;
-        await loadPoem(initialId, { scroll: false });
+        await loadPoem(initialId, { scroll: false, collapse: true, restorePosition: true });
       }
       loadCoemPortraitAnimator(() => {
         const poem = currentPoem && poemCatalog[currentPoem.id];
@@ -356,7 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (author) resetAuthorImage(author.image);
       });
 
-      hydrateDiscoveryFeatures(fullDataPromise).catch(error => {
+      hydrateDiscoveryFeatures(fullDataPromise, !requested).catch(error => {
         setDiscoveryReady(true);
         console.error("No fue posible completar las funciones de descubrimiento:", error);
       });

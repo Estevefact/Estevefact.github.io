@@ -15,7 +15,7 @@
 <body class="guesser-page">
     <a class="skip-link" href="#game-main" data-i18n="skip">Ir al juego</a>
     <header class="site-header guesser-header" aria-label="Navegación principal">
-        <a class="wordmark" href="index.html" aria-label="COEM, inicio"><img src="Coem.png" alt="" width="572" height="288"></a>
+        <a class="wordmark" href="index.html#archivo" aria-label="COEM, menú principal"><img src="Coem.png" alt="" width="572" height="288"></a>
         <nav class="header-nav" aria-label="Accesos">
             <a href="index.html#archivo" data-i18n="backArchive">Volver al archivo</a>
             <button type="button" class="language-toggle" id="language-toggle" aria-label="Switch to English">EN</button>
@@ -49,6 +49,11 @@
             <p class="empty-state" id="empty-state" hidden></p>
             <p class="scoring-note" data-i18n="scoreLine">Autor +4 / −2 · Nacionalidad +2 / −1 · Sexo +1 / −0,5 · Década +2 / −1 · Respuesta perfecta +1</p>
             <p class="rating-note" data-i18n="rating">Tu promedio se lee así: 0–2 aprendiz, 3–5 atento, 6–8 literato/a, más de 8 oráculo.</p>
+            <div class="resume-choice" id="resume-choice" hidden role="region" aria-labelledby="resume-title">
+                <h3 id="resume-title" data-i18n="resumeTitle">Tienes una partida guardada</h3>
+                <p data-i18n="resumeCopy">Puedes continuar donde la dejaste o empezar una partida nueva.</p>
+                <div class="resume-actions"><button type="button" class="reader-button" id="resume-game" data-i18n="resume">Continuar partida</button><button type="button" class="reader-button reader-button--secondary" id="new-game" data-i18n="newGame">Nueva partida</button></div>
+            </div>
         </section>
 
         <section class="guesser-panel game-panel" id="game-panel" hidden aria-labelledby="round-title">

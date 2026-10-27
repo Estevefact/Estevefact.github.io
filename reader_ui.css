@@ -149,6 +149,43 @@ body {
   box-shadow: var(--reader-shadow);
 }
 
+.reader-discovery-toggle {
+  display: block;
+  width: min(900px, 100%);
+  min-height: 46px;
+  margin: 0 auto 12px;
+  padding: 10px 16px;
+  border: 1px solid var(--reader-action);
+  border-radius: 12px;
+  background: var(--reader-surface);
+  color: var(--reader-action);
+  font: 700 16px/1.2 Georgia, "Times New Roman", serif;
+  text-align: left;
+  cursor: pointer;
+}
+
+.reader-discovery-toggle:hover,
+.reader-discovery-toggle:focus-visible {
+  background: var(--reader-surface-2);
+  color: var(--reader-action-hover);
+}
+
+.reader-resume {
+  width: min(900px, 100%);
+  margin: 0 auto 12px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-left: 4px solid var(--reader-accent);
+  background: var(--reader-surface-2);
+  color: var(--reader-text);
+}
+
+.reader-resume span { min-width: 0; overflow-wrap: anywhere; }
+.reader-resume .reader-button { flex: 0 0 auto; }
+
 .reader-discovery h2 { margin: 0 0 6px; color: var(--reader-text); }
 .reader-discovery > p { margin: 0 0 18px; color: var(--reader-muted); }
 

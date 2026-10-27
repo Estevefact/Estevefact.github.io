@@ -7,6 +7,7 @@
     <title>Información Autor</title>
     <style>
         body {
+            position: relative;
             font-family: 'Roboto', sans-serif;
             background-color: #eef2f7;
             display: flex;
@@ -15,6 +16,22 @@
             height: 100vh;
             margin: 0;
         }
+
+        .detail-home-link {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 2;
+            display: inline-flex;
+            min-width: 44px;
+            min-height: 44px;
+            align-items: center;
+            padding: 4px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, .8);
+        }
+
+        .detail-home-link img { display: block; width: 54px; height: auto; }
 
 
 
@@ -74,6 +91,7 @@
 </head>
 
 <body>
+    <a class="detail-home-link" href="index.html#archivo" aria-label="COEM, menú principal"><img src="Coem.png" alt="COEM"></a>
     <div class="info-box">
         <div class="info-item-author"> <span id="name">{{name}}</span></div>
         <div id="flex-container">

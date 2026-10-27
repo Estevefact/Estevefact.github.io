@@ -8,6 +8,8 @@ let activeStoryLoad = 0;
 let storySearchItems = [];
 let storySearchIndex = [];
 let activeNarrationHighlighter = null;
+let readingPositionTimer = null;
+let discoveryCollapsed = false;
 const SEARCH_SUGGESTION_LIMIT = 30;
 
 async function fetchJSON(path) {
@@ -185,6 +187,53 @@ function renderLibrary() {
   render("history-list", library.history);
 }
 
+function setDiscoveryCollapsed(collapsed, focus = false) {
+  const panel = document.getElementById("discovery-panel");
+  const toggle = document.getElementById("discovery-toggle");
+  if (!panel || !toggle) return;
+  discoveryCollapsed = Boolean(collapsed);
+  panel.hidden = discoveryCollapsed;
+  toggle.hidden = false;
+  toggle.setAttribute("aria-expanded", String(!discoveryCollapsed));
+  toggle.textContent = discoveryCollapsed ? "Buscar y filtrar" : "Ocultar búsqueda";
+  if (focus) toggle.focus();
+}
+
+function setupDiscoveryToggle() {
+  const toggle = document.getElementById("discovery-toggle");
+  if (!toggle) return;
+  toggle.addEventListener("click", () => setDiscoveryCollapsed(!discoveryCollapsed, true));
+  setDiscoveryCollapsed(false);
+}
+
+function setupReadingPosition() {
+  window.addEventListener("scroll", () => {
+    if (!currentStory) return;
+    const storyId = currentStory.id;
+    const anchor = document.getElementById("container-cuento");
+    const position = window.scrollY;
+    window.clearTimeout(readingPositionTimer);
+    readingPositionTimer = window.setTimeout(() => {
+      ReaderFeatures.saveReadingPosition("story", storyId, position, anchor);
+    }, 180);
+  }, { passive: true });
+  window.addEventListener("pagehide", () => {
+    window.clearTimeout(readingPositionTimer);
+    if (currentStory) ReaderFeatures.saveReadingPosition("story", currentStory.id, window.scrollY, document.getElementById("container-cuento"));
+  });
+}
+
+function setupContinueReading(offer = true) {
+  if (!offer) return;
+  const entry = ReaderFeatures.getLibrary("story").history.find(item => ReaderFeatures.getReadingPosition("story", item.id) !== null && storyCatalog[item.id]);
+  const strip = document.getElementById("reader-resume");
+  const button = document.getElementById("reader-resume-button");
+  if (!entry || !strip || !button) return;
+  document.getElementById("reader-resume-label").textContent = `Último cuento: ${entry.title}`;
+  strip.hidden = false;
+  button.addEventListener("click", () => loadStory(entry.id, { collapse: true, restorePosition: true }));
+}
+
 function updateBookmarkButton() {
   const button = document.getElementById("bookmark-toggle");
   const saved = currentStory && ReaderFeatures.isBookmarked("story", currentStory.id);
@@ -195,6 +244,7 @@ function updateBookmarkButton() {
 async function loadStory(storyId, options = {}) {
   const story = storyCatalog[storyId];
   if (!story) return;
+  if (currentStory) ReaderFeatures.saveReadingPosition("story", currentStory.id, window.scrollY, document.getElementById("container-cuento"));
   activeNarrationHighlighter?.destroy();
   activeNarrationHighlighter = null;
   const requestId = ++activeStoryLoad;
@@ -222,9 +272,11 @@ async function loadStory(storyId, options = {}) {
     if (options.record !== false) ReaderFeatures.recordHistory("story", model);
     renderLibrary();
     updateBookmarkButton();
+    if (options.collapse !== false) setDiscoveryCollapsed(true);
     document.getElementById("reader-status").textContent =
       `Cargado ${story.title}, de ${story.author.id}.`;
-    if (options.scroll !== false) {
+    const restoredPosition = options.restorePosition !== false && ReaderFeatures.restoreReadingPosition("story", story.id, document.getElementById("container-cuento"));
+    if (options.scroll !== false && !restoredPosition) {
       requestAnimationFrame(() => {
         ReaderFeatures.navigateToReadingStart(document.getElementById("cuentoTitle"));
       });
@@ -319,9 +371,12 @@ async function initializeStories() {
     populateSelect("genre-filter", gData.nodes.map(node => node.genre), "Género");
     setupSearch();
     setupControls();
+    setupDiscoveryToggle();
+    setupReadingPosition();
     const requested = ReaderFeatures.getItemFromURL("story");
     const initialId = StoriesCore.chooseInitialStoryId(requested, storyCatalog);
-    if (initialId) await loadStory(initialId, { scroll: false });
+    if (initialId) await loadStory(initialId, { scroll: false, collapse: Boolean(requested), restorePosition: Boolean(requested) });
+    setupContinueReading(!requested);
     loadCoemPortraitAnimator(() => {
       const story = currentStory && storyCatalog[currentStory.id];
       if (story) resetAuthorImage(story.author.image);

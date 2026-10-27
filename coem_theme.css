@@ -61,6 +61,22 @@ summary:focus-visible {
   filter: none;
 }
 
+#appbar .coem-home-link {
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 0 0 auto;
+}
+
+#appbar .coem-home-link img {
+  display: block;
+  width: 62px;
+  max-width: 62px;
+  height: auto;
+}
+
 .site-menu summary {
   min-height: 42px !important;
   padding: 0 2px 2px !important;

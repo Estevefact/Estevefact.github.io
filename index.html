@@ -27,7 +27,7 @@
     <a class="skip-link" href="#archivo">Ir al archivo</a>
 
     <header class="site-header" aria-label="Navegación principal">
-        <a class="wordmark" href="#inicio" aria-label="COEM, inicio">
+        <a class="wordmark" href="index.html#archivo" aria-label="COEM, menú principal">
             <img src="Coem.png" alt="" width="572" height="288">
         </a>
         <nav class="header-nav" aria-label="Accesos">
@@ -61,7 +61,10 @@
                     <span class="sr-only">Coem</span>
                 </h1>
                 <p class="hero-copy">Cuentos, poemas y autores clásicos reunidos en un mapa para leer y/o escuchar.</p>
-                <a class="ink-link ink-link--light" href="#archivo" data-write-link>Entrar al archivo</a>
+                <div class="hero-actions">
+                    <a class="ink-link ink-link--light hero-action" href="#archivo">Entrar al archivo</a>
+                    <a class="hero-oracle-link" href="literary-guesser.html?play=1">Jugar al oráculo</a>
+                </div>
             </div>
 
             <a class="scroll-note" href="#archivo">
@@ -70,10 +73,22 @@
             </a>
         </section>
 
+        <section class="oracle-promo" id="oraculo" aria-labelledby="oracle-title">
+            <div class="oracle-promo-copy">
+                <p class="section-number">01 / Juego de lectura</p>
+                <h2 id="oracle-title">Oráculo literario</h2>
+                <p>Lee cuatro cuentos, poemas o Coemas breves y adivina su procedencia: autor, nacionalidad, sexo y década de nacimiento.</p>
+            </div>
+            <div class="oracle-promo-actions">
+                <a class="oracle-cta" href="literary-guesser.html?play=1">Comenzar partida <span aria-hidden="true">→</span></a>
+                <a class="oracle-setup-link" href="literary-guesser.html">Elegir filtros</a>
+            </div>
+        </section>
+
         <section class="archive" id="archivo" aria-labelledby="archive-title">
             <div class="archive-heading">
                 <div>
-                    <p class="section-number">01 / El archivo</p>
+                    <p class="section-number">02 / El archivo</p>
                     <h2 id="archive-title">Elige una ruta por COEM</h2>
                 </div>
                 <p>Avanza con las flechas, desliza la imagen o elige directamente una ruta.</p>
@@ -93,7 +108,7 @@
                         <p class="route-kicker" id="route-kicker">Lectura y escucha</p>
                         <h3 id="route-title">Cuentos</h3>
                         <p id="route-description">Busca entre miles de cuentos clásicos, filtra por país o género y escucha las narraciones disponibles.</p>
-                        <a class="ink-link" id="route-link" href="stories-info.html" data-write-link>Explorar cuentos</a>
+                        <a class="ink-link route-action" id="route-link" href="stories-info.html">Explorar cuentos</a>
                     </div>
 
                     <div class="route-controls" aria-label="Cambiar ruta">
@@ -106,7 +121,7 @@
         </section>
 
         <section class="colophon" aria-labelledby="colophon-title">
-            <p class="section-number">02 / Sobre COEM</p>
+            <p class="section-number">03 / Sobre COEM</p>
             <div class="colophon-copy">
                 <h2 id="colophon-title" class="calligraphy-title" data-calligraphy>Esbozando el mapa de la literatura universal.</h2>
                 <p>Un proyecto independiente construido con software libre para navegar la literatura clásica en español y descubrir conexiones entre obras y autores.</p>
@@ -115,7 +130,7 @@
     </main>
 
     <footer class="site-footer">
-        <a class="footer-mark" href="#inicio" aria-label="COEM, volver al inicio">
+        <a class="footer-mark" href="index.html#archivo" aria-label="COEM, menú principal">
             <img src="Coem.png" alt="" width="572" height="288">
         </a>
         <div class="footer-links" aria-label="Redes sociales">

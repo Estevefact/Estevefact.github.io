@@ -61,9 +61,9 @@
             action: 'Ver relaciones', href: 'authorToAuthor3DSmall.html', image: 'static/imgs/cortazar.png', author: 'Julio Cortázar'
         },
         {
-            label: 'Embeddings', kicker: 'Constelación de textos', title: 'Embeddings',
+            label: 'Mapa literario', kicker: 'Constelación de textos', title: 'Mapa literario',
             description: 'Navega cuentos y poemas como puntos en un espacio compartido, agrupados por la cercanía de su lenguaje.',
-            action: 'Abrir proyector', href: 'embeddings.html', image: 'static/imgs/Borges.png', author: 'Jorge Luis Borges'
+            action: 'Abrir mapa literario', href: 'embeddings.html', image: 'static/imgs/Borges.png', author: 'Jorge Luis Borges'
         },
         {
             label: 'Autores', kicker: 'Atlas completo', title: 'Autores',
@@ -215,7 +215,8 @@
             link.removeAttribute('target');
             link.removeAttribute('rel');
         }
-        writeText(link, route.action, 100);
+        link.setAttribute('aria-label', route.action);
+        link.textContent = route.action;
         updateTabs(normalizedIndex);
 
         stage.classList.remove('is-entering');
