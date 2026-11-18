@@ -16,11 +16,8 @@
     <meta name="twitter:description" content="Cuentos, poemas y relaciones literarias para leer, escuchar y explorar.">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/Estevefact/Estevefact.github.io/main/preview.png">
     <link rel="icon" type="image/png" href="static/favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="preload" as="image" href="static/imgs/quiroga.png">
-    <link rel="stylesheet" href="index.css?v=5">
+    <link rel="preload" as="font" href="static/fonts/cormorant-400.woff2" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="index.css?v=8">
     <title>COEM — Archivo literario interactivo</title>
 </head>
 <body>
@@ -40,15 +37,18 @@
         <section class="hero" id="inicio" aria-labelledby="hero-title">
             <div class="portrait-field" aria-hidden="true" data-hero-portraits>
                 <figure class="hero-portrait hero-portrait--left" data-hero-portrait>
-                    <img src="static/imgs/Pizarnik.png" alt="" width="1024" height="1024">
+                    <img data-preview="Pizarnik" src="data:image/webp;base64,UklGRhABAABXRUJQVlA4IAQBAABQBgCdASogACAAPxF2slGsJySiqA1RgCIJaQATiXGUC1LRBhdgEhtbWlD9y/wlROKOuYeXjLv8NwhAAAD+9NOqSErKYgD/4Tp4iC14ijsUNC9Q0MDfPPmFMyVW/IVe6PocDgOrYuIrEQ7FqLrEXNc/qQ3RNRTevN8jCep8nN9di8Wk+Bcb/Q4TtXxW+SbTIZpXArRUvW5s6qT+36O5O2S/6rBjTGE23ijPDNovlXkVnT1u9zgleh/7IsusvyBc3y+M150qOTaiD5IkGOgDk6swRopiBPMO9cvXdINotqU0ASf8CYhMQHq3bHe8RqRrtZZu8SCtIPBS9HBR34Fqeq8lsAAAAA==" alt="" width="1024" height="1024" decoding="async">
+                    <noscript><img src="static/landing/Pizarnik-480.webp" alt="" width="480" height="480"></noscript>
                     <figcaption>Alejandra Pizarnik</figcaption>
                 </figure>
                 <figure class="hero-portrait hero-portrait--center" data-hero-portrait>
-                    <img src="static/imgs/quiroga.png" alt="" width="1024" height="1024">
+                    <img data-preview="quiroga" src="data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAAAwBQCdASogACAAPxFwslMsJaQisBgIAYAiCWkAA+aori1pHUjYAI1mRBuo5ybBeUxcAAD+6pdfhRFTt/LfLyleguT76zhAlm4gj43RDpc2RCu7FIgsDCQIlQ4+qaft2I+rEufB+gn7lLsuwsFQcIXcvSkc72cdv4/la8ry7ogP2psOxwhdFtbddjO7WCF50B8UBCMV0rdYr/L4FSobzx1xa0iZb7IJrHvDo44WrojhUXUNImw9KH4USVyEsf9qijnZzHBUOtcgAA==" alt="" width="1024" height="1024" decoding="async">
+                    <noscript><img src="static/landing/quiroga-480.webp" alt="" width="480" height="480"></noscript>
                     <figcaption>Horacio Quiroga</figcaption>
                 </figure>
                 <figure class="hero-portrait hero-portrait--right" data-hero-portrait>
-                    <img src="static/imgs/Borges.png" alt="" width="1024" height="1024">
+                    <img data-preview="Borges" src="data:image/webp;base64,UklGRuoAAABXRUJQVlA4IN4AAADQBQCdASogACAAPxF0r1AsJyQisAgBgCIJaQAD5z6G3FbpgpHgB6d58kdX7OYcHwAtVYiwgHHwAP78gHcPUfqmo+YeVsIeBAYYL74fV60NiQcDSWZX+AZkCNZcQXrSO2ZZxSrpPK8aEsuJNMuVGyQEniuZrStapfLERa/RUf/s49e85EEWnBiaJTWYjGWYIDBvOALKr6lcRP3Z3UpYpLpow5B1SxXQafSAn0agTX9o/l2ZjvXno/p9qWbX3hi7TWxeN+CgbVOc28GCc0J6BjxT98TM0xh9NvkviSKoQAA=" alt="" width="1024" height="1024" decoding="async">
+                    <noscript><img src="static/landing/Borges-480.webp" alt="" width="480" height="480"></noscript>
                     <figcaption>Jorge Luis Borges</figcaption>
                 </figure>
             </div>
@@ -98,8 +98,8 @@
                 <div class="route-tabs" role="tablist" aria-label="Rutas de COEM"></div>
 
                 <article class="route-stage" id="route-panel" aria-labelledby="route-title">
-                    <figure class="route-portrait">
-                        <img id="route-image" src="static/imgs/quiroga.png" alt="Retrato de Horacio Quiroga" width="1024" height="1024">
+                    <figure class="route-portrait" style="background-image: url(data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAAAwBQCdASogACAAPxFwslMsJaQisBgIAYAiCWkAA+aori1pHUjYAI1mRBuo5ybBeUxcAAD+6pdfhRFTt/LfLyleguT76zhAlm4gj43RDpc2RCu7FIgsDCQIlQ4+qaft2I+rEufB+gn7lLsuwsFQcIXcvSkc72cdv4/la8ry7ogP2psOxwhdFtbddjO7WCF50B8UBCMV0rdYr/L4FSobzx1xa0iZb7IJrHvDo44WrojhUXUNImw9KH4USVyEsf9qijnZzHBUOtcgAA==)">
+                        <img id="route-image" src="static/landing/quiroga-480.webp" srcset="static/landing/quiroga-480.webp 480w, static/landing/quiroga-960.webp 960w" sizes="(max-width: 900px) 92vw, 740px" loading="lazy" decoding="async" alt="Retrato de Horacio Quiroga" width="1024" height="1024">
                         <figcaption id="route-author">Horacio Quiroga</figcaption>
                     </figure>
 
@@ -123,7 +123,7 @@
         <section class="colophon" aria-labelledby="colophon-title">
             <p class="section-number">03 / Sobre COEM</p>
             <div class="colophon-copy">
-                <h2 id="colophon-title" class="calligraphy-title" data-calligraphy>Esbozando el mapa de la literatura universal.</h2>
+                <h2 id="colophon-title" class="calligraphy-title" data-calligraphy>Esbozando el mapa de la literatura clásica.</h2>
                 <p>Un proyecto independiente construido con software libre para navegar la literatura clásica en español y descubrir conexiones entre obras y autores.</p>
             </div>
         </section>
@@ -145,6 +145,7 @@
         </form>
     </footer>
 
-    <script src="index.js?v=4"></script>
+    <script src="static/landing/previews.js?v=2" defer></script>
+    <script src="index.js?v=9" defer></script>
 </body>
 </html>
