@@ -4,6 +4,7 @@
   "scripts": {
     "test": "node --test",
     "test:browser": "node browser-tests/browser_flows.cjs",
+    "test:browser:landing": "node browser-tests/landing.cjs",
     "test:browser:guesser": "node browser-tests/literary_guesser.cjs"
   },
   "devDependencies": {
