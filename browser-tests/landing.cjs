@@ -15,7 +15,8 @@ const titleText = 'Esbozando el mapa de la literatura clásica.';
     });
     try {
         for (const width of [320, 390, 1280]) {
-            const context = await browser.newContext({ viewport: { width, height: 844 }, deviceScaleFactor: 2 });
+            const context = await browser.newContext({ viewport: { width, height: width === 320 ? 568 : 844 }, deviceScaleFactor: 2,
+                isMobile: width < 900, hasTouch: width < 900 });
             const page = await context.newPage();
             const errors = [];
             const requests = [];
@@ -63,6 +64,27 @@ const titleText = 'Esbozando el mapa de la literatura clásica.';
             await page.getByRole('tab', { name: /05 Autores/ }).press('ArrowRight');
             assert.equal(await page.locator('#route-title').innerText(), 'Describir');
 
+            // Every route must reveal a usable action, including horizontally scrolled phone tabs.
+            for (let index = 0; index < 7; index++) {
+                const tab = page.getByRole('tab').nth(index);
+                if (width < 900) await tab.tap();
+                else await tab.click();
+                await page.waitForFunction(() => {
+                    const link = document.querySelector('#route-link');
+                    const bounds = link.getBoundingClientRect();
+                    return bounds.left >= 0 && bounds.right <= innerWidth && bounds.top >= 0 &&
+                        bounds.bottom <= innerHeight &&
+                        Math.abs((bounds.top + bounds.bottom) / 2 - innerHeight / 2) < 20 &&
+                        link.contains(document.elementFromPoint(
+                            (bounds.left + bounds.right) / 2, (bounds.top + bounds.bottom) / 2));
+                });
+                assert.equal(await tab.getAttribute('aria-selected'), 'true');
+                assert.ok(await page.locator('#route-link').getAttribute('href'));
+                await page.locator('#route-link').click({ trial: true });
+                assert.ok(await page.evaluate(() => document.documentElement.scrollWidth) <= width,
+                    `Route ${index + 1} overflows at ${width}px`);
+            }
+
             const heading = page.locator('#colophon-title');
             await heading.scrollIntoViewIfNeeded();
             await page.waitForFunction(() => document.querySelector('#colophon-title').classList.contains('is-writing'));
@@ -70,7 +92,7 @@ const titleText = 'Esbozando el mapa de la literatura clásica.';
             assert.ok(await heading.locator('.calligraphy-stroke').count() > 40);
             // Check overflow throughout writing, including feather travel at the right edge.
             for (let sample = 0; sample < 12; sample++) {
-                assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `Overflow at ${width}px`);
+                assert.ok(await page.evaluate(() => document.documentElement.scrollWidth) <= width, `Overflow at ${width}px`);
                 if (width === 390 && sample === 3 && process.env.LANDING_SCREENSHOT_DIR) {
                     await page.screenshot({ path: path.join(process.env.LANDING_SCREENSHOT_DIR, 'landing-quill-mobile.png') });
                 }
@@ -83,18 +105,20 @@ const titleText = 'Esbozando el mapa de la literatura clásica.';
             }
             assert.ok(await heading.locator('.calligraphy-stroke').evaluateAll(paths => paths.every(path => path.style.strokeDashoffset === '0')));
             assert.deepEqual(errors, []);
-            console.log(`Landing verified at ${width}px: previews, route races, offline fallback, quill, overflow, keyboard`);
+            console.log(`Landing verified at ${width}px: previews, all route actions, route races, offline fallback, quill, overflow, keyboard`);
             await context.close();
         }
         const reduced = await browser.newPage({ reducedMotion: 'reduce', viewport: { width: 390, height: 844 } });
         await reduced.goto(base);
         assert.equal(await reduced.locator('#colophon-title').innerText(), titleText);
         assert.equal(await reduced.locator('.writing-quill').count(), 0);
-        await reduced.getByRole('tab', { name: /01 Cuentos/ }).click();
-        assert.ok(await reduced.locator('#route-link').evaluate(link => {
-            const bounds = link.getBoundingClientRect();
-            return bounds.top >= 0 && bounds.bottom <= innerHeight;
-        }), 'Reduced-motion navigation immediately reveals the stories action');
+        for (let index = 0; index < 7; index++) {
+            await reduced.getByRole('tab').nth(index).click();
+            assert.ok(await reduced.locator('#route-link').evaluate(link => {
+                const bounds = link.getBoundingClientRect();
+                return bounds.top >= 0 && bounds.bottom <= innerHeight;
+            }), 'Reduced-motion navigation immediately reveals every route action');
+        }
         const noJS = await browser.newPage({ javaScriptEnabled: false });
         await noJS.goto(base);
         assert.equal(await noJS.locator('#colophon-title').innerText(), titleText);

@@ -612,6 +612,9 @@ a:focus-visible {
 }
 
 .route-copy h3 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
     margin: 0 0 24px;
     font-size: clamp(3.6rem, 7vw, 7rem);
     font-weight: 400;
@@ -876,7 +879,7 @@ a:focus-visible {
         padding: 34px 24px 90px;
     }
 
-    .route-copy h3 { font-size: clamp(3.7rem, 20vw, 5.8rem); }
+    .route-copy h3 { font-size: clamp(2.5rem, 13vw, 4.5rem); line-height: 0.95; }
     .route-copy > p:not(.route-count):not(.route-kicker) { font-size: 1.08rem; }
 
     .hero-action, .route-action, .oracle-cta { min-height: 50px; padding-inline: 16px; }

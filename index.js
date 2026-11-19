@@ -392,7 +392,7 @@
             tab.tabIndex = index === 0 ? 0 : -1;
             tab.dataset.index = index;
             tab.innerHTML = `<span>${String(index + 1).padStart(2, '0')}</span>${route.label}`;
-            tab.addEventListener('click', () => selectRoute(index, { scrollToAction: index === 0 }));
+            tab.addEventListener('click', () => selectRoute(index, { scrollToAction: true }));
             fragment.appendChild(tab);
         });
         tabsContainer.appendChild(fragment);
