@@ -39,6 +39,15 @@ const titleText = 'Esbozando el mapa de la literatura clásica.';
             assert.ok(requests.every(url => new URL(url).origin === new URL(base).origin), 'No third-party requests');
             assert.ok(!requests.some(url => /Pizarnik|cortazar|Marquez|Borges/.test(url)), 'No eager route downloads');
 
+            // The initially selected stories tab must still take readers to its action.
+            await page.getByRole('tab', { name: /01 Cuentos/ }).click();
+            await page.waitForFunction(() => {
+                const bounds = document.querySelector('#route-link').getBoundingClientRect();
+                return Math.abs((bounds.top + bounds.bottom) / 2 - innerHeight / 2) < 3;
+            });
+            assert.equal(await page.locator('#route-link').innerText(), 'Explorar cuentos');
+            assert.equal(await page.locator('#route-link').getAttribute('href'), 'stories-info.html');
+
             await page.getByRole('tab', { name: /02 Poemas/ }).click();
             assert.match(await page.locator('#route-image').getAttribute('src'), /^data:image\/webp/);
             await page.getByRole('tab', { name: /03 Relaciones/ }).click();
@@ -81,6 +90,11 @@ const titleText = 'Esbozando el mapa de la literatura clásica.';
         await reduced.goto(base);
         assert.equal(await reduced.locator('#colophon-title').innerText(), titleText);
         assert.equal(await reduced.locator('.writing-quill').count(), 0);
+        await reduced.getByRole('tab', { name: /01 Cuentos/ }).click();
+        assert.ok(await reduced.locator('#route-link').evaluate(link => {
+            const bounds = link.getBoundingClientRect();
+            return bounds.top >= 0 && bounds.bottom <= innerHeight;
+        }), 'Reduced-motion navigation immediately reveals the stories action');
         const noJS = await browser.newPage({ javaScriptEnabled: false });
         await noJS.goto(base);
         assert.equal(await noJS.locator('#colophon-title').innerText(), titleText);

@@ -392,18 +392,18 @@
             tab.tabIndex = index === 0 ? 0 : -1;
             tab.dataset.index = index;
             tab.innerHTML = `<span>${String(index + 1).padStart(2, '0')}</span>${route.label}`;
-            tab.addEventListener('click', () => selectRoute(index));
+            tab.addEventListener('click', () => selectRoute(index, { scrollToAction: index === 0 }));
             fragment.appendChild(tab);
         });
         tabsContainer.appendChild(fragment);
     }
 
-    function updateTabs(index) {
+    function updateTabs(index, scrollToTab = true) {
         tabsContainer.querySelectorAll('.route-tab').forEach((tab, tabIndex) => {
             const selected = tabIndex === index;
             tab.setAttribute('aria-selected', selected ? 'true' : 'false');
             tab.tabIndex = selected ? 0 : -1;
-            if (selected) {
+            if (selected && scrollToTab) {
                 tab.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
             }
         });
@@ -431,7 +431,7 @@
         }
         link.setAttribute('aria-label', route.action);
         link.textContent = route.action;
-        updateTabs(normalizedIndex);
+        updateTabs(normalizedIndex, !options?.scrollToAction);
 
         stage.classList.remove('is-entering');
         void stage.offsetWidth;
@@ -440,6 +440,9 @@
 
         if (options && options.focusTab) {
             tabsContainer.querySelector(`[data-index="${normalizedIndex}"]`).focus();
+        }
+        if (options?.scrollToAction) {
+            link.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth', block: 'center' });
         }
     }
 
