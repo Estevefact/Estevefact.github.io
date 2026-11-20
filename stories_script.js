@@ -375,6 +375,17 @@ function setupControls() {
   document.getElementById("share-button").addEventListener("click", () => {
     if (currentStory) ReaderFeatures.shareCurrent(currentStory.title).catch(console.error);
   });
+  document.getElementById("next-unread").addEventListener("click", async event => {
+    const button = event.currentTarget;
+    const status = document.getElementById("next-unread-status");
+    const { query, ...filters } = activeFilters();
+    const item = ReaderFeatures.randomUnreadItem("story", storySearchItems, filters, currentStory?.id);
+    if (!item) { status.textContent = "No quedan cuentos nuevos con estos filtros. Prueba cambiarlos."; return; }
+    status.textContent = "";
+    button.disabled = true;
+    try { await loadStory(item.id, { restore: false, restorePosition: false }); }
+    finally { button.disabled = false; }
+  });
   document.getElementById("surprise-button").addEventListener("click", () => {
     const item = ReaderFeatures.randomItem(
       storySearchItems,

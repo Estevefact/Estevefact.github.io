@@ -327,6 +327,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("share-button").addEventListener("click", () => {
       if (currentPoem) ReaderFeatures.shareCurrent(currentPoem.title).catch(console.error);
     });
+    document.getElementById("next-unread").addEventListener("click", async event => {
+      const button = event.currentTarget;
+      const status = document.getElementById("next-unread-status");
+      const { query, ...filters } = activeFilters();
+      const item = ReaderFeatures.randomUnreadItem("poem", poemSearchItems, filters, currentPoem?.id);
+      if (!item) { status.textContent = "No quedan poemas nuevos con estos filtros. Prueba cambiarlos."; return; }
+      status.textContent = "";
+      button.disabled = true;
+      try { await loadPoem(item.id, { restore: false, restorePosition: false }); }
+      finally { button.disabled = false; }
+    });
     document.getElementById("surprise-button").addEventListener("click", () => {
       const item = ReaderFeatures.randomItem(
         poemSearchItems,
@@ -341,7 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function setDiscoveryReady(ready) {
     [
       "author-search", "country-filter", "genre-filter", "min-time-filter", "time-filter",
-      "clear-filters", "surprise-button"
+      "clear-filters", "surprise-button", "next-unread"
     ].forEach(id => {
       const control = document.getElementById(id);
       if (control) control.disabled = !ready;

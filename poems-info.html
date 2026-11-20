@@ -18,7 +18,7 @@
     .search-filter { flex: 0 1 190px; }
   </style>
   <link rel="stylesheet" href="site_chrome.css?v=1">
-  <link rel="stylesheet" href="reader_ui.css?v=13">
+  <link rel="stylesheet" href="reader_ui.css?v=21">
   <link rel="stylesheet" href="coem_theme.css?v=4">
 </head>
 <body>
@@ -52,7 +52,7 @@
       <div class="reader-filter-row" aria-label="Filtros combinables para poemas">
         <label>País<select class="reader-select" id="country-filter"><option value="">Todos</option></select></label>
         <label>Género<select class="reader-select" id="genre-filter"><option value="">Todos</option></select></label>
-        <label>Duración mínima<select class="reader-select" id="min-time-filter"><option value="">Cualquiera</option><option value="1">1 minutos</option><option value="2">2 minutos</option><option value="4">4 minutos</option><option value="6">6 minutos</option><option value="8">8 minutos</option><option value="10">10 minutos</option><option value="15">15 minutos</option><option value="20">20 minutos</option></select></label>
+        <label>Duración mínima<select class="reader-select" id="min-time-filter"><option value="">Cualquiera</option><option value="1">1 minuto</option><option value="2">2 minutos</option><option value="4">4 minutos</option><option value="6">6 minutos</option><option value="8">8 minutos</option><option value="10">10 minutos</option><option value="15">15 minutos</option><option value="20">20 minutos</option></select></label>
                 <label>Duración máxima<select class="reader-select" id="time-filter">
           <option value="">Cualquiera</option><option value="2">2 minutos</option><option value="4">4 minutos</option><option value="6">6 minutos</option><option value="8">8 minutos</option><option value="10">10 minutos</option><option value="15">15 minutos</option><option value="20">20 minutos</option>
         </select></label>
@@ -74,6 +74,7 @@
       <h1 class="reader-heading" id="poemTitle">Cargando poema…</h1>
       <div class="reader-meta">Tiempo de lectura: <span id="poemTime">…</span></div>
       <div id="poemText"></div>
+      <div class="reader-next"><button class="reader-button reader-next__button" id="next-unread" type="button" disabled>Otro poema <span aria-hidden="true">→</span></button><p id="next-unread-status" role="status" aria-live="polite"></p></div>
 
       <section class="reader-section">
         <h3>Más poemas de este autor</h3>
@@ -97,9 +98,9 @@
   </main>
 
   <script src="static/particleDrawStories.js?v=13"></script>
-  <script src="reader_features.js?v=20"></script>
+  <script src="reader_features.js?v=21"></script>
   <script src="stories_core.js?v=11"></script>
   <script src="author_similarity.js?v=1"></script>
-  <script src="poems_script.js?v=20"></script>
+  <script src="poems_script.js?v=21"></script>
 </body>
 </html>

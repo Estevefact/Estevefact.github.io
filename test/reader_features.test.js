@@ -368,3 +368,15 @@ test("minimum and maximum reading times apply inclusively to search and surprise
   assert.equal(ReaderFeatures.randomItem(items, filters, "min", () => 0).id, "middle");
   assert.deepEqual(ReaderFeatures.filterItems(items, { minMinutes: "4", maxMinutes: "2" }), []);
 });
+
+
+test("unread selection remembers visited items beyond recent history and honors filters", () => {
+  const type = `unread-${Date.now()}`;
+  const items = Array.from({ length: 35 }, (_, i) => ({ id: String(i), country: i === 34 ? "Chile" : "Colombia" }));
+  items.slice(0, 33).forEach(item => ReaderFeatures.recordHistory(type, item));
+  assert.equal(ReaderFeatures.getLibrary(type).history.length, 30);
+  assert.equal(ReaderFeatures.randomUnreadItem(type, items, { country: "Colombia" }, null, () => 0).id, "33");
+  assert.equal(ReaderFeatures.randomUnreadItem(type, items, { country: "Chile" }, "34"), null);
+  ReaderFeatures.recordHistory(type, items[33]);
+  assert.equal(ReaderFeatures.randomUnreadItem(type, items, { country: "Colombia" }), null);
+});

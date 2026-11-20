@@ -542,3 +542,10 @@ body {
   .reader-resume { flex-direction: column; align-items: stretch; }
   .reader-resume .reader-button { width: 100%; }
 }
+
+/* Keep the next discovery action close to the end of the reading. */
+.reader-next { margin: 36px 0 48px; }
+.reader-next__button { min-height: 52px; padding: 12px 24px; font-size: 1.1rem; }
+.reader-next__button span { margin-left: 12px; }
+.reader-next p:empty { display: none; }
+@media (max-width: 600px) { .reader-next__button { width: 100%; } }
