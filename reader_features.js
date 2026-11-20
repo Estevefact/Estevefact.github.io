@@ -172,6 +172,7 @@
   function matchesFilters(item, filters) {
     if (filters.country && normalizeText(item.country) !== normalizeText(filters.country)) return false;
     if (filters.genre && normalizeText(item.genre) !== normalizeText(filters.genre)) return false;
+    if (filters.minMinutes && !(Number(item.readingTime) >= Number(filters.minMinutes))) return false;
     if (filters.maxMinutes && Number(item.readingTime) > Number(filters.maxMinutes)) return false;
     return true;
   }
@@ -206,10 +207,12 @@
     const terms = normalizeText(filters.query).split(/\s+/).filter(Boolean);
     const country = normalizeText(filters.country);
     const genre = normalizeText(filters.genre);
+    const minMinutes = filters.minMinutes ? Number(filters.minMinutes) : 0;
     const maxMinutes = filters.maxMinutes ? Number(filters.maxMinutes) : 0;
     return index.filter(entry => {
       if (country && entry.country !== country) return false;
       if (genre && entry.genre !== genre) return false;
+      if (minMinutes && !(entry.readingTime >= minMinutes)) return false;
       if (maxMinutes && entry.readingTime > maxMinutes) return false;
       return terms.every(term => entry.searchable.includes(term));
     }).map(entry => entry.item);
