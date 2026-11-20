@@ -10,6 +10,9 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "static" / "landing"
 OUTPUT.mkdir(exist_ok=True)
+LIBRARY_PORTRAITS = {
+    "Hemingway", "Lovecraft", "Hesse", "Rilke", "Baudelaire", "Mistral",
+}
 names = sorted(set(re.findall(
     r"static/imgs/([^']+)\.png", (ROOT / "index.js").read_text()
 )))
@@ -23,6 +26,11 @@ for name in names:
             resized.thumbnail((size, size), Image.Resampling.LANCZOS)
             resized.save(
                 OUTPUT / f"{name}-{size}.webp", quality=quality, method=6
+            )
+        if name in LIBRARY_PORTRAITS:
+            # Readers, maps and the oracle use the same compressed portrait.
+            (ROOT / "static" / "imgs" / f"{name}.webp").write_bytes(
+                (OUTPUT / f"{name}-960.webp").read_bytes()
             )
         portrait.thumbnail((32, 32), Image.Resampling.LANCZOS)
         buffer = io.BytesIO()

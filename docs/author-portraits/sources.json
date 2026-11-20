@@ -1,0 +1,67 @@
+{
+  "style_reference": "static/imgs/Saramago.png",
+  "method": "AI-generated illustrations; Wikipedia biographical research, existing Saramago image as visual style reference",
+  "portraits": [
+    {
+      "author": "Ernest Hemingway",
+      "wikipedia": "https://en.wikipedia.org/wiki/Ernest_Hemingway",
+      "output": "static/imgs/Hemingway.png",
+      "status": "created",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3455789,
+      "style": "original ink style"
+    },
+    {
+      "author": "H. P. Lovecraft",
+      "wikipedia": "https://en.wikipedia.org/wiki/H._P._Lovecraft",
+      "output": "static/imgs/Lovecraft.png",
+      "status": "created",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2896812,
+      "style": "loose pen sketch with extra traces"
+    },
+    {
+      "author": "Hermann Hesse",
+      "wikipedia": "https://en.wikipedia.org/wiki/Hermann_Hesse",
+      "output": "static/imgs/Hesse.png",
+      "status": "created",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3040323,
+      "style": "loose pen sketch with extra traces"
+    },
+    {
+      "author": "Rainer Maria Rilke",
+      "wikipedia": "https://en.wikipedia.org/wiki/Rainer_Maria_Rilke",
+      "output": "static/imgs/Rilke.png",
+      "status": "created",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3209035,
+      "style": "loose pen sketch with extra traces"
+    },
+    {
+      "author": "Charles Baudelaire",
+      "wikipedia": "https://en.wikipedia.org/wiki/Charles_Baudelaire",
+      "output": "static/imgs/Baudelaire.png",
+      "status": "created",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3162259,
+      "style": "loose pen sketch with extra traces"
+    },
+    {
+      "author": "Gabriela Mistral",
+      "wikipedia": "https://en.wikipedia.org/wiki/Gabriela_Mistral",
+      "output": "static/imgs/Mistral.png",
+      "status": "created",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3196958,
+      "style": "loose pen sketch with extra traces"
+    }
+  ],
+  "tool": "built-in image_gen"
+}

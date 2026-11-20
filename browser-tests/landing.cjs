@@ -22,7 +22,7 @@ const titleText = 'Esbozando el mapa de la literatura clásica.';
             const requests = [];
             page.on('pageerror', error => errors.push(error.message));
             page.on('request', request => requests.push(request.url()));
-            await page.addInitScript(() => sessionStorage.setItem('coem:hero-portrait-offset', '18'));
+            await page.addInitScript(() => sessionStorage.setItem('coem:hero-portrait-offset', '24'));
             // Hold all large images so we can inspect real cold-load previews.
             await page.route('**/static/landing/*.webp', async route => {
                 await new Promise(resolve => setTimeout(resolve, 600));
@@ -108,6 +108,21 @@ const titleText = 'Esbozando el mapa de la literatura clásica.';
             console.log(`Landing verified at ${width}px: previews, all route actions, route races, offline fallback, quill, overflow, keyboard`);
             await context.close();
         }
+        // All six new portraits participate in rotation and decode successfully.
+        const added = await browser.newPage({ viewport: { width: 390, height: 844 } });
+        for (const [offset, expected] of [
+            [16, ['Ernest Hemingway', 'H. P. Lovecraft', 'Hermann Hesse']],
+            [19, ['Rainer Maria Rilke', 'Charles Baudelaire', 'Gabriela Mistral']]
+        ]) {
+            await added.goto(base);
+            await added.evaluate(value => sessionStorage.setItem('coem:hero-portrait-offset', String(value)), offset);
+            await added.reload();
+            await added.waitForFunction(() => [...document.querySelectorAll('[data-hero-portrait] img')]
+                .every(img => img.src.includes('-480.webp') && img.complete && img.naturalWidth > 0));
+            assert.deepEqual(await added.locator('[data-hero-portrait] figcaption').allTextContents(), expected);
+        }
+        await added.close();
+        console.log('All six new author portraits verified');
         const reduced = await browser.newPage({ reducedMotion: 'reduce', viewport: { width: 390, height: 844 } });
         await reduced.goto(base);
         assert.equal(await reduced.locator('#colophon-title').innerText(), titleText);
