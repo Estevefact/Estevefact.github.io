@@ -1,0 +1,43 @@
+{
+  "tool": "built-in image_gen",
+  "style_reference": "static/imgs/Mistral.png",
+  "method": "Generated illustrations; Wikipedia research context and existing collection image as style reference.",
+  "portraits": [
+    {
+      "author": "Clarice Lispector",
+      "wikipedia": "https://en.wikipedia.org/wiki/Clarice_Lispector",
+      "output": "static/imgs/Lispector.png",
+      "prompt": "Use case: stylized-concept. Create one square literary portrait of Clarice Lispector: mature Brazilian novelist with distinctive almond-shaped intense eyes, sharply defined cheekbones and nose, side-parted swept-back shoulder-length hair and small earrings, thoughtful direct gaze. Research context https://en.wikipedia.org/wiki/Clarice_Lispector. Attached Mistral portrait is STYLE ONLY, not the subject: draw Clarice Lispector's own recognizable facial identity, do not copy Mistral's face. Match the refined classic black pen on warm ivory paper aesthetic. User specifically requests sketch-like MORE VISIBLE PEN TRACES: expressive thin-to-thick hand-drawn marks, repeated searching contour strokes along face and jaw, irregular curved hatching and diagonal crosshatch bundles, loosely scribbled hair, airy unfinished shoulders, occasional angular construction lines. Keep ivory paper visible between strokes. Facial shading must be formed by drawn lines, not smooth photographic shading or uniform stippled dots. A dignified recognizable portrait with realistic proportions, no caricature or cartoon. Tight head-and-shoulders square composition, entire head visible, plain ivory background, no text, no frame, no watermark."
+    },
+    {
+      "author": "Alejo Carpentier",
+      "wikipedia": "https://en.wikipedia.org/wiki/Alejo_Carpentier",
+      "output": "static/imgs/Carpentier.png",
+      "prompt": "Use case: stylized-concept. Create one square literary portrait of Alejo Carpentier: elderly Cuban novelist with a high balding forehead, hair at the sides, broad face, dark-framed spectacles, clean-shaven face and formal jacket. Research context https://en.wikipedia.org/wiki/Alejo_Carpentier. Attached Mistral portrait is STYLE ONLY, not the subject: draw Alejo Carpentier's own recognizable facial identity, do not copy Mistral's face. Match the refined classic black pen on warm ivory paper aesthetic. User specifically requests sketch-like MORE VISIBLE PEN TRACES: expressive thin-to-thick hand-drawn marks, repeated searching contour strokes along face and jaw, irregular curved hatching and diagonal crosshatch bundles, loosely scribbled hair, airy unfinished shoulders, occasional angular construction lines. Keep ivory paper visible between strokes. Facial shading must be formed by drawn lines, not smooth photographic shading or uniform stippled dots. A dignified recognizable portrait with realistic proportions, no caricature or cartoon. Tight head-and-shoulders square composition, entire head visible, plain ivory background, no text, no frame, no watermark."
+    },
+    {
+      "author": "Carlos Fuentes",
+      "wikipedia": "https://en.wikipedia.org/wiki/Carlos_Fuentes",
+      "output": "static/imgs/Fuentes.png",
+      "prompt": "Use case: stylized-concept. Create one square literary portrait of Carlos Fuentes: mature Mexican novelist with thick brushed-back silver hair, distinctive broad gray moustache, strong dark eyebrows, alert eyes and formal jacket. Research context https://en.wikipedia.org/wiki/Carlos_Fuentes. Attached Mistral portrait is STYLE ONLY, not the subject: draw Carlos Fuentes's own recognizable facial identity, do not copy Mistral's face. Match the refined classic black pen on warm ivory paper aesthetic. User specifically requests sketch-like MORE VISIBLE PEN TRACES: expressive thin-to-thick hand-drawn marks, repeated searching contour strokes along face and jaw, irregular curved hatching and diagonal crosshatch bundles, loosely scribbled hair, airy unfinished shoulders, occasional angular construction lines. Keep ivory paper visible between strokes. Facial shading must be formed by drawn lines, not smooth photographic shading or uniform stippled dots. A dignified recognizable portrait with realistic proportions, no caricature or cartoon. Tight head-and-shoulders square composition, entire head visible, plain ivory background, no text, no frame, no watermark."
+    },
+    {
+      "author": "Rosario Castellanos",
+      "wikipedia": "https://en.wikipedia.org/wiki/Rosario_Castellanos",
+      "output": "static/imgs/Castellanos.png",
+      "prompt": "Use case: stylized-concept. Create one square literary portrait of Rosario Castellanos: Mexican writer in middle age, short softly curled dark hair, broad forehead, arched eyebrows, thoughtful deep eyes, rounded oval face, simple blouse. Research context https://en.wikipedia.org/wiki/Rosario_Castellanos. Attached Mistral portrait is STYLE ONLY, not the subject: draw Rosario Castellanos's own recognizable facial identity, do not copy Mistral's face. Match the refined classic black pen on warm ivory paper aesthetic. User specifically requests sketch-like MORE VISIBLE PEN TRACES: expressive thin-to-thick hand-drawn marks, repeated searching contour strokes along face and jaw, irregular curved hatching and diagonal crosshatch bundles, loosely scribbled hair, airy unfinished shoulders, occasional angular construction lines. Keep ivory paper visible between strokes. Facial shading must be formed by drawn lines, not smooth photographic shading or uniform stippled dots. A dignified recognizable portrait with realistic proportions, no caricature or cartoon. Tight head-and-shoulders square composition, entire head visible, plain ivory background, no text, no frame, no watermark."
+    },
+    {
+      "author": "Alfonsina Storni",
+      "wikipedia": "https://en.wikipedia.org/wiki/Alfonsina_Storni",
+      "output": "static/imgs/Storni.png",
+      "prompt": "Use case: stylized-concept. Create one square literary portrait of Alfonsina Storni: Argentine poet with short softly waved side-parted 1920s bob, striking large thoughtful eyes, rounded face, modest period blouse, calm serious expression. Research context https://en.wikipedia.org/wiki/Alfonsina_Storni. Attached Mistral portrait is STYLE ONLY, not the subject: draw Alfonsina Storni's own recognizable facial identity, do not copy Mistral's face. Match the refined classic black pen on warm ivory paper aesthetic. User specifically requests sketch-like MORE VISIBLE PEN TRACES: expressive thin-to-thick hand-drawn marks, repeated searching contour strokes along face and jaw, irregular curved hatching and diagonal crosshatch bundles, loosely scribbled hair, airy unfinished shoulders, occasional angular construction lines. Keep ivory paper visible between strokes. Facial shading must be formed by drawn lines, not smooth photographic shading or uniform stippled dots. A dignified recognizable portrait with realistic proportions, no caricature or cartoon. Tight head-and-shoulders square composition, entire head visible, plain ivory background, no text, no frame, no watermark."
+    },
+    {
+      "author": "Miguel Ángel Asturias",
+      "wikipedia": "https://en.wikipedia.org/wiki/Miguel_%C3%81ngel_Asturias",
+      "output": "static/imgs/Asturias.png",
+      "prompt": "Use case: stylized-concept. Create one square literary portrait of Miguel Ángel Asturias: mature Guatemalan novelist with brushed-back wavy silver hair, broad strongly featured face and prominent nose, expressive eyebrows, clean-shaven, dignified suit and tie. Research context https://en.wikipedia.org/wiki/Miguel_%C3%81ngel_Asturias. Attached Mistral portrait is STYLE ONLY, not the subject: draw Miguel Ángel Asturias's own recognizable facial identity, do not copy Mistral's face. Match the refined classic black pen on warm ivory paper aesthetic. User specifically requests sketch-like MORE VISIBLE PEN TRACES: expressive thin-to-thick hand-drawn marks, repeated searching contour strokes along face and jaw, irregular curved hatching and diagonal crosshatch bundles, loosely scribbled hair, airy unfinished shoulders, occasional angular construction lines. Keep ivory paper visible between strokes. Facial shading must be formed by drawn lines, not smooth photographic shading or uniform stippled dots. A dignified recognizable portrait with realistic proportions, no caricature or cartoon. Tight head-and-shoulders square composition, entire head visible, plain ivory background, no text, no frame, no watermark."
+    }
+  ]
+}

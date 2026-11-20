@@ -73,8 +73,27 @@
     return true;
   }
 
+  // Keep all visited IDs separately from the short recent-history display.
+  function visitedIds(type) {
+    const stored = storageGet(`coem:${type}:visited:v1`, []);
+    const history = storageGet(`coem:${type}:history`, []);
+    return new Set([
+      ...(Array.isArray(stored) ? stored : []),
+      ...(Array.isArray(history) ? history.map(entry => entry?.id) : [])
+    ].filter(Boolean));
+  }
+
+  function randomUnreadItem(type, items, filters = {}, excludeId, random = Math.random) {
+    const visited = visitedIds(type);
+    const eligible = filterItems(items, filters).filter(item => item.id !== excludeId && !visited.has(item.id));
+    return eligible.length ? eligible[Math.floor(random() * eligible.length)] : null;
+  }
+
   function recordHistory(type, item, max = 30) {
     const key = `coem:${type}:history`;
+    const visited = visitedIds(type);
+    if (item?.id) visited.add(item.id);
+    storageSet(`coem:${type}:visited:v1`, [...visited]);
     const history = storageGet(key, []).filter(entry => entry.id !== item.id);
     history.unshift({ ...item, visitedAt: Date.now() });
     storageSet(key, history.slice(0, max));
@@ -172,6 +191,7 @@
   function matchesFilters(item, filters) {
     if (filters.country && normalizeText(item.country) !== normalizeText(filters.country)) return false;
     if (filters.genre && normalizeText(item.genre) !== normalizeText(filters.genre)) return false;
+    if (filters.minMinutes && !(Number(item.readingTime) >= Number(filters.minMinutes))) return false;
     if (filters.maxMinutes && Number(item.readingTime) > Number(filters.maxMinutes)) return false;
     return true;
   }
@@ -206,10 +226,12 @@
     const terms = normalizeText(filters.query).split(/\s+/).filter(Boolean);
     const country = normalizeText(filters.country);
     const genre = normalizeText(filters.genre);
+    const minMinutes = filters.minMinutes ? Number(filters.minMinutes) : 0;
     const maxMinutes = filters.maxMinutes ? Number(filters.maxMinutes) : 0;
     return index.filter(entry => {
       if (country && entry.country !== country) return false;
       if (genre && entry.genre !== genre) return false;
+      if (minMinutes && !(entry.readingTime >= minMinutes)) return false;
       if (maxMinutes && entry.readingTime > maxMinutes) return false;
       return terms.every(term => entry.searchable.includes(term));
     }).map(entry => entry.item);
@@ -233,7 +255,7 @@
     getReadingPosition, saveReadingPosition, restoreReadingPosition,
     getItemFromURL, updateURL, getPreferences, applyPreferences, setTheme,
     changeFontSize, shareCurrent, formatTime, normalizeText, matchesFilters,
-    filterItems, buildFilterIndex, filterIndexedItems, randomItem,
+    filterItems, buildFilterIndex, filterIndexedItems, randomItem, randomUnreadItem,
     navigateToReadingStart, toast
   };
 });

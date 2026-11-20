@@ -61,7 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
       query: document.getElementById("author-search").value,
       country: document.getElementById("country-filter").value,
       genre: document.getElementById("genre-filter").value,
-      maxMinutes: document.getElementById("time-filter").value
+      minMinutes: document.getElementById("min-time-filter").value,
+    maxMinutes: document.getElementById("time-filter").value
     };
   }
 
@@ -271,12 +272,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("author-search");
     const results = document.getElementById("autocomplete-container");
     const count = document.getElementById("search-result-count");
-    const filterControls = ["country-filter", "genre-filter", "time-filter"]
+    const filterControls = ["country-filter", "genre-filter", "min-time-filter", "time-filter"]
       .map(id => document.getElementById(id));
 
     const renderResults = () => {
       const filters = activeFilters();
-      const active = filters.query.trim() || filters.country || filters.genre || filters.maxMinutes;
+      const active = filters.query.trim() || filters.country || filters.genre || filters.minMinutes || filters.maxMinutes;
       results.replaceChildren();
       count.textContent = "";
       if (!active) return;
@@ -326,6 +327,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("share-button").addEventListener("click", () => {
       if (currentPoem) ReaderFeatures.shareCurrent(currentPoem.title).catch(console.error);
     });
+    document.getElementById("next-unread").addEventListener("click", async event => {
+      const button = event.currentTarget;
+      const status = document.getElementById("next-unread-status");
+      const { query, ...filters } = activeFilters();
+      const item = ReaderFeatures.randomUnreadItem("poem", poemSearchItems, filters, currentPoem?.id);
+      if (!item) { status.textContent = "No quedan poemas nuevos con estos filtros. Prueba cambiarlos."; return; }
+      status.textContent = "";
+      button.disabled = true;
+      try { await loadPoem(item.id, { restore: false, restorePosition: false }); }
+      finally { button.disabled = false; }
+    });
     document.getElementById("surprise-button").addEventListener("click", () => {
       const item = ReaderFeatures.randomItem(
         poemSearchItems,
@@ -339,8 +351,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function setDiscoveryReady(ready) {
     [
-      "author-search", "country-filter", "genre-filter", "time-filter",
-      "clear-filters", "surprise-button"
+      "author-search", "country-filter", "genre-filter", "min-time-filter", "time-filter",
+      "clear-filters", "surprise-button", "next-unread"
     ].forEach(id => {
       const control = document.getElementById(id);
       if (control) control.disabled = !ready;

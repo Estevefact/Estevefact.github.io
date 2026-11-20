@@ -353,3 +353,30 @@ test("reader startup renders content before loading semantic discovery indexes",
   assert.ok(storyNeighbors > storyFirstRender);
   assert.match(stories, /loadCoemPortraitAnimator/);
 });
+
+
+test("minimum and maximum reading times apply inclusively to search and surprise", () => {
+  const items = [
+    { id: "unknown", readingTime: 0 }, { id: "short", readingTime: 1.9 },
+    { id: "min", readingTime: 2 }, { id: "middle", readingTime: 3 },
+    { id: "max", readingTime: 4 }, { id: "long", readingTime: 4.1 }
+  ];
+  const filters = { minMinutes: "2", maxMinutes: "4" };
+  const expected = ["min", "middle", "max"];
+  assert.deepEqual(ReaderFeatures.filterItems(items, filters).map(item => item.id), expected);
+  assert.deepEqual(ReaderFeatures.filterIndexedItems(ReaderFeatures.buildFilterIndex(items), filters).map(item => item.id), expected);
+  assert.equal(ReaderFeatures.randomItem(items, filters, "min", () => 0).id, "middle");
+  assert.deepEqual(ReaderFeatures.filterItems(items, { minMinutes: "4", maxMinutes: "2" }), []);
+});
+
+
+test("unread selection remembers visited items beyond recent history and honors filters", () => {
+  const type = `unread-${Date.now()}`;
+  const items = Array.from({ length: 35 }, (_, i) => ({ id: String(i), country: i === 34 ? "Chile" : "Colombia" }));
+  items.slice(0, 33).forEach(item => ReaderFeatures.recordHistory(type, item));
+  assert.equal(ReaderFeatures.getLibrary(type).history.length, 30);
+  assert.equal(ReaderFeatures.randomUnreadItem(type, items, { country: "Colombia" }, null, () => 0).id, "33");
+  assert.equal(ReaderFeatures.randomUnreadItem(type, items, { country: "Chile" }, "34"), null);
+  ReaderFeatures.recordHistory(type, items[33]);
+  assert.equal(ReaderFeatures.randomUnreadItem(type, items, { country: "Colombia" }), null);
+});
