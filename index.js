@@ -61,7 +61,13 @@
         { name: 'Hermann Hesse', image: 'static/imgs/Hesse.png' },
         { name: 'Rainer Maria Rilke', image: 'static/imgs/Rilke.png' },
         { name: 'Charles Baudelaire', image: 'static/imgs/Baudelaire.png' },
-        { name: 'Gabriela Mistral', image: 'static/imgs/Mistral.png' }
+        { name: 'Gabriela Mistral', image: 'static/imgs/Mistral.png' },
+        { name: 'Clarice Lispector', image: 'static/imgs/Lispector.png' },
+        { name: 'Alejo Carpentier', image: 'static/imgs/Carpentier.png' },
+        { name: 'Carlos Fuentes', image: 'static/imgs/Fuentes.png' },
+        { name: 'Rosario Castellanos', image: 'static/imgs/Castellanos.png' },
+        { name: 'Alfonsina Storni', image: 'static/imgs/Storni.png' },
+        { name: 'Miguel Ángel Asturias', image: 'static/imgs/Asturias.png' }
     ];
 
     function rotateHeroPortraits() {

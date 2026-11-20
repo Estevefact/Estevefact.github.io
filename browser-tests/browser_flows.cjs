@@ -76,7 +76,7 @@ async function assertReadableCompactList(page, selector, label) {
       assert.equal(await mark.evaluate(image => image.naturalWidth), 572);
       assert.ok(await mark.evaluate(image => image.getBoundingClientRect().width > 0));
     }
-    await page.evaluate(() => sessionStorage.setItem("coem:hero-portrait-offset", "24"));
+    await page.evaluate(() => sessionStorage.setItem("coem:hero-portrait-offset", "30"));
     await page.reload();
     const firstPortraitNames = await page.locator("[data-hero-portrait] figcaption").allTextContents();
     assert.deepEqual(firstPortraitNames, ["Carl Sagan", "Emily Dickinson", "Franz Kafka"]);

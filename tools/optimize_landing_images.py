@@ -12,6 +12,7 @@ OUTPUT = ROOT / "static" / "landing"
 OUTPUT.mkdir(exist_ok=True)
 LIBRARY_PORTRAITS = {
     "Hemingway", "Lovecraft", "Hesse", "Rilke", "Baudelaire", "Mistral",
+    "Lispector", "Carpentier", "Fuentes", "Castellanos", "Storni", "Asturias",
 }
 names = sorted(set(re.findall(
     r"static/imgs/([^']+)\.png", (ROOT / "index.js").read_text()
