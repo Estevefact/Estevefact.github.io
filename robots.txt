@@ -1,0 +1,5 @@
+# COEM Spanish edition: https://estevefact.github.io/
+User-agent: *
+Allow: /
+
+Sitemap: https://estevefact.github.io/sitemap.xml
