@@ -1,0 +1,3 @@
+# COEM Spanish edition: https://estevefact.github.io/
+User-agent: *
+Allow: /
